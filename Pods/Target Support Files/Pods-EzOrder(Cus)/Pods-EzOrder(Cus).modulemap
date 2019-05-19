@@ -1,0 +1,6 @@
+framework module Pods_EzOrder_Cus_ {
+  umbrella header "Pods-EzOrder(Cus)-umbrella.h"
+
+  export *
+  module * { export * }
+}
