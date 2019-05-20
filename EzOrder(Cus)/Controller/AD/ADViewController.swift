@@ -10,10 +10,13 @@ import UIKit
 
 class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var rankCollectionView: UICollectionView!
+    
     var rankImgNames = ["AD1", "AD2", "AD3", "AD4", "AD5"]
     var rankLabels = ["Label1", "Label2", "Label3", "Label4", "Label5"]
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return rankImgNames.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,7 +45,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         
         
         
-        self.view.addSubview(collectviewRank)
+//        self.view.addSubview(collectviewRank)
         scrollviewAd.delegate = self
         scrollviewAd.showsVerticalScrollIndicator = false
         scrollviewAd.showsHorizontalScrollIndicator = false
