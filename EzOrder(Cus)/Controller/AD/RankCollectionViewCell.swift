@@ -8,6 +8,8 @@
 
 import UIKit
 
-class UpperCollectionViewCell: UICollectionViewCell {
+class RankCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var imgRank: UIImageView!
+    @IBOutlet weak var lbRank: UILabel!
     
 }
