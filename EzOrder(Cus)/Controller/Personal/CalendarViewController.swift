@@ -10,10 +10,10 @@ import UIKit
 import JTAppleCalendar
 
 class CalendarViewController: UIViewController {
-
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var eventTableView: UITableView!
+    //    @IBOutlet weak var eventTableView: UITableView!
     
     var now = Date()
     var dateText = ""
@@ -24,6 +24,8 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "行事曆"
+        
         //  設定日曆屬性（水平/垂直滑）、滑動方式
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode   = .stopAtEachCalendarFrame
@@ -31,7 +33,6 @@ class CalendarViewController: UIViewController {
         
         self.title = "行事曆"
         dateLabel.text = "2019-01"
-//        navigationItem.title = "2019-01"
         
         //  寫死今天有三項訂位
         dateText = dateFormatter.string(from: now)
@@ -42,7 +43,23 @@ class CalendarViewController: UIViewController {
                     "2019-01-15" : ["12:00 麥當勞", "22:00 肯德基"]]
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "dateDetailSegue"{
+            let dateDetailVC = segue.destination as! DateEventTableViewController
+            for (time, _) in eventDic{
+                if time == selectDateText{
+                    if let allEvent = eventDic[time]{
+                        for event in allEvent{
+                            dateDetailVC.showEventArray.append(event)
+                        }
+                    }
+                    
+                }
+            }
+            dateDetailVC.selectDateText = selectDateText
+            dateDetailVC.tableView.reloadData()
+        }
+    }
 }
 
 extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate{
@@ -85,7 +102,6 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         formatter.dateFormat = "yyyy-MM"
         if let slideYearMonth = visibleDates.monthDates.first?.date{
             let yearMonth = formatter.string(from: slideYearMonth)
-//            navigationItem.title = "\(yearMonth)"
             dateLabel.text = "\(yearMonth)"
         }
     }
@@ -94,17 +110,13 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         //  判斷是不是點第二次，如果是點兩次的話跳出細項
         let cell = cell as! DateCell
         if cell.selectedView.isHidden == false{
-            let alert = UIAlertController(title: "select", message: "", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "ok", style: .default, handler: nil)
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            performSegue(withIdentifier: "dateDetailSegue", sender: self)
         }
         configureCell(view: cell, cellState: cellState)
         selectDateText = dateFormatter.string(from: date)
-        eventTableView.reloadData()
+        //        eventTableView.reloadData()
         print(selectDateText)
-        //  讓標題改成選取到的日期
-//        navigationItem.title = selectDateText
+        //  讓標籤改成選取到的日期
         dateLabel.text = selectDateText
     }
     //  取消選取的話
@@ -126,13 +138,11 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             cell.isHidden = false
         } else {
             cell.dateLabel.textColor = .lightGray
-            //            cell.dateLabel.alpha = 0.5
         }
     }
     //  按日期讓日期上有粉色的圓圈
     func handleCellSelected(cell: DateCell, cellState: CellState) {
         if cellState.isSelected {
-//            cell.selectedView.layer.cornerRadius =  15
             cell.selectedView.isHidden = false
         } else {
             cell.selectedView.isHidden = true
@@ -142,34 +152,10 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func handleCellEvents(cell: DateCell, cellState: CellState) {
         let everyCellDayDate = dateFormatter.string(from: cellState.date)
         if eventDic[everyCellDayDate] == nil{
-//            cell.dotView.layer.cornerRadius = 5
             cell.dotView.isHidden = true
         } else {
             cell.dotView.isHidden = false
         }
     }
     
-}
-
-extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let event = eventDic[selectDateText]{
-            if event.isEmpty{
-                return 0
-            }
-            else{
-                return event.count
-            }
-        }
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = eventTableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-        if let event = eventDic[selectDateText]{
-            cell.textLabel?.text = event[indexPath.row]
-        }
-        return cell
-    }
 }
