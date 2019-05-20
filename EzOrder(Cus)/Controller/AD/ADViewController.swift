@@ -8,7 +8,15 @@
 // FACCCA
 import UIKit
 
-class ADViewController: UIViewController, UIScrollViewDelegate {
+class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     @IBOutlet weak var scrollviewAd: UIScrollView!
     @IBOutlet weak var pgcontrolAd: UIPageControl!
     @IBOutlet weak var imgAd1: UIImageView!
@@ -17,7 +25,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var imgAd4: UIImageView!
     @IBOutlet weak var imgAd5: UIImageView!
     
-    @IBOutlet weak var collectviewUpper: UICollectionView!
+    @IBOutlet weak var collectviewRank: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         imgAd1.image = UIImage(named: "AD1")
