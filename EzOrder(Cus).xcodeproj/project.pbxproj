@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441E5867229260190055BFE6 /* DateEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E5866229260190055BFE6 /* DateEventTableViewCell.swift */; };
 		447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A16F0228BB1D2003AB41E /* AppDelegate.swift */; };
 		447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A16F2228BB1D2003AB41E /* ADViewController.swift */; };
 		447A16F6228BB1D2003AB41E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447A16F4228BB1D2003AB41E /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzOrder_Cus_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).release.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).release.xcconfig"; sourceTree = "<group>"; };
+		441E5866229260190055BFE6 /* DateEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateEventTableViewCell.swift; sourceTree = "<group>"; };
 		447A16ED228BB1D2003AB41E /* EzOrder(Cus).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzOrder(Cus).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		447A16F0228BB1D2003AB41E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		447A16F2228BB1D2003AB41E /* ADViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				44FA8C5222912C8200B24B9C /* CalendarViewController.swift */,
 				44FA8C5422912DD800B24B9C /* DateCell.swift */,
 				44FA8C5622913B9000B24B9C /* DateEventTableViewController.swift */,
+				441E5866229260190055BFE6 /* DateEventTableViewCell.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
 				9D5618292291AAEA0083233E /* UpperCollectionViewCell.swift in Sources */,
+				441E5867229260190055BFE6 /* DateEventTableViewCell.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				44FA8C5722913B9000B24B9C /* DateEventTableViewController.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
