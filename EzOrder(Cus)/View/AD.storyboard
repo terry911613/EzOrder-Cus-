@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="415.33333333333331"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD2" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-lI-vPs">
-                                                <rect key="frame" x="414" y="0.0" width="414.00000000000091" height="415.33333333333331"/>
+                                                <rect key="frame" x="414" y="0.0" width="414" height="415.33333333333331"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD3" translatesAutoresizingMaskIntoConstraints="NO" id="zYl-cq-TfZ">
                                                 <rect key="frame" x="828" y="0.0" width="414" height="415.33333333333331"/>
@@ -37,7 +37,7 @@
                                                 <rect key="frame" x="1242" y="0.0" width="414" height="415.33333333333331"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-Fv-3i2">
-                                                <rect key="frame" x="1656" y="0.0" width="414.00000000000091" height="415.33333333333331"/>
+                                                <rect key="frame" x="1656" y="0.0" width="414" height="415.33333333333331"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>

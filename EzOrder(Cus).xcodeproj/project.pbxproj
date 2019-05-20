@@ -28,6 +28,7 @@
 		9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */; };
 		9D5618292291AAEA0083233E /* UpperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* UpperCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
+		9D56182D22924E4A0083233E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D56182C22924E4A0083233E /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		6556A776F1AB5BE6AE690B4B /* Pods-EzOrder(Cus).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).debug.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).debug.xcconfig"; sourceTree = "<group>"; };
 		9D5618282291AAEA0083233E /* UpperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		9D56182C22924E4A0083233E /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 			children = (
 				447A16F2228BB1D2003AB41E /* ADViewController.swift */,
 				9D5618282291AAEA0083233E /* UpperCollectionViewCell.swift */,
+				9D56182C22924E4A0083233E /* Test.swift */,
 			);
 			path = AD;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
+				9D56182D22924E4A0083233E /* Test.swift in Sources */,
 				9D5618292291AAEA0083233E /* UpperCollectionViewCell.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				44FA8C5722913B9000B24B9C /* DateEventTableViewController.swift in Sources */,
