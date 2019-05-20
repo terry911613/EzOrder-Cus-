@@ -25,7 +25,7 @@ class ProgressViewController: UIViewController {
     @IBAction func payButton(_ sender: UIButton) {
         if isMenuActive {
             payButton.setTitle("付款", for: .normal)
-            payButton.setTitleColor(.blue, for: .normal)
+            payButton.setTitleColor(.white, for: .normal)
             igcMenu?.hideCircularMenu()
             isMenuActive = false
         }
@@ -67,7 +67,7 @@ extension ProgressViewController: IGCMenuDelegate{
             let ok = UIAlertAction(title: "ok", style: .default) { (ok) in
                 //                self.menuButton.setImage(UIImage(named: "Pay"), for: .normal)
                 self.payButton.setTitle("付款", for: .normal)
-                self.payButton.setTitleColor(.blue, for: .normal)
+                self.payButton.setTitleColor(.white, for: .normal)
                 self.igcMenu?.hideCircularMenu()
                 self.isMenuActive = false
             }
@@ -77,7 +77,7 @@ extension ProgressViewController: IGCMenuDelegate{
         else{
             //            menuButton.setImage(UIImage(named: "Pay"), for: .normal)
             payButton.setTitle("付款", for: .normal)
-            payButton.setTitleColor(.blue, for: .normal)
+            payButton.setTitleColor(.white, for: .normal)
             self.igcMenu?.hideCircularMenu()
             self.isMenuActive = false
         }

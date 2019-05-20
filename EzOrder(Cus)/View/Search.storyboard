@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!--搜尋餐廳-->
         <scene sceneID="LP3-wq-vyV">
             <objects>
                 <viewController id="UVy-gz-aRq" customClass="SearchViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                         <viewLayoutGuide key="safeArea" id="kmv-nx-Dps"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="xbc-jB-w9c"/>
-                    <navigationItem key="navigationItem" id="feQ-KT-xlh"/>
+                    <navigationItem key="navigationItem" title="搜尋餐廳" id="feQ-KT-xlh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAU-RP-2YE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -45,6 +45,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g1H-XU-7LW">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.98723965879999998" green="0.45220696929999998" blue="0.4503938556" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
