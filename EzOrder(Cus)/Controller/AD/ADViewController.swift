@@ -8,15 +8,15 @@
 // FACCCA
 import UIKit
 
-class ADViewController: UIViewController, UIScrollViewDelegate{
-//    , UICollectionViewDataSource, UICollectionViewDelegate 
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//    }
+class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+    }
     
     @IBOutlet weak var scrollviewAd: UIScrollView!
     @IBOutlet weak var pgcontrolAd: UIPageControl!
