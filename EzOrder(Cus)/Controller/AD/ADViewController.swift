@@ -41,6 +41,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         imgAd5.image = UIImage(named: "AD5")
         
         
+        
         self.view.addSubview(collectviewRank)
         scrollviewAd.delegate = self
         scrollviewAd.showsVerticalScrollIndicator = false
