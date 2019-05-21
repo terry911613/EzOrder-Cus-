@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD2" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-lI-vPs">
-                                                <rect key="frame" x="375" y="0.0" width="375" height="369.5"/>
+                                                <rect key="frame" x="375" y="0.0" width="375.00000000000091" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD3" translatesAutoresizingMaskIntoConstraints="NO" id="zYl-cq-TfZ">
                                                 <rect key="frame" x="750" y="0.0" width="375" height="369.5"/>
@@ -37,9 +37,12 @@
                                                 <rect key="frame" x="1125" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-Fv-3i2">
-                                                <rect key="frame" x="1500" y="0.0" width="375" height="369.5"/>
+                                                <rect key="frame" x="1500" y="0.0" width="375.00000000000091" height="369.5"/>
                                             </imageView>
                                         </subviews>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="F46-2d-GqF" appends="YES" id="enH-rd-ONa"/>
+                                        </connections>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -57,34 +60,47 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qO5-AO-bbI">
                                 <rect key="frame" x="0.0" y="463" width="375" height="154.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.80000000000000004" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NBO-SN-M09">
-                                    <size key="itemSize" width="320" height="130"/>
+                                    <size key="itemSize" width="293" height="141.5"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankCell" id="7iu-lO-WGq" customClass="RankCollectionViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="12.5" width="320" height="130"/>
+                                        <rect key="frame" x="0.0" y="6.5" width="293" height="141.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="141.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-4E-bU1">
-                                                    <rect key="frame" x="20" y="8" width="156" height="114"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-4E-bU1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="188.5" height="141.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="rYA-4E-bU1" secondAttribute="height" multiplier="4:3" id="LJa-Pt-abh"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDo-O2-zR4">
-                                                    <rect key="frame" x="217" y="30" width="66" height="70"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDo-O2-zR4">
+                                                    <rect key="frame" x="188.5" y="0.0" width="104.5" height="141.5"/>
+                                                    <color key="backgroundColor" red="0.92550259830000003" green="0.92546778919999995" blue="0.92549145219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <string key="text">大特價
+買一送一 要吃要快</string>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="rYA-4E-bU1" firstAttribute="leading" secondItem="7iu-lO-WGq" secondAttribute="leading" id="3iV-xd-tYt"/>
+                                            <constraint firstItem="GDo-O2-zR4" firstAttribute="leading" secondItem="rYA-4E-bU1" secondAttribute="trailing" id="6xM-nH-KME"/>
+                                            <constraint firstAttribute="trailing" secondItem="GDo-O2-zR4" secondAttribute="trailing" id="8fK-la-dPX"/>
+                                            <constraint firstItem="rYA-4E-bU1" firstAttribute="centerY" secondItem="7iu-lO-WGq" secondAttribute="centerY" id="XCN-ju-n55"/>
+                                            <constraint firstAttribute="bottom" secondItem="GDo-O2-zR4" secondAttribute="bottom" id="Y9x-o7-qBM"/>
+                                            <constraint firstItem="GDo-O2-zR4" firstAttribute="top" secondItem="7iu-lO-WGq" secondAttribute="top" id="YsV-qw-jJu"/>
+                                            <constraint firstItem="rYA-4E-bU1" firstAttribute="height" secondItem="7iu-lO-WGq" secondAttribute="height" id="xm4-aG-ibi"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imgRank" destination="rYA-4E-bU1" id="hs2-DY-rQA"/>
                                             <outlet property="lbRank" destination="GDo-O2-zR4" id="aoB-Wx-riD"/>
@@ -99,12 +115,12 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="推薦餐廳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02v-ub-LDE">
                                 <rect key="frame" x="6" y="438" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.26361751189999999" green="1" blue="0.2343735388" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.80000000000000004" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="g8q-XL-ilO" firstAttribute="top" secondItem="dpd-lJ-0Wh" secondAttribute="top" id="0NV-ju-kQA"/>
                             <constraint firstItem="g8q-XL-ilO" firstAttribute="leading" secondItem="dpd-lJ-0Wh" secondAttribute="leading" id="BKt-mT-7xo"/>
@@ -125,13 +141,14 @@
                         <outlet property="imgAd4" destination="Iq4-zp-gEO" id="wBz-PW-sRN"/>
                         <outlet property="imgAd5" destination="cVK-Fv-3i2" id="zDi-E1-6Og"/>
                         <outlet property="pgcontrolAd" destination="lcX-Mh-b3t" id="FbB-vc-ppc"/>
+                        <outlet property="rankCollectionView" destination="qO5-AO-bbI" id="2ai-9U-dT6"/>
                         <outlet property="scrollviewAd" destination="g8q-XL-ilO" id="gEW-1Z-mlX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJU-dF-qxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="F46-2d-GqF">
                     <connections>
-                        <outlet property="delegate" destination="iB0-1e-Vfd" id="60J-92-cBh"/>
+                        <outlet property="delegate" destination="iB0-1e-Vfd" id="3WY-2T-JbB"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
