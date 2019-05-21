@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD2" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-lI-vPs">
-                                                <rect key="frame" x="375" y="0.0" width="375.00000000000091" height="369.5"/>
+                                                <rect key="frame" x="375" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD3" translatesAutoresizingMaskIntoConstraints="NO" id="zYl-cq-TfZ">
                                                 <rect key="frame" x="750" y="0.0" width="375" height="369.5"/>
@@ -37,7 +37,7 @@
                                                 <rect key="frame" x="1125" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-Fv-3i2">
-                                                <rect key="frame" x="1500" y="0.0" width="375.00000000000091" height="369.5"/>
+                                                <rect key="frame" x="1500" y="0.0" width="375" height="369.5"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
