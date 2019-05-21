@@ -13,7 +13,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var rankCollectionView: UICollectionView!
     
     var rankImgNames = ["AD1", "AD2", "AD3", "AD4", "AD5"]
-    var rankLabels = ["Label1", "Label2", "Label3", "Label4", "Label5"]
+    var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return rankImgNames.count
@@ -34,7 +34,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var imgAd4: UIImageView!
     @IBOutlet weak var imgAd5: UIImageView!
     
-    @IBOutlet weak var collectviewRank: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         imgAd1.image = UIImage(named: "AD1")
@@ -51,16 +50,30 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         scrollviewAd.showsHorizontalScrollIndicator = false
         scrollviewAd.scrollsToTop = false
         
+        var timerForAd = Timer()
+        timerForAd = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (Timer) in
+            UIView.animate(withDuration: 0.3, animations: {
+                if self.scrollviewAd.contentOffset.x == self.scrollviewAd.frame.size.width * 4 {
+                    self.scrollviewAd.contentOffset.x = 0
+                    self.setPageControll()
+                } else {
+                    self.scrollviewAd.contentOffset.x += self.scrollviewAd.frame.size.width
+                    self.setPageControll()
+                }
+            })
+        })
         // Do any additional setup after loading the view.
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //通过scrollView内容的偏移计算当前显示的是第几页
-        let page = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        //设置pageController的当前页
+    func setPageControll() {
+        let page = Int(scrollviewAd.contentOffset.x / scrollviewAd.frame.size.width)
         pgcontrolAd.currentPage = page
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView === scrollviewAd {
+            setPageControll()
+        }
     }
     
 
 }
-
