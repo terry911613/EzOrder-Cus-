@@ -8,6 +8,26 @@
 // FACCCA
 import UIKit
 
+// 擴充navBar來做漸層
+extension UINavigationBar {
+    func addGradient(_ toAlpha: CGFloat, _ color: UIColor) {
+        let gradient = CAGradientLayer()
+        gradient.colors = [
+            color.withAlphaComponent(0.2).cgColor,
+            color.withAlphaComponent(toAlpha).cgColor,
+            color.withAlphaComponent(0.2).cgColor
+        ]
+        gradient.locations = [0, 0.5, 1]
+        var frame = bounds
+        frame.size.height += UIApplication.shared.statusBarFrame.size.height
+        frame.origin.y -= UIApplication.shared.statusBarFrame.size.height
+        gradient.frame = frame
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        layer.insertSublayer(gradient, at: 1)
+    }
+}
+
 class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var rankCollectionView: UICollectionView!
@@ -34,6 +54,21 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var imgAd4: UIImageView!
     @IBOutlet weak var imgAd5: UIImageView!
     
+    // 圖層漸層
+    func createGradientLayer() {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [UIColor.yellow.cgColor,UIColor.red.cgColor, UIColor.yellow.cgColor]
+        gradientLayer.zPosition = -1
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        self.view.layer.addSublayer(gradientLayer)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imgAd1.image = UIImage(named: "AD1")
@@ -41,10 +76,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         imgAd3.image = UIImage(named: "AD3")
         imgAd4.image = UIImage(named: "AD4")
         imgAd5.image = UIImage(named: "AD5")
-        
-        
-        
-//        self.view.addSubview(collectviewRank)
+
         scrollviewAd.delegate = self
         scrollviewAd.showsVerticalScrollIndicator = false
         scrollviewAd.showsHorizontalScrollIndicator = false
