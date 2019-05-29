@@ -1,18 +1,17 @@
 //
-//  DateEventTableViewCell.swift
+//  TableViewCell.swift
 //  EzOrder(Cus)
 //
-//  Created by 李泰儀 on 2019/5/20.
+//  Created by 李泰儀 on 2019/5/22.
 //  Copyright © 2019 TerryLee. All rights reserved.
 //
 
 import UIKit
 
-class DateEventTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
+class TableViewCell: UITableViewCell {
+
     @IBOutlet weak var restaurantLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

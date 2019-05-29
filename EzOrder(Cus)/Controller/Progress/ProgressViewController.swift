@@ -37,6 +37,8 @@ class ProgressViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindSegueToProgress(segue: UIStoryboardSegue){
+    }
 }
 
 extension ProgressViewController: IGCMenuDelegate{

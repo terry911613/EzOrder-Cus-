@@ -11,6 +11,7 @@ import JTAppleCalendar
 
 class CalendarViewController: UIViewController {
     
+    @IBOutlet weak var showEventTableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     //    @IBOutlet weak var eventTableView: UITableView!
@@ -25,6 +26,10 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "行事曆"
+        // 讓app一啟動就是今天的日曆
+        calendarView.scrollToDate(now, animateScroll: false)
+        // 讓今天被選取
+        calendarView.selectDates([now])
         
         //  設定日曆屬性（水平/垂直滑）、滑動方式
         calendarView.scrollDirection = .horizontal
@@ -36,29 +41,14 @@ class CalendarViewController: UIViewController {
         
         //  寫死今天有三項訂位
         dateText = dateFormatter.string(from: now)
+        selectDateText = dateText
+        print(dateText)
+        print(selectDateText)
         eventDic = ["2019-05-15" : ["12:00 全家", "17:00 711"],
                     "2019-04-15" : ["12:00 馬辣", "17:00 新馬辣"],
                     "2019-03-15" : ["12:00 屋馬", "17:00 大呼過癮"],
                     "2019-02-15" : ["12:00 三媽", "22:00 老四川"],
                     "2019-01-15" : ["12:00 麥當勞", "22:00 肯德基"]]
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "dateDetailSegue"{
-            let dateDetailVC = segue.destination as! DateEventTableViewController
-            for (time, _) in eventDic{
-                if time == selectDateText{
-                    if let allEvent = eventDic[time]{
-                        for event in allEvent{
-                            dateDetailVC.showEventArray.append(event)
-                        }
-                    }
-                    
-                }
-            }
-            dateDetailVC.selectDateText = selectDateText
-            dateDetailVC.tableView.reloadData()
-        }
     }
 }
 
@@ -118,6 +108,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         print(selectDateText)
         //  讓標籤改成選取到的日期
         dateLabel.text = selectDateText
+        showEventTableView.reloadData()
     }
     //  取消選取的話
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -158,4 +149,33 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         }
     }
     
+}
+
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let eventArray = eventDic[selectDateText]{
+            return eventArray.count
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        cell.restaurantLabel.text = ""
+        cell.timeLabel.text = ""
+        cell.restaurantLabel.text = ""
+        tableView.separatorStyle = .none
+        if let eventArray = eventDic[selectDateText]{
+            tableView.separatorStyle = .singleLine
+            tableView.separatorColor = .lightGray
+            if eventArray.isEmpty{
+                cell.restaurantLabel.text = ""
+            }
+            else{
+                cell.timeLabel.text = selectDateText
+                cell.restaurantLabel.text = eventArray[indexPath.row]
+            }
+        }
+        return cell
+    }
 }
