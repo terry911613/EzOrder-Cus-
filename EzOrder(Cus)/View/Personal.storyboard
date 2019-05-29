@@ -89,12 +89,12 @@
         <!--Wheel View Controller-->
         <scene sceneID="Ljy-7h-BKB">
             <objects>
-                <viewController id="LhU-fO-23X" customClass="WheelViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="wheelVC" id="LhU-fO-23X" customClass="WheelViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oxC-hf-PTG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -124,7 +124,7 @@
                     </view>
                     <connections>
                         <outlet property="wheelRotateImageView" destination="J2X-4B-24b" id="sJk-Bj-FOf"/>
-                        <segue destination="ccN-dh-3Hj" kind="presentation" id="Tsy-pX-wUn"/>
+                        <segue destination="ccN-dh-3Hj" kind="presentation" identifier="alertPointSegue" id="Tsy-pX-wUn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n4D-Za-VOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,18 +148,21 @@
                                 <rect key="frame" x="62.5" y="183.5" width="250" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgT-rr-0hO">
-                                        <rect key="frame" x="10" y="50" width="230" height="28"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <rect key="frame" x="10" y="50" width="230" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDT-WZ-5ha">
-                                        <rect key="frame" x="20" y="250" width="210" height="30"/>
+                                        <rect key="frame" x="20" y="234" width="210" height="36"/>
                                         <color key="backgroundColor" red="1" green="0.59670647659999998" blue="0.57797562250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="太棒了!">
+                                            <color key="titleColor" red="0.92550259830000003" green="0.92546778919999995" blue="0.92549145219999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
+                                                <integer key="value" value="17"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -170,7 +173,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="hgT-rr-0hO" firstAttribute="top" secondItem="imG-au-YPF" secondAttribute="top" constant="50" id="4vH-DW-nl2"/>
-                                    <constraint firstAttribute="bottom" secondItem="cDT-WZ-5ha" secondAttribute="bottom" constant="20" id="IuG-yF-Axf"/>
+                                    <constraint firstAttribute="bottom" secondItem="cDT-WZ-5ha" secondAttribute="bottom" constant="30" id="IuG-yF-Axf"/>
                                     <constraint firstItem="cDT-WZ-5ha" firstAttribute="leading" secondItem="imG-au-YPF" secondAttribute="leading" constant="20" id="T5Y-dB-bDK"/>
                                     <constraint firstAttribute="trailing" secondItem="cDT-WZ-5ha" secondAttribute="trailing" constant="20" id="d4f-HR-627"/>
                                     <constraint firstAttribute="trailing" secondItem="hgT-rr-0hO" secondAttribute="trailing" constant="10" id="fGS-rF-v2T"/>
