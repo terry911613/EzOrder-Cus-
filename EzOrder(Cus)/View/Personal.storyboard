@@ -101,6 +101,120 @@
             </objects>
             <point key="canvasLocation" x="1555" y="-184"/>
         </scene>
+        <!--Wheel View Controller-->
+        <scene sceneID="1fm-Tn-arO">
+            <objects>
+                <viewController storyboardIdentifier="wheelVC" id="Wye-4G-8na" customClass="WheelViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DaO-YV-2cE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="cWd-vG-4dX" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
+                                <rect key="frame" x="47" y="193" width="281" height="281"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cWd-vG-4dX" secondAttribute="height" multiplier="1:1" id="RsS-jc-MTP"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Nau-lz-JS1" appends="YES" id="AIC-wE-3kU"/>
+                                </connections>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="齒輪" translatesAutoresizingMaskIntoConstraints="NO" id="ayM-mz-pOs">
+                                <rect key="frame" x="167.5" y="313.5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ayM-mz-pOs" secondAttribute="height" multiplier="1:1" id="7S3-Am-8o9"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ayM-mz-pOs" firstAttribute="centerX" secondItem="DaO-YV-2cE" secondAttribute="centerX" id="0BR-Tn-u6M"/>
+                            <constraint firstItem="cWd-vG-4dX" firstAttribute="centerX" secondItem="DaO-YV-2cE" secondAttribute="centerX" id="A1b-SA-KxC"/>
+                            <constraint firstItem="ayM-mz-pOs" firstAttribute="width" secondItem="cWd-vG-4dX" secondAttribute="width" multiplier="1/7" id="Dy6-zs-SU0"/>
+                            <constraint firstItem="cWd-vG-4dX" firstAttribute="width" secondItem="jQH-H0-J6F" secondAttribute="width" multiplier="3/4" id="Oq4-o8-ieb"/>
+                            <constraint firstItem="cWd-vG-4dX" firstAttribute="centerY" secondItem="DaO-YV-2cE" secondAttribute="centerY" id="eho-be-Ooj"/>
+                            <constraint firstItem="ayM-mz-pOs" firstAttribute="centerY" secondItem="DaO-YV-2cE" secondAttribute="centerY" id="zN2-dq-gxX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jQH-H0-J6F"/>
+                    </view>
+                    <connections>
+                        <outlet property="wheelRotateImageView" destination="cWd-vG-4dX" id="aee-Cv-DI7"/>
+                        <segue destination="MpW-QC-bGJ" kind="presentation" identifier="alertPointSegue" id="H1L-gy-el9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ax-ay-9Fi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Nau-lz-JS1">
+                    <connections>
+                        <action selector="clickRotate:" destination="Wye-4G-8na" id="Tpy-et-Dw1"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="3308" y="-62.518740629685162"/>
+        </scene>
+        <!--Wheel Alert View Controller-->
+        <scene sceneID="S2Z-hQ-GXP">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="MpW-QC-bGJ" customClass="WheelAlertViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qs6-oD-QIU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQO-Bo-YtW">
+                                <rect key="frame" x="62.5" y="171" width="250" height="325"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="恭喜" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m0o-dY-T3K">
+                                        <rect key="frame" x="8" y="46" width="234" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="kMl-oA-00q">
+                                        <rect key="frame" x="30" y="259" width="190" height="36"/>
+                                        <subviews>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-wt-ijc">
+                                                <rect key="frame" x="0.0" y="0.0" width="190" height="36"/>
+                                                <color key="backgroundColor" red="1" green="0.59670647659999998" blue="0.57797562250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="太好了!"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clickOK:" destination="MpW-QC-bGJ" eventType="touchUpInside" id="C1v-CN-z2p"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="kMl-oA-00q" secondAttribute="bottom" constant="30" id="GcG-dl-z9a"/>
+                                    <constraint firstItem="kMl-oA-00q" firstAttribute="leading" secondItem="wQO-Bo-YtW" secondAttribute="leading" constant="30" id="OcQ-Q5-kXp"/>
+                                    <constraint firstItem="kMl-oA-00q" firstAttribute="centerX" secondItem="wQO-Bo-YtW" secondAttribute="centerX" id="oab-SY-Ctd"/>
+                                    <constraint firstAttribute="width" secondItem="wQO-Bo-YtW" secondAttribute="height" multiplier="1:1.3" id="s5o-ov-1oj"/>
+                                    <constraint firstAttribute="trailing" secondItem="kMl-oA-00q" secondAttribute="trailing" constant="30" id="vY1-M1-RZI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.39581549657534248" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wQO-Bo-YtW" firstAttribute="centerX" secondItem="qs6-oD-QIU" secondAttribute="centerX" id="GqN-37-7RF"/>
+                            <constraint firstItem="wQO-Bo-YtW" firstAttribute="centerY" secondItem="qs6-oD-QIU" secondAttribute="centerY" id="LTI-jH-q6q"/>
+                            <constraint firstItem="wQO-Bo-YtW" firstAttribute="width" secondItem="ehf-TC-3tY" secondAttribute="width" multiplier="2/3" id="ywQ-F0-bT4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ehf-TC-3tY"/>
+                    </view>
+                    <connections>
+                        <outlet property="OutputLabel" destination="m0o-dY-T3K" id="oOJ-Z5-3Lb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DuR-Bd-4bx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4279.1999999999998" y="-60.719640179910051"/>
+        </scene>
         <!--Ib Calendar Data Source-->
         <scene sceneID="dgM-JG-LoZ">
             <objects>
@@ -363,5 +477,7 @@
     </scenes>
     <resources>
         <image name="Cash" width="267" height="267"/>
+        <image name="輪盤" width="845" height="846"/>
+        <image name="齒輪" width="201" height="201"/>
     </resources>
 </document>
