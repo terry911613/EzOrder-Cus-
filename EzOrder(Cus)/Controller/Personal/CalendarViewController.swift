@@ -98,10 +98,8 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     //  選取日期的話
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         //  判斷是不是點第二次，如果是點兩次的話跳出細項
-        let cell = cell as! DateCell
-        if cell.selectedView.isHidden == false{
-            performSegue(withIdentifier: "dateDetailSegue", sender: self)
-        }
+//        let cell = cell as! DateCell
+        
         configureCell(view: cell, cellState: cellState)
         selectDateText = dateFormatter.string(from: date)
         //        eventTableView.reloadData()
