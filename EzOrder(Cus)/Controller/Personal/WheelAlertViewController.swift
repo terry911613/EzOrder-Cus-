@@ -10,12 +10,12 @@ import UIKit
 
 class WheelAlertViewController: UIViewController {
 
-    @IBOutlet weak var OutputLabel: UILabel!
+    @IBOutlet weak var outputLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let outputString = "恭喜你獲得了\(point!)點！"
-        OutputLabel.text = outputString
+        outputLabel.text = outputString
 
         // Do any additional setup after loading the view.
        
