@@ -107,5 +107,4 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         }
     }
     
-
 }
