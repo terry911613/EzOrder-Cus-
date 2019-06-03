@@ -19,7 +19,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var qrFrameView: UIView!
     // 當user決定加好友時呼叫
     var table = ""
-    var a = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
