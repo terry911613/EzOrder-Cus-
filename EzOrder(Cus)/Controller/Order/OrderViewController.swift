@@ -37,6 +37,8 @@ class OrderViewController: UIViewController {
         selectTypeMenu = all
         allTypeMenu = [all, set, rice, noodle, soup, dessert]
     }
+//    var totals = [Int]()
+//    var finalPrice = 0
 }
 
 extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
@@ -49,11 +51,24 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         cell.name.text = selectTypeMenu[indexPath.row]
         cell.stepper.tag = indexPath.row
         
-        var totalPrice = 0
+        cell.foodPrice = 50
+        var amount = 0
+//        var _totalPrice = 0
+//        var totalPrice: Int {
+//            set {
+//                _totalPrice += newValue - totalPrice
+//                totals[indexPath.row] = totalPrice
+//            }
+//            get {
+//                return _totalPrice
+//            }
+//        }
         cell.callBackStepper = { value in
+//            amount += value
             cell.price.text = "$\(Int(value * 50))"
             cell.count.text = "數量:\(Int(value))"
-//            totalPrice += Int(value * 50)
+            
+//            totalPrice = Int(value * 50)
 //            self.totalPriceLabel.text = "總共: $\(totalPrice)"
         }
         return cell

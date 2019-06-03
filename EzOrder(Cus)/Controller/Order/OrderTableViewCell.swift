@@ -17,6 +17,8 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    var foodPrice = 0
+    
     var callBackStepper:((_ value:Double)->())?
     
     override func awakeFromNib() {
@@ -28,6 +30,6 @@ class OrderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     @IBAction func stepper(_ sender: UIStepper) {
-        callBackStepper?(sender.value)
+        callBackStepper?(1)
     }
 }
