@@ -41,6 +41,9 @@ class OrderTableViewCell: UITableViewCell {
     @IBAction func clickPlus(_ sender: Any) {
         countAmount += 1
         callBackCount?(true, countAmount)
+        if countAmount >= 1 {
+            minusBtn.isEnabled = true
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
