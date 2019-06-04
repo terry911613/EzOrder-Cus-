@@ -39,7 +39,8 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
             navigationController?.pushViewController(calendarVC, animated: true)
         }
         else if indexPath.row == 2{
-            
+            let orderRecordVC = storyboard?.instantiateViewController(withIdentifier: "orderRecordVC") as! OrderRecordViewController
+            navigationController?.pushViewController(orderRecordVC, animated: true)
         }
         else if indexPath.row == 3 {
             let wheelVC = storyboard?.instantiateViewController(withIdentifier: "wheelVC") as! WheelViewController

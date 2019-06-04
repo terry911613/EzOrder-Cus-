@@ -9,12 +9,31 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-
-    @IBOutlet weak var favoriteTableView: UITableView!
+    
+    var favoriteResaurant = [String]()
+    
+    @IBOutlet weak var favoriteCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        favoriteResaurant = ["AD1", "AD2", "AD3", "AD4", "AD5"]
     }
+}
+
+extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favoriteResaurant.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favoriteCell", for: indexPath) as! FavoriteCollectionViewCell
+        cell.favoriteImageView.image = UIImage(named: favoriteResaurant[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/2, height: collectionView.frame.width/2)
+    }
+    
 }

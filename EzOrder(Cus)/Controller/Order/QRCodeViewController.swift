@@ -89,9 +89,9 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             }
         }
     }
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+//    override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // 將取得的資訊轉成條碼資訊

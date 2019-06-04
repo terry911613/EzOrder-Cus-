@@ -15,6 +15,9 @@
 		442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E07FD22A56A220044BE65 /* CreditCardViewController.swift */; };
 		443974222294595000891514 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443974212294595000891514 /* TableViewCell.swift */; };
 		4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C38722A65A37004875D7 /* FavoriteViewController.swift */; };
+		4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */; };
+		4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */; };
+		4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39722A663E6004875D7 /* OrderRecordViewController.swift */; };
 		447878162298EA53008041A2 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878152298EA53008041A2 /* OrderViewController.swift */; };
 		447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878172298EA9B008041A2 /* OrderTableViewCell.swift */; };
 		447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A16F0228BB1D2003AB41E /* AppDelegate.swift */; };
@@ -54,6 +57,9 @@
 		442E07FD22A56A220044BE65 /* CreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardViewController.swift; sourceTree = "<group>"; };
 		443974212294595000891514 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4443C38722A65A37004875D7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordTableViewCell.swift; sourceTree = "<group>"; };
+		4443C39722A663E6004875D7 /* OrderRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordViewController.swift; sourceTree = "<group>"; };
 		447878152298EA53008041A2 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		447878172298EA9B008041A2 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		447A16ED228BB1D2003AB41E /* EzOrder(Cus).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzOrder(Cus).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				447A170C228BB2AF003AB41E /* Progress.storyboard */,
-				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -145,6 +150,8 @@
 			children = (
 				447A170E228BB314003AB41E /* Personal.storyboard */,
 				4443C38E22A65C28004875D7 /* Calendar */,
+				4443C38F22A65D51004875D7 /* Favorite */,
+				4443C39422A6630F004875D7 /* OrderRecord */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -156,6 +163,22 @@
 				443974212294595000891514 /* TableViewCell.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		4443C38F22A65D51004875D7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		4443C39422A6630F004875D7 /* OrderRecord */ = {
+			isa = PBXGroup;
+			children = (
+				4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */,
+			);
+			path = OrderRecord;
 			sourceTree = "<group>";
 		};
 		447A16E4228BB1D2003AB41E = {
@@ -208,12 +231,12 @@
 		447A1703228BB1EC003AB41E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4443C38D22A65BF0004875D7 /* Personal */,
 				447A16F4228BB1D2003AB41E /* Main.storyboard */,
 				4443C38922A65B26004875D7 /* AD */,
 				4443C38A22A65B68004875D7 /* Search */,
 				4443C38B22A65B87004875D7 /* Order */,
 				4443C38C22A65BB7004875D7 /* Progress */,
+				4443C38D22A65BF0004875D7 /* Personal */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */,
+				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +267,7 @@
 				44FA8C5222912C8200B24B9C /* CalendarViewController.swift */,
 				9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */,
 				9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */,
+				4443C39722A663E6004875D7 /* OrderRecordViewController.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -425,13 +450,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */,
+				4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */,
 				443974222294595000891514 /* TableViewCell.swift in Sources */,
 				44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */,
 				447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
+				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
+				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
 				9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */,
