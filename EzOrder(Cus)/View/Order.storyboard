@@ -116,6 +116,24 @@
                                                                 <action selector="stepper:" destination="n2o-nn-YJa" eventType="valueChanged" id="Jgr-lF-taa"/>
                                                             </connections>
                                                         </stepper>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-I2-1FN">
+                                                            <rect key="frame" x="316" y="99" width="30" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <state key="normal" title="加"/>
+                                                            <connections>
+                                                                <action selector="clickPlus:" destination="n2o-nn-YJa" eventType="touchUpInside" id="FdF-cS-6nE"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhn-PJ-AzB">
+                                                            <rect key="frame" x="176" y="99" width="30" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <state key="normal" title="減"/>
+                                                            <connections>
+                                                                <action selector="clickMinus:" destination="n2o-nn-YJa" eventType="touchUpInside" id="3Tp-UZ-gWS"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.98723965883255005" green="0.45220696926116943" blue="0.45039385557174683" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
@@ -134,8 +152,10 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="count" destination="ucR-HF-aSm" id="vl2-uI-ODB"/>
+                                            <outlet property="minusBtn" destination="uhn-PJ-AzB" id="ZrX-9P-o2e"/>
                                             <outlet property="name" destination="Dbw-8S-w67" id="W4A-px-oA0"/>
                                             <outlet property="orderImageView" destination="gPk-7E-6sO" id="wKl-YF-1LN"/>
+                                            <outlet property="plusBtn" destination="IIc-I2-1FN" id="Buq-Hq-DIj"/>
                                             <outlet property="price" destination="64M-B2-m5w" id="vY7-We-xgi"/>
                                             <outlet property="stepper" destination="zlY-Vj-hEM" id="eIB-Qt-dYs"/>
                                         </connections>
