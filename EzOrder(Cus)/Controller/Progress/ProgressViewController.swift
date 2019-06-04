@@ -49,7 +49,7 @@ class ProgressViewController: UIViewController {
         }
     }
     
-    func didClickBuyButton() {
+    func didClickApplePayButton() {
         applePay = TPDApplePay.setupWthMerchant(merchant, with: consumer, with: cart, withDelegate: self)
         applePay.startPayment()
     }
@@ -141,7 +141,7 @@ extension ProgressViewController: IGCMenuDelegate{
             present(alert, animated: true, completion: nil)
         }
         else if selectedMenuName == "Apply Pay"{
-            didClickBuyButton()
+            didClickApplePayButton()
             resetPayButton()
         }
         else{
