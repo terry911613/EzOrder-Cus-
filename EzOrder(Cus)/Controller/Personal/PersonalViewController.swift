@@ -30,13 +30,26 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1{
+        if indexPath.row == 0{
+            let favoriteVC = storyboard?.instantiateViewController(withIdentifier: "favoriteVC") as! FavoriteViewController
+            navigationController?.pushViewController(favoriteVC, animated: true)
+        }
+        else if indexPath.row == 1{
             let calendarVC = storyboard?.instantiateViewController(withIdentifier: "calendarVC") as! CalendarViewController
             navigationController?.pushViewController(calendarVC, animated: true)
         }
-        if indexPath.row == 3 {
+        else if indexPath.row == 2{
+            
+        }
+        else if indexPath.row == 3 {
             let wheelVC = storyboard?.instantiateViewController(withIdentifier: "wheelVC") as! WheelViewController
             navigationController?.pushViewController(wheelVC, animated: true)
+        }
+        else if indexPath.row == 4{
+            
+        }
+        else{
+            
         }
     }
 }

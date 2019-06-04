@@ -16,6 +16,8 @@ class CreditCardViewController: UIViewController {
     @IBOutlet weak var displayText: UITextView!
     var tpdCard : TPDCard!
     var tpdForm : TPDForm!
+    
+    var merchant: TPDMerchant!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class CreditCardViewController: UIViewController {
         // Button Disable (Default)
         payButton.isEnabled = false
         payButton.alpha     = 0.25
+        
     }
     
     @IBAction func doneAction(_ sender: Any) {

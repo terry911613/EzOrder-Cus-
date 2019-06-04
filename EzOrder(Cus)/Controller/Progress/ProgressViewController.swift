@@ -58,8 +58,10 @@ class ProgressViewController: UIViewController {
         merchant = TPDMerchant()
         merchant.merchantName = "EzOrder"
         merchant.merchantCapability = .capability3DS;
+//        merchant.applePayMerchantIdentifier = "terry911613_ESUN"
+//        merchant.applePayMerchantIdentifier = "GlobalTesting_CTBC"
         merchant.applePayMerchantIdentifier = "merchant.com.TerryLee.EzOrder-Cus-" // Your Apple Pay Merchant ID (https://developer.apple.com/account/ios/identifier/merchant)
-        merchant.countryCode  = "TW"
+        merchant.countryCode = "TW"
         merchant.currencyCode = "TWD"
         merchant.supportedNetworks = [.amex, .masterCard, .visa]
         
