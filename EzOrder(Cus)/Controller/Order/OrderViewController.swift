@@ -38,6 +38,8 @@ class OrderViewController: UIViewController {
         selectTypeMenu = all
         allTypeMenu = [all, set, rice, noodle, soup, dessert]
     }
+//    var totals = [Int]()
+//    var finalPrice = 0
 }
 
 extension OrderViewController: UITableViewDelegate, UITableViewDataSource{

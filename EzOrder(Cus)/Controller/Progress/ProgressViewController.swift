@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import PassKit
+import TPDirect
 
 class ProgressViewController: UIViewController {
+    
+    var merchant: TPDMerchant!
+    var consumer: TPDConsumer!
+    var cart: TPDCart!
+    var applePay: TPDApplePay!
+    var applePayButton : PKPaymentButton!
     
     @IBOutlet weak var totalMoneyLabel: UILabel!
     @IBOutlet weak var payButton: UIButton!
@@ -20,6 +28,10 @@ class ProgressViewController: UIViewController {
         super.viewDidLoad()
         
         setUpMenu()
+        
+        merchantSetting()
+        consumerSetting()
+        cartSetting()
     }
     
     @IBAction func payButton(_ sender: UIButton) {
@@ -35,6 +47,61 @@ class ProgressViewController: UIViewController {
             igcMenu?.showCircularMenu()
             isMenuActive = true
         }
+    }
+    
+    func didClickBuyButton() {
+        applePay = TPDApplePay.setupWthMerchant(merchant, with: consumer, with: cart, withDelegate: self)
+        applePay.startPayment()
+    }
+
+    func merchantSetting() {
+        merchant = TPDMerchant()
+        merchant.merchantName = "EzOrder"
+        merchant.merchantCapability = .capability3DS;
+        merchant.applePayMerchantIdentifier = "merchant.com.TerryLee.EzOrder-Cus-" // Your Apple Pay Merchant ID (https://developer.apple.com/account/ios/identifier/merchant)
+        merchant.countryCode  = "TW"
+        merchant.currencyCode = "TWD"
+        merchant.supportedNetworks = [.amex, .masterCard, .visa]
+        
+        // Set Shipping Method.
+        let shipping1 = PKShippingMethod()
+        shipping1.identifier = "TapPayExpressShippint024"
+        shipping1.detail = "Ships in 24 hours"
+        shipping1.amount = NSDecimalNumber(string: "10.0");
+        shipping1.label = "Shipping 24"
+        
+        let shipping2 = PKShippingMethod()
+        shipping2.identifier = "TapPayExpressShippint006";
+        shipping2.detail = "Ships in 6 hours";
+        shipping2.amount = NSDecimalNumber(string: "50.0");
+        shipping2.label = "Shipping 6";
+        //        merchant.shippingMethods            = [shipping1, shipping2];
+        
+    }
+    
+    func consumerSetting() {
+        // Set Consumer Contact.
+        let contact = PKContact()
+        var name    = PersonNameComponents()
+        name.familyName = "Cherri"
+        name.givenName = "TapPay"
+        contact.name = name;
+        
+        consumer = TPDConsumer()
+        consumer.billingContact = contact
+        consumer.shippingContact = contact
+        consumer.requiredShippingAddressFields = []
+        consumer.requiredBillingAddressFields = []
+        
+    }
+    
+    func cartSetting() {
+        cart = TPDCart()
+        let food = TPDPaymentItem(itemName: "滷肉飯", withAmount: NSDecimalNumber(string: "35"), withIsVisible: false)
+        cart.add(food)
+        let food1 = TPDPaymentItem(itemName: "雞肉飯", withAmount: NSDecimalNumber(string: "40"), withIsVisible: false)
+        cart.add(food1)
+        
     }
     
     @IBAction func unwindSegueToProgress(segue: UIStoryboardSegue){
@@ -68,20 +135,70 @@ extension ProgressViewController: IGCMenuDelegate{
             let alert = UIAlertController(title: "", message: "服務生趕路中", preferredStyle: .alert)
             let ok = UIAlertAction(title: "ok", style: .default) { (ok) in
                 //                self.menuButton.setImage(UIImage(named: "Pay"), for: .normal)
-                self.payButton.setTitle("付款", for: .normal)
-                self.payButton.setTitleColor(.white, for: .normal)
-                self.igcMenu?.hideCircularMenu()
-                self.isMenuActive = false
+                self.resetPayButton()
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
+        else if selectedMenuName == "Apply Pay"{
+            didClickBuyButton()
+            resetPayButton()
+        }
         else{
             //            menuButton.setImage(UIImage(named: "Pay"), for: .normal)
-            payButton.setTitle("付款", for: .normal)
-            payButton.setTitleColor(.white, for: .normal)
-            self.igcMenu?.hideCircularMenu()
-            self.isMenuActive = false
+            performSegue(withIdentifier: "creditCardSegue", sender: self)
+            resetPayButton()
         }
     }
+    func resetPayButton(){
+        payButton.setTitle("付款", for: .normal)
+        payButton.setTitleColor(.white, for: .normal)
+        self.igcMenu?.hideCircularMenu()
+        self.isMenuActive = false
+    }
+}
+
+extension ProgressViewController: TPDApplePayDelegate{
+    func tpdApplePay(_ applePay: TPDApplePay!, didReceivePrime prime: String!) {
+        print("=====================================================");
+        print("======> didReceivePrime");
+        print("Prime : \(prime!)");
+        print("total Amount :   \(applePay.cart.totalAmount!)")
+        print("Client IP : \(applePay.consumer.clientIP!)")
+        print("shippingContact.name : \(applePay.consumer.shippingContact?.name?.givenName) \(applePay.consumer.shippingContact?.name?.familyName)");
+        print("shippingContact.emailAddress : \(applePay.consumer.shippingContact?.emailAddress)");
+        print("shippingContact.phoneNumber : \(applePay.consumer.shippingContact?.phoneNumber?.stringValue)");
+        print("===================================================== \n\n");
+        
+        
+        DispatchQueue.main.async {
+            let payment = "Use below cURL to proceed the payment.\ncurl -X POST \\\nhttps://sandbox.tappaysdk.com/tpc/payment/pay-by-prime \\\n-H \'content-type: application/json\' \\\n-H \'x-api-key: partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\' \\\n-d \'{ \n \"prime\": \"\(prime!)\", \"partner_key\": \"partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\", \"merchant_id\": \"GlobalTesting_CTBC\", \"details\":\"TapPay Test\", \"amount\": \(applePay.cart.totalAmount!.stringValue), \"cardholder\": { \"phone_number\": \"+886923456789\", \"name\": \"Jane Doe\", \"email\": \"Jane@Doe.com\", \"zip_code\": \"12345\", \"address\": \"123 1st Avenue, City, Country\", \"national_id\": \"A123456789\" }, \"remember\": true }\'"
+            print(payment)
+            
+        }
+        
+        // 2. If Payment Success, set paymentReault = ture.
+        let paymentReault = true;
+        applePay.showPaymentResult(paymentReault)
+    }
+    
+    func tpdApplePay(_ applePay: TPDApplePay!, didSuccessPayment result: TPDTransactionResult!) {
+        print("=====================================================")
+        print("Apple Pay Did Success ==> Amount : \(result.amount.stringValue)")
+        
+        print("shippingContact.name : \(applePay.consumer.shippingContact?.name?.givenName) \( applePay.consumer.shippingContact?.name?.familyName)")
+        print("shippingContact.emailAddress : \(applePay.consumer.shippingContact?.emailAddress)")
+        print("shippingContact.phoneNumber : \(applePay.consumer.shippingContact?.phoneNumber?.stringValue)")
+        
+        
+        print("===================================================== \n\n")
+    }
+    
+    func tpdApplePay(_ applePay: TPDApplePay!, didFailurePayment result: TPDTransactionResult!) {
+        print("=====================================================")
+        print("Apple Pay Did Failure ==> Message : \(result.message), ErrorCode : \(result.status)")
+        print("===================================================== \n\n")
+    }
+    
+    
 }

@@ -47,6 +47,6 @@ class OrderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     @IBAction func stepper(_ sender: UIStepper) {
-        callBackStepper?(sender.value)
+        callBackStepper?(1)
     }
 }
