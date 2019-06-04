@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */; };
 		440FAB18229CFF35005E38D0 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */; };
+		442E07F822A5286E0044BE65 /* TPDirectResource in Resources */ = {isa = PBXBuildFile; fileRef = 442E07F622A5286E0044BE65 /* TPDirectResource */; };
+		442E07F922A5286E0044BE65 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E07F722A5286E0044BE65 /* TPDirect.framework */; };
+		442E07FC22A567040044BE65 /* CreditCardPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */; };
+		442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E07FD22A56A220044BE65 /* CreditCardViewController.swift */; };
 		443974222294595000891514 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443974212294595000891514 /* TableViewCell.swift */; };
 		447878162298EA53008041A2 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878152298EA53008041A2 /* OrderViewController.swift */; };
 		447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878172298EA9B008041A2 /* OrderTableViewCell.swift */; };
@@ -42,6 +46,11 @@
 		2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).release.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).release.xcconfig"; sourceTree = "<group>"; };
 		440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		442E07F622A5286E0044BE65 /* TPDirectResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TPDirectResource; sourceTree = "<group>"; };
+		442E07F722A5286E0044BE65 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
+		442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EzOrder(Cus).entitlements"; sourceTree = "<group>"; };
+		442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardPayViewController.swift; sourceTree = "<group>"; };
+		442E07FD22A56A220044BE65 /* CreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardViewController.swift; sourceTree = "<group>"; };
 		443974212294595000891514 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		447878152298EA53008041A2 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		447878172298EA9B008041A2 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -78,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */,
+				442E07F922A5286E0044BE65 /* TPDirect.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +124,9 @@
 		447A16EF228BB1D2003AB41E /* EzOrder(Cus) */ = {
 			isa = PBXGroup;
 			children = (
+				442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */,
+				442E07F722A5286E0044BE65 /* TPDirect.framework */,
+				442E07F622A5286E0044BE65 /* TPDirectResource */,
 				447A16F0228BB1D2003AB41E /* AppDelegate.swift */,
 				447A1704228BB1EF003AB41E /* Model */,
 				447A1703228BB1EC003AB41E /* View */,
@@ -183,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				447A1717228BE3CF003AB41E /* ProgressViewController.swift */,
+				442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */,
+				442E07FD22A56A220044BE65 /* CreditCardViewController.swift */,
 				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
 			path = Progress;
@@ -260,6 +275,11 @@
 				TargetAttributes = {
 					447A16EC228BB1D2003AB41E = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -293,6 +313,7 @@
 				447A16F6228BB1D2003AB41E /* Main.storyboard in Resources */,
 				447A170D228BB2AF003AB41E /* Progress.storyboard in Resources */,
 				447A1709228BB284003AB41E /* Search.storyboard in Resources */,
+				442E07F822A5286E0044BE65 /* TPDirectResource in Resources */,
 				447A170F228BB314003AB41E /* Personal.storyboard in Resources */,
 				447A170B228BB29D003AB41E /* Order.storyboard in Resources */,
 			);
@@ -357,6 +378,7 @@
 				447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
+				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
@@ -366,6 +388,7 @@
 				9D02A9EB229E8A31009032D5 /* WheelAlertViewController.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				9D02A9E7229E6E3E009032D5 /* WheelViewController.swift in Sources */,
+				442E07FC22A567040044BE65 /* CreditCardPayViewController.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
 				447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */,
 				447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */,
@@ -521,8 +544,13 @@
 			baseConfigurationReference = 6556A776F1AB5BE6AE690B4B /* Pods-EzOrder(Cus).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "EzOrder(Cus)/EzOrder(Cus).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PY8GD98FSY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EzOrder(Cus)",
+				);
 				INFOPLIST_FILE = "EzOrder(Cus)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -540,8 +568,13 @@
 			baseConfigurationReference = 2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "EzOrder(Cus)/EzOrder(Cus).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PY8GD98FSY;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EzOrder(Cus)",
+				);
 				INFOPLIST_FILE = "EzOrder(Cus)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
