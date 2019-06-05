@@ -35,6 +35,7 @@
 		447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A1719228C67DC003AB41E /* SearchViewController.swift */; };
 		447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171B228C67E9003AB41E /* QRCodeViewController.swift */; };
 		447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171D228C67F8003AB41E /* PersonalViewController.swift */; };
+		449A9C6122A78D6D0054C135 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 449A9C6022A78D6D0054C135 /* GoogleService-Info.plist */; };
 		44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5222912C8200B24B9C /* CalendarViewController.swift */; };
 		44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5422912DD800B24B9C /* DateCell.swift */; };
 		9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */; };
@@ -79,6 +80,7 @@
 		447A1719228C67DC003AB41E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		447A171B228C67E9003AB41E /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		447A171D228C67F8003AB41E /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		449A9C6022A78D6D0054C135 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		44FA8C5222912C8200B24B9C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		44FA8C5422912DD800B24B9C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		6556A776F1AB5BE6AE690B4B /* Pods-EzOrder(Cus).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).debug.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		447A16EF228BB1D2003AB41E /* EzOrder(Cus) */ = {
 			isa = PBXGroup;
 			children = (
+				449A9C6022A78D6D0054C135 /* GoogleService-Info.plist */,
 				442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */,
 				442E07F722A5286E0044BE65 /* TPDirect.framework */,
 				442E07F622A5286E0044BE65 /* TPDirectResource */,
@@ -390,6 +393,7 @@
 				447A170D228BB2AF003AB41E /* Progress.storyboard in Resources */,
 				447A1709228BB284003AB41E /* Search.storyboard in Resources */,
 				442E07F822A5286E0044BE65 /* TPDirectResource in Resources */,
+				449A9C6122A78D6D0054C135 /* GoogleService-Info.plist in Resources */,
 				447A170F228BB314003AB41E /* Personal.storyboard in Resources */,
 				447A170B228BB29D003AB41E /* Order.storyboard in Resources */,
 			);
@@ -407,13 +411,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus)-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

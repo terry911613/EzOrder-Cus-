@@ -9,6 +9,7 @@
 import UIKit
 import AdSupport
 import TPDirect
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         TPDSetup.setWithAppId(13543, withAppKey: "app_86RZyP9vQAmMILzjRTItsICOGh0gRPjP6mwxB2foTg5d92nti4GARBfw9SKg", with: .sandBox)
-//        TPDSetup.setWithAppId(11327, withAppKey: "app_whdEWBH8e8Lzy4N6BysVRRMILYORF6UxXbiOFsICkz0J9j1C0JUlCHv1tVJC", with: .production)
-        //        TPDSetup.shareInstance().setupIDFA(ASIdentifierManager.shared().advertisingIdentifier.uuidString)
         let IDFA = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         TPDSetup.shareInstance().setupIDFA(IDFA)
         TPDSetup.shareInstance().serverSync()
+        
+        FirebaseApp.configure()
         
         return true
     }
