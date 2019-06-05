@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */; };
 		440FAB18229CFF35005E38D0 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */; };
-		442E07F822A5286E0044BE65 /* TPDirectResource in Resources */ = {isa = PBXBuildFile; fileRef = 442E07F622A5286E0044BE65 /* TPDirectResource */; };
-		442E07F922A5286E0044BE65 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E07F722A5286E0044BE65 /* TPDirect.framework */; };
+		4429B27F22A79E4B00649E0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */; };
 		442E07FC22A567040044BE65 /* CreditCardPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */; };
 		442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E07FD22A56A220044BE65 /* CreditCardViewController.swift */; };
 		443974222294595000891514 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443974212294595000891514 /* TableViewCell.swift */; };
+		4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C38722A65A37004875D7 /* FavoriteViewController.swift */; };
+		4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */; };
+		4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */; };
+		4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39722A663E6004875D7 /* OrderRecordViewController.swift */; };
 		447878162298EA53008041A2 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878152298EA53008041A2 /* OrderViewController.swift */; };
 		447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878172298EA9B008041A2 /* OrderTableViewCell.swift */; };
 		447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A16F0228BB1D2003AB41E /* AppDelegate.swift */; };
@@ -31,6 +34,9 @@
 		447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A1719228C67DC003AB41E /* SearchViewController.swift */; };
 		447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171B228C67E9003AB41E /* QRCodeViewController.swift */; };
 		447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171D228C67F8003AB41E /* PersonalViewController.swift */; };
+		449A9C6322A798E40054C135 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A9C6222A798E40054C135 /* EditPersonalViewController.swift */; };
+		449A9C6622A79B4D0054C135 /* TPDirectResource in Resources */ = {isa = PBXBuildFile; fileRef = 449A9C6422A79B4C0054C135 /* TPDirectResource */; };
+		449A9C6722A79B4D0054C135 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A9C6522A79B4D0054C135 /* TPDirect.framework */; };
 		44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5222912C8200B24B9C /* CalendarViewController.swift */; };
 		44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5422912DD800B24B9C /* DateCell.swift */; };
 		9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */; };
@@ -46,12 +52,15 @@
 		2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).release.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).release.xcconfig"; sourceTree = "<group>"; };
 		440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
-		442E07F622A5286E0044BE65 /* TPDirectResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TPDirectResource; sourceTree = "<group>"; };
-		442E07F722A5286E0044BE65 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
+		4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EzOrder(Cus).entitlements"; sourceTree = "<group>"; };
 		442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardPayViewController.swift; sourceTree = "<group>"; };
 		442E07FD22A56A220044BE65 /* CreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardViewController.swift; sourceTree = "<group>"; };
 		443974212294595000891514 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		4443C38722A65A37004875D7 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordTableViewCell.swift; sourceTree = "<group>"; };
+		4443C39722A663E6004875D7 /* OrderRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordViewController.swift; sourceTree = "<group>"; };
 		447878152298EA53008041A2 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		447878172298EA9B008041A2 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		447A16ED228BB1D2003AB41E /* EzOrder(Cus).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzOrder(Cus).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +80,9 @@
 		447A1719228C67DC003AB41E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		447A171B228C67E9003AB41E /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		447A171D228C67F8003AB41E /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		449A9C6222A798E40054C135 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
+		449A9C6422A79B4C0054C135 /* TPDirectResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TPDirectResource; sourceTree = "<group>"; };
+		449A9C6522A79B4D0054C135 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
 		44FA8C5222912C8200B24B9C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		44FA8C5422912DD800B24B9C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		6556A776F1AB5BE6AE690B4B /* Pods-EzOrder(Cus).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).debug.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,7 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */,
-				442E07F922A5286E0044BE65 /* TPDirect.framework in Frameworks */,
+				449A9C6722A79B4D0054C135 /* TPDirect.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +112,77 @@
 				0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4443C38922A65B26004875D7 /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				447A1706228BB263003AB41E /* AD.storyboard */,
+				9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
+		4443C38A22A65B68004875D7 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				447A1708228BB284003AB41E /* Search.storyboard */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		4443C38B22A65B87004875D7 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				447A170A228BB29D003AB41E /* Order.storyboard */,
+				447878172298EA9B008041A2 /* OrderTableViewCell.swift */,
+				440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		4443C38C22A65BB7004875D7 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				447A170C228BB2AF003AB41E /* Progress.storyboard */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		4443C38D22A65BF0004875D7 /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				447A170E228BB314003AB41E /* Personal.storyboard */,
+				4443C38E22A65C28004875D7 /* Calendar */,
+				4443C38F22A65D51004875D7 /* Favorite */,
+				4443C39422A6630F004875D7 /* OrderRecord */,
+			);
+			path = Personal;
+			sourceTree = "<group>";
+		};
+		4443C38E22A65C28004875D7 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				44FA8C5422912DD800B24B9C /* DateCell.swift */,
+				443974212294595000891514 /* TableViewCell.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		4443C38F22A65D51004875D7 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		4443C39422A6630F004875D7 /* OrderRecord */ = {
+			isa = PBXGroup;
+			children = (
+				4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */,
+			);
+			path = OrderRecord;
 			sourceTree = "<group>";
 		};
 		447A16E4228BB1D2003AB41E = {
@@ -124,9 +207,10 @@
 		447A16EF228BB1D2003AB41E /* EzOrder(Cus) */ = {
 			isa = PBXGroup;
 			children = (
+				4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */,
 				442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */,
-				442E07F722A5286E0044BE65 /* TPDirect.framework */,
-				442E07F622A5286E0044BE65 /* TPDirectResource */,
+				449A9C6522A79B4D0054C135 /* TPDirect.framework */,
+				449A9C6422A79B4C0054C135 /* TPDirectResource */,
 				447A16F0228BB1D2003AB41E /* AppDelegate.swift */,
 				447A1704228BB1EF003AB41E /* Model */,
 				447A1703228BB1EC003AB41E /* View */,
@@ -153,11 +237,11 @@
 			isa = PBXGroup;
 			children = (
 				447A16F4228BB1D2003AB41E /* Main.storyboard */,
-				447A1706228BB263003AB41E /* AD.storyboard */,
-				447A1708228BB284003AB41E /* Search.storyboard */,
-				447A170A228BB29D003AB41E /* Order.storyboard */,
-				447A170C228BB2AF003AB41E /* Progress.storyboard */,
-				447A170E228BB314003AB41E /* Personal.storyboard */,
+				4443C38922A65B26004875D7 /* AD */,
+				4443C38A22A65B68004875D7 /* Search */,
+				4443C38B22A65B87004875D7 /* Order */,
+				4443C38C22A65BB7004875D7 /* Progress */,
+				4443C38D22A65BF0004875D7 /* Personal */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */,
+				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,11 +268,12 @@
 			isa = PBXGroup;
 			children = (
 				447A171D228C67F8003AB41E /* PersonalViewController.swift */,
+				4443C38722A65A37004875D7 /* FavoriteViewController.swift */,
 				44FA8C5222912C8200B24B9C /* CalendarViewController.swift */,
-				44FA8C5422912DD800B24B9C /* DateCell.swift */,
-				443974212294595000891514 /* TableViewCell.swift */,
 				9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */,
 				9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */,
+				4443C39722A663E6004875D7 /* OrderRecordViewController.swift */,
+				449A9C6222A798E40054C135 /* EditPersonalViewController.swift */,
 			);
 			path = Personal;
 			sourceTree = "<group>";
@@ -198,7 +284,6 @@
 				447A1717228BE3CF003AB41E /* ProgressViewController.swift */,
 				442E07FB22A567040044BE65 /* CreditCardPayViewController.swift */,
 				442E07FD22A56A220044BE65 /* CreditCardViewController.swift */,
-				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
 			path = Progress;
 			sourceTree = "<group>";
@@ -208,8 +293,6 @@
 			children = (
 				447A171B228C67E9003AB41E /* QRCodeViewController.swift */,
 				447878152298EA53008041A2 /* OrderViewController.swift */,
-				447878172298EA9B008041A2 /* OrderTableViewCell.swift */,
-				440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */,
 				440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */,
 			);
 			path = Order;
@@ -227,7 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				447A16F2228BB1D2003AB41E /* ADViewController.swift */,
-				9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */,
 			);
 			path = AD;
 			sourceTree = "<group>";
@@ -309,11 +391,12 @@
 				447A16FB228BB1D3003AB41E /* LaunchScreen.storyboard in Resources */,
 				9D56182B229242930083233E /* .gitattributes in Resources */,
 				447A1707228BB263003AB41E /* AD.storyboard in Resources */,
+				449A9C6622A79B4D0054C135 /* TPDirectResource in Resources */,
 				447A16F8228BB1D3003AB41E /* Assets.xcassets in Resources */,
 				447A16F6228BB1D2003AB41E /* Main.storyboard in Resources */,
 				447A170D228BB2AF003AB41E /* Progress.storyboard in Resources */,
 				447A1709228BB284003AB41E /* Search.storyboard in Resources */,
-				442E07F822A5286E0044BE65 /* TPDirectResource in Resources */,
+				4429B27F22A79E4B00649E0E /* GoogleService-Info.plist in Resources */,
 				447A170F228BB314003AB41E /* Personal.storyboard in Resources */,
 				447A170B228BB29D003AB41E /* Order.storyboard in Resources */,
 			);
@@ -331,13 +414,29 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus)-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -373,13 +472,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */,
+				4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */,
 				443974222294595000891514 /* TableViewCell.swift in Sources */,
 				44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */,
+				449A9C6322A798E40054C135 /* EditPersonalViewController.swift in Sources */,
 				447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
+				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
+				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
 				9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */,

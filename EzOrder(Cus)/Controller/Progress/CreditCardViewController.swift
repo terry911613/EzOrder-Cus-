@@ -16,6 +16,7 @@ class CreditCardViewController: UIViewController {
     @IBOutlet weak var displayText: UITextView!
     var tpdCard : TPDCard!
     var tpdForm : TPDForm!
+    var merchant: TPDMerchant!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +37,14 @@ class CreditCardViewController: UIViewController {
             weak var weakSelf = self
             
             weakSelf?.payButton.isEnabled = status.isCanGetPrime()
-            weakSelf?.payButton.alpha     = (status.isCanGetPrime()) ? 1.0 : 0.25
+            weakSelf?.payButton.alpha = (status.isCanGetPrime()) ? 1.0 : 0.25
             
         }
         
         // Button Disable (Default)
         payButton.isEnabled = false
-        payButton.alpha     = 0.25
+        payButton.alpha = 0.25
+        
     }
     
     @IBAction func doneAction(_ sender: Any) {
@@ -124,9 +126,9 @@ class CreditCardViewController: UIViewController {
         var baseColor:UInt64 = UInt64()
         scanner.scanHexInt64(&baseColor)
         
-        let red     = ((CGFloat)((baseColor & 0xFF0000) >> 16)) / 255.0
-        let green   = ((CGFloat)((baseColor & 0xFF00) >> 8)) / 255.0
-        let blue    = ((CGFloat)(baseColor & 0xFF)) / 255.0
+        let red = ((CGFloat)((baseColor & 0xFF0000) >> 16)) / 255.0
+        let green = ((CGFloat)((baseColor & 0xFF00) >> 8)) / 255.0
+        let blue = ((CGFloat)(baseColor & 0xFF)) / 255.0
         
         return UIColor.init(red: red, green: green, blue: blue, alpha: alpha)
     }
