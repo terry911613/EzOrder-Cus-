@@ -9,5 +9,8 @@ target 'EzOrder(Cus)' do
 
 pod 'JTAppleCalendar', '~> 7.0'
 pod 'Firebase/Core'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod "Firebase/Auth"
 
 end
