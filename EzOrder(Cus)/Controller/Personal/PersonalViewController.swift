@@ -47,7 +47,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
             navigationController?.pushViewController(wheelVC, animated: true)
         }
         else if indexPath.row == 4{
-            
+            performSegue(withIdentifier: "editPersonalSegue", sender: self)
         }
         else{
             

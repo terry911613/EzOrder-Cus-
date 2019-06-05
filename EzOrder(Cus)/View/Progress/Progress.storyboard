@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="34J-5Y-jkJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="80" id="34J-5Y-jkJ">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="34J-5Y-jkJ" id="OXp-BV-V1b">
@@ -87,7 +87,6 @@
                         <outlet property="payButton" destination="1Ev-h4-VZm" id="3l1-iT-7Ri"/>
                         <outlet property="totalMoneyLabel" destination="czX-OF-XVb" id="RGv-qb-QrP"/>
                         <segue destination="zA5-uB-Til" kind="presentation" identifier="creditCardPaySegue" id="Odv-no-s0x"/>
-                        <segue destination="XSr-Qk-649" kind="show" identifier="creditCardSegue" id="gcY-X7-dSC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdR-e3-PS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -162,13 +161,13 @@
         <!--Credit Card View Controller-->
         <scene sceneID="qf5-ks-NQy">
             <objects>
-                <viewController id="XSr-Qk-649" customClass="CreditCardViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="creditCardVC" id="XSr-Qk-649" customClass="CreditCardViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5GS-70-JkX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHI-Vy-ym9">
-                                <rect key="frame" x="57.5" y="114" width="260" height="80"/>
+                                <rect key="frame" x="57.5" y="70" width="260" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="aC5-9o-xvb"/>
@@ -176,7 +175,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="您可以設定中華郵政VISA金融卡及各家銀行信用卡（美國運通、大來卡、銀聯卡除外）費用將併入所設定信用卡帳單。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-hc-GIU">
-                                <rect key="frame" x="37.5" y="209" width="300" height="70"/>
+                                <rect key="frame" x="37.5" y="165" width="300" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="UgB-iC-7Gn"/>
@@ -186,7 +185,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPb-Ro-KOG">
-                                <rect key="frame" x="150" y="295" width="75" height="30"/>
+                                <rect key="frame" x="150" y="251" width="75" height="30"/>
                                 <color key="backgroundColor" red="0.88909536600000005" green="0.56646364930000004" blue="0.27671140430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="15q-hK-fCD"/>
@@ -200,7 +199,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sso-8r-qSy">
-                                <rect key="frame" x="142.5" y="341" width="90" height="30"/>
+                                <rect key="frame" x="142.5" y="297" width="90" height="30"/>
                                 <color key="backgroundColor" red="0.24313725489999999" green="0.46666666670000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Q2I-jo-VsO"/>
@@ -214,7 +213,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DOd-63-lma">
-                                <rect key="frame" x="19" y="379" width="337.5" height="219"/>
+                                <rect key="frame" x="19" y="428" width="337.5" height="219"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="219" id="eXz-EI-cUD"/>
