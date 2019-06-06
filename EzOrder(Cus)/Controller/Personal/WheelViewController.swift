@@ -21,6 +21,7 @@ class WheelViewController: UIViewController {
     @IBAction func clickRotate(_ sender: Any) {
         point = wheelRotateImageView.rotateGradually(handler: {
             self.performSegue(withIdentifier: "alertPointSegue", sender: self)
+              
         })
     }
     

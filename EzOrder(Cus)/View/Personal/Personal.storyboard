@@ -79,7 +79,10 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="nameLabel" destination="9pP-Bo-BUA" id="cNN-GH-Ika"/>
                         <outlet property="personalTableView" destination="T2j-8W-xc1" id="zHV-FG-jtV"/>
+                        <outlet property="pointLabel" destination="boj-Jo-I2T" id="4fX-ub-AcQ"/>
+                        <outlet property="telLabel" destination="lWr-Rt-trx" id="29z-la-OXx"/>
                         <segue destination="gCz-9S-L7k" kind="presentation" identifier="editPersonalSegue" id="t9r-bJ-ETx"/>
                     </connections>
                 </viewController>

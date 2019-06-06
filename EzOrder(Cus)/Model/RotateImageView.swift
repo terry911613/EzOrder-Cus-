@@ -54,7 +54,9 @@ class RotateImageView: UIImageView {
             if self.currentValue >= Double.pi * 2 {
                 self.currentValue -= Double.pi * 2
             }
-            handler()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                handler()
+            }
         }
         rotateAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         self.layer.add(rotateAnimation, forKey: nil)
