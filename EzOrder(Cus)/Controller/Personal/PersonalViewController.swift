@@ -18,7 +18,6 @@ class PersonalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{

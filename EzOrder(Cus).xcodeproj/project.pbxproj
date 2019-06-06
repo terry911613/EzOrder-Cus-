@@ -49,6 +49,7 @@
 		9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0445EE22A7F9F1002E2C66 /* User.swift */; };
 		9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
+		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		9D0445EE22A7F9F1002E2C66 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			children = (
 				447A1706228BB263003AB41E /* AD.storyboard */,
 				9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */,
+				9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */,
 			);
 			path = AD;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */,
+				9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */,
 				4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */,
 				443974222294595000891514 /* TableViewCell.swift in Sources */,
 				44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */,

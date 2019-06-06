@@ -28,31 +28,47 @@ extension UINavigationBar {
     }
 }
 
-class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var rankCollectionView: UICollectionView!
     
+    @IBOutlet weak var adCollectionView: UICollectionView!
     var rankImgNames = ["AD1", "AD2", "AD3", "AD4", "AD5"]
     var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return rankImgNames.count
+        if collectionView == rankCollectionView {
+            return rankImgNames.count
+        } else {
+            return rankImgNames.count
+        }
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rankCell", for: indexPath) as! RankCollectionViewCell
-        cell.imgRank.image = UIImage(named: rankImgNames[indexPath.row])
-        cell.lbRank.text = rankLabels[indexPath.row]
-        return cell
+        if collectionView == rankCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rankCell", for: indexPath) as! RankCollectionViewCell
+            cell.imgRank.image = UIImage(named: rankImgNames[indexPath.row])
+            cell.lbRank.text = rankLabels[indexPath.row]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adCell", for: indexPath) as! AdCollectionViewCell
+            
+            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
+            return cell
+        }
     }
     
-    @IBOutlet weak var scrollviewAd: UIScrollView!
-    @IBOutlet weak var pgcontrolAd: UIPageControl!
-    @IBOutlet weak var imgAd1: UIImageView!
-    @IBOutlet weak var imgAd2: UIImageView!
-    @IBOutlet weak var imgAd3: UIImageView!
-    @IBOutlet weak var imgAd4: UIImageView!
-    @IBOutlet weak var imgAd5: UIImageView!
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == adCollectionView {
+            return CGSize(width: adCollectionView.frame.width, height: adCollectionView.frame.height)
+        } else {
+            return CGSize(width: collectionView.frame.width * 5/6, height: collectionView.frame.height)
+        }
+    }
+    
     
     // 圖層漸層
     func createGradientLayer() {
@@ -68,43 +84,53 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         self.view.layer.addSublayer(gradientLayer)
     }
     
+    @IBOutlet weak var adPageControl: UIPageControl!
     
+    var imageIndexPath = 0
     override func viewDidLoad() {
+        adPageControl.numberOfPages = rankImgNames.count
         super.viewDidLoad()
-        imgAd1.image = UIImage(named: "AD1")
-        imgAd2.image = UIImage(named: "AD2")
-        imgAd3.image = UIImage(named: "AD3")
-        imgAd4.image = UIImage(named: "AD4")
-        imgAd5.image = UIImage(named: "AD5")
 
-        scrollviewAd.delegate = self
-        scrollviewAd.showsVerticalScrollIndicator = false
-        scrollviewAd.showsHorizontalScrollIndicator = false
-        scrollviewAd.scrollsToTop = false
-        
+        adCollectionView.delegate = self
+        adCollectionView.showsVerticalScrollIndicator = false
+        adCollectionView.showsHorizontalScrollIndicator = false
+        adCollectionView.scrollsToTop = false
+
         var timerForAd = Timer()
-        timerForAd = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (Timer) in
-            UIView.animate(withDuration: 0.3, animations: {
-                if self.scrollviewAd.contentOffset.x == self.scrollviewAd.frame.size.width * 4 {
-                    self.scrollviewAd.contentOffset.x = 0
-                    self.setPageControll()
+        timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
+            UIView.animate(withDuration: 1, animations: {
+                var indexPath: IndexPath
+                if self.imageIndexPath < self.rankImgNames.count - 1 {
+                    self.imageIndexPath += 1
+                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                    self.setPageControll(tunning: 1)
                 } else {
-                    self.scrollviewAd.contentOffset.x += self.scrollviewAd.frame.size.width
-                    self.setPageControll()
+                    self.imageIndexPath = 0
+                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                    self.setPageControll(tunning: (self.rankImgNames.count - 1) * -1)
                 }
             })
         })
         // Do any additional setup after loading the view.
     }
     
-    func setPageControll() {
-        let page = Int(scrollviewAd.contentOffset.x / scrollviewAd.frame.size.width)
-        pgcontrolAd.currentPage = page
+    func setPageControll(tunning: Int) {
+        let page = Int(adCollectionView.contentOffset.x / adCollectionView.frame.size.width )
+        print(page)
+        print((adCollectionView as UIScrollView).contentOffset.x)
+        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
+        adPageControl.currentPage = page + tunning
+        imageIndexPath = page + tunning
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView === scrollviewAd {
-            setPageControll()
+        if scrollView === adCollectionView {
+            setPageControll(tunning: 0)
+            
         }
     }
     
 }
+
+
