@@ -8,23 +8,51 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-
+class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate  {
+    @IBOutlet weak var StoreSearch: UISearchBar!
+    @IBOutlet weak var StoreTableView: UITableView!
+    let textStoreTableView = ["1","2","3","4","5","6","7","8","9","10"]
+    var searchBool = false
+    var searchChange = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchBool {
+          return  searchChange.count
+        }
+        else {
+        return textStoreTableView.count
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if searchBool {
+            Cell?.textLabel?.text = searchChange[indexPath.row]
+            print(1)
+        }
+        else {
+            Cell?.textLabel?.text =  textStoreTableView[indexPath.row]
+            print(2)
+        }
+       
+        return Cell!
     }
-    */
+    override func didReceiveMemoryWarning() {
+        self.didReceiveMemoryWarning()
+    }
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchChange = textStoreTableView.filter({$0.prefix(searchText.count) == searchText})
+                searchBool = true
+                StoreTableView.reloadData()
+
+        
+        
+    }
+    
+    
+    
 }

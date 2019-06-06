@@ -9,12 +9,16 @@
 import UIKit
 
 class PersonalViewController: UIViewController {
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var telLabel: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
+    
     @IBOutlet weak var personalTableView: UITableView!
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
