@@ -45,6 +45,8 @@
 		9D02A9E7229E6E3E009032D5 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */; };
 		9D02A9E9229E6F1C009032D5 /* RotateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */; };
 		9D02A9EB229E8A31009032D5 /* WheelAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */; };
+		9D0445ED22A7F953002E2C66 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0445EC22A7F953002E2C66 /* Common.swift */; };
+		9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0445EE22A7F9F1002E2C66 /* User.swift */; };
 		9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
 /* End PBXBuildFile section */
@@ -93,6 +95,8 @@
 		9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RotateImageView.swift; path = "EzOrder(Cus)/Model/RotateImageView.swift"; sourceTree = SOURCE_ROOT; };
 		9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelAlertViewController.swift; sourceTree = "<group>"; };
+		9D0445EC22A7F953002E2C66 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		9D0445EE22A7F9F1002E2C66 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,6 +233,7 @@
 		447A1702228BB1E8003AB41E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9D0445EB22A7F938002E2C66 /* Server */,
 				447A1714228BD63A003AB41E /* AD */,
 				447A1713228BD638003AB41E /* Search */,
 				447A1712228BD635003AB41E /* Order */,
@@ -318,6 +323,15 @@
 				447A16F2228BB1D2003AB41E /* ADViewController.swift */,
 			);
 			path = AD;
+			sourceTree = "<group>";
+		};
+		9D0445EB22A7F938002E2C66 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				9D0445EC22A7F953002E2C66 /* Common.swift */,
+				9D0445EE22A7F9F1002E2C66 /* User.swift */,
+			);
+			path = Server;
 			sourceTree = "<group>";
 		};
 		B9043FAAF7F546D629E061E4 /* Pods */ = {
@@ -497,12 +511,14 @@
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
+				9D0445ED22A7F953002E2C66 /* Common.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
 				9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */,
 				9D02A9EB229E8A31009032D5 /* WheelAlertViewController.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
+				9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */,
 				9D02A9E7229E6E3E009032D5 /* WheelViewController.swift in Sources */,
 				442E07FC22A567040044BE65 /* CreditCardPayViewController.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
