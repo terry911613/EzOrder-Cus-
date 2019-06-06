@@ -54,7 +54,5 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     
- 
-    
     
 }

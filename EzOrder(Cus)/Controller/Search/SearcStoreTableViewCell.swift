@@ -10,6 +10,7 @@ import UIKit
 
 class SearcStoreTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var StoreName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,8 +18,6 @@ class SearcStoreTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
