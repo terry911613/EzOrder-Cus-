@@ -17,7 +17,6 @@ class CalendarViewController: UIViewController {
     //    @IBOutlet weak var eventTableView: UITableView!
     
     var now = Date()
-    var dateText = ""
     var selectDateText = ""
     var eventDic = [String : [String]]()
     let dateFormatter: DateFormatter = DateFormatter()
@@ -40,9 +39,7 @@ class CalendarViewController: UIViewController {
         dateLabel.text = "2019-01"
         
         //  寫死今天有三項訂位
-        dateText = dateFormatter.string(from: now)
-        selectDateText = dateText
-        print(dateText)
+        selectDateText = dateFormatter.string(from: now)
         print(selectDateText)
         eventDic = ["2019-05-15" : ["12:00 全家", "17:00 711"],
                     "2019-04-15" : ["12:00 馬辣", "17:00 新馬辣"],
