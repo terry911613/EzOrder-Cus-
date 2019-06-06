@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CEB987B22A7F15D0098181C /* SignInFBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987A22A7F15D0098181C /* SignInFBViewController.swift */; };
+		2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */; };
 		440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */; };
 		440FAB18229CFF35005E38D0 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */; };
 		4429B27F22A79E4B00649E0E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzOrder_Cus_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CEB987A22A7F15D0098181C /* SignInFBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFBViewController.swift; sourceTree = "<group>"; };
+		2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcStoreTableViewCell.swift; sourceTree = "<group>"; };
 		2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).release.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).release.xcconfig"; sourceTree = "<group>"; };
 		440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		440FAB17229CFF35005E38D0 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				447A170E228BB314003AB41E /* Personal.storyboard */,
+				2CEB987A22A7F15D0098181C /* SignInFBViewController.swift */,
 				4443C38E22A65C28004875D7 /* Calendar */,
 				4443C38F22A65D51004875D7 /* Favorite */,
 				4443C39422A6630F004875D7 /* OrderRecord */,
@@ -207,7 +212,6 @@
 		447A16EF228BB1D2003AB41E /* EzOrder(Cus) */ = {
 			isa = PBXGroup;
 			children = (
-				4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */,
 				442E07FA22A528A00044BE65 /* EzOrder(Cus).entitlements */,
 				449A9C6522A79B4D0054C135 /* TPDirect.framework */,
 				449A9C6422A79B4C0054C135 /* TPDirectResource */,
@@ -217,6 +221,7 @@
 				447A1702228BB1E8003AB41E /* Controller */,
 				447A1705228BB212003AB41E /* Supporting File */,
 				447A16FC228BB1D3003AB41E /* Info.plist */,
+				4429B27E22A79E4B00649E0E /* GoogleService-Info.plist */,
 			);
 			path = "EzOrder(Cus)";
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				447A1719228C67DC003AB41E /* SearchViewController.swift */,
+				2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -415,6 +421,8 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus)-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
@@ -429,6 +437,8 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
@@ -477,10 +487,12 @@
 				443974222294595000891514 /* TableViewCell.swift in Sources */,
 				44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */,
 				449A9C6322A798E40054C135 /* EditPersonalViewController.swift in Sources */,
+				2CEB987B22A7F15D0098181C /* SignInFBViewController.swift in Sources */,
 				447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
 				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
+				2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
