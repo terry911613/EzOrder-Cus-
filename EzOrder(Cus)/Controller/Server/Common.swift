@@ -35,35 +35,35 @@ func showSimpleAlert(message: String, viewController: UIViewController) {
     /* 呼叫present()才會跳出Alert Controller */
     viewController.present(alertController, animated: true, completion:nil)
 }
-
-func findByAccount() {
-let requestParam = ["action" : "findByAccount", "account": "memberAccount1"]
-    executeTask(url_server!, requestParam) { (data, response, error) in
-        if error == nil {
-            if data != nil {
-                // 將輸入資料列印出來除錯用
-                print("input: \(String(data: data!, encoding: .utf8)!)")
-                
-                if let result = try? JSONSerialization.jsonObject(with: data!){
-                    self.userInfo = result as! [String : Any]
-                    User.shared.account = (self.userInfo["account"] as! String)
-                    User.shared.name = (self.userInfo["name"] as! String)
-                    User.shared.age  = (self.userInfo["age"] as! Int)
-                    User.shared.gender = (self.userInfo["gender"] as! Int)
-                    User.shared.point = (self.userInfo["point"] as! Int)
-                    User.shared.spinChance = (self.userInfo["spinChance"] as! Int)
-                    User.shared.tel = (self.userInfo["tel"] as! String)
-                    DispatchQueue.main.async {
-                        self.nameLabel.text = "姓名：" + User.shared.name!
-                        self.telLabel.text = "電話：" + (User.shared.tel ?? "尚未輸入")
-                        self.pointLabel.text = "點數：" + String(User.shared.point ) + "點"
-                    }
-                }
-            }
-        } else {
-            print("Error: " + error!.localizedDescription)
-        }
-    }
-}
-var userInfo = [String: Any]()
-let url_server = URL(string: common_url + "MemberServlet")
+//
+//func findByAccount() {
+//let requestParam = ["action" : "findByAccount", "account": "memberAccount1"]
+//    executeTask(url_server!, requestParam) { (data, response, error) in
+//        if error == nil {
+//            if data != nil {
+//                // 將輸入資料列印出來除錯用
+//                print("input: \(String(data: data!, encoding: .utf8)!)")
+//
+//                if let result = try? JSONSerialization.jsonObject(with: data!){
+//                    self.userInfo = result as! [String : Any]
+//                    User.shared.account = (self.userInfo["account"] as! String)
+//                    User.shared.name = (self.userInfo["name"] as! String)
+//                    User.shared.age  = (self.userInfo["age"] as! Int)
+//                    User.shared.gender = (self.userInfo["gender"] as! Int)
+//                    User.shared.point = (self.userInfo["point"] as! Int)
+//                    User.shared.spinChance = (self.userInfo["spinChance"] as! Int)
+//                    User.shared.tel = (self.userInfo["tel"] as! String)
+//                    DispatchQueue.main.async {
+//                        self.nameLabel.text = "姓名：" + User.shared.name!
+//                        self.telLabel.text = "電話：" + (User.shared.tel ?? "尚未輸入")
+//                        self.pointLabel.text = "點數：" + String(User.shared.point ) + "點"
+//                    }
+//                }
+//            }
+//        } else {
+//            print("Error: " + error!.localizedDescription)
+//        }
+//    }
+//}
+//var userInfo = [String: Any]()
+//let url_server = URL(string: common_url + "MemberServlet")
