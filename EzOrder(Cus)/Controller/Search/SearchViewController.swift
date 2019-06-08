@@ -48,9 +48,6 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
         searchChange = textStoreTableView.filter({$0.prefix(searchText.count) == searchText})
                 searchBool = true
                 StoreTableView.reloadData()
-
-        
-        
     }
     
     

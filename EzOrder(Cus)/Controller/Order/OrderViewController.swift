@@ -106,6 +106,9 @@ class OrderViewController: UIViewController {
             let cartVC = segue.destination as! CartViewController
             cartVC.totalPrice = totalPrice
             cartVC.orderDic = orderDic
+            if let resID = resID{
+                cartVC.resID = resID
+            }
         }
     }
 }

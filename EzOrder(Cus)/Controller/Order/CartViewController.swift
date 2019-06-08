@@ -19,6 +19,7 @@ class CartViewController: UIViewController {
     var orderDic = [QueryDocumentSnapshot: Int]()
     var orderArray = [QueryDocumentSnapshot]()
     var amountArray = [Int]()
+    var resID: String?
     
     let db = Firestore.firestore()
     let userId = Auth.auth().currentUser?.email
@@ -53,15 +54,22 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
-        
-        let data: [String: Any] = ["typeIndex": typeIndex,
-                                   "foodName": foodName,
-                                   "foodImage": downloadURL.absoluteString,
-                                   "foodMoney": foodMoney,
-                                   "foodIndex": foodIndex,
-                                   "foodDetail": self.foodDetailTextfield.text ?? ""]
-        db.collection("testUser").document("order").collection("detail").document("\(Date())")
-        
+        for i in 0...orderArray.count-1{
+            let order = orderArray[i]
+            let amount = amountArray[i]
+            
+            if let foodName = order.data()["foodName"] as? String,
+                let foodImage = order.data()["foodImage"] as? String,
+                let foodMoney = order.data()["foodMoney"] as? Int{
+                let data: [String: Any] = ["orderNo": typeIndex,
+                                           "foodName": foodName,
+                                           "foodImage": downloadURL.absoluteString,
+                                           "foodMoney": foodMoney,
+                                           "foodIndex": foodIndex,
+                                           "foodDetail": self.foodDetailTextfield.text ?? ""]
+                db.collection("testUser").document("order").collection("detail").document("\(Date())")
+            }
+        }
         performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
     }
 }
