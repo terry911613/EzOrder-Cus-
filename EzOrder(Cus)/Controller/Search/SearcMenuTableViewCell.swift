@@ -1,5 +1,5 @@
 //
-//  SearcStoreTableViewCell.swift
+//  SearcMenuTableViewCell.swift
 //  EzOrder(Cus)
 //
 //  Created by 劉十六 on 2019/6/6.
@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SearcStoreTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var StoreImage: UIImageView!
-    @IBOutlet weak var StoreName: UILabel!
+class SearcMenuTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var searcMenuTabelImage: UIImageView!
+    @IBOutlet weak var searcMenuTableName: UILabel!
+    @IBOutlet weak var searcTableMenuMoney: UILabel!
     
     
     override func awakeFromNib() {
@@ -21,6 +22,8 @@ class SearcStoreTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
 
 }

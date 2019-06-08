@@ -7,16 +7,46 @@
 //
 
 import UIKit
-
+import Firebase
 class PersonalViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var telLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
-    
     @IBOutlet weak var personalTableView: UITableView!
+    var photos = [QueryDocumentSnapshot]()
+    var isFirstGetPhotos = true
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
-    
+
     override func viewDidLoad() {
+//        let photo = photos
+//
+//        nameLabel.text = data()["Label"] as? String
+//        if let urlString = photo.data()["photoUrl"] as? String {
+//            cell.foodImageView.kf.setImage(with: URL(string: urlString))
+   //     let db = Firestore.firestore()
+//        db.collection("personal").addSnapshotListener{ (querySnapshot, error) in
+//            if let querySnapshot = querySnapshot {
+//                if self.isFirstGetPhotos {
+//                    self.isFirstGetPhotos = false
+//                    self.photos = querySnapshot.documents
+//                    self.personalTableView.reloadData()
+//                }else {
+//                    //    self.photos = querySnapshot.documents
+//                    let documentChange = querySnapshot.documentChanges[0]
+//                    if documentChange.type == .modified
+//                        ,documentChange.document.data()["photoUrl"] != nil
+//                    {
+//
+//                        self.photos.insert(documentChange.document, at: 0)
+//                        self.personalTableView.reloadData()
+//
+//
+//                    }
+//                }
+//
+//            }
+//
+//        }
         super.viewDidLoad()
     }
 }

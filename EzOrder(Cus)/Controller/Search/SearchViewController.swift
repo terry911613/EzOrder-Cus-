@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate  {
     @IBOutlet weak var StoreSearch: UISearchBar!
     @IBOutlet weak var StoreTableView: UITableView!
-    let textStoreTableView = ["1","2","3","4","5","6","7","8","9","10"]
+    let textStoreTableView = ["A鼎泰豐","A鼎王","A藏壽司","B夏慕尼","B彼得潘小吃","C黃家牛肉麵","F三顧茅廬","S小木屋鬆餅","G小點心","F冠有滷肉飯"]
     var searchBool = false
     var searchChange = [String]()
     override func viewDidLoad() {
@@ -28,17 +28,16 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
         if searchBool {
-            Cell?.textLabel?.text = searchChange[indexPath.row]
-            print(1)
-        }
+            Cell.StoreName.text = searchChange[indexPath.row]
+                  }
         else {
-            Cell?.textLabel?.text =  textStoreTableView[indexPath.row]
+            Cell.StoreName.text = textStoreTableView[indexPath.row]
             print(2)
         }
        
-        return Cell!
+        return Cell
     }
     override func didReceiveMemoryWarning() {
         self.didReceiveMemoryWarning()
