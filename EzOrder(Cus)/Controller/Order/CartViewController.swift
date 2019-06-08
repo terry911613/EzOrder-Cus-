@@ -18,6 +18,7 @@ class CartViewController: UIViewController {
     var totalPrice: Int?
     var orderDic = [QueryDocumentSnapshot: Int]()
     var orderArray = [QueryDocumentSnapshot]()
+    var amountArray = [Int]()
     
     let db = Firestore.firestore()
     let userId = Auth.auth().currentUser?.email
@@ -52,13 +53,14 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
-//        let data: [String: Any] = ["typeIndex": typeIndex,
-//                                   "foodName": foodName,
-//                                   "foodImage": downloadURL.absoluteString,
-//                                   "foodMoney": foodMoney,
-//                                   "foodIndex": foodIndex,
-//                                   "foodDetail": self.foodDetailTextfield.text ?? ""]
-//        db.collection("testUser").document("order").collection("detail").document("\(Date())")
+        
+        let data: [String: Any] = ["typeIndex": typeIndex,
+                                   "foodName": foodName,
+                                   "foodImage": downloadURL.absoluteString,
+                                   "foodMoney": foodMoney,
+                                   "foodIndex": foodIndex,
+                                   "foodDetail": self.foodDetailTextfield.text ?? ""]
+        db.collection("testUser").document("order").collection("detail").document("\(Date())")
         
         performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
     }
@@ -83,12 +85,13 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
             for (orderKey, amount) in orderDic{
                 if order == orderKey{
                     cell.amountLabel.text = "數量：\(amount)"
+                    amountArray.append(amount)
                     break
                 }
             }
+        }
         
         return cell
     }
-    
     
 }
