@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+
 class PersonalViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var telLabel: UILabel!
@@ -16,6 +17,7 @@ class PersonalViewController: UIViewController {
     var photos = [QueryDocumentSnapshot]()
     var isFirstGetPhotos = true
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
+//    var db = Firestore.firestore()
 
     override func viewDidLoad() {
 //        let photo = photos

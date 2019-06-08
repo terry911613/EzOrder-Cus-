@@ -20,9 +20,10 @@ class CartViewController: UIViewController {
     var orderArray = [QueryDocumentSnapshot]()
     var amountArray = [Int]()
     var resID: String?
+    var tableNo: String?
     
     let db = Firestore.firestore()
-    let userId = Auth.auth().currentUser?.email
+    let userID = Auth.auth().currentUser?.email
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,23 +55,42 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
-        for i in 0...orderArray.count-1{
-            let order = orderArray[i]
-            let amount = amountArray[i]
-            
-            if let foodName = order.data()["foodName"] as? String,
-                let foodImage = order.data()["foodImage"] as? String,
-                let foodMoney = order.data()["foodMoney"] as? Int{
-                let data: [String: Any] = ["orderNo": typeIndex,
-                                           "foodName": foodName,
-                                           "foodImage": downloadURL.absoluteString,
-                                           "foodMoney": foodMoney,
-                                           "foodIndex": foodIndex,
-                                           "foodDetail": self.foodDetailTextfield.text ?? ""]
-                db.collection("testUser").document("order").collection("detail").document("\(Date())")
+        let timeStamp = String(Date().timeIntervalSince1970)
+        if let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice{
+            let orderNo = timeStamp+userID
+            for i in 0...orderArray.count-1{
+                let order = orderArray[i]
+                let amount = amountArray[i]
+                
+                if let foodName = order.data()["foodName"] as? String,
+                    let foodImage = order.data()["foodImage"] as? String,
+                    let foodPrice = order.data()["foodPrice"] as? Int{
+                    let orderFoodData: [String: Any] = ["foodName": foodName,
+                                               "foodImage": foodImage,
+                                               "foodPrice": foodPrice,
+                                               "foodAmount": amount,
+                                               "orderNo": orderNo,
+                                               "userID": userID,
+                                               "resID": resID,
+                                               "tableNo": tableNo,
+                                               "orderFoodStatus": 0]
+                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
+                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
+                    
+                    let orderData: [String: Any] = ["orderNo": orderNo,
+                                                    "userID": userID,
+                                                    "resID": resID,
+                                                    "tableNo": tableNo,
+                                                    "totalPrice": totalPrice,
+                                                    "serviceBell": 0,
+                                                    "orderCompleteStatus": 0,
+                                                    "payStatus": 0]
+                    db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
+                    db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
+                }
             }
+            performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
         }
-        performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
     }
 }
 
@@ -84,7 +104,7 @@ extension CartViewController: UITableViewDelegate, UITableViewDataSource{
         let order = orderArray[indexPath.row]
         if let foodName = order.data()["foodName"] as? String,
             let foodImage = order.data()["foodImage"] as? String,
-            let foodMoney = order.data()["foodMoney"] as? Int{
+            let foodMoney = order.data()["foodPrice"] as? Int{
             
             cell.foodNameLabel.text = foodName
             cell.foodImageView.kf.setImage(with: URL(string: foodImage))

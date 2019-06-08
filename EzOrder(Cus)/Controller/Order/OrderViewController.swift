@@ -20,7 +20,7 @@ class OrderViewController: UIViewController {
     
     var totalPrice = 0
     
-    var table: String?
+    var tableNo: String?
     var resID: String?
     
     let db = Firestore.firestore()
@@ -34,7 +34,7 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let table = table{
+        if let table = tableNo{
             tableLabel.text = table + "桌"
         }
         getType()
@@ -45,7 +45,7 @@ class OrderViewController: UIViewController {
     }
     func getType(){
         if let resID = resID{
-            db.collection(resID).document("food").collection("type").getDocuments { (type, error) in
+            db.collection("res").document(resID).collection("foodType").getDocuments { (type, error) in
                 if let type = type{
                     if type.documentChanges.isEmpty{
                         self.typeArray.removeAll()
@@ -66,7 +66,7 @@ class OrderViewController: UIViewController {
         print("-------------")
         print(typeName)
         if let resID = resID{
-            db.collection(resID).document("food").collection("type").document(typeName).collection("menu").addSnapshotListener { (food, error) in
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").addSnapshotListener { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
@@ -106,8 +106,9 @@ class OrderViewController: UIViewController {
             let cartVC = segue.destination as! CartViewController
             cartVC.totalPrice = totalPrice
             cartVC.orderDic = orderDic
-            if let resID = resID{
+            if let resID = resID, let tableNo = tableNo{
                 cartVC.resID = resID
+                cartVC.tableNo = tableNo
             }
         }
     }
@@ -155,7 +156,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
-            let foodMoney = food.data()["foodMoney"] as? Int{
+            let foodMoney = food.data()["foodPrice"] as? Int{
             
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))

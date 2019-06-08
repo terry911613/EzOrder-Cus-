@@ -8,7 +8,7 @@
 
 import UIKit
 
-class searcEvaluationViewController: UIViewController {
+class SearchEvaluationViewController: UIViewController {
     var evaluation = ["1","2","3","4","5"]
     @IBOutlet weak var searcimageView: UIImageView!
     
@@ -21,7 +21,7 @@ class searcEvaluationViewController: UIViewController {
 
 }
 
-extension searcEvaluationViewController: UITableViewDelegate,UITableViewDataSource{
+extension SearchEvaluationViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return evaluation.count
     }

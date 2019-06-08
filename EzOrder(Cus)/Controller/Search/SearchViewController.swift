@@ -9,6 +9,7 @@
 import UIKit
 
 class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate  {
+    
     @IBOutlet weak var StoreSearch: UISearchBar!
     @IBOutlet weak var StoreTableView: UITableView!
     let textStoreTableView = ["A鼎泰豐","A鼎王","A藏壽司","B夏慕尼","B彼得潘小吃","C黃家牛肉麵","F三顧茅廬","S小木屋鬆餅","G小點心","F冠有滷肉飯"]

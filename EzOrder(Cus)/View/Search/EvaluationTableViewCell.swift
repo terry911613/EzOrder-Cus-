@@ -12,6 +12,7 @@ class EvaluationTableViewCell: UITableViewCell {
     @IBOutlet weak var evaluationImageView: UIImageView!
     @IBOutlet weak var evaluation: UIImageView!
     @IBOutlet weak var evaluationTextView: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        

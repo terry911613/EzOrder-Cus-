@@ -12,8 +12,6 @@ struct Restaurant: Codable {
     var storeBookingLimit : Int
     var storeCount : Int
     
-    
-    
 }
 
 struct Restaurants: Codable {

@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Kingfisher
 import PassKit
 import TPDirect
-
+import Firebase
+import ViewAnimator
 
 class ProgressViewController: UIViewController {
     
@@ -19,20 +21,64 @@ class ProgressViewController: UIViewController {
     var applePay: TPDApplePay!
     var applePayButton : PKPaymentButton!
     
-    @IBOutlet weak var totalMoneyLabel: UILabel!
+    @IBOutlet weak var progressTableView: UITableView!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var payButton: UIButton!
+    @IBOutlet weak var seviceBellButton: UIBarButtonItem!
     
     var igcMenu: IGCMenu?
     var isMenuActive = false
     
+    var orderArray = [QueryDocumentSnapshot]()
+    
+    var totalPrice = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpMenu()
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.email
         
+        if let userID = userID{
+            db.collection("user").document(userID).collection("order").whereField("orderCompleteStatus", isEqualTo: 0).getDocuments { (order, error) in
+                if let order = order{
+                    if order.documents.isEmpty == false{
+                        print(2)
+                        if let totalPrice = order.documents[0].data()["totalPrice"] as? Int,
+                            let orderNo = order.documents[0].data()["orderNo"] as? String{
+                            print(3)
+                            self.totalPriceLabel.text = "總共：＄\(totalPrice)"
+                            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").getDocuments(completion: { (currentOrder, error) in
+                                if let currentOrder = currentOrder{
+                                    if currentOrder.documents.isEmpty{
+                                        self.orderArray.removeAll()
+                                        self.progressTableView.reloadData()
+                                    }
+                                    else{
+                                        self.orderArray = currentOrder.documents
+                                        self.animateProgressTableView()
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        setUpMenu()
         merchantSetting()
         consumerSetting()
         cartSetting()
+    }
+    func animateProgressTableView(){
+        let animations = [AnimationType.from(direction: .top, offset: 30.0)]
+        progressTableView.reloadData()
+        UIView.animate(views: progressTableView.visibleCells, animations: animations, completion: nil)
+    }
+    
+    @IBAction func seviceBellButton(_ sender: UIBarButtonItem) {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.email
     }
     
     @IBAction func payButton(_ sender: UIButton) {
@@ -111,6 +157,37 @@ class ProgressViewController: UIViewController {
     
     @IBAction func unwindSegueToProgress(segue: UIStoryboardSegue){
     }
+}
+
+extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return orderArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath) as! ProgressTableViewCell
+        let order = orderArray[indexPath.row]
+        if let foodName = order.data()["foodName"] as? String,
+            let foodImage = order.data()["foodImage"] as? String,
+            let foodPrice = order.data()["foodPrice"] as? Int,
+            let foodAmount = order.data()["foodAmount"] as? Int,
+            let orderFoodStatus = order.data()["orderFoodStatus"] as? Int{
+
+            cell.foodNameLabel.text = foodName
+            cell.foodImageView.kf.setImage(with: URL(string: foodImage))
+            cell.foodPriceLabel.text = "$\(foodPrice)"
+            cell.foodAmountLabel.text = "數量：\(foodAmount)"
+            if orderFoodStatus == 0{
+                cell.statusLabel.text = "準備中"
+            }
+            else{
+                cell.statusLabel.text = "已送達"
+            }
+        }
+        return cell
+    }
+    
+    
 }
     
 extension ProgressViewController: IGCMenuDelegate{
