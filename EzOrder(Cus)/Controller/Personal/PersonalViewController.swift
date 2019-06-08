@@ -48,7 +48,6 @@ class PersonalViewController: UIViewController {
 //
 //        }
         super.viewDidLoad()
-        
     }
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
