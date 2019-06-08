@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import ViewAnimator
+import Kingfisher
 
 class OrderViewController: UIViewController {
 
@@ -15,82 +18,165 @@ class OrderViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var tableLabel: UILabel!
     
-    var type = ["全部", "套餐", "麵", "飯", "湯", "甜點"]
-    
-    
-    var selectTypeMenu = [String]()
-    var all = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯", "乾麵", "湯麵", "義大利麵"]
-    var set = ["滷肉飯套餐", "雞肉飯套餐", "排骨飯套餐", "雞腿飯套餐", "香腸飯套餐", "乾麵套餐", "湯麵套餐", "義大利麵套餐"]
-    var rice = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯"]
-    var noodle = ["乾麵", "湯麵", "義大利麵"]
-    var soup = ["蛤蠣湯", "貢丸湯"]
-    var dessert = ["蛋糕", "紅豆湯"]
-    var allTypeMenu = [[String]]()
-    
     var totalPrice = 0
     
-    var table = ""
+    var table: String?
+    var resID: String?
+    
+    let db = Firestore.firestore()
+    let userID = Auth.auth().currentUser?.email
+    var typeArray = [QueryDocumentSnapshot]()
+    var foodArray = [QueryDocumentSnapshot]()
+//    var orderArray = [Order]()
+    var orderDic = [QueryDocumentSnapshot: Int]()
+    var isFoodDiffrient = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableLabel.text = table + "桌"
-        selectTypeMenu = all
-        allTypeMenu = [all, set, rice, noodle, soup, dessert]
+        if let table = table{
+            tableLabel.text = table + "桌"
+        }
+        getType()
     }
-//    var totals = [Int]()
-//    var finalPrice = 0
-}
-
-extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectTypeMenu.count
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getType()
+    }
+    func getType(){
+        if let resID = resID{
+            db.collection(resID).document("food").collection("type").getDocuments { (type, error) in
+                if let type = type{
+                    if type.documentChanges.isEmpty{
+                        self.typeArray.removeAll()
+                        self.typeCollectionView.reloadData()
+                    }
+                    else{
+                        let documentChange = type.documentChanges[0]
+                        if documentChange.type == .added {
+                            self.typeArray = type.documents
+                            self.animateTypeCollectionView()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    func getFood(typeName: String){
+        print("-------------")
+        print(typeName)
+        if let resID = resID{
+            db.collection(resID).document("food").collection("type").document(typeName).collection("menu").addSnapshotListener { (food, error) in
+                if let food = food{
+                    if food.documents.isEmpty{
+                        self.foodArray.removeAll()
+                        self.orderTableView.reloadData()
+                    }
+                    else{
+                        let documentChange = food.documentChanges[0]
+                        if documentChange.type == .added {
+                            self.foodArray = food.documents
+                            print(self.foodArray.count)
+                            self.animateOrderTableView()
+                            print("getFood Success")
+                            print("-------------")
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
-        cell.name.text = selectTypeMenu[indexPath.row]
-        cell.stepper.tag = indexPath.row
-        
-        cell.callBackCount = { clickPlus, countAmount in
-            cell.price.text = "$\(countAmount * 50)"
-            cell.count.text = "數量:\(countAmount)"
-            if clickPlus == true {
-                self.totalPrice += 50
-            } else {
-                self.totalPrice -= 50
-            }
-            self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
+    func animateTypeCollectionView(){
+        typeCollectionView.reloadData()
+        let animations = [AnimationType.from(direction: .right, offset: 30.0)]
+        typeCollectionView.performBatchUpdates({
+            UIView.animate(views: self.typeCollectionView.orderedVisibleCells,
+                           animations: animations, completion: nil)
+        }, completion: nil)
+    }
+    func animateOrderTableView(){
+        let animations = [AnimationType.from(direction: .top, offset: 30.0)]
+        orderTableView.reloadData()
+        UIView.animate(views: orderTableView.visibleCells, animations: animations, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "cartSegue"{
+            let cartVC = segue.destination as! CartViewController
+            cartVC.totalPrice = totalPrice
+            cartVC.orderDic = orderDic
         }
-        
-//        cell.callBackStepper = { value in
-//            cell.price.text = "$\(Int(value * 50))"
-//            cell.count.text = "數量:\(Int(value))"
-//            totalPrice += Int(value * 50)
-//            self.totalPriceLabel.text = "總共: $\(totalPrice)"
-//        }
-        return cell
     }
 }
-
 extension OrderViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return type.count
+        return typeArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "typeCell", for: indexPath) as! TypeCollectionViewCell
-        cell.typeLabel.text = type[indexPath.row]
+        let type = typeArray[indexPath.row]
+        if let typeName = type.data()["typeName"] as? String,
+            let typeImage = type.data()["typeImage"] as? String{
+            cell.typeLabel.text = typeName
+            cell.typeImage.kf.setImage(with: URL(string: typeImage))
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
         cell.backView.backgroundColor = UIColor(red: 255/255, green: 66/255, blue: 150/255, alpha: 1)
-        selectTypeMenu = allTypeMenu[indexPath.row]
-        orderTableView.reloadData()
+        
+        if let type = typeArray[indexPath.row].data()["typeName"] as? String{
+            getFood(typeName: type)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
         cell.backView.backgroundColor = UIColor(red: 255/255, green: 162/255, blue: 195/255, alpha: 1)
+    }
+}
+
+extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return foodArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
+        
+        let food = foodArray[indexPath.row]
+//        cell.name.text = selectTypeMenu[indexPath.row]
+//        cell.stepper.tag = indexPath.row
+        
+        if let foodName = food.data()["foodName"] as? String,
+            let foodImage = food.data()["foodImage"] as? String,
+            let foodMoney = food.data()["foodMoney"] as? Int{
+            
+            cell.name.text = foodName
+            cell.orderImageView.kf.setImage(with: URL(string: foodImage))
+            cell.price.text = "$\(foodMoney)"
+            
+            cell.callBackCount = { clickPlus, countAmount in
+                cell.price.text = "$\(countAmount * foodMoney)"
+                cell.count.text = "數量:\(countAmount)"
+                if clickPlus == true {
+                    self.orderDic[food] = countAmount
+                    self.totalPrice += foodMoney
+                } else {
+                    self.orderDic[food] = countAmount
+                    self.totalPrice -= foodMoney
+                }
+                self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
+            }
+        }
+        //        cell.callBackStepper = { value in
+        //            cell.price.text = "$\(Int(value * 50))"
+        //            cell.count.text = "數量:\(Int(value))"
+        //            totalPrice += Int(value * 50)
+        //            self.totalPriceLabel.text = "總共: $\(totalPrice)"
+        //        }
+        return cell
     }
 }

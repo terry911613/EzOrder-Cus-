@@ -18,7 +18,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     // 偵測到QR code時需要加框
     var qrFrameView: UIView!
     // 當user決定加好友時呼叫
-    var table = ""
+    var table: String?
+    var resID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,8 +99,18 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
             guard let qrString = metadataObject.stringValue else { return }
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            table = qrString
-            scanSuccess(qrCode: qrString)
+            
+            if let qrData = qrString.data(using: .utf8){
+                let result = try! JSONDecoder().decode([String: String].self, from: qrData)
+                if let table = result["table"], let resID = result["resID"]{
+                    self.table = table
+                    self.resID = resID
+                    print(self.table)
+                    print(self.resID)
+                    scanSuccess(qrCode: table)
+                }
+            }
+           
             if let barCodeObject = previewLayer.transformedMetadataObject(for: metadataObject) {
                 // 成功解析就將QR code圖片框起來
                 qrFrameView.frame = barCodeObject.bounds
@@ -131,7 +142,10 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "menuSegue"{
             let orderVC = segue.destination as! OrderViewController
-            orderVC.table = table
+            if let table = table, let resID = resID{
+                orderVC.table = table
+                orderVC.resID = resID
+            }
         }
         
     }

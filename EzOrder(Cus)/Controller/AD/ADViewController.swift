@@ -118,9 +118,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     
     func setPageControll(tunning: Int) {
         let page = Int(adCollectionView.contentOffset.x / adCollectionView.frame.size.width )
-        print(page)
-        print((adCollectionView as UIScrollView).contentOffset.x)
-        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
+//        print(page)
+//        print((adCollectionView as UIScrollView).contentOffset.x)
+//        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
         adPageControl.currentPage = page + tunning
         imageIndexPath = page + tunning
     }

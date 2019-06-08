@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0670616A0B7D5F89869ABE8B23BE9224"
+               BlueprintIdentifier = "D5975260B0EC8AEB72D493BB2838BEA9"
                BuildableName = "Pods_EzOrder_Cus_.framework"
                BlueprintName = "Pods-EzOrder(Cus)"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0670616A0B7D5F89869ABE8B23BE9224"
+            BlueprintIdentifier = "D5975260B0EC8AEB72D493BB2838BEA9"
             BuildableName = "Pods_EzOrder_Cus_.framework"
             BlueprintName = "Pods-EzOrder(Cus)"
             ReferencedContainer = "container:Pods.xcodeproj">

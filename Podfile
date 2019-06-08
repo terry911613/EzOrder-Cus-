@@ -13,5 +13,8 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod "Firebase/Auth"
 pod 'FBSDKLoginKit'
+pod "ViewAnimator"
+pod 'Kingfisher'
+pod 'SVProgressHUD'
 
 end
