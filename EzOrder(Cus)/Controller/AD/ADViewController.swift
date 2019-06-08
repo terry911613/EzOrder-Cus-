@@ -96,7 +96,10 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         adCollectionView.showsHorizontalScrollIndicator = false
         adCollectionView.scrollsToTop = false
 
-        var timerForAd = Timer()
+        // Do any additional setup after loading the view.
+    }
+    var timerForAd = Timer()
+    override func viewWillAppear(_ animated: Bool) {
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
             UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
@@ -113,7 +116,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
                 }
             })
         })
-        // Do any additional setup after loading the view.
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        timerForAd.invalidate()
     }
     
     func setPageControll(tunning: Int) {
