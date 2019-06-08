@@ -33,6 +33,7 @@ class StoreShowViewController: UIViewController{
             if error != nil {
                 let placemark = placemarks![0] as CLPlacemark?
                 print(placemark?.location?.coordinate)
+                
                 return
             }
             if placemarks != nil  && (placemarks?.count)! > 0 {
