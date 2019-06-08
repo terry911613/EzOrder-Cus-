@@ -10,7 +10,10 @@ import UIKit
 
 class SearcStoreTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var StoreImage: UIImageView!
     @IBOutlet weak var StoreName: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
