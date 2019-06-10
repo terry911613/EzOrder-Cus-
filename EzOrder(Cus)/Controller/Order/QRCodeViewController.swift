@@ -18,7 +18,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     // 偵測到QR code時需要加框
     var qrFrameView: UIView!
     // 當user決定加好友時呼叫
-    var tableNo: String?
+    var tableNo: Int?
     var resID: String?
 
     override func viewDidLoad() {
@@ -102,7 +102,7 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             if let qrData = qrString.data(using: .utf8){
                 let result = try! JSONDecoder().decode([String: String].self, from: qrData)
-                if let table = result["table"], let resID = result["resID"]{
+                if let table = Int(result["table"]!), let resID = result["resID"]{
                     self.tableNo = table
                     self.resID = resID
                     print(self.tableNo)
@@ -121,14 +121,14 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         }
     }
     
-    func scanSuccess(qrCode: String) {
+    func scanSuccess(qrCode: Int) {
         print(qrCode)
         // 停止預覽
         preview(false)
         order(name: qrCode)
     }
     
-    func order(name: String) {
+    func order(name: Int) {
         let alert = UIAlertController(title: "\(name)桌點餐?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "確定", style: .default, handler: { (action) in
             self.performSegue(withIdentifier: "menuSegue", sender: self)

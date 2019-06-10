@@ -20,17 +20,26 @@ class CartViewController: UIViewController {
     var orderArray = [QueryDocumentSnapshot]()
     var amountArray = [Int]()
     var resID: String?
-    var tableNo: String?
+    var tableNo: Int?
     
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.email
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let totalPrice = totalPrice{
             totalPriceLabel.text = "總共$\(totalPrice)"
         }
+        
+        sortOrderArray()
+    }
+    
+    func sortOrderArray(){
         
         for (order, _) in orderDic{
             orderArray.append(order)
@@ -55,25 +64,29 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
+        upload()
+    }
+    
+    func upload(){
+        
         let timeStamp = String(Date().timeIntervalSince1970)
         if let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice{
             let orderNo = timeStamp+userID
             for i in 0...orderArray.count-1{
                 let order = orderArray[i]
                 let amount = amountArray[i]
-                
                 if let foodName = order.data()["foodName"] as? String,
                     let foodImage = order.data()["foodImage"] as? String,
                     let foodPrice = order.data()["foodPrice"] as? Int{
                     let orderFoodData: [String: Any] = ["foodName": foodName,
-                                               "foodImage": foodImage,
-                                               "foodPrice": foodPrice,
-                                               "foodAmount": amount,
-                                               "orderNo": orderNo,
-                                               "userID": userID,
-                                               "resID": resID,
-                                               "tableNo": tableNo,
-                                               "orderFoodStatus": 0]
+                                                        "foodImage": foodImage,
+                                                        "foodPrice": foodPrice,
+                                                        "foodAmount": amount,
+                                                        "orderNo": orderNo,
+                                                        "userID": userID,
+                                                        "resID": resID,
+                                                        "tableNo": tableNo,
+                                                        "orderFoodStatus": 0]
                     db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     
@@ -82,13 +95,24 @@ class CartViewController: UIViewController {
                                                     "resID": resID,
                                                     "tableNo": tableNo,
                                                     "totalPrice": totalPrice,
-                                                    "serviceBell": 0,
-                                                    "orderCompleteStatus": 0,
                                                     "payStatus": 0]
                     db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
                     db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
+                    
                 }
             }
+            let serviceData: [String: Any] = ["serviceBellStatus": 0]
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
+            
+            let completeData: [String: Any] = ["orderCompleteStatus": 0]
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+            
+            let payData: [String: Any] = ["payStatus": 0]
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("payStatus").document("isPay").setData(payData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("payStatus").document("isPay").setData(payData)
+            
             performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
         }
     }

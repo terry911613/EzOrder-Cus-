@@ -17,11 +17,11 @@ class SignInFBViewController: UIViewController, LoginButtonDelegate{
         
         signInButton.delegate = self
         
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user != nil {
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//        }
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -66,6 +66,7 @@ class SignInFBViewController: UIViewController, LoginButtonDelegate{
         Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
             if error != nil {
                 print(error!)
+                print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
                 let alert = UIAlertController(title: "登入失敗", message: error?.localizedDescription, preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -74,6 +75,7 @@ class SignInFBViewController: UIViewController, LoginButtonDelegate{
             }
             else{
                 print("Log in Successful")
+                print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
                 self.navigationController?.popViewController(animated: true)
             }

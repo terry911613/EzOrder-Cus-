@@ -1,4 +1,5 @@
 import Foundation
+
 struct Restaurant: Codable {
     var storeName : String
     var storeEvaluation:  Double

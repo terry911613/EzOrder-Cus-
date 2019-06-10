@@ -24,39 +24,71 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var progressTableView: UITableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var payButton: UIButton!
-    @IBOutlet weak var seviceBellButton: UIBarButtonItem!
+    @IBOutlet weak var serviceBellButton: UIBarButtonItem!
     
     var igcMenu: IGCMenu?
     var isMenuActive = false
     
     var orderArray = [QueryDocumentSnapshot]()
+    var orderNo: String?
+    var resID: String?
     
     var totalPrice = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpMenu()
+        merchantSetting()
+        consumerSetting()
+        cartSetting()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getOrder()
+    }
+    
+    func getOrder(){
+        
         let db = Firestore.firestore()
         let userID = Auth.auth().currentUser?.email
         
         if let userID = userID{
-            db.collection("user").document(userID).collection("order").whereField("orderCompleteStatus", isEqualTo: 0).getDocuments { (order, error) in
+            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 0).getDocuments { (order, error) in
                 if let order = order{
                     if order.documents.isEmpty == false{
-                        print(2)
                         if let totalPrice = order.documents[0].data()["totalPrice"] as? Int,
-                            let orderNo = order.documents[0].data()["orderNo"] as? String{
-                            print(3)
+                            let orderNo = order.documents[0].data()["orderNo"] as? String,
+                            let resID = order.documents[0].data()["resID"] as? String{
                             self.totalPriceLabel.text = "總共：＄\(totalPrice)"
-                            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").getDocuments(completion: { (currentOrder, error) in
+                            self.orderNo = orderNo
+                            self.resID = resID
+                            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").addSnapshotListener { (currentOrder, error) in
                                 if let currentOrder = currentOrder{
                                     if currentOrder.documents.isEmpty{
                                         self.orderArray.removeAll()
                                         self.progressTableView.reloadData()
                                     }
                                     else{
-                                        self.orderArray = currentOrder.documents
-                                        self.animateProgressTableView()
+                                        let documentChange = currentOrder.documentChanges[0]
+                                        if documentChange.type == .added{
+                                            self.orderArray = currentOrder.documents
+                                            self.animateProgressTableView()
+                                        }
+                                    }
+                                }
+                            }
+                            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").addSnapshotListener({ (serviceBell, error) in
+                                if let serviceBellData = serviceBell?.data(){
+                                    if let serviceBellStatus = serviceBellData["serviceBellStatus"] as? Int{
+                                        if serviceBellStatus == 0{
+                                            self.serviceBellButton.image = UIImage(named: "服務鈴")
+                                        }
+                                        else{
+                                            self.serviceBellButton.image = UIImage(named: "服務鈴亮燈")
+                                        }
                                     }
                                 }
                             })
@@ -65,11 +97,8 @@ class ProgressViewController: UIViewController {
                 }
             }
         }
-        setUpMenu()
-        merchantSetting()
-        consumerSetting()
-        cartSetting()
     }
+    
     func animateProgressTableView(){
         let animations = [AnimationType.from(direction: .top, offset: 30.0)]
         progressTableView.reloadData()
@@ -77,8 +106,29 @@ class ProgressViewController: UIViewController {
     }
     
     @IBAction func seviceBellButton(_ sender: UIBarButtonItem) {
+        clickServiceBell()
+    }
+    
+    func clickServiceBell(){
         let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser?.email
+        if let userID = Auth.auth().currentUser?.email,
+            let orderNo = orderNo,
+            let resID = resID{
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").getDocument { (serviceBell, error) in
+                if let serviceBellData = serviceBell?.data(){
+                    if let serviceBellStatus = serviceBellData["serviceBellStatus"] as? Int{
+                        if serviceBellStatus == 0{
+                            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").updateData(["serviceBellStatus": 1])
+                            db.collection("res").document(resID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").updateData(["serviceBellStatus": 1])
+                        }
+                        else{
+                            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").updateData(["serviceBellStatus": 0])
+                            db.collection("res").document(resID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").updateData(["serviceBellStatus": 0])
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func payButton(_ sender: UIButton) {

@@ -50,7 +50,6 @@
 		449A9C6322A798E40054C135 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A9C6222A798E40054C135 /* EditPersonalViewController.swift */; };
 		449A9C6622A79B4D0054C135 /* TPDirectResource in Resources */ = {isa = PBXBuildFile; fileRef = 449A9C6422A79B4C0054C135 /* TPDirectResource */; };
 		449A9C6722A79B4D0054C135 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A9C6522A79B4D0054C135 /* TPDirect.framework */; };
-		44BC031722AB8BD1002AA6B0 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC031622AB8BD1002AA6B0 /* Order.swift */; };
 		44BC031922AB99C0002AA6B0 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC031822AB99C0002AA6B0 /* CartTableViewCell.swift */; };
 		44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5222912C8200B24B9C /* CalendarViewController.swift */; };
 		44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5422912DD800B24B9C /* DateCell.swift */; };
@@ -114,7 +113,6 @@
 		449A9C6222A798E40054C135 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		449A9C6422A79B4C0054C135 /* TPDirectResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TPDirectResource; sourceTree = "<group>"; };
 		449A9C6522A79B4D0054C135 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
-		44BC031622AB8BD1002AA6B0 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		44BC031822AB99C0002AA6B0 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 		44FA8C5222912C8200B24B9C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		44FA8C5422912DD800B24B9C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 				447A171B228C67E9003AB41E /* QRCodeViewController.swift */,
 				447878152298EA53008041A2 /* OrderViewController.swift */,
 				440FAB17229CFF35005E38D0 /* CartViewController.swift */,
-				44BC031622AB8BD1002AA6B0 /* Order.swift */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				4443C38822A65A37004875D7 /* FavoriteViewController.swift in Sources */,
 				4476C33522ABB0C0007D3BBC /* RegisterViewController.swift in Sources */,
 				9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */,
-				44BC031722AB8BD1002AA6B0 /* Order.swift in Sources */,
 				4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */,
 				443974222294595000891514 /* TableViewCell.swift in Sources */,
 				44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */,

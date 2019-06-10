@@ -19,7 +19,7 @@ class CreditCardPayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tpdForm = TPDForm.setup(withContainer: payView)
         self.tpdCard = TPDCard.setup(self.tpdForm)
         self.tpdForm.setErrorColor(UIColor.red)
@@ -46,6 +46,5 @@ class CreditCardPayViewController: UIViewController {
             }.onFailureCallback { (status, message) in
                 print("status : \(status) , Message : \(message)")
             }.getPrime()
-
     }
 }

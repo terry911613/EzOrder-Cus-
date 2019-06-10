@@ -8,48 +8,65 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class PersonalViewController: UIViewController {
+    
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var telLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var personalTableView: UITableView!
-    var photos = [QueryDocumentSnapshot]()
-    var isFirstGetPhotos = true
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
-//    var db = Firestore.firestore()
-
+    
     override func viewDidLoad() {
-//        let photo = photos
-//
-//        nameLabel.text = data()["Label"] as? String
-//        if let urlString = photo.data()["photoUrl"] as? String {
-//            cell.foodImageView.kf.setImage(with: URL(string: urlString))
-   //     let db = Firestore.firestore()
-//        db.collection("personal").addSnapshotListener{ (querySnapshot, error) in
-//            if let querySnapshot = querySnapshot {
-//                if self.isFirstGetPhotos {
-//                    self.isFirstGetPhotos = false
-//                    self.photos = querySnapshot.documents
-//                    self.personalTableView.reloadData()
-//                }else {
-//                    //    self.photos = querySnapshot.documents
-//                    let documentChange = querySnapshot.documentChanges[0]
-//                    if documentChange.type == .modified
-//                        ,documentChange.document.data()["photoUrl"] != nil
-//                    {
-//
-//                        self.photos.insert(documentChange.document, at: 0)
-//                        self.personalTableView.reloadData()
-//
-//
-//                    }
-//                }
-//
-//            }
-//
-//        }
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getInfo()
+    }
+    
+    func getInfo(){
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email{
+            db.collection("user").document(userID).addSnapshotListener { (user, error) in
+                if let user = user,
+                    let userData = user.data(){
+                    if let userImage = userData["userImage"] as? String,
+                        let userName = userData["userName"] as? String,
+                        let userPhone = userData["userPhone"] as? String{
+                        
+                        self.userImageView.kf.setImage(with: URL(string: userImage))
+                        self.nameLabel.text = userName
+                        self.phoneLabel.text = "電話：\(userPhone)"
+                    }
+                    if let userPoint = userData["userPoint"] as? Int{
+                        self.pointLabel.text = "點數：\(userPoint)"
+                    }
+                    else{
+                        self.pointLabel.text = "尚未擁有任何點數"
+                    }
+                }
+            }
+        }
+    }
+    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+        do{
+            try Auth.auth().signOut()
+            let alert = UIAlertController(title: "登出成功", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        catch{
+            print("error, there was a problem logging out")
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{

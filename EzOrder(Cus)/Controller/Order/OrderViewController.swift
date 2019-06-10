@@ -20,27 +20,25 @@ class OrderViewController: UIViewController {
     
     var totalPrice = 0
     
-    var tableNo: String?
+    var tableNo: Int?
     var resID: String?
     
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.email
     var typeArray = [QueryDocumentSnapshot]()
     var foodArray = [QueryDocumentSnapshot]()
-//    var orderArray = [Order]()
     var orderDic = [QueryDocumentSnapshot: Int]()
     var isFoodDiffrient = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let table = tableNo{
-            tableLabel.text = table + "桌"
-        }
-        getType()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let tableNo = tableNo{
+            tableLabel.text = "\(tableNo)桌"
+        }
         getType()
     }
     func getType(){
