@@ -31,6 +31,7 @@ class OrderViewController: UIViewController {
     var isFoodDiffrient = false
     
     var foodCount = [Int]()
+    var orderAmounts = [[Int]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +56,21 @@ class OrderViewController: UIViewController {
                         self.typeArray = type.documents
                         self.animateTypeCollectionView()
                         
+                        var typeIndex = 0
                         for type in type.documents{
                             if let typeName = type.data()["typeName"] as? String{
                                 self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
+                                    
+                                    print("--------")
+                                    print(food?.documents.count)
+                                    print("--------")
+                                    
+//                                    if let foodCount = food?.documents.count {
+//                                        for i in 0...foodCount {
+//                                            self.orderAmounts[typeIndex].append(0)
+//                                        }
+//                                    }
+//                                    typeIndex += 1
                                     print("-------")
                                     print(food?.documents.count)
                                     print(food?.documents)
