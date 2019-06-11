@@ -247,12 +247,20 @@
                                     <constraint firstAttribute="width" secondItem="vdu-IV-SsR" secondAttribute="height" multiplier="1:1" id="4HA-LA-vVc"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIE-el-yeb">
+                                <rect key="frame" x="152" y="139.5" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="TIE-el-yeb" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="KgP-Rt-SfA"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="PnS-wW-CVA"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="width" multiplier="1/7" id="TKR-t9-cPT"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="centerY" secondItem="oxC-hf-PTG" secondAttribute="centerY" id="US9-hs-PPN"/>
+                            <constraint firstItem="J2X-4B-24b" firstAttribute="top" secondItem="TIE-el-yeb" secondAttribute="bottom" constant="8" id="ZNg-tN-zdt"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="jKk-AX-8R8"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="centerY" secondItem="oxC-hf-PTG" secondAttribute="centerY" id="wcU-9f-qhW"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="width" secondItem="Nb3-ey-jY1" secondAttribute="width" multiplier="4/5" id="wvt-fM-Cwk"/>
@@ -260,6 +268,7 @@
                         <viewLayoutGuide key="safeArea" id="Nb3-ey-jY1"/>
                     </view>
                     <connections>
+                        <outlet property="pointCountLabel" destination="TIE-el-yeb" id="YB5-7q-jiw"/>
                         <outlet property="wheelRotateImageView" destination="J2X-4B-24b" id="sJk-Bj-FOf"/>
                         <segue destination="ccN-dh-3Hj" kind="presentation" identifier="alertPointSegue" id="Tsy-pX-wUn"/>
                     </connections>

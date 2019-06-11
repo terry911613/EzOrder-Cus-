@@ -12,16 +12,27 @@ import Firebase
 class WheelViewController: UIViewController {
 
     @IBOutlet weak var wheelRotateImageView: RotateImageView!
+    @IBOutlet weak var pointCountLabel: UILabel!
     
     var pointCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email{
+            db.collection("user").document(userID).getDocument { (user, error) in
+                if let userData = user?.data(){
+                    if let pointCount = userData["pointCount"] as? Int{
+                        self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
+                    }
+                }
+            }
+        }
     }
     
     var point = 0
     @IBAction func clickRotate(_ sender: Any) {
-        
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
             db.collection("user").document(userID).getDocument { (user, error) in
