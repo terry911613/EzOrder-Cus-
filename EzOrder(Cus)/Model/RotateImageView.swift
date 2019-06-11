@@ -26,21 +26,21 @@ class RotateImageView: UIImageView {
         let degree = value * 180 / Double.pi
         switch degree {
         case 0..<45:
-            point = 1
+            point = 0
         case 45..<90:
             point = 2
         case 90..<135:
-            point = 3
+            point = 15
         case 135..<180:
-            point = 4
-        case 180..<225:
             point = 5
+        case 180..<225:
+            point = 1
         case 225..<270:
-            point = 6
+            point = 10
         case 270..<315:
-            point = 7
+            point = 5
         case 315..<360:
-            point = 8
+            point = 1
         default:
             point = 0
         }

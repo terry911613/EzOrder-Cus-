@@ -396,30 +396,6 @@
             </objects>
             <point key="canvasLocation" x="1618.4000000000001" y="198.35082458770617"/>
         </scene>
-        <!--Searc Map View Controller-->
-        <scene sceneID="vkz-9R-ePz">
-            <objects>
-                <viewController storyboardIdentifier="DetailVC" id="VX5-5D-vEA" customClass="SearcMapViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bJ4-S3-hHt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-OC-usa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="cb4-zS-5ZB"/>
-                    </view>
-                    <connections>
-                        <outlet property="MapView" destination="QGb-OC-usa" id="DhD-H6-NFM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g9N-b4-6NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1618.840579710145" y="967.66304347826099"/>
-        </scene>
         <!--Search Menu View Controller-->
         <scene sceneID="HU9-Kx-7p6">
             <objects>

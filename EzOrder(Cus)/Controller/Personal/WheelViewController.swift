@@ -15,6 +15,7 @@ class WheelViewController: UIViewController {
     @IBOutlet weak var pointCountLabel: UILabel!
     
     var pointCount: Int?
+    var getPointCount = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class WheelViewController: UIViewController {
             db.collection("user").document(userID).getDocument { (user, error) in
                 if let userData = user?.data(){
                     if let pointCount = userData["pointCount"] as? Int{
+                        self.pointCount = pointCount
                         self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
+                        self.getPointCount = true
                     }
                 }
             }
@@ -33,30 +36,31 @@ class WheelViewController: UIViewController {
     
     var point = 0
     @IBAction func clickRotate(_ sender: Any) {
-        let db = Firestore.firestore()
-        if let userID = Auth.auth().currentUser?.email{
-            db.collection("user").document(userID).getDocument { (user, error) in
-                if let userData = user?.data(){
-                    if let pointCount = userData["pointCount"] as? Int{
-                        if pointCount > 0{
-                            self.point = self.wheelRotateImageView.rotateGradually(handler: {
+        if getPointCount {
+            pointCount! -= 1
+            pointCountLabel.text = "剩餘\(pointCount!)次轉盤機會"
+            let db = Firestore.firestore()
+            if let userID = Auth.auth().currentUser?.email{
+                db.collection("user").document(userID).getDocument { (user, error) in
+                    if let userData = user?.data(){
+                        if let pointCount = userData["pointCount"] as? Int{
+                            if pointCount > 0{
                                 db.collection("user").document(userID).updateData(["pointCount": pointCount-1])
-                                self.pointCount = pointCount-1
-                                self.performSegue(withIdentifier: "alertPointSegue", sender: self)
-                            })
-                        }
-                        else{
-                            let alert = UIAlertController(title: "無轉盤機會", message: nil, preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
-                            alert.addAction(ok)
-                            self.present(alert, animated: true, completion: nil)
+                                self.point = self.wheelRotateImageView.rotateGradually(handler: {
+                                    self.performSegue(withIdentifier: "alertPointSegue", sender: self)
+                                })
+                            }
+                            else{
+                                let alert = UIAlertController(title: "無轉盤機會", message: nil, preferredStyle: .alert)
+                                let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+                                alert.addAction(ok)
+                                self.present(alert, animated: true, completion: nil)
+                            }
                         }
                     }
                 }
             }
         }
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
