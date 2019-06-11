@@ -64,7 +64,14 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
-        upload()
+        let alert = UIAlertController(title: "確定送單？", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "確定", style: .default) { (ok) in
+            self.upload()
+        }
+        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
     func upload(){
@@ -96,9 +103,7 @@ class CartViewController: UIViewController {
                                                     "resID": resID,
                                                     "tableNo": tableNo,
                                                     "totalPrice": totalPrice,
-                                                    "payStatus": 0,
-                                                    "serviceBellStatus": 0,
-                                                    "orderCompleteStatus": 0]
+                                                    "payStatus": 0]
                     db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
                     db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
                     
@@ -111,10 +116,6 @@ class CartViewController: UIViewController {
             let completeData: [String: Any] = ["orderCompleteStatus": 0]
             db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
             db.collection("res").document(resID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
-            
-            let payData: [String: Any] = ["payStatus": 0]
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("payStatus").document("isPay").setData(payData)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("payStatus").document("isPay").setData(payData)
             
             performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
         }
