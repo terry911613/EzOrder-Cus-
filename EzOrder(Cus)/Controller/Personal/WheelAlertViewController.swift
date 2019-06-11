@@ -8,17 +8,23 @@
 
 import UIKit
 
+
 class WheelAlertViewController: UIViewController {
 
     @IBOutlet weak var outputLabel: UILabel!
+    @IBOutlet weak var pointCountLabel: UILabel!
+    
+    var pointCount: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         let outputString = "恭喜你獲得了\(point!)點！"
         outputLabel.text = outputString
-
-        // Do any additional setup after loading the view.
-       
+        if let pointCount = pointCount{
+            pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
+        }
     }
     var point: Int!
     @IBAction func clickOK(_ sender: Any) {

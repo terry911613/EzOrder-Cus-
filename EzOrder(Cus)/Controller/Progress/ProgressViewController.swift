@@ -32,39 +32,44 @@ class ProgressViewController: UIViewController {
     var orderArray = [QueryDocumentSnapshot]()
     var orderNo: String?
     var resID: String?
+    var foodNameArray = [String]()
+    var foodPriceArray = [Int]()
     
     var totalPrice = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        cartSetting()
+        getOrder()
         setUpMenu()
         merchantSetting()
         consumerSetting()
-        cartSetting()
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getOrder()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        getOrder()
+//    }
     
     func getOrder(){
         
         let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser?.email
         
-        if let userID = userID{
-            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 0).getDocuments { (order, error) in
+        if let userID = Auth.auth().currentUser?.email{
+            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 0).addSnapshotListener { (order, error) in
                 if let order = order{
                     if order.documents.isEmpty == false{
                         if let totalPrice = order.documents[0].data()["totalPrice"] as? Int,
                             let orderNo = order.documents[0].data()["orderNo"] as? String,
                             let resID = order.documents[0].data()["resID"] as? String{
+                            
                             self.totalPriceLabel.text = "總共：＄\(totalPrice)"
                             self.orderNo = orderNo
                             self.resID = resID
+                            self.totalPrice = totalPrice
                             db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").addSnapshotListener { (currentOrder, error) in
                                 if let currentOrder = currentOrder{
                                     if currentOrder.documents.isEmpty{
@@ -76,6 +81,17 @@ class ProgressViewController: UIViewController {
                                         if documentChange.type == .added{
                                             self.orderArray = currentOrder.documents
                                             self.animateProgressTableView()
+                                            
+                                            self.cart = TPDCart()
+                                            for food in currentOrder.documents{
+                                                if let foodName = food.data()["foodName"] as? String,
+                                                    let foodPrice = food.data()["foodPrice"] as? Int,
+                                                    let foodAmount = food.data()["foodAmount"] as? Int{
+                                                    
+                                                    let food = TPDPaymentItem(itemName: "\(foodName)*\(foodAmount)", withAmount: NSDecimalNumber(string: "\(foodPrice*foodAmount)"), withIsVisible: true)
+                                                    self.cart.add(food)
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -96,6 +112,8 @@ class ProgressViewController: UIViewController {
                     }
                 }
             }
+            
+            
         }
     }
     
@@ -114,6 +132,7 @@ class ProgressViewController: UIViewController {
         if let userID = Auth.auth().currentUser?.email,
             let orderNo = orderNo,
             let resID = resID{
+            
             db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").getDocument { (serviceBell, error) in
                 if let serviceBellData = serviceBell?.data(){
                     if let serviceBellStatus = serviceBellData["serviceBellStatus"] as? Int{
@@ -132,17 +151,35 @@ class ProgressViewController: UIViewController {
     }
     
     @IBAction func payButton(_ sender: UIButton) {
-        if isMenuActive {
-            payButton.setTitle("付款", for: .normal)
-            payButton.setTitleColor(.white, for: .normal)
-            igcMenu?.hideCircularMenu()
-            isMenuActive = false
-        }
-        else {
-            payButton.setTitle("取消", for: .normal)
-            payButton.setTitleColor(.red, for: .normal)
-            igcMenu?.showCircularMenu()
-            isMenuActive = true
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email,
+            let orderNo = orderNo{
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").getDocument { (orderStatus, error) in
+                if let orderStatusData = orderStatus?.data(){
+                    if let orderCompleteStatus = orderStatusData["orderCompleteStatus"] as? Int{
+                        if orderCompleteStatus == 0{
+                            let alert = UIAlertController(title: "餐點還沒到齊", message: "請等餐點到期後再付款", preferredStyle: .alert)
+                            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+                            alert.addAction(ok)
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                        else{
+                            if self.isMenuActive {
+                                self.payButton.setTitle("付款", for: .normal)
+                                self.payButton.setTitleColor(.white, for: .normal)
+                                self.igcMenu?.hideCircularMenu()
+                                self.isMenuActive = false
+                            }
+                            else {
+                                self.payButton.setTitle("取消", for: .normal)
+                                self.payButton.setTitleColor(.red, for: .normal)
+                                self.igcMenu?.showCircularMenu()
+                                self.isMenuActive = true
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -159,21 +196,6 @@ class ProgressViewController: UIViewController {
         merchant.countryCode = "TW"
         merchant.currencyCode = "TWD"
         merchant.supportedNetworks = [.amex, .masterCard, .visa]
-//        merchant.acquirerMerchantID = "terry911613_ESUN"
-        
-        // Set Shipping Method.
-//        let shipping1 = PKShippingMethod()
-//        shipping1.identifier = "TapPayExpressShippint024"
-//        shipping1.detail = "Ships in 24 hours"
-//        shipping1.amount = NSDecimalNumber(string: "10.0");
-//        shipping1.label = "Shipping 24"
-//
-//        let shipping2 = PKShippingMethod()
-//        shipping2.identifier = "TapPayExpressShippint006";
-//        shipping2.detail = "Ships in 6 hours";
-//        shipping2.amount = NSDecimalNumber(string: "50.0");
-//        shipping2.label = "Shipping 6";
-//        merchant.shippingMethods = [shipping1, shipping2];
     }
     
     func consumerSetting() {
@@ -186,22 +208,40 @@ class ProgressViewController: UIViewController {
         
         consumer = TPDConsumer()
         consumer.billingContact = contact
-//        consumer.shippingContact = contact
-//        consumer.requiredShippingAddressFields = []
         consumer.requiredBillingAddressFields = []
         
     }
     
     func cartSetting() {
         cart = TPDCart()
-        let food = TPDPaymentItem(itemName: "滷肉飯", withAmount: NSDecimalNumber(string: "35"), withIsVisible: true)
-        cart.add(food)
-        let food1 = TPDPaymentItem(itemName: "雞肉飯", withAmount: NSDecimalNumber(string: "35"), withIsVisible: true)
-        cart.add(food1)
-        let food2 = TPDPaymentItem(itemName: "貢丸湯", withAmount: NSDecimalNumber(string: "20"), withIsVisible: true)
-        cart.add(food2)
-        let food3 = TPDPaymentItem(itemName: "燙青菜", withAmount: NSDecimalNumber(string: "25"), withIsVisible: true)
-        cart.add(food3)
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email,
+            let orderNo = orderNo{
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").getDocuments { (food, error) in
+                if let food = food{
+                    if food.documents.isEmpty == false{
+                        for food in food.documents{
+                            if let foodName = food.data()["foodName"] as? String,
+                                let foodPrice = food.data()["foodPrice"] as? Int,
+                                let foodAmount = food.data()["foodAmount"] as? Int{
+                                
+                                let food = TPDPaymentItem(itemName: "\(foodName)*\(foodAmount)", withAmount: NSDecimalNumber(string: "\(foodPrice*foodAmount)"), withIsVisible: true)
+                                self.cart.add(food)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+//        let food = TPDPaymentItem(itemName: "滷肉飯", withAmount: NSDecimalNumber(string: "35"), withIsVisible: true)
+//        cart.add(food)
+//        let food1 = TPDPaymentItem(itemName: "雞肉飯", withAmount: NSDecimalNumber(string: "35"), withIsVisible: true)
+//        cart.add(food1)
+//        let food2 = TPDPaymentItem(itemName: "貢丸湯", withAmount: NSDecimalNumber(string: "20"), withIsVisible: true)
+//        cart.add(food2)
+//        let food3 = TPDPaymentItem(itemName: "燙青菜", withAmount: NSDecimalNumber(string: "25"), withIsVisible: true)
+//        cart.add(food3)
         
     }
     
@@ -221,18 +261,30 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
             let foodImage = order.data()["foodImage"] as? String,
             let foodPrice = order.data()["foodPrice"] as? Int,
             let foodAmount = order.data()["foodAmount"] as? Int,
-            let orderFoodStatus = order.data()["orderFoodStatus"] as? Int{
+            let orderNo = order.data()["orderNo"] as? String,
+            let userID = Auth.auth().currentUser?.email{
 
             cell.foodNameLabel.text = foodName
             cell.foodImageView.kf.setImage(with: URL(string: foodImage))
             cell.foodPriceLabel.text = "$\(foodPrice)"
             cell.foodAmountLabel.text = "數量：\(foodAmount)"
-            if orderFoodStatus == 0{
-                cell.statusLabel.text = "準備中"
-            }
-            else{
-                cell.statusLabel.text = "已送達"
-            }
+            
+            let db = Firestore.firestore()
+
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).addSnapshotListener({ (foodStatus, error) in
+                if let foodStatusData = foodStatus?.data(){
+                    if let orderFoodStatus = foodStatusData["orderFoodStatus"] as? Int{
+                        if orderFoodStatus == 0{
+                            cell.statusLabel.text = "準備中"
+                            cell.statusLabel.textColor = .red
+                        }
+                        else{
+                            cell.statusLabel.text = "已送達"
+                            cell.statusLabel.textColor = .green
+                        }
+                    }
+                }
+            })
         }
         return cell
     }
@@ -379,6 +431,22 @@ extension ProgressViewController: TPDApplePayDelegate{
     }
     
     func tpdApplePay(_ applePay: TPDApplePay!, didSuccessPayment result: TPDTransactionResult!) {
+        
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email,
+            let orderNo = orderNo,
+            let resID = resID{
+            
+            db.collection("user").document(userID).collection("order").document(orderNo).updateData(["payStatus": 1])
+            db.collection("res").document(resID).collection("order").document(orderNo).updateData(["payStatus": 1])
+            
+            let pointCount = totalPrice/1000
+            db.collection("user").document(userID).updateData(["pointCount": pointCount])
+            orderArray.removeAll()
+            animateProgressTableView()
+            totalPriceLabel.text = ""
+        }
+        
         print("=====================================================")
         print("Apple Pay Did Success ==> Amount : \(result.amount.stringValue)")
         

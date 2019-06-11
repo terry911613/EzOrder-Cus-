@@ -69,9 +69,9 @@ class CartViewController: UIViewController {
     
     func upload(){
         
-        let timeStamp = String(Date().timeIntervalSince1970)
+        let timeStamp = Date().timeIntervalSince1970
         if let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice{
-            let orderNo = timeStamp+userID
+            let orderNo = String(timeStamp) + userID
             for i in 0...orderArray.count-1{
                 let order = orderArray[i]
                 let amount = amountArray[i]
@@ -90,12 +90,15 @@ class CartViewController: UIViewController {
                     db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     
-                    let orderData: [String: Any] = ["orderNo": orderNo,
+                    let orderData: [String: Any] = ["timeStamp": timeStamp,
+                                                    "orderNo": orderNo,
                                                     "userID": userID,
                                                     "resID": resID,
                                                     "tableNo": tableNo,
                                                     "totalPrice": totalPrice,
-                                                    "payStatus": 0]
+                                                    "payStatus": 0,
+                                                    "serviceBellStatus": 0,
+                                                    "orderCompleteStatus": 0]
                     db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
                     db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
                     
