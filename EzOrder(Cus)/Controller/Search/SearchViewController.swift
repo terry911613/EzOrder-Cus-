@@ -7,54 +7,103 @@
 //
 
 import UIKit
+import Firebase
+import ViewAnimator
 
-class SearchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate  {
+class SearchViewController: UIViewController {
     
-    @IBOutlet weak var StoreSearch: UISearchBar!
-    @IBOutlet weak var StoreTableView: UITableView!
-    let textStoreTableView = ["鼎泰豐","鼎王","藏壽司","夏慕尼","彼得潘小吃","黃家牛肉麵","三顧茅廬","小木屋鬆餅","小點心","冠有滷肉飯"]
+    @IBOutlet weak var storeSearch: UISearchBar!
+    @IBOutlet weak var storeTableView: UITableView!
+    
+    var resArray = [QueryDocumentSnapshot]()
+    
+    var textStoreArray = [String]()
     var searchBool = false
     var searchChange = [String]()
+    var selectRes: QueryDocumentSnapshot?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        getRes()
     }
+    
+    func getRes(){
+        let db = Firestore.firestore()
+        db.collection("res").getDocuments { (res, error) in
+            if let res = res{
+                if res.documents.isEmpty{
+                    self.resArray.removeAll()
+                    self.storeTableView.reloadData()
+                }
+                else{
+                    self.resArray = res.documents
+                    self.animateStoreTableView()
+                    
+                    for res in res.documents{
+                        if let resName = res.data()["resName"] as? String{
+                            self.textStoreArray.append(resName)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func animateStoreTableView(){
+        let animations = [AnimationType.from(direction: .top, offset: 30.0)]
+        storeTableView.reloadData()
+        UIView.animate(views: storeTableView.visibleCells, animations: animations, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let storeShowVC = segue.destination as! StoreShowViewController
+        storeShowVC.res = selectRes
+    }
+}
+
+extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
-          return  searchChange.count
+            return  searchChange.count
         }
         else {
-        return textStoreTableView.count
+            return resArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
         if searchBool {
-            Cell.StoreName.text = searchChange[indexPath.row]
-                  }
+            cell.StoreName.text = searchChange[indexPath.row]
+        }
         else {
-            Cell.StoreName.text = textStoreTableView[indexPath.row]
+            let res = resArray[indexPath.row]
+            if let resName = res.data()["resName"] as? String{
+                cell.StoreName.text = resName
+            }
             print(2)
         }
-       
-        return Cell
+        
+        return cell
     }
-    override func didReceiveMemoryWarning() {
-        self.didReceiveMemoryWarning()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let res = resArray[indexPath.row]
+        selectRes = res
+        performSegue(withIdentifier: "resDetailSegue", sender: self)
     }
+}
 
+extension SearchViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchChange = textStoreTableView.filter({$0.prefix(searchText.count) == searchText})
-                searchBool = true
-                StoreTableView.reloadData()
+        searchChange = textStoreArray.filter({$0.prefix(searchText.count) == searchText})
+        searchBool = true
+        storeTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBool = false
         searchBar.text = ""
-        StoreTableView.reloadData()
+        storeTableView.reloadData()
     }
-
-    
-    
 }

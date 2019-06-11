@@ -8,21 +8,25 @@
 
 import UIKit
 import MapKit
+import Firebase
+import Kingfisher
 
 class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
-    @IBOutlet weak var showClassificationCollection: UICollectionView!
-    @IBOutlet weak var showStoreImageVIew: UIImageView!
-    @IBOutlet weak var showStoreName: UILabel!
-    @IBOutlet weak var showStoreAddress: UILabel!
-    @IBOutlet weak var showStoreOpenTime: UILabel!
-    @IBOutlet weak var showStorePhone: UILabel!
+    @IBOutlet weak var showClassificationCollectionView: UICollectionView!
+    @IBOutlet weak var showStoreImageView: UIImageView!
+    @IBOutlet weak var showStoreNameLabel: UILabel!
+    @IBOutlet weak var showStoreOpenTimeLabel: UILabel!
+    @IBOutlet weak var showStorePhoneLabel: UILabel!
     @IBOutlet weak var showLikeImageVIew: UIImageView!
-    @IBOutlet weak var linkBottonImage: UIButton!
-    @IBOutlet weak var textUmageview: UIImageView!
+    @IBOutlet weak var linkButton: UIButton!
+    @IBOutlet weak var textImageview: UIImageView!
     @IBOutlet var textimage2: [UIImageView]!
     @IBOutlet weak var showAddressButton: UIButton!
     @IBOutlet weak var myMap: MKMapView!
+    
+    var res: QueryDocumentSnapshot?
+    
     var clickButton = true
     let geoCoder = CLGeocoder()
     var location: CLLocation?
@@ -30,14 +34,31 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     var coordinates: CLLocationCoordinate2D?
     var nowLocations: CLLocationCoordinate2D?
     var lise = ["1","2","3","4","5"]
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let resData = res?.data(){
+            if let resImage = resData["resImage"] as? String,
+                let resName = resData["resName"] as? String,
+                let resTel = resData["resTel"] as? String,
+                let resLocation = resData["resLocation"] as? String{
+                
+                showStoreImageView.kf.setImage(with: URL(string: resImage))
+                showStoreNameLabel.text = resName
+                showAddressButton.setTitle(resLocation, for: .normal)
+                showStorePhoneLabel.text = resTel
+                
+            }
+        }
+        
         self.locations = CLLocationManager()
         self.locations.delegate = self
         self.locations.requestWhenInUseAuthorization()
         self.locations.startUpdatingLocation()
         setMapRegion()
         showAddressButton.resignFirstResponder()
-        var text = showAddressButton.title(for: .normal)
+        let text = showAddressButton.title(for: .normal)
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(text!) { (placemarks, error) in
             if error == nil && placemarks != nil && placemarks!.count > 0 {
@@ -55,12 +76,12 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-        super.viewDidLoad()
+        
     }
     
     @IBAction func myMapButton(_ sender: Any) {
         showAddressButton.resignFirstResponder()
-        var text = showAddressButton.title(for: .normal)
+        let text = showAddressButton.title(for: .normal)
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(text!) { (placemarks, error) in
             if error == nil && placemarks != nil && placemarks!.count > 0 {
@@ -72,7 +93,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                     let miA = MKMapItem(placemark: Pa)
                     let mib = MKMapItem(placemark: Pb)
                     miA.name = "我的位置"
-                    mib.name = self.showStoreName.text
+                    mib.name = self.showStoreNameLabel.text
                     let routes = [miA,mib]
                     let options = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
                     MKMapItem.openMaps(with: routes, launchOptions: options)
@@ -102,7 +123,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         textimage2.insert(imageViews, at: 0)
          clickButton = !clickButton
         if clickButton == false{
-        linkBottonImage.setImage(UIImage(named: "donut"), for: .normal)
+        linkButton.setImage(UIImage(named: "donut"), for: .normal)
             UIView.animate(withDuration: 1.5 , delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 self.textimage2[0].frame = CGRect(x:126 , y: 149, width: self.textimage2[0].frame.size.width * 2, height: self.textimage2[0].frame.size.height * 2)
                 imageViews.alpha = 0.7
@@ -112,7 +133,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
             })
                     }
         if clickButton == true {
-            linkBottonImage.setImage(UIImage(named: "link"), for: .normal)
+            linkButton.setImage(UIImage(named: "link"), for: .normal)
             imageViews.isHidden = true
         }
         

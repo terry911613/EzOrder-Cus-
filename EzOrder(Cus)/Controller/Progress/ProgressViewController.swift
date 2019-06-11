@@ -132,7 +132,6 @@ class ProgressViewController: UIViewController {
         if let userID = Auth.auth().currentUser?.email,
             let orderNo = orderNo,
             let resID = resID{
-            
             db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").getDocument { (serviceBell, error) in
                 if let serviceBellData = serviceBell?.data(){
                     if let serviceBellStatus = serviceBellData["serviceBellStatus"] as? Int{

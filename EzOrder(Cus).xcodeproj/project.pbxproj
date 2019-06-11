@@ -348,8 +348,8 @@
 			isa = PBXGroup;
 			children = (
 				447A1719228C67DC003AB41E /* SearchViewController.swift */,
-				2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */,
 				2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */,
+				2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */,
 				2CB1B25C22AA321D00484CC9 /* SearchEvaluationViewController.swift */,
 				2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */,
 			);
