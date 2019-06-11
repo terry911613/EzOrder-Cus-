@@ -12,7 +12,7 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     @IBOutlet weak var StoreSearch: UISearchBar!
     @IBOutlet weak var StoreTableView: UITableView!
-    let textStoreTableView = ["A鼎泰豐","A鼎王","A藏壽司","B夏慕尼","B彼得潘小吃","C黃家牛肉麵","F三顧茅廬","S小木屋鬆餅","G小點心","F冠有滷肉飯"]
+    let textStoreTableView = ["鼎泰豐","鼎王","藏壽司","夏慕尼","彼得潘小吃","黃家牛肉麵","三顧茅廬","小木屋鬆餅","小點心","冠有滷肉飯"]
     var searchBool = false
     var searchChange = [String]()
     override func viewDidLoad() {
@@ -49,7 +49,12 @@ class SearchViewController: UIViewController,UITableViewDelegate,UITableViewData
                 searchBool = true
                 StoreTableView.reloadData()
     }
-    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBool = false
+        searchBar.text = ""
+        StoreTableView.reloadData()
+    }
+
     
     
 }

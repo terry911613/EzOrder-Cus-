@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class StoreShowViewController: UIViewController{
+class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
     @IBOutlet weak var showClassificationCollection: UICollectionView!
     @IBOutlet weak var showStoreImageVIew: UIImageView!
@@ -22,27 +22,78 @@ class StoreShowViewController: UIViewController{
     @IBOutlet weak var textUmageview: UIImageView!
     @IBOutlet var textimage2: [UIImageView]!
     @IBOutlet weak var showAddressButton: UIButton!
+    @IBOutlet weak var myMap: MKMapView!
     var clickButton = true
     let geoCoder = CLGeocoder()
-    
-    
+    var location: CLLocation?
+    var locations:CLLocationManager!
+    var coordinates: CLLocationCoordinate2D?
+    var nowLocations: CLLocationCoordinate2D?
     var lise = ["1","2","3","4","5"]
     override func viewDidLoad() {
-        geoCoder.geocodeAddressString("新竹縣竹北市光明一路93號市"){
-            (placemarks,error) in
-            if error != nil {
-                let placemark = placemarks![0] as CLPlacemark?
-                print(placemark?.location?.coordinate)
-                
-                return
-            }
-            if placemarks != nil  && (placemarks?.count)! > 0 {
-                let placemark = placemarks![0] as CLPlacemark?
-                print(placemark?.location?.coordinate)
+        self.locations = CLLocationManager()
+        self.locations.delegate = self
+        self.locations.requestWhenInUseAuthorization()
+        self.locations.startUpdatingLocation()
+        setMapRegion()
+        showAddressButton.resignFirstResponder()
+        var text = showAddressButton.title(for: .normal)
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(text!) { (placemarks, error) in
+            if error == nil && placemarks != nil && placemarks!.count > 0 {
+                if let placemark = placemarks!.first {
+                    let location = placemark.location!
+                    self.setMapCenter(center: location.coordinate)
+                    self.setMapAnnotation(location)
+                }
+            } else {
+                let title = "收尋失敗"
+                let message = "目前網路連線不穩定"
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(ok)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
         super.viewDidLoad()
     }
+    
+    @IBAction func myMapButton(_ sender: Any) {
+        showAddressButton.resignFirstResponder()
+        var text = showAddressButton.title(for: .normal)
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(text!) { (placemarks, error) in
+            if error == nil && placemarks != nil && placemarks!.count > 0 {
+                if let placemark = placemarks!.first {
+                    let nowLocation = self.nowLocations
+                    let airstation =  self.coordinates
+                    let Pa = MKPlacemark(coordinate: nowLocation!,addressDictionary: nil)
+                    let Pb = MKPlacemark(coordinate: airstation!,addressDictionary: nil)
+                    let miA = MKMapItem(placemark: Pa)
+                    let mib = MKMapItem(placemark: Pb)
+                    miA.name = "我的位置"
+                    mib.name = self.showStoreName.text
+                    let routes = [miA,mib]
+                    let options = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving]
+                    MKMapItem.openMaps(with: routes, launchOptions: options)
+                    
+                    let location = placemark.location!
+                    self.setMapCenter(center: location.coordinate)
+                }
+            } else {
+                let title = "收尋失敗"
+                let message = "目前網路連線不穩定"
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                let ok = UIAlertAction(title: "OK", style: .default)
+                alertController.addAction(ok)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+
+    }
+    
+    
+    
     @IBAction func limkButtonAction(_ sender: Any) {
         let image = UIImage(named: "donut")
         let imageViews = UIImageView(image: image!)
@@ -66,6 +117,34 @@ class StoreShowViewController: UIViewController{
         }
         
         
+    }
+    func setMapCenter(center: CLLocationCoordinate2D) {
+        myMap.setCenter(center, animated: true)
+        
+    }
+
+    func setMapAnnotation(_ location: CLLocation) {
+        var text = showAddressButton.title(for: .normal)
+        let coordinate = location.coordinate
+        let annotation = MKPointAnnotation()
+        self.coordinates = coordinate
+        annotation.coordinate = coordinate
+        annotation.title = text
+        annotation.subtitle = "(\(coordinate.latitude), \(coordinate.longitude))"
+        myMap.addAnnotation(annotation)
+        
+    }
+    func setMapRegion() {
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        var region = MKCoordinateRegion()
+        region.span = span
+        myMap.setRegion(region, animated: true)
+        myMap.regionThatFits(region)
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let c = locations[0] as CLLocation
+        let nowLocation = CLLocationCoordinate2D(latitude: c.coordinate.latitude, longitude: c.coordinate.longitude)
+        self.nowLocations = nowLocation
     }
 }
 

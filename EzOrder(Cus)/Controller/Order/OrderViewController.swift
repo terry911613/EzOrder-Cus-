@@ -29,6 +29,8 @@ class OrderViewController: UIViewController {
     var foodArray = [QueryDocumentSnapshot]()
     var orderDic = [QueryDocumentSnapshot: Int]()
     var isFoodDiffrient = false
+    var orderAmounts = [[Int]]()
+    var selectTypeIndex = 0
     
     var foodCount = [Int]()
     var orderAmounts = [[Int]]()
@@ -46,15 +48,19 @@ class OrderViewController: UIViewController {
     }
     func getType(){
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").getDocuments { (type, error) in
+            db.collection("res").document(resID).collection("foodType").order(by: "index", descending: true).getDocuments { (type, error) in
                 if let type = type{
                     if type.documentChanges.isEmpty{
                         self.typeArray.removeAll()
                         self.typeCollectionView.reloadData()
                     }
                     else{
+                        
                         self.typeArray = type.documents
                         self.animateTypeCollectionView()
+                        for i in 1...self.typeArray.count {
+                            self.orderAmounts.append([])
+                        }
                         
                         var typeIndex = 0
                         for type in type.documents{
@@ -74,12 +80,14 @@ class OrderViewController: UIViewController {
                                     print("-------")
                                     print(food?.documents.count)
                                     print(food?.documents)
-                                    print("-------")
-                                    if let food = food{
-                                        if food.documents.isEmpty == false{
-                                            self.foodCount.append(food.documents.count)
-                                            print(self.foodCount)
+                                    if let foodCount = food?.documents.count {
+                                        if foodCount != 0 {
+                                            for i in 1...foodCount {
+                                                self.orderAmounts[typeIndex].append(0)
+                                            }
+                                            
                                         }
+                                        typeIndex += 1
                                     }
                                 }
                             }
@@ -162,6 +170,7 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         if let type = typeArray[indexPath.row].data()["typeName"] as? String{
             getFood(typeName: type)
         }
+        selectTypeIndex = indexPath.row
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
@@ -176,28 +185,34 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
-        
         let food = foodArray[indexPath.row]
+        
 //        cell.name.text = selectTypeMenu[indexPath.row]
 //        cell.stepper.tag = indexPath.row
         
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
             let foodMoney = food.data()["foodPrice"] as? Int{
+            print("orderAmounts: ",orderAmounts)
+            print("selectTypeIndex", selectTypeIndex)
+            var thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
+            cell.countAmount = thisFoodAmount
+            cell.count.text = "數量:\(String(thisFoodAmount))"
             
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))
             cell.price.text = "$\(foodMoney)"
             
             cell.callBackCount = { clickPlus, countAmount in
-                cell.price.text = "$\(countAmount * foodMoney)"
                 cell.count.text = "數量:\(countAmount)"
                 if clickPlus == true {
                     self.orderDic[food] = countAmount
                     self.totalPrice += foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] += 1
                 } else {
                     self.orderDic[food] = countAmount
                     self.totalPrice -= foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] -= 1
                 }
                 self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
             }
