@@ -76,6 +76,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath)
+        cell.selectionStyle = .none
         cell.imageView?.image = UIImage(named: "Cash")
         cell.textLabel?.text = personalArray[indexPath.row]
         return cell
