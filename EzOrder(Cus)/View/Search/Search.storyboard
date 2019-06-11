@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dBP-AA-oW4">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,31 +15,18 @@
             <objects>
                 <viewController id="UVy-gz-aRq" customClass="SearchViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="11h-Rt-bK1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-CD-i3v">
-                                <rect key="frame" x="0.0" y="52" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="UVy-gz-aRq" id="bZg-Hd-s9p"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
-                                <rect key="frame" x="0.0" y="108" width="414" height="579"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="169" id="cKs-dX-DTb" customClass="SearcStoreTableViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="32" width="414" height="169"/>
+                                        <rect key="frame" x="0.0" y="32" width="375" height="169"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cKs-dX-DTb" id="7il-HF-1xN">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="168.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="168.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-bG-a3H">
@@ -81,11 +68,35 @@
                                     <outlet property="delegate" destination="UVy-gz-aRq" id="BsX-tn-D2A"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-CD-i3v">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="Coj-3P-Xg1"/>
+                                    <constraint firstAttribute="height" constant="56" id="aXf-wV-xwS"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="UVy-gz-aRq" id="bZg-Hd-s9p"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sxM-aa-gac" firstAttribute="trailing" secondItem="kmv-nx-Dps" secondAttribute="trailing" id="5xi-rd-YZi"/>
+                            <constraint firstItem="x9V-CD-i3v" firstAttribute="trailing" secondItem="kmv-nx-Dps" secondAttribute="trailing" id="9zT-bI-k9U"/>
+                            <constraint firstItem="sxM-aa-gac" firstAttribute="top" secondItem="x9V-CD-i3v" secondAttribute="bottom" id="DGP-oy-o0c"/>
+                            <constraint firstItem="x9V-CD-i3v" firstAttribute="top" secondItem="kmv-nx-Dps" secondAttribute="top" id="GZs-p8-Al6"/>
+                            <constraint firstAttribute="bottom" secondItem="sxM-aa-gac" secondAttribute="bottom" id="IR7-du-Ye6"/>
+                            <constraint firstItem="x9V-CD-i3v" firstAttribute="leading" secondItem="kmv-nx-Dps" secondAttribute="leading" id="Xqu-Wu-Si5"/>
+                            <constraint firstItem="sxM-aa-gac" firstAttribute="leading" secondItem="kmv-nx-Dps" secondAttribute="leading" id="gRM-68-fMQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kmv-nx-Dps"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="xbc-jB-w9c"/>
+                    <tabBarItem key="tabBarItem" title="收尋" image="收尋" id="xbc-jB-w9c"/>
                     <navigationItem key="navigationItem" title="搜尋餐廳" id="feQ-KT-xlh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -95,14 +106,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAU-RP-2YE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884.05797101449286" y="192.39130434782609"/>
+            <point key="canvasLocation" x="884" y="192.05397301349328"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Tzb-JF-t0Q">
             <objects>
                 <viewController id="FrF-1I-lz5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EjY-9y-pY8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="INk-ti-jJF">
@@ -135,7 +146,7 @@
             <objects>
                 <viewController id="wbo-o6-ja6" userLabel="StoreinformationView Controller" customClass="StoreShowViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dBp-1g-eSe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-vV-MET">
@@ -274,15 +285,14 @@
                                                 <rect key="frame" x="0.0" y="20" width="46" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkB-wf-WNz">
-                                                <rect key="frame" x="138" y="285" width="187" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0V-07-Qgc">
+                                                <rect key="frame" x="138" y="280" width="235" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="新竹縣竹北市光明一路93號">
-                                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="searcMapKey:" destination="wbo-o6-ja6" eventType="touchUpInside" id="NZ9-3t-3mD"/>
-                                                    <segue destination="VX5-5D-vEA" kind="show" id="qRE-fH-EKE"/>
+                                                    <action selector="myMapButton:" destination="wbo-o6-ja6" eventType="touchUpInside" id="bfh-zk-jDd"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -313,7 +323,8 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="linkBottonImage" destination="HII-7B-hGX" id="bZj-qf-Lfi"/>
-                        <outlet property="showAddressButton" destination="XkB-wf-WNz" id="5QM-KX-etl"/>
+                        <outlet property="myMap" destination="tTl-f2-Vee" id="I1k-fq-aO1"/>
+                        <outlet property="showAddressButton" destination="N0V-07-Qgc" id="IIW-aB-zn5"/>
                         <outlet property="showClassificationCollection" destination="CoW-RU-jLx" id="uDt-Qz-DGK"/>
                         <outlet property="showStoreImageVIew" destination="TRO-6U-Ph6" id="nqg-iL-fEk"/>
                         <outlet property="showStoreName" destination="9HY-gY-1t4" id="GJW-KX-wMT"/>
@@ -325,14 +336,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o67-AD-1NL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1618.840579710145" y="198.91304347826087"/>
+            <point key="canvasLocation" x="1618.4000000000001" y="198.35082458770617"/>
         </scene>
         <!--Searc Map View Controller-->
         <scene sceneID="vkz-9R-ePz">
             <objects>
                 <viewController storyboardIdentifier="DetailVC" id="VX5-5D-vEA" customClass="SearcMapViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bJ4-S3-hHt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QGb-OC-usa">
@@ -356,7 +367,7 @@
             <objects>
                 <viewController id="QMA-wh-Xax" customClass="SearchMenuViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qhk-68-aSj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="136" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-aS-cBQ">
@@ -368,7 +379,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="136"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s9r-ir-jL1" id="hGB-cV-94F">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="135.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="135.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="LDF-sS-K0u">
@@ -455,7 +466,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearcMenuCell" id="Hf6-Sg-18W" customClass="SearcMenuCollectionViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="3.6666666666666665" width="103" height="94"/>
+                                        <rect key="frame" x="0.0" y="3.5" width="103" height="94"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="103" height="94"/>
@@ -503,7 +514,7 @@
             <objects>
                 <viewController id="vrR-DL-6ft" customClass="SearchEvaluationViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DRk-JA-gcx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="jZ7-al-xRL">
@@ -533,7 +544,7 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HQH-8u-r7F" id="FW3-MU-z8P">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="144.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="144.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AD3" translatesAutoresizingMaskIntoConstraints="NO" id="tgS-IJ-BrD">
@@ -585,7 +596,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dBP-AA-oW4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g1H-XU-7LW">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98723965879999998" green="0.45220696929999998" blue="0.4503938556" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -609,6 +620,7 @@
         <image name="link" width="208.33332824707031" height="208.33332824707031"/>
         <image name="商家" width="36" height="36"/>
         <image name="地址" width="83" height="83"/>
+        <image name="收尋" width="27.666666030883789" height="27.666666030883789"/>
         <image name="編輯菜單營業時間" width="69" height="69"/>
         <image name="電話" width="69" height="69"/>
     </resources>

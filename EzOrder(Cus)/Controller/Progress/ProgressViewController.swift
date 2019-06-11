@@ -88,7 +88,7 @@ class ProgressViewController: UIViewController {
                                                     let foodPrice = food.data()["foodPrice"] as? Int,
                                                     let foodAmount = food.data()["foodAmount"] as? Int{
                                                     
-                                                    let food = TPDPaymentItem(itemName: "\(foodName)*\(foodAmount)", withAmount: NSDecimalNumber(string: "\(foodPrice*foodAmount)"), withIsVisible: true)
+                                                    let food = TPDPaymentItem(itemName: "\(foodName)    \(foodAmount)份", withAmount: NSDecimalNumber(string: "\(foodPrice*foodAmount)"), withIsVisible: true)
                                                     self.cart.add(food)
                                                 }
                                             }

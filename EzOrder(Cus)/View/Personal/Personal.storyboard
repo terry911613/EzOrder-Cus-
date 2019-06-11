@@ -79,7 +79,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MVt-od-xob"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="AEp-dR-cPg"/>
+                    <tabBarItem key="tabBarItem" title="個人" image="客戶端個人" id="AEp-dR-cPg"/>
                     <navigationItem key="navigationItem" title="EzOrder" id="f42-O5-6Cg">
                         <barButtonItem key="leftBarButtonItem" title="登入" id="gZB-tq-Iyr">
                             <connections>
@@ -231,7 +231,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -241,18 +241,26 @@
                                     <outletCollection property="gestureRecognizers" destination="gpK-Ln-CKG" appends="YES" id="0cE-sG-Vp2"/>
                                 </connections>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="齒輪" translatesAutoresizingMaskIntoConstraints="NO" id="vdu-IV-SsR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="指針" translatesAutoresizingMaskIntoConstraints="NO" id="vdu-IV-SsR">
                                 <rect key="frame" x="166" y="312" width="43" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vdu-IV-SsR" secondAttribute="height" multiplier="1:1" id="4HA-LA-vVc"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIE-el-yeb">
+                                <rect key="frame" x="152" y="139.5" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="TIE-el-yeb" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="KgP-Rt-SfA"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="PnS-wW-CVA"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="width" multiplier="1/7" id="TKR-t9-cPT"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="centerY" secondItem="oxC-hf-PTG" secondAttribute="centerY" id="US9-hs-PPN"/>
+                            <constraint firstItem="J2X-4B-24b" firstAttribute="top" secondItem="TIE-el-yeb" secondAttribute="bottom" constant="8" id="ZNg-tN-zdt"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="centerX" secondItem="oxC-hf-PTG" secondAttribute="centerX" id="jKk-AX-8R8"/>
                             <constraint firstItem="vdu-IV-SsR" firstAttribute="centerY" secondItem="oxC-hf-PTG" secondAttribute="centerY" id="wcU-9f-qhW"/>
                             <constraint firstItem="J2X-4B-24b" firstAttribute="width" secondItem="Nb3-ey-jY1" secondAttribute="width" multiplier="4/5" id="wvt-fM-Cwk"/>
@@ -260,6 +268,7 @@
                         <viewLayoutGuide key="safeArea" id="Nb3-ey-jY1"/>
                     </view>
                     <connections>
+                        <outlet property="pointCountLabel" destination="TIE-el-yeb" id="YB5-7q-jiw"/>
                         <outlet property="wheelRotateImageView" destination="J2X-4B-24b" id="sJk-Bj-FOf"/>
                         <segue destination="ccN-dh-3Hj" kind="presentation" identifier="alertPointSegue" id="Tsy-pX-wUn"/>
                     </connections>
@@ -890,7 +899,8 @@
         <image name="AD1" width="3500" height="2179"/>
         <image name="ApplePay" width="267" height="267"/>
         <image name="Cash" width="267" height="267"/>
-        <image name="輪盤" width="845" height="846"/>
-        <image name="齒輪" width="201" height="201"/>
+        <image name="客戶端個人" width="27.666666030883789" height="26.333333969116211"/>
+        <image name="指針" width="109.66666412353516" height="142.66667175292969"/>
+        <image name="真輪盤" width="319.66665649414062" height="320.66665649414062"/>
     </resources>
 </document>

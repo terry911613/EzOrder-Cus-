@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Aye-Qb-R4B">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,18 +15,18 @@
             <objects>
                 <viewController storyboardIdentifier="ProgressViewController" id="JPS-Iq-ow9" customClass="ProgressViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="paY-sN-w9a">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Fr-t9-2G6">
-                                <rect key="frame" x="0.0" y="64" width="600" height="452"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="672.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="progressCell" rowHeight="120" id="34J-5Y-jkJ" customClass="ProgressTableViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="120"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="34J-5Y-jkJ" id="OXp-BV-V1b">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z3M-sM-VuY">
@@ -51,7 +55,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狀態" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEr-uK-Tvr">
-                                                    <rect key="frame" x="329" y="86.5" width="31" height="18"/>
+                                                    <rect key="frame" x="554" y="86.5" width="31" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -85,10 +89,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-2N-7PM">
-                                <rect key="frame" x="0.0" y="516" width="600" height="35"/>
+                                <rect key="frame" x="0.0" y="760.5" width="414" height="52.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總共：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czX-OF-XVb">
-                                        <rect key="frame" x="530" y="5.5" width="62" height="24"/>
+                                        <rect key="frame" x="344" y="14.5" width="62" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -106,7 +110,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ev-h4-VZm">
-                                <rect key="frame" x="279.5" y="518" width="41" height="31"/>
+                                <rect key="frame" x="186.5" y="762.5" width="41" height="48.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="結帳">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,7 +136,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="w0r-Rf-EBp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="9ig-KV-EOi"/>
+                    <tabBarItem key="tabBarItem" title="用餐狀態" image="用餐狀態" id="9ig-KV-EOi"/>
                     <navigationItem key="navigationItem" title="用餐進度" id="rHP-nt-jgb">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="服務鈴" id="gf1-oh-9L8">
                             <connections>
@@ -159,7 +163,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aye-Qb-R4B" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z75-ip-MYN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98723965879999998" green="0.45220696929999998" blue="0.4503938556" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -177,11 +181,11 @@
             <objects>
                 <viewController id="zA5-uB-Til" customClass="CreditCardPayViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aL0-uw-bW1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5j-DA-CY4">
-                                <rect key="frame" x="165" y="265" width="270" height="70"/>
+                                <rect key="frame" x="72" y="413" width="270" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Ss8-5m-GZZ"/>
@@ -189,7 +193,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpr-mH-8Kx">
-                                <rect key="frame" x="277" y="345" width="46" height="30"/>
+                                <rect key="frame" x="184" y="493" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="RSL-fY-L6O"/>
                                     <constraint firstAttribute="height" constant="30" id="b9Y-ph-9ih"/>
@@ -223,11 +227,11 @@
             <objects>
                 <viewController storyboardIdentifier="creditCardVC" id="XSr-Qk-649" customClass="CreditCardViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5GS-70-JkX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHI-Vy-ym9">
-                                <rect key="frame" x="170" y="70" width="260" height="80"/>
+                                <rect key="frame" x="77" y="94" width="260" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="aC5-9o-xvb"/>
@@ -235,7 +239,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="您可以設定中華郵政VISA金融卡及各家銀行信用卡（美國運通、大來卡、銀聯卡除外）費用將併入所設定信用卡帳單。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hF0-hc-GIU">
-                                <rect key="frame" x="150" y="165" width="300" height="70"/>
+                                <rect key="frame" x="57" y="189" width="300" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="UgB-iC-7Gn"/>
@@ -245,7 +249,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPb-Ro-KOG">
-                                <rect key="frame" x="262.5" y="251" width="75" height="30"/>
+                                <rect key="frame" x="169.5" y="275" width="75" height="30"/>
                                 <color key="backgroundColor" red="0.88909536600000005" green="0.56646364930000004" blue="0.27671140430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="15q-hK-fCD"/>
@@ -259,7 +263,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sso-8r-qSy">
-                                <rect key="frame" x="255" y="297" width="90" height="30"/>
+                                <rect key="frame" x="162" y="321" width="90" height="30"/>
                                 <color key="backgroundColor" red="0.24313725489999999" green="0.46666666670000001" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Q2I-jo-VsO"/>
@@ -273,7 +277,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DOd-63-lma">
-                                <rect key="frame" x="30" y="361" width="540" height="219"/>
+                                <rect key="frame" x="20.5" y="623" width="373" height="219"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="219" id="eXz-EI-cUD"/>
@@ -311,5 +315,6 @@
     </scenes>
     <resources>
         <image name="服務鈴" width="13.333333015441895" height="13.333333015441895"/>
+        <image name="用餐狀態" width="34.333332061767578" height="27.666666030883789"/>
     </resources>
 </document>
