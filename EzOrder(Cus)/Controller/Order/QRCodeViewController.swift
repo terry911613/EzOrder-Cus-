@@ -23,7 +23,12 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         startPreviewAndScanQR()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        preview(false)
     }
 
     func startPreviewAndScanQR() {

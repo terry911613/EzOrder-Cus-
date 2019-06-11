@@ -30,6 +30,8 @@ class OrderViewController: UIViewController {
     var orderDic = [QueryDocumentSnapshot: Int]()
     var isFoodDiffrient = false
     
+    var foodCount = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -50,10 +52,24 @@ class OrderViewController: UIViewController {
                         self.typeCollectionView.reloadData()
                     }
                     else{
-                        let documentChange = type.documentChanges[0]
-                        if documentChange.type == .added {
-                            self.typeArray = type.documents
-                            self.animateTypeCollectionView()
+                        self.typeArray = type.documents
+                        self.animateTypeCollectionView()
+                        
+                        for type in type.documents{
+                            if let typeName = type.data()["typeName"] as? String{
+                                self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
+                                    print("-------")
+                                    print(food?.documents.count)
+                                    print(food?.documents)
+                                    print("-------")
+                                    if let food = food{
+                                        if food.documents.isEmpty == false{
+                                            self.foodCount.append(food.documents.count)
+                                            print(self.foodCount)
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -64,7 +80,7 @@ class OrderViewController: UIViewController {
         print("-------------")
         print(typeName)
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").addSnapshotListener { (food, error) in
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
