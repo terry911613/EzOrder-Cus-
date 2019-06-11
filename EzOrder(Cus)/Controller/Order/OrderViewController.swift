@@ -62,8 +62,16 @@ class OrderViewController: UIViewController {
                         var typeIndex = 0
                         for type in type.documents{
                             if let typeName = type.data()["typeName"] as? String{
+                                print("resID: ", resID)
+                                print("typeName: ", typeName)
                                 self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
-                                    self.orderAmounts[typeIndex].append(0)
+                                    print(food?.documents)
+                                    if let foodCount = food?.documents.count {
+                                        for i in 1...foodCount {
+                                            self.orderAmounts[typeIndex].append(0)
+                                        }
+                                    }
+                                    typeIndex += 1
                                 }
                             }
                         }
