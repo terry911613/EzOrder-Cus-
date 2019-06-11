@@ -19,7 +19,6 @@ class OrderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
-//    var callBackStepper:((_ value:Double)->())?
     var callBackCount: ((_ clickPlus: Bool, _ countAmount: Int)->())?
     
     override func awakeFromNib() {
@@ -48,7 +47,4 @@ class OrderTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-//    @IBAction func stepper(_ sender: UIStepper) {
-//        callBackStepper?(1)
-//    }
 }

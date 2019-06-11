@@ -33,18 +33,19 @@ class OrderViewController: UIViewController {
     var selectTypeIndex = 0
     
     var foodCount = [Int]()
-    var orderAmounts = [[Int]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         if let tableNo = tableNo{
             tableLabel.text = "\(tableNo)桌"
         }
         getType()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
     }
     func getType(){
         if let resID = resID{
@@ -67,25 +68,11 @@ class OrderViewController: UIViewController {
                             if let typeName = type.data()["typeName"] as? String{
                                 self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
                                     
-                                    print("--------")
-                                    print(food?.documents.count)
-                                    print("--------")
-                                    
-//                                    if let foodCount = food?.documents.count {
-//                                        for i in 0...foodCount {
-//                                            self.orderAmounts[typeIndex].append(0)
-//                                        }
-//                                    }
-//                                    typeIndex += 1
-                                    print("-------")
-                                    print(food?.documents.count)
-                                    print(food?.documents)
                                     if let foodCount = food?.documents.count {
                                         if foodCount != 0 {
                                             for i in 1...foodCount {
                                                 self.orderAmounts[typeIndex].append(0)
                                             }
-                                            
                                         }
                                         typeIndex += 1
                                     }

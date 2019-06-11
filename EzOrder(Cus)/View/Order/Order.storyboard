@@ -106,13 +106,6 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.97907990219999996" green="0.79846447710000001" blue="0.79405790570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
-                                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zlY-Vj-hEM">
-                                                            <rect key="frame" x="214" y="103" width="94" height="29"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <connections>
-                                                                <action selector="stepper:" destination="n2o-nn-YJa" eventType="valueChanged" id="Jgr-lF-taa"/>
-                                                            </connections>
-                                                        </stepper>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIc-I2-1FN">
                                                             <rect key="frame" x="316" y="99" width="30" height="36"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -154,7 +147,6 @@
                                             <outlet property="orderImageView" destination="gPk-7E-6sO" id="wKl-YF-1LN"/>
                                             <outlet property="plusBtn" destination="IIc-I2-1FN" id="Buq-Hq-DIj"/>
                                             <outlet property="price" destination="64M-B2-m5w" id="vY7-We-xgi"/>
-                                            <outlet property="stepper" destination="zlY-Vj-hEM" id="eIB-Qt-dYs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

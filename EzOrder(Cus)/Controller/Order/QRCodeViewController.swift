@@ -110,8 +110,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 if let table = Int(result["table"]!), let resID = result["resID"]{
                     self.tableNo = table
                     self.resID = resID
-                    print(self.tableNo)
-                    print(self.resID)
                     scanSuccess(qrCode: table)
                 }
             }
