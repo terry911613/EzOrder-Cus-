@@ -18,7 +18,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     @IBOutlet weak var showStoreNameLabel: UILabel!
     @IBOutlet weak var showStoreOpenTimeLabel: UILabel!
     @IBOutlet weak var showStorePhoneLabel: UILabel!
-    @IBOutlet weak var showLikeImageVIew: UIImageView!
+    @IBOutlet weak var showLikeImageView: UIButton!
     @IBOutlet weak var linkButton: UIButton!
     @IBOutlet weak var textImageview: UIImageView!
     @IBOutlet var textimage2: [UIImageView]!
@@ -115,17 +115,18 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
     
     
-    @IBAction func limkButtonAction(_ sender: Any) {
+    @IBAction func likeButtonAction(_ sender: UIButton) {
+        let btnLocation = (sender.superview?.convert(sender.frame.origin, to: nil))!
         let image = UIImage(named: "donut")
         let imageViews = UIImageView(image: image!)
-        imageViews.frame = CGRect(x: 303, y: 294, width: 30, height: 30)
+        imageViews.frame = CGRect(origin: btnLocation, size: CGSize(width: 30, height: 30))
         view.addSubview(imageViews)
         textimage2.insert(imageViews, at: 0)
          clickButton = !clickButton
         if clickButton == false{
         linkButton.setImage(UIImage(named: "donut"), for: .normal)
             UIView.animate(withDuration: 1.5 , delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-                self.textimage2[0].frame = CGRect(x:126 , y: 149, width: self.textimage2[0].frame.size.width * 2, height: self.textimage2[0].frame.size.height * 2)
+                self.textimage2[0].frame = CGRect(x:btnLocation.x-177 , y: btnLocation.y-145, width: self.textimage2[0].frame.size.width * 2, height: self.textimage2[0].frame.size.height * 2)
                 imageViews.alpha = 0.7
             }, completion: {Result -> Void in
                 imageViews.removeFromSuperview()
