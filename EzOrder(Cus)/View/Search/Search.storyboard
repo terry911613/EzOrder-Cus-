@@ -59,7 +59,6 @@
                                         <connections>
                                             <outlet property="StoreImage" destination="NA1-Wu-HHI" id="AiL-Qt-lCb"/>
                                             <outlet property="StoreName" destination="uwO-JP-bAb" id="EEX-yz-zU0"/>
-                                            <segue destination="wbo-o6-ja6" kind="show" id="ebt-FW-fOS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -100,8 +99,9 @@
                     <navigationItem key="navigationItem" title="搜尋餐廳" id="feQ-KT-xlh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="StoreSearch" destination="x9V-CD-i3v" id="Gpi-Rx-rLM"/>
-                        <outlet property="StoreTableView" destination="sxM-aa-gac" id="aYK-ij-3R5"/>
+                        <outlet property="storeSearch" destination="x9V-CD-i3v" id="Gpi-Rx-rLM"/>
+                        <outlet property="storeTableView" destination="sxM-aa-gac" id="aYK-ij-3R5"/>
+                        <segue destination="wbo-o6-ja6" kind="show" identifier="resDetailSegue" id="rL9-4b-Vml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nAU-RP-2YE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,15 +380,15 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="linkBottonImage" destination="HII-7B-hGX" id="bZj-qf-Lfi"/>
+                        <outlet property="linkButton" destination="HII-7B-hGX" id="bZj-qf-Lfi"/>
                         <outlet property="myMap" destination="tTl-f2-Vee" id="I1k-fq-aO1"/>
                         <outlet property="showAddressButton" destination="N0V-07-Qgc" id="IIW-aB-zn5"/>
-                        <outlet property="showClassificationCollection" destination="CoW-RU-jLx" id="uDt-Qz-DGK"/>
-                        <outlet property="showStoreImageVIew" destination="TRO-6U-Ph6" id="nqg-iL-fEk"/>
-                        <outlet property="showStoreName" destination="9HY-gY-1t4" id="GJW-KX-wMT"/>
-                        <outlet property="showStoreOpenTime" destination="28p-yi-gD4" id="I5N-Zd-Zf1"/>
-                        <outlet property="showStorePhone" destination="P9g-9M-qbp" id="D8U-6I-ozG"/>
-                        <outlet property="textUmageview" destination="xJj-Oy-UET" id="goK-N5-e67"/>
+                        <outlet property="showClassificationCollectionView" destination="CoW-RU-jLx" id="uDt-Qz-DGK"/>
+                        <outlet property="showStoreImageView" destination="TRO-6U-Ph6" id="nqg-iL-fEk"/>
+                        <outlet property="showStoreNameLabel" destination="9HY-gY-1t4" id="GJW-KX-wMT"/>
+                        <outlet property="showStoreOpenTimeLabel" destination="28p-yi-gD4" id="I5N-Zd-Zf1"/>
+                        <outlet property="showStorePhoneLabel" destination="P9g-9M-qbp" id="D8U-6I-ozG"/>
+                        <outlet property="textImageview" destination="xJj-Oy-UET" id="goK-N5-e67"/>
                         <outletCollection property="textimage2" destination="xJj-Oy-UET" collectionClass="NSMutableArray" id="NkX-Y6-Bw6"/>
                     </connections>
                 </viewController>

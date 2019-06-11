@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchMenuViewController: UIViewController {
     @IBOutlet weak var SearcMenuCollection: UICollectionView!
@@ -24,6 +25,8 @@ class SearchMenuViewController: UIViewController {
     var dessert = ["蛋糕", "紅豆湯"]
     var allTypeMenu = [[String]]()
     var Money = ["10,20,30,40,50,60"]
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

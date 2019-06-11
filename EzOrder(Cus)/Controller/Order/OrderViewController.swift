@@ -55,7 +55,7 @@ class OrderViewController: UIViewController {
                         
                         self.typeArray = type.documents
                         self.animateTypeCollectionView()
-                        for i in 1...self.typeArray.count {
+                        for _ in 1...self.typeArray.count {
                             self.orderAmounts.append([])
                         }
                         
@@ -66,7 +66,7 @@ class OrderViewController: UIViewController {
                                     
                                     if let foodCount = food?.documents.count {
                                         if foodCount != 0 {
-                                            for i in 1...foodCount {
+                                            for _ in 1...foodCount {
                                                 self.orderAmounts[typeIndex].append(0)
                                             }
                                         }
