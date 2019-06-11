@@ -42,11 +42,7 @@ class OrderViewController: UIViewController {
         }
         getType()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-    }
+    
     func getType(){
         if let resID = resID{
             db.collection("res").document(resID).collection("foodType").order(by: "index", descending: true).getDocuments { (type, error) in
@@ -197,7 +193,12 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
                     self.totalPrice += foodMoney
                     self.orderAmounts[self.selectTypeIndex][indexPath.row] += 1
                 } else {
-                    self.orderDic[food] = countAmount
+                    if countAmount == 0{
+                        self.orderDic[food] = nil
+                    }
+                    else{
+                        self.orderDic[food] = countAmount
+                    }
                     self.totalPrice -= foodMoney
                     self.orderAmounts[self.selectTypeIndex][indexPath.row] -= 1
                 }
