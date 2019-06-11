@@ -299,7 +299,7 @@
                                                 </constraints>
                                                 <state key="normal" image="link"/>
                                                 <connections>
-                                                    <action selector="limkButtonAction:" destination="wbo-o6-ja6" eventType="touchUpInside" id="fyf-gF-BID"/>
+                                                    <action selector="likeButtonAction:" destination="wbo-o6-ja6" eventType="touchUpInside" id="fyf-gF-BID"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -384,6 +384,7 @@
                         <outlet property="myMap" destination="tTl-f2-Vee" id="I1k-fq-aO1"/>
                         <outlet property="showAddressButton" destination="N0V-07-Qgc" id="IIW-aB-zn5"/>
                         <outlet property="showClassificationCollectionView" destination="CoW-RU-jLx" id="uDt-Qz-DGK"/>
+                        <outlet property="showLikeImageView" destination="HII-7B-hGX" id="U9E-N3-vQy"/>
                         <outlet property="showStoreImageView" destination="TRO-6U-Ph6" id="nqg-iL-fEk"/>
                         <outlet property="showStoreNameLabel" destination="9HY-gY-1t4" id="GJW-KX-wMT"/>
                         <outlet property="showStoreOpenTimeLabel" destination="28p-yi-gD4" id="I5N-Zd-Zf1"/>
