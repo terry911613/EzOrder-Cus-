@@ -29,6 +29,8 @@ class OrderViewController: UIViewController {
     var foodArray = [QueryDocumentSnapshot]()
     var orderDic = [QueryDocumentSnapshot: Int]()
     var isFoodDiffrient = false
+    var orderAmounts = [[Int]]()
+    var selectTypeIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +52,20 @@ class OrderViewController: UIViewController {
                         self.typeCollectionView.reloadData()
                     }
                     else{
-                        let documentChange = type.documentChanges[0]
-                        if documentChange.type == .added {
-                            self.typeArray = type.documents
-                            self.animateTypeCollectionView()
+                        
+                        self.typeArray = type.documents
+                        self.animateTypeCollectionView()
+                        for i in 1...self.typeArray.count {
+                            self.orderAmounts.append([])
+                        }
+                        
+                        var typeIndex = 0
+                        for type in type.documents{
+                            if let typeName = type.data()["typeName"] as? String{
+                                self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
+                                    self.orderAmounts[typeIndex].append(0)
+                                }
+                            }
                         }
                     }
                 }
@@ -133,6 +145,7 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         if let type = typeArray[indexPath.row].data()["typeName"] as? String{
             getFood(typeName: type)
         }
+        selectTypeIndex = indexPath.row
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
@@ -147,14 +160,16 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
-        
         let food = foodArray[indexPath.row]
+        
 //        cell.name.text = selectTypeMenu[indexPath.row]
 //        cell.stepper.tag = indexPath.row
         
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
             let foodMoney = food.data()["foodPrice"] as? Int{
+            cell.price.text = String(self.orderAmounts[self.selectTypeIndex][indexPath.row] * foodMoney)
+            cell.count.text = String(self.orderAmounts[self.selectTypeIndex][indexPath.row])
             
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))
@@ -166,9 +181,11 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
                 if clickPlus == true {
                     self.orderDic[food] = countAmount
                     self.totalPrice += foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] += 1
                 } else {
                     self.orderDic[food] = countAmount
                     self.totalPrice -= foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] -= 1
                 }
                 self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
             }
