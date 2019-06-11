@@ -45,7 +45,7 @@ class OrderViewController: UIViewController {
     }
     func getType(){
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").getDocuments { (type, error) in
+            db.collection("res").document(resID).collection("foodType").order(by: "index", descending: true).getDocuments { (type, error) in
                 if let type = type{
                     if type.documentChanges.isEmpty{
                         self.typeArray.removeAll()
@@ -62,16 +62,17 @@ class OrderViewController: UIViewController {
                         var typeIndex = 0
                         for type in type.documents{
                             if let typeName = type.data()["typeName"] as? String{
-                                print("resID: ", resID)
-                                print("typeName: ", typeName)
                                 self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
                                     print(food?.documents)
                                     if let foodCount = food?.documents.count {
-                                        for i in 1...foodCount {
-                                            self.orderAmounts[typeIndex].append(0)
+                                        if foodCount != 0 {
+                                            for i in 1...foodCount {
+                                                self.orderAmounts[typeIndex].append(0)
+                                            }
+                                            
                                         }
+                                        typeIndex += 1
                                     }
-                                    typeIndex += 1
                                 }
                             }
                         }
@@ -176,15 +177,17 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
             let foodMoney = food.data()["foodPrice"] as? Int{
-            cell.price.text = String(self.orderAmounts[self.selectTypeIndex][indexPath.row] * foodMoney)
-            cell.count.text = String(self.orderAmounts[self.selectTypeIndex][indexPath.row])
+            print("orderAmounts: ",orderAmounts)
+            print("selectTypeIndex", selectTypeIndex)
+            var thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
+            cell.countAmount = thisFoodAmount
+            cell.count.text = "數量:\(String(thisFoodAmount))"
             
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))
             cell.price.text = "$\(foodMoney)"
             
             cell.callBackCount = { clickPlus, countAmount in
-                cell.price.text = "$\(countAmount * foodMoney)"
                 cell.count.text = "數量:\(countAmount)"
                 if clickPlus == true {
                     self.orderDic[food] = countAmount
