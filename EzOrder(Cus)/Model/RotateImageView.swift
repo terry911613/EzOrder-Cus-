@@ -47,7 +47,7 @@ class RotateImageView: UIImageView {
         rotateAnimation.toValue = currentValue
         rotateAnimation.isRemovedOnCompletion = false
         rotateAnimation.fillMode = .forwards
-        rotateAnimation.duration = 3.5
+        rotateAnimation.duration = 5
         
         rotateAnimation.repeatCount = 1
         CATransaction.setCompletionBlock {
@@ -59,7 +59,10 @@ class RotateImageView: UIImageView {
             }
         }
 //        rotateAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
-        rotateAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.333, 1.333, 0.667, 0.909)
+//        rotateAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0, 1.05, 0.96, 1.001)
+        
+        rotateAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0, 0.9, 0.4, 1.00)
+
         self.layer.add(rotateAnimation, forKey: nil)
         
         CATransaction.commit()
