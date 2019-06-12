@@ -7,6 +7,8 @@
 //
 // FACCCA
 import UIKit
+import Firebase
+import Kingfisher
 
 // 擴充navBar來做漸層
 extension UINavigationBar {
@@ -36,13 +38,13 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     var rankImgNames = ["AD1", "AD2", "AD3", "AD4", "AD5"]
     var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
     
-    
+    var adArray = [QueryDocumentSnapshot]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == rankCollectionView {
             return rankImgNames.count
         } else {
-            return rankImgNames.count
+            return adArray.count
         }
         
     }
@@ -56,7 +58,11 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adCell", for: indexPath) as! AdCollectionViewCell
             
-            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
+            let ad = adArray[indexPath.row]
+            if let ADImage = ad.data()["ADImage"] as? String{
+                cell.AdImageView.kf.setImage(with: URL(string: ADImage))
+            }
+//            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
             return cell
         }
     }
@@ -88,9 +94,23 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     
     var imageIndexPath = 0
     override func viewDidLoad() {
-        adPageControl.numberOfPages = rankImgNames.count
         super.viewDidLoad()
-
+        
+        let db = Firestore.firestore()
+        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
+            if let AD = AD{
+                if AD.documents.isEmpty{
+                    self.adArray.removeAll()
+                    self.adCollectionView.reloadData()
+                }
+                else{
+                    self.adArray = AD.documents
+                    self.adCollectionView.reloadData()
+                }
+            }
+        }
+        
+        adPageControl.numberOfPages = adArray.count
         adCollectionView.delegate = self
         adCollectionView.showsVerticalScrollIndicator = false
         adCollectionView.showsHorizontalScrollIndicator = false
@@ -103,7 +123,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
             UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
-                if self.imageIndexPath < self.rankImgNames.count - 1 {
+                if self.imageIndexPath < self.adArray.count - 1 {
                     self.imageIndexPath += 1
                     indexPath = IndexPath(item: self.imageIndexPath, section: 0)
                     self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -112,7 +132,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
                     self.imageIndexPath = 0
                     indexPath = IndexPath(item: self.imageIndexPath, section: 0)
                     self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                    self.setPageControll(tunning: (self.rankImgNames.count - 1) * -1)
+                    self.setPageControll(tunning: (self.adArray.count - 1) * -1)
                 }
             })
         })
