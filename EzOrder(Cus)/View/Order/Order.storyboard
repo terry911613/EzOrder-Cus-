@@ -141,6 +141,7 @@
                                             <constraint firstAttribute="trailing" secondItem="sDb-QO-ZM5" secondAttribute="trailing" constant="5" id="t69-r5-ZoC"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="cardView" destination="sDb-QO-ZM5" id="MtT-jZ-r8n"/>
                                             <outlet property="count" destination="ucR-HF-aSm" id="vl2-uI-ODB"/>
                                             <outlet property="minusBtn" destination="uhn-PJ-AzB" id="ZrX-9P-o2e"/>
                                             <outlet property="name" destination="Dbw-8S-w67" id="W4A-px-oA0"/>

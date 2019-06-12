@@ -16,6 +16,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var cardView: UIView!
     
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!

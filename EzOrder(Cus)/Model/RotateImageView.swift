@@ -58,7 +58,8 @@ class RotateImageView: UIImageView {
                 handler()
             }
         }
-        rotateAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+//        rotateAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        rotateAnimation.timingFunction = CAMediaTimingFunction(controlPoints: 0.333, 1.333, 0.667, 0.909)
         self.layer.add(rotateAnimation, forKey: nil)
         
         CATransaction.commit()
