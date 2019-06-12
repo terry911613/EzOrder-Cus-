@@ -38,6 +38,7 @@ class RegisterViewController: UIViewController {
                 SVProgressHUD.dismiss()
                 self.navigationController?.popToRootViewController(animated: true)
             }
+            
         }
     }
     //  隨便按一個地方，彈出鍵盤就會收回
