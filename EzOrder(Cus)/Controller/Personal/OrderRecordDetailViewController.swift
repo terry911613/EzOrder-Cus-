@@ -62,6 +62,17 @@ extension OrderRecordDetailViewController: UITableViewDelegate, UITableViewDataS
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "rateDishSegue", sender: self)
+        
+    }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dishRateVC = segue.destination as? RateDishViewController {
+            let indexPath = foodDetailTableView.indexPathForSelectedRow
+            let food = foodArray[(indexPath?.row)!]
+            let foodName = food.data()["foodName"] as! String
+            dishRateVC.dishName = foodName
+        }
+    }
 }
