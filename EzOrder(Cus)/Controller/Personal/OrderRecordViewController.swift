@@ -15,12 +15,8 @@ class OrderRecordViewController: UIViewController {
 
     @IBOutlet weak var orderRecordTableView: UITableView!
     
-//    var restaurantImage = ["AD1", "AD2", "AD3", "AD4", "AD5"]
-//    var date = ["2019-01-01", "2019-02-02", "2019-03-03", "2019-04-04", "2019-05-05"]
-//    var price = [1000, 2000, 3000, 4000, 5000]
-//    var point = [10, 20, 30, 40, 50]
-    
     var orderRecordArray = [QueryDocumentSnapshot]()
+    var selectOrderNo: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +51,14 @@ class OrderRecordViewController: UIViewController {
         orderRecordTableView.reloadData()
         UIView.animate(views: orderRecordTableView.visibleCells, animations: animations, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let orderRecordDetailVC = segue.destination as! OrderRecordDetailViewController
+        if let selectOrderNo = selectOrderNo{
+            print(selectOrderNo)
+            orderRecordDetailVC.orderNo = selectOrderNo
+        }
+    }
 }
 
 extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
@@ -82,13 +86,14 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
         }
-        
-//        cell.restaurantImageView.image = UIImage(named: restaurantImage[indexPath.row])
-//        cell.dateLabel.text = "日期：" + date[indexPath.row]
-//        cell.priceLabel.text = "價錢：" + String(price[indexPath.row])
-//        cell.pointLabel.text = "點數：" + String(point[indexPath.row])
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let orderRecord = orderRecordArray[indexPath.row]
+        if let orderNo = orderRecord.data()["orderNo"] as? String{
+            selectOrderNo = orderNo
+            performSegue(withIdentifier: "foodDetailSegue", sender: self)
+        }
+    }
 }

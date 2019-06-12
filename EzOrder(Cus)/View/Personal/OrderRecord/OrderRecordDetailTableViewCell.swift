@@ -1,18 +1,20 @@
 //
-//  OrderRecordTableViewCell.swift
+//  OrderRecordDetailTableViewCell.swift
 //  EzOrder(Cus)
 //
-//  Created by 李泰儀 on 2019/6/4.
+//  Created by 李泰儀 on 2019/6/12.
 //  Copyright © 2019 TerryLee. All rights reserved.
 //
 
 import UIKit
 
-class OrderRecordTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var restaurantImageView: UIImageView!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+class OrderRecordDetailTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var foodImage: UIImageView!
+    @IBOutlet weak var foodName: UILabel!
+    @IBOutlet weak var foodPrice: UILabel!
+    @IBOutlet weak var foodAmount: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
