@@ -287,8 +287,6 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
         }
         return cell
     }
-    
-    
 }
     
 extension ProgressViewController: IGCMenuDelegate{
@@ -338,7 +336,6 @@ extension ProgressViewController: IGCMenuDelegate{
         self.igcMenu?.hideCircularMenu()
         self.isMenuActive = false
     }
-    
 }
     
 extension ProgressViewController: TPDApplePayDelegate{
