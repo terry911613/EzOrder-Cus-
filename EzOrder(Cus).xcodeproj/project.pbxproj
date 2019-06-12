@@ -62,6 +62,7 @@
 		9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
 		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
+		9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDB2A622AFC0A800295461 /* BookingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,6 +126,7 @@
 		9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DFDB2A622AFC0A800295461 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookingViewController.swift; path = ../../View/Search/BookingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +349,7 @@
 		447A1713228BD638003AB41E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				9DFDB2A622AFC0A800295461 /* BookingViewController.swift */,
 				447A1719228C67DC003AB41E /* SearchViewController.swift */,
 				2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */,
 				2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */,
@@ -559,6 +562,7 @@
 				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
 				2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
+				9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
