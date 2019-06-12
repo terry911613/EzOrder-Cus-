@@ -20,12 +20,11 @@ class OrderRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getOrderRecord()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        getOrderRecord()
     }
     
     func getOrderRecord(){
