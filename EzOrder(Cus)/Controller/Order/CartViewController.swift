@@ -97,7 +97,7 @@ class CartViewController: UIViewController {
                     db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
                     
-                    let orderData: [String: Any] = ["timeStamp": timeStamp,
+                    let orderData: [String: Any] = ["date": Date(),
                                                     "orderNo": orderNo,
                                                     "userID": userID,
                                                     "resID": resID,
