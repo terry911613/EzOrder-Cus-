@@ -35,6 +35,11 @@ class RegisterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                
+                let db = Firestore.firestore()
+                if let userID = Auth.auth().currentUser?.email{
+                    db.collection("user").document(userID).setData(["userID": userID])
+                }
                 //  success
                 print("Registration Successful!")
                 SVProgressHUD.dismiss()

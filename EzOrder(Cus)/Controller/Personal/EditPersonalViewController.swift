@@ -71,7 +71,7 @@ class EditPersonalViewController: UIViewController {
                         let data: [String: Any] = ["userImage": downloadURL.absoluteString,
                                                    "userName": userName,
                                                    "userPhone": userPhone]
-                        db.collection("user").document(userID).setData(data, completion: { (error) in
+                        db.collection("user").document(userID).updateData(data, completion: { (error) in
                             guard error == nil else {
                                 SVProgressHUD.dismiss()
                                 self.errorAlert()

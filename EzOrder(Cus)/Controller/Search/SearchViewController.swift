@@ -59,6 +59,11 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let storeShowVC = segue.destination as! StoreShowViewController
         storeShowVC.res = selectRes
+        storeSearch.resignFirstResponder()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

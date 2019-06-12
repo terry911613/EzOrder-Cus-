@@ -417,9 +417,11 @@
                     </view>
                     <connections>
                         <outlet property="favoriteCollectionView" destination="3bG-Ka-hVR" id="rII-YH-6pt"/>
+                        <segue destination="ZGC-C7-tXc" kind="unwind" identifier="storeShowSegue" unwindAction="unwindSegueStoreShowWithSegue:" id="n7Q-oh-jEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTL-sJ-LV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZGC-C7-tXc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2109.5999999999999" y="-1215.7421289355323"/>
         </scene>
