@@ -328,6 +328,7 @@
                         <outlet property="nameLabel" destination="gEf-4v-0NL" id="eE6-ke-F74"/>
                         <outlet property="peoplePicker" destination="ymT-9C-qR5" id="Xlk-gZ-IzG"/>
                         <outlet property="peopleView" destination="SQ7-Aj-mul" id="z5b-XS-bwW"/>
+                        <outlet property="resNameLabel" destination="nk0-M1-PB6" id="KCG-Mx-R8O"/>
                         <outlet property="timeIntervalPicker" destination="zkz-jh-zlZ" id="dRK-xf-U1I"/>
                         <outlet property="timeIntervalView" destination="XTR-TW-uOB" id="L5G-3U-S0o"/>
                         <outlet property="vacancyLabel" destination="e7e-Og-HFp" id="Lm9-fd-9Bw"/>

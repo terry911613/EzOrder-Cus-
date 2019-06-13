@@ -15,7 +15,7 @@ class FavoriteViewController: UIViewController {
     var favoriteResArray = [QueryDocumentSnapshot]()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
-//    var res: QueryDocumentSnapshot?
+    var res: QueryDocumentSnapshot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let favoriteRes = favoriteResArray[indexPath.row]
-//        res = favoriteRes
+        res = favoriteRes
         performSegue(withIdentifier: "storeShowSegue", sender: self)
     }
     

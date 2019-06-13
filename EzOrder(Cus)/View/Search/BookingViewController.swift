@@ -9,12 +9,14 @@
 import UIKit
 
 class BookingViewController: UIViewController {
+    
     @IBOutlet weak var bookingNameView: UIView!
     @IBOutlet weak var dateView: UIView!
     @IBOutlet weak var timeIntervalView: UIView!
     @IBOutlet weak var peopleView: UIView!
     
     
+    @IBOutlet weak var resNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timeIntervalPicker: UIPickerView!

@@ -25,6 +25,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     @IBOutlet weak var myMap: MKMapView!
     
     var res: QueryDocumentSnapshot?
+//    var favoriteRes: DocumentSnapshot?
     
     var clickButton = false
     let geoCoder = CLGeocoder()
