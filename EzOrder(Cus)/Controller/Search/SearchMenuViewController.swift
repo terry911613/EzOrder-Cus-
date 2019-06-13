@@ -10,10 +10,13 @@ import UIKit
 import Firebase
 
 class SearchMenuViewController: UIViewController {
+    
     @IBOutlet weak var SearcMenuCollection: UICollectionView!
     @IBOutlet weak var searcMenuTableView: UITableView!
     
-    
+    var typeArray = [QueryDocumentSnapshot]()
+    var foodArray = [QueryDocumentSnapshot]()
+    var resID: String?
     
     var type = ["全部", "套餐", "麵", "飯", "湯", "甜點"]
     var selectTypeMenu = [String]()
@@ -32,44 +35,86 @@ class SearchMenuViewController: UIViewController {
         super.viewDidLoad()
         selectTypeMenu = all
         allTypeMenu = [all, set, rice, noodle, soup, dessert]
-
     }
     
+    func getFood(typeName: String){
+        print("-------------")
+        //   print(typeName)
+        let db = Firestore.firestore()
+        if let resID = resID{
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").order(by: "foodIndex", descending: false).addSnapshotListener { (food, error) in
+                if let food = food{
+                    if food.documents.isEmpty{
+                        self.foodArray.removeAll()
+                        self.searcMenuTableView.reloadData()
+                        
+                    }
+                    else{
+                        let documentChange = food.documentChanges[0]
+                        if documentChange.type == .added {
+                            self.foodArray = food.documents
+                            print(self.foodArray.count)
+                            self.searcMenuTableView.reloadData()
+                            print("getFood Success")
+                            print("-------------")
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 }
 extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return type.count
+        return typeArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearcMenuCell", for: indexPath) as! SearcMenuCollectionViewCell
-        cell.searcMenuName.text = type[indexPath.row]
+        let type = typeArray[indexPath.row]
+        
+        if let typeName = type.data()["typeName"] as? String,
+            let typeImage = type.data()["typeImage"] as? String{
+            cell.searcMenuName.text = typeName
+            cell.searcMeneImageView.kf.setImage(with: URL(string: typeImage))
+        }
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectTypeMenu = allTypeMenu[indexPath.row]
-        searcMenuTableView.reloadData()
+//        selectTypeMenu = allTypeMenu[indexPath.row]
+//        searcMenuTableView.reloadData()
+        
+        let type = typeArray[indexPath.row]
+        if let typeName = type.data()["typeName"] as? String{
+            getFood(typeName: typeName)
+        }
     }
-    
-    
 }
 extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectTypeMenu.count
+        return foodArray.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearcMenuTableCell", for: indexPath) as! SearcMenuTableViewCell
-        cell.searcMenuTableName.text =
-            selectTypeMenu[indexPath.row]
-            return cell
+        
+        let food = foodArray[indexPath.row]
+        if let foodName = food.data()["foodName"] as? String,
+            let foodImage = food.data()["foodImage"] as? String,
+            let foodMoney = food.data()["foodPrice"] as? Int{
+            
+            cell.searcMenuTableName.text = foodName
+            cell.searcMenuTabelImage.kf.setImage(with: URL(string: foodImage))
+            cell.searcTableMenuMoney.text = "$\(foodMoney)"
+        }
+        
+//        cell.searcMenuTableName.text =
+//            selectTypeMenu[indexPath.row]
+        return cell
     }
-    
-    
-    
 }

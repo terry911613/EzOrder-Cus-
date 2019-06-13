@@ -17,6 +17,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
+    var fuckGitHub: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -33,11 +35,17 @@ class RegisterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                
+                let db = Firestore.firestore()
+                if let userID = Auth.auth().currentUser?.email{
+                    db.collection("user").document(userID).setData(["userID": userID])
+                }
                 //  success
                 print("Registration Successful!")
                 SVProgressHUD.dismiss()
                 self.navigationController?.popToRootViewController(animated: true)
             }
+            
         }
     }
     //  隨便按一個地方，彈出鍵盤就會收回

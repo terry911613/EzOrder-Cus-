@@ -18,8 +18,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     @IBOutlet weak var showStoreNameLabel: UILabel!
     @IBOutlet weak var showStoreOpenTimeLabel: UILabel!
     @IBOutlet weak var showStorePhoneLabel: UILabel!
-    @IBOutlet weak var showLikeImageView: UIButton!
-    @IBOutlet weak var linkButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var textImageview: UIImageView!
     @IBOutlet var textimage2: [UIImageView]!
     @IBOutlet weak var showAddressButton: UIButton!
@@ -27,30 +26,63 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
     var res: QueryDocumentSnapshot?
     
-    var clickButton = true
+    var clickButton = false
     let geoCoder = CLGeocoder()
     var location: CLLocation?
     var locations:CLLocationManager!
     var coordinates: CLLocationCoordinate2D?
     var nowLocations: CLLocationCoordinate2D?
-    var lise = ["1","2","3","4","5"]
+    
+    var typeArray = [QueryDocumentSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let resData = res?.data(){
-            if let resImage = resData["resImage"] as? String,
-                let resName = resData["resName"] as? String,
-                let resTel = resData["resTel"] as? String,
-                let resLocation = resData["resLocation"] as? String{
+        likeButton.setImage(UIImage(named: "link"), for: .normal)
+        
+        if let res = res,
+            let userID = Auth.auth().currentUser?.email{
+            let db = Firestore.firestore()
+            db.collection("res").document(res.documentID).collection("foodType").getDocuments { (type, error) in
+                if let type = type{
+                    if type.documents.isEmpty{
+                        self.typeArray.removeAll()
+                        self.showClassificationCollectionView.reloadData()
+                    }
+                    else{
+                        self.typeArray = type.documents
+                        self.showClassificationCollectionView.reloadData()
+                    }
+                }
+            }
+            
+            db.collection("user").document(userID).collection("favoriteRes").getDocuments { (favoriteRes, error) in
+                if let favoriteRes = favoriteRes{
+                    if favoriteRes.documents.isEmpty == false{
+                        for favoriteRes in favoriteRes.documents{
+                            if let resID = favoriteRes.data()["resID"] as? String{
+                                if res.documentID == resID{
+                                    self.likeButton.setImage(UIImage(named: "donut"), for: .normal)
+                                    break
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if let resImage = res.data()["resImage"] as? String,
+                let resName = res.data()["resName"] as? String,
+                let resTel = res.data()["resTel"] as? String,
+                let resLocation = res.data()["resLocation"] as? String{
                 
                 showStoreImageView.kf.setImage(with: URL(string: resImage))
                 showStoreNameLabel.text = resName
                 showAddressButton.setTitle(resLocation, for: .normal)
                 showStorePhoneLabel.text = resTel
-                
             }
         }
+        
         
         self.locations = CLLocationManager()
         self.locations.delegate = self
@@ -78,6 +110,22 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         }
         
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        if let res = res{
+//            if let resImage = res.data()["resImage"] as? String,
+//                let resName = res.data()["resName"] as? String,
+//                let resTel = res.data()["resTel"] as? String,
+//                let resLocation = res.data()["resLocation"] as? String{
+//                
+//                showStoreImageView.kf.setImage(with: URL(string: resImage))
+//                showStoreNameLabel.text = resName
+//                showAddressButton.setTitle(resLocation, for: .normal)
+//                showStorePhoneLabel.text = resTel
+//            }
+//        }
+//    }
     
     @IBAction func myMapButton(_ sender: Any) {
         showAddressButton.resignFirstResponder()
@@ -123,22 +171,28 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         imageViews.frame = CGRect(origin: btnLocation, size: CGSize(width: 30, height: 30))
         view.addSubview(imageViews)
         textimage2.insert(imageViews, at: 0)
-         clickButton = !clickButton
-        if clickButton == false{
-        linkButton.setImage(UIImage(named: "donut"), for: .normal)
-            UIView.animate(withDuration: 1.5 , delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
-                self.textimage2[0].frame = CGRect(x:btnLocation.x-177 , y: btnLocation.y-145, width: self.textimage2[0].frame.size.width * 2, height: self.textimage2[0].frame.size.height * 2)
-                imageViews.alpha = 0.7
-            }, completion: {Result -> Void in
-                imageViews.removeFromSuperview()
-                
-            })
-                    }
-        if clickButton == true {
-            linkButton.setImage(UIImage(named: "link"), for: .normal)
-            imageViews.isHidden = true
-        }
+        clickButton = !clickButton
         
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email,
+            let resID = res?.documentID{
+            
+            if clickButton{
+                likeButton.setImage(UIImage(named: "donut"), for: .normal)
+                UIView.animate(withDuration: 1.5 , delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+                    self.textimage2[0].frame = CGRect(x:btnLocation.x-177 , y: btnLocation.y-145, width: self.textimage2[0].frame.size.width * 2, height: self.textimage2[0].frame.size.height * 2)
+                    imageViews.alpha = 0.7
+                }, completion: {Result -> Void in
+                    imageViews.removeFromSuperview()
+                })
+                db.collection("user").document(userID).collection("favoriteRes").document(resID).setData(["resID": resID])
+            }
+            else {
+                db.collection("user").document(userID).collection("favoriteRes").document(resID).delete()
+                likeButton.setImage(UIImage(named: "link"), for: .normal)
+                imageViews.isHidden = true
+            }
+        }
         
     }
     func setMapCenter(center: CLLocationCoordinate2D) {
@@ -169,19 +223,38 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         let nowLocation = CLLocationCoordinate2D(latitude: c.coordinate.latitude, longitude: c.coordinate.longitude)
         self.nowLocations = nowLocation
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "menuSegue"{
+            let searchMenuVC = segue.destination as! SearchMenuViewController
+            searchMenuVC.typeArray = typeArray
+            if let resID = res?.documentID{
+                searchMenuVC.resID = resID
+            }
+        }
+    }
+    
+    @IBAction func unwindSegueStoreShow(segue: UIStoryboardSegue){
+    }
 }
-
-
 
 extension StoreShowViewController: UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return lise.count
+        return typeArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MuneCell", for: indexPath) as! StoreShowCollectionViewCell
-      //  cell.showStoresImageView.image = UIImage(named: lise[indexPath.row])
-        cell.showClassificationName.text = lise[indexPath.row]
+        
+        let type = typeArray[indexPath.row]
+        
+        if let typeName = type.data()["typeName"] as? String,
+            let typeImage = type.data()["typeImage"] as? String{
+            cell.showClassificationName.text = typeName
+            cell.showStoresImageView.kf.setImage(with: URL(string: typeImage))
+        }
+        
         return cell
     }
     
