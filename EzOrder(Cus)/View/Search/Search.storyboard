@@ -676,57 +676,44 @@
                                                         <constraint firstAttribute="width" secondItem="LDF-sS-K0u" secondAttribute="height" multiplier="4:3" id="Ezx-75-Yqe"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rTH-SB-crg">
-                                                    <rect key="frame" x="225" y="105" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOP-1i-IKs">
-                                                    <rect key="frame" x="256" y="105" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-N1-XXx">
-                                                    <rect key="frame" x="291" y="105" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X7c-IY-hQh">
-                                                    <rect key="frame" x="347" y="105" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdZ-Gq-zbz">
-                                                    <rect key="frame" x="319" y="105" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＄150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-tk-T8g">
-                                                    <rect key="frame" x="156.5" y="49.5" width="46" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="牛肉麵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-iz-WTf">
-                                                    <rect key="frame" x="156.5" y="20.5" width="52" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nqa-DZ-eVW">
+                                                    <rect key="frame" x="153.5" y="5" width="216.5" height="109.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="牛肉麵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-iz-WTf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="61.5" height="36.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＄150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-tk-T8g">
+                                                            <rect key="frame" x="0.0" y="36.5" width="54.5" height="36.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate4" translatesAutoresizingMaskIntoConstraints="NO" id="FQk-sX-LMP">
+                                                            <rect key="frame" x="0.0" y="73" width="182.5" height="36.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="FQk-sX-LMP" secondAttribute="height" multiplier="5:1" id="LYh-ae-fD0"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="e3g-tk-T8g" firstAttribute="leading" secondItem="LDF-sS-K0u" secondAttribute="trailing" constant="8" id="8Fn-EW-UCD"/>
-                                                <constraint firstItem="e3g-tk-T8g" firstAttribute="top" secondItem="4Jd-iz-WTf" secondAttribute="bottom" constant="8" id="JX6-qR-VqH"/>
-                                                <constraint firstItem="e3g-tk-T8g" firstAttribute="centerY" secondItem="LDF-sS-K0u" secondAttribute="centerY" id="X6v-5W-wiF"/>
+                                                <constraint firstAttribute="bottom" secondItem="nqa-DZ-eVW" secondAttribute="bottom" constant="5" id="RC9-L2-0Wz"/>
                                                 <constraint firstItem="LDF-sS-K0u" firstAttribute="leading" secondItem="hGB-cV-94F" secondAttribute="leading" constant="15" id="XKM-cz-qlF"/>
+                                                <constraint firstItem="nqa-DZ-eVW" firstAttribute="leading" secondItem="LDF-sS-K0u" secondAttribute="trailing" constant="5" id="ZUq-C7-CvB"/>
+                                                <constraint firstAttribute="trailing" secondItem="nqa-DZ-eVW" secondAttribute="trailing" constant="5" id="ZUv-ug-lec"/>
                                                 <constraint firstItem="LDF-sS-K0u" firstAttribute="centerY" secondItem="hGB-cV-94F" secondAttribute="centerY" id="ZYx-95-eiT"/>
-                                                <constraint firstItem="4Jd-iz-WTf" firstAttribute="leading" secondItem="LDF-sS-K0u" secondAttribute="trailing" constant="8" id="znn-Az-vAm"/>
+                                                <constraint firstItem="nqa-DZ-eVW" firstAttribute="top" secondItem="hGB-cV-94F" secondAttribute="top" constant="5" id="wjr-ZT-hSv"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="LDF-sS-K0u" firstAttribute="height" secondItem="s9r-ir-jL1" secondAttribute="height" multiplier="100/120" id="9yW-Sw-T0k"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="rateStarImageView" destination="FQk-sX-LMP" id="v5d-Wb-I3b"/>
                                             <outlet property="searcMenuTabelImage" destination="LDF-sS-K0u" id="oAz-F8-ad2"/>
                                             <outlet property="searcMenuTableName" destination="4Jd-iz-WTf" id="1Kn-os-oJb"/>
                                             <outlet property="searcTableMenuMoney" destination="e3g-tk-T8g" id="CBg-0J-pzB"/>
@@ -870,6 +857,7 @@
         <image name="Cash" width="267" height="267"/>
         <image name="donut" width="30" height="30"/>
         <image name="link" width="208.33332824707031" height="208.33332824707031"/>
+        <image name="rate4" width="415" height="85.666664123535156"/>
         <image name="商家" width="36" height="36"/>
         <image name="地址" width="83" height="83"/>
         <image name="收尋" width="27.666666030883789" height="27.666666030883789"/>

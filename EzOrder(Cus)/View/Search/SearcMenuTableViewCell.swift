@@ -13,6 +13,7 @@ class SearcMenuTableViewCell: UITableViewCell {
     @IBOutlet weak var searcMenuTabelImage: UIImageView!
     @IBOutlet weak var searcMenuTableName: UILabel!
     @IBOutlet weak var searcTableMenuMoney: UILabel!
+    @IBOutlet weak var rateStarImageView: UIImageView!
     
     
     override func awakeFromNib() {

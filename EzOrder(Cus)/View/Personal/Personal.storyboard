@@ -228,7 +228,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
