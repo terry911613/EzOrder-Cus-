@@ -6,7 +6,7 @@ import FirebaseAuth
 import SVProgressHUD
 
 var text = true
-class SignInFBViewController: UIViewController, LoginButtonDelegate{
+class SignInViewController: UIViewController, LoginButtonDelegate{
     
     @IBOutlet weak var signInButton: FBLoginButton!
     @IBOutlet weak var emailTextfield: UITextField!
@@ -17,11 +17,11 @@ class SignInFBViewController: UIViewController, LoginButtonDelegate{
         
         signInButton.delegate = self
         
-//        Auth.auth().addStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//        }
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: "loginToEzOrderSegue", sender: self)
+            }
+        }
     }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
@@ -77,7 +77,7 @@ class SignInFBViewController: UIViewController, LoginButtonDelegate{
                 print("Log in Successful")
                 print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
-                self.navigationController?.popViewController(animated: true)
+                self.performSegue(withIdentifier: "loginToEzOrderSegue", sender: self)
             }
         }
     }

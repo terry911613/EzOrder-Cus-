@@ -102,15 +102,16 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
                 if AD.documents.isEmpty{
                     self.adArray.removeAll()
                     self.adCollectionView.reloadData()
+//                    adPageControl.numberOfPages = self.adArray.count
                 }
                 else{
                     self.adArray = AD.documents
                     self.adCollectionView.reloadData()
+                    self.adPageControl.numberOfPages = self.adArray.count
                 }
             }
         }
         
-        adPageControl.numberOfPages = adArray.count
         adCollectionView.delegate = self
         adCollectionView.showsVerticalScrollIndicator = false
         adCollectionView.showsHorizontalScrollIndicator = false

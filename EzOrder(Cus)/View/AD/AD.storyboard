@@ -118,6 +118,8 @@
                             </collectionView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="3ra-RM-pF8">
                                 <rect key="frame" x="168" y="359.5" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.9919165969" green="0.94496613740000002" blue="0.95294266940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="0.59670647659999998" blue="0.57797562250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="adPageContol:" destination="iB0-1e-Vfd" eventType="valueChanged" id="9Gl-Q2-6EH"/>
                                 </connections>
@@ -148,7 +150,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navImg" translatesAutoresizingMaskIntoConstraints="NO" id="tJj-Qy-IRk">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200.00000000000006" height="30"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

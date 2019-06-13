@@ -25,6 +25,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         
         let layer = CAShapeLayer()
         layer.frame = .zero
+        // 畫出來的部分才會顯示
         rateSlider.layer.mask = layer
         
         dishNameLabel.text = dishName
@@ -110,6 +111,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
                 rate = 5
             }
         }
+        print(rate)
         var comment = ""
         if commentTextView.text != "添加些評論吧(選填)" {
             comment = commentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
