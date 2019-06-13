@@ -63,6 +63,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                             if let resID = favoriteRes.data()["resID"] as? String{
                                 if res.documentID == resID{
                                     self.likeButton.setImage(UIImage(named: "donut"), for: .normal)
+                                    self.clickButton = true
                                     break
                                 }
                             }

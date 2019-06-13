@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController {
                 //  success
                 print("Registration Successful!")
                 SVProgressHUD.dismiss()
-                self.navigationController?.popToRootViewController(animated: true)
+                self.performSegue(withIdentifier: "RegisterToEzOrderSegue", sender: self)
             }
             
         }

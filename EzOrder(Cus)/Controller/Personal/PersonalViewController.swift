@@ -55,10 +55,7 @@ class PersonalViewController: UIViewController {
     @IBAction func logoutButton(_ sender: UIBarButtonItem) {
         do{
             try Auth.auth().signOut()
-            let alert = UIAlertController(title: "登出成功", message: nil, preferredStyle: .alert)
-            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
-            alert.addAction(ok)
-            present(alert, animated: true, completion: nil)
+            performSegue(withIdentifier: "unwindToLogin", sender: self)
         }
         catch{
             print("error, there was a problem logging out")
