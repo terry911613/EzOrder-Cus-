@@ -20,7 +20,8 @@ class SearchViewController: UIViewController {
     var textStoreArray = [String]()
     var searchBool = false
     var searchChange = [String]()
-    var selectRes: QueryDocumentSnapshot?
+//    var selectRes: QueryDocumentSnapshot?
+    var selectRes: DocumentSnapshot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +60,7 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let storeShowVC = segue.destination as! StoreShowViewController
         storeShowVC.res = selectRes
-        storeSearch.resignFirstResponder()
+//        storeSearch.resignFirstResponder()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -94,7 +95,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let res = resArray[indexPath.row]
+        let res = resArray[indexPath.row] as! DocumentSnapshot
         selectRes = res
         performSegue(withIdentifier: "resDetailSegue", sender: self)
     }

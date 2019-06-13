@@ -414,7 +414,7 @@
                     </view>
                     <connections>
                         <outlet property="favoriteCollectionView" destination="3bG-Ka-hVR" id="rII-YH-6pt"/>
-                        <segue destination="ZGC-C7-tXc" kind="unwind" identifier="storeShowSegue" unwindAction="unwindSegueStoreShowWithSegue:" id="n7Q-oh-jEB"/>
+                        <segue destination="ZGC-C7-tXc" kind="unwind" identifier="unwindSegueStoreShow" unwindAction="unwindSegueStoreShowWithSegue:" id="CMN-b6-rvy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTL-sJ-LV5" userLabel="First Responder" sceneMemberID="firstResponder"/>

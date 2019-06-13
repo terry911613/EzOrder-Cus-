@@ -64,6 +64,7 @@
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
 		9D776B7222B0F9DA0011C876 /* RateDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateDishViewController.swift */; };
 		9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7322B0FFFF0011C876 /* RateSlider.swift */; };
+		9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC179EC22B2077200F357CE /* ReuseVC.swift */; };
 		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
 		9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDB2A622AFC0A800295461 /* BookingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		9D776B7122B0F9DA0011C876 /* RateDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateDishViewController.swift; sourceTree = "<group>"; };
 		9D776B7322B0FFFF0011C876 /* RateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSlider.swift; sourceTree = "<group>"; };
+		9DC179EC22B2077200F357CE /* ReuseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseVC.swift; sourceTree = "<group>"; };
 		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DFDB2A622AFC0A800295461 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookingViewController.swift; path = ../../View/Search/BookingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */,
+				9DC179EC22B2077200F357CE /* ReuseVC.swift */,
 				9D776B7322B0FFFF0011C876 /* RateSlider.swift */,
 				447A1715228BE383003AB41E /* IGCMenu.swift */,
 			);
@@ -574,6 +577,7 @@
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
+				9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
 				9D0445ED22A7F953002E2C66 /* Common.swift in Sources */,
