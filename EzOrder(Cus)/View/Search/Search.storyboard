@@ -341,7 +341,7 @@
         <!--StoreinformationView Controller-->
         <scene sceneID="RZu-PB-YBh">
             <objects>
-                <viewController id="wbo-o6-ja6" userLabel="StoreinformationView Controller" customClass="StoreShowViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="storeShowVC" id="wbo-o6-ja6" userLabel="StoreinformationView Controller" customClass="StoreShowViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dBp-1g-eSe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

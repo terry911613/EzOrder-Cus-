@@ -47,7 +47,7 @@
         <!--Search-->
         <scene sceneID="rbw-s3-6Rn">
             <objects>
-                <viewControllerPlaceholder storyboardName="Search" id="XrX-nf-4Gh" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="search" storyboardName="Search" id="XrX-nf-4Gh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="QIe-7L-5OI"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f84-zZ-LIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
