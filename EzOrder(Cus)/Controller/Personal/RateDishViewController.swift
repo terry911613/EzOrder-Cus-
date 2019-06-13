@@ -25,6 +25,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         
         let layer = CAShapeLayer()
         layer.frame = .zero
+        // 畫出來的部分才會顯示
         rateSlider.layer.mask = layer
         
         dishNameLabel.text = dishName

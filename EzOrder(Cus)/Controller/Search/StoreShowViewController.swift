@@ -116,6 +116,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
     
     @IBAction func likeButtonAction(_ sender: UIButton) {
+        // to nil 就轉成window座標系
         let btnLocation = (sender.superview?.convert(sender.frame.origin, to: nil))!
         let image = UIImage(named: "donut")
         let imageViews = UIImageView(image: image!)
