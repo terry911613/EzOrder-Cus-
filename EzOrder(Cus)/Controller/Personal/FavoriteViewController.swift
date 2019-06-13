@@ -15,6 +15,7 @@ class FavoriteViewController: UIViewController {
     var favoriteResArray = [QueryDocumentSnapshot]()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
+    var res: QueryDocumentSnapshot?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -86,11 +86,16 @@ extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        selectTypeMenu = allTypeMenu[indexPath.row]
 //        searcMenuTableView.reloadData()
-        
+        let cell = SearcMenuCollection.cellForItem(at: indexPath) as! SearcMenuCollectionViewCell
+        cell.searcMeneImageView.alpha = 1
         let type = typeArray[indexPath.row]
         if let typeName = type.data()["typeName"] as? String{
             getFood(typeName: typeName)
         }
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = SearcMenuCollection.cellForItem(at: indexPath) as! SearcMenuCollectionViewCell
+        cell.searcMeneImageView.alpha = 0.2
     }
 }
 extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{

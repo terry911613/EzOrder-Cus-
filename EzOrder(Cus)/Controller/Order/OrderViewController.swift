@@ -148,7 +148,7 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
-        cell.backView.backgroundColor = UIColor(red: 255/255, green: 66/255, blue: 150/255, alpha: 1)
+        cell.typeImage.alpha = 1
         
         if let type = typeArray[indexPath.row].data()["typeName"] as? String{
             getFood(typeName: type)
@@ -157,7 +157,7 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
-        cell.backView.backgroundColor = UIColor(red: 255/255, green: 162/255, blue: 195/255, alpha: 1)
+        cell.typeImage.alpha = 0.2
     }
 }
 

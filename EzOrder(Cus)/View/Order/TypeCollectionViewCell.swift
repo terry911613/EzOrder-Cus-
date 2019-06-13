@@ -12,5 +12,4 @@ class TypeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var typeImage: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var backView: UIView!
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 import ViewAnimator
 
 class SearchViewController: UIViewController {
@@ -85,8 +86,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         }
         else {
             let res = resArray[indexPath.row]
-            if let resName = res.data()["resName"] as? String{
+            if let resName = res.data()["resName"] as? String,
+                let resImage = res.data()["resImage"] as? String{
                 cell.StoreName.text = resName
+                cell.StoreImage.kf.setImage(with: URL(string: resImage))
             }
             print(2)
         }
