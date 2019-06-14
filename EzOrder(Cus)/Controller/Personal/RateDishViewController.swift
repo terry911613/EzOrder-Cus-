@@ -172,17 +172,8 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             comment = commentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         
-        let data: [String: Any] = ["foodRate": rate,
-                                   "foodComment": comment]
-        let db = Firestore.firestore()
         
-        print(Auth.auth().currentUser?.email)
-        print(orderNo)
-        print(dishName)
-        print(resID)
-        print(typeName)
-        print(foodRate)
-        print(foodRateCount)
+        let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email,
             let orderNo = orderNo,
             let dishName = dishName,
@@ -193,12 +184,16 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             
             let timeStamp = Date().timeIntervalSince1970
             let commentID = String(timeStamp) + userID
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
             
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).updateData(["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1])
+            let orderData: [String: Any] = ["foodRate": rate, "foodComment": comment]
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(orderData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(orderData)
             
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(["foodComment": comment, "date": Date(), "userID": userID])
+            let foodData: [String: Any] = ["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1]
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).updateData(foodData)
+            
+            let foodCommentData: [String: Any] = ["foodComment": comment, "foodRate": rate, "date": Date(), "userID": userID]
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(foodCommentData)
             
             dismiss(animated: true, completion: nil)
         }

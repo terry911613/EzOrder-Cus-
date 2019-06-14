@@ -18,8 +18,6 @@ class SearchMenuViewController: UIViewController {
     var foodArray = [QueryDocumentSnapshot]()
     var resID: String?
     
-    var selectFood: QueryDocumentSnapshot?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        selectTypeMenu = all
@@ -57,6 +55,7 @@ class SearchMenuViewController: UIViewController {
         if segue.identifier == "foodDetailSegue"{
             if let indexPath = searcMenuTableView.indexPathForSelectedRow{
                 let food = foodArray[indexPath.row]
+                print(food)
                 let searchFoodDetailVC = segue.destination as! SearchFoodDetailViewController
                 searchFoodDetailVC.food = food
             }

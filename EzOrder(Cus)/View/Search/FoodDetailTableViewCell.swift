@@ -8,9 +8,10 @@
 
 import UIKit
 
-class EvaluationTableViewCell: UITableViewCell {
+class FoodDetailTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var evaluationImageView: UIImageView!
-    @IBOutlet weak var evaluation: UIImageView!
+    @IBOutlet weak var rateImageView: UIImageView!
     @IBOutlet weak var evaluationTextView: UITextView!
     
     override func awakeFromNib() {

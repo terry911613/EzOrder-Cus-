@@ -13,7 +13,7 @@
 		2C0DFE8D22A95ACA002CC546 /* SearchMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */; };
 		2C0DFE8F22A95AEB002CC546 /* SearcMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */; };
 		2C0DFE9122A95B04002CC546 /* SearcMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */; };
-		2CB1B25B22AA2F9D00484CC9 /* EvaluationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */; };
+		2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */; };
 		2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */; };
 		2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */; };
 		2CEB987B22A7F15D0098181C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987A22A7F15D0098181C /* SignInViewController.swift */; };
@@ -77,7 +77,7 @@
 		2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMenuViewController.swift; sourceTree = "<group>"; };
 		2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuTableViewCell.swift; sourceTree = "<group>"; };
 		2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTableViewCell.swift; sourceTree = "<group>"; };
+		2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodDetailViewController.swift; sourceTree = "<group>"; };
 		2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMapViewController.swift; sourceTree = "<group>"; };
 		2CEB987A22A7F15D0098181C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */,
 				2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */,
 				2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */,
-				2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */,
+				2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -594,7 +594,7 @@
 				2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
 				4418C53722B0EAEA00B02854 /* OrderRecordDetailViewController.swift in Sources */,
-				2CB1B25B22AA2F9D00484CC9 /* EvaluationTableViewCell.swift in Sources */,
+				2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */,
 				447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */,
 				2C0DFE8B22A8DE03002CC546 /* StoreShowCollectionViewCell.swift in Sources */,
 				447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */,
