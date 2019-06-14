@@ -53,11 +53,18 @@ class SearchMenuViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "foodDetailSegue"{
-            if let indexPath = searcMenuTableView.indexPathForSelectedRow{
+            if let indexPath = searcMenuTableView.indexPathForSelectedRow,
+                let resID = resID{
                 let food = foodArray[indexPath.row]
-                print(food)
                 let searchFoodDetailVC = segue.destination as! SearchFoodDetailViewController
                 searchFoodDetailVC.food = food
+                searchFoodDetailVC.resID = resID
+                if let foodTotalRate = food.data()["foodTotalRate"] as? Float,
+                    let foodRateCount = food.data()["foodRateCount"] as? Float{
+                    
+                    let avgRate = foodTotalRate/foodRateCount
+                    searchFoodDetailVC.avgRate = avgRate
+                }
             }
         }
     }
@@ -147,9 +154,6 @@ extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{
                 }
             }
         }
-        
-//        cell.searcMenuTableName.text =
-//            selectTypeMenu[indexPath.row]
         return cell
     }
 }
