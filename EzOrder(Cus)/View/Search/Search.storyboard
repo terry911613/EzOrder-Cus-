@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -29,7 +29,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
                                                     <rect key="frame" x="10" y="10" width="167.5" height="153.5"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Mgu-JS-2Sg">
@@ -370,31 +370,31 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="商家" translatesAutoresizingMaskIntoConstraints="NO" id="CIY-8K-Z12">
-                                                <rect key="frame" x="17" y="192.5" width="16" height="16"/>
+                                                <rect key="frame" x="17" y="192.5" width="36" height="36"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地址" translatesAutoresizingMaskIntoConstraints="NO" id="TsV-Bo-SfF">
-                                                <rect key="frame" x="13" y="225.5" width="40" height="40"/>
+                                                <rect key="frame" x="13" y="245.5" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="OfH-Uy-3WX"/>
                                                     <constraint firstAttribute="height" constant="40" id="uNE-YV-kwA"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="編輯菜單營業時間" translatesAutoresizingMaskIntoConstraints="NO" id="k0b-T6-NRy">
-                                                <rect key="frame" x="13" y="286.5" width="40" height="40"/>
+                                                <rect key="frame" x="13" y="306.5" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="6dC-Um-0lN"/>
                                                     <constraint firstAttribute="height" constant="40" id="LDe-8c-3m6"/>
                                                 </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="電話" translatesAutoresizingMaskIntoConstraints="NO" id="sqw-X4-O1U">
-                                                <rect key="frame" x="13" y="348.5" width="40" height="40"/>
+                                                <rect key="frame" x="13" y="368.5" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="6la-dv-Ob7"/>
                                                     <constraint firstAttribute="width" constant="40" id="kT7-YU-Crl"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shX-5E-3qc">
-                                                <rect key="frame" x="44" y="204.5" width="25" height="15"/>
+                                                <rect key="frame" x="64" y="204.5" width="25" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -418,7 +418,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鼎王麻辣鍋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HY-gY-1t4">
-                                                <rect key="frame" x="103" y="204.5" width="87" height="20.5"/>
+                                                <rect key="frame" x="123" y="204.5" width="87" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -436,19 +436,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tTl-f2-Vee">
-                                                <rect key="frame" x="0.0" y="544.5" width="375" height="179"/>
+                                                <rect key="frame" x="0.0" y="564.5" width="375" height="179"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="179" id="gOJ-Pa-13E"/>
                                                 </constraints>
                                             </mapView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-6U-Ph6">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-6U-Ph6">
+                                                <rect key="frame" x="0.0" y="0.0" width="375.00000000000091" height="187.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="TRO-6U-Ph6" secondAttribute="height" multiplier="2:1" id="bLW-5a-GRt"/>
                                                 </constraints>
                                             </imageView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CoW-RU-jLx">
-                                                <rect key="frame" x="0.0" y="408.5" width="375" height="128"/>
+                                                <rect key="frame" x="0.0" y="428.5" width="375" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="N66-HE-oSU"/>
