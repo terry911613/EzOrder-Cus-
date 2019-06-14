@@ -175,9 +175,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
-            let foodMoney = food.data()["foodPrice"] as? Int,
-            let foodTotalRate = food.data()["foodTotalRate"] as? Double,
-            let foodRateCount = food.data()["foodRateCount"] as? Int {
+            let foodMoney = food.data()["foodPrice"] as? Int{
             print("orderAmounts: ",orderAmounts)
             print("selectTypeIndex", selectTypeIndex)
             var thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
@@ -187,6 +185,30 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))
             cell.price.text = "$\(foodMoney)"
+            
+            
+            cell.callBackCount = { clickPlus, countAmount in
+                cell.count.text = "數量:\(countAmount)"
+                if clickPlus == true {
+                    self.orderDic[food] = countAmount
+                    self.totalPrice += foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] += 1
+                } else {
+                    if countAmount == 0{
+                        self.orderDic[food] = nil
+                    }
+                    else{
+                        self.orderDic[food] = countAmount
+                    }
+                    self.totalPrice -= foodMoney
+                    self.orderAmounts[self.selectTypeIndex][indexPath.row] -= 1
+                }
+                self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
+            }
+        }
+        
+        if let foodTotalRate = food.data()["foodTotalRate"] as? Double,
+            let foodRateCount = food.data()["foodRateCount"] as? Double {
             let foodRate = foodTotalRate/Double(foodRateCount)
             if foodRate < 2.75 {
                 if foodRate < 0.25 {
@@ -214,25 +236,6 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
                 } else {
                     cell.rateStarImageView.image = UIImage(named: "rate4")
                 }
-            }
-            
-            cell.callBackCount = { clickPlus, countAmount in
-                cell.count.text = "數量:\(countAmount)"
-                if clickPlus == true {
-                    self.orderDic[food] = countAmount
-                    self.totalPrice += foodMoney
-                    self.orderAmounts[self.selectTypeIndex][indexPath.row] += 1
-                } else {
-                    if countAmount == 0{
-                        self.orderDic[food] = nil
-                    }
-                    else{
-                        self.orderDic[food] = countAmount
-                    }
-                    self.totalPrice -= foodMoney
-                    self.orderAmounts[self.selectTypeIndex][indexPath.row] -= 1
-                }
-                self.totalPriceLabel.text = "總共: $\(self.totalPrice)"
             }
         }
         //        cell.callBackStepper = { value in

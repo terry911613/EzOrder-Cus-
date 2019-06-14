@@ -363,63 +363,20 @@ extension ProgressViewController: TPDApplePayDelegate{
         // 设置URL
         let url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
         var request = URLRequest(url: URL(string: url)!)
+        
         request.setValue("Content-Type", forHTTPHeaderField: "application/json​")
-        request.setValue("x-api-key", forHTTPHeaderField: "partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX")
+        request.addValue("partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX", forHTTPHeaderField: "x-api-key")
         request.httpMethod = "POST"
-        // 设置要post的内容，字典格式
         
-//        var cardholder = [String: String]()
-//        cardholder["phone_number"] = "+886923456789"
-//        cardholder["name"] = "王小明"
-//        cardholder["email"] = "LittleMing@Wang.com"
-//        cardholder["address"] = "台北市天龍區芝麻街1號1樓"
-//        cardholder["national_id"] = "A123456789"
-//
-//        var postData = [String: Any]()
-//        postData["prime"] = prime
-//        postData["partner_key"] = "partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX"
-//        postData["merchant_id"] = "merchant.com.TerryLee.EzOrderCus"
-//        postData["details"] = "TapPay Test"
-//        postData["amount"] = 100
-//        postData["cardholder"] = cardholder
-        
-        let postData: String = "{\"prime\":\"\(prime!)\",\"partner_key\":\"partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX\",\"merchant_id\":\"merchant.com.TerryLee.EzOrderCus\",\"details\":\"TapPay Test\",\"amount\":\(100),\"cardholder\":{\"phone_number\":\"+886923456789\",\"name\":\"王小明\",\"email\":\"LittleMing@Wang.com\",\"zip_code\":\(100),\"address\":\"台北市天龍區芝麻街1號1樓\",\"national_id\":\"A123456789\"}}"
-        
-//        let postData: String = "{\"prime\":\"\(prime!)\",\"partner_key\":\"partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX\",\"merchant_id\":\"merchant.com.TerryLee.EzOrderCus\",\"details\":\"TapPay Test\",\"amount\":\(applePay.cart.totalAmount!.stringValue),\"cardholder\":{\"phone_number\":\"+886923456789\",\"name\":\"Jane Doe\",\"email\":\"Jane@Doe.com\",\"zip_code\":\"12345\",\"address\":\"1231stAvenue,City,Country\",\"national_id\":\"A123456789\"}}"
-        
-        print(postData)
-        
-//        let jsonData = try! JSONSerialization.data(withJSONObject: postData)
-        
-//        JSONSerialization.jsonObject(with: postData, options: .allowFragments)
-//        let jsonData = try! JSONSerialization.jsonObject(with: postData, options: .allowFragments)
-//        let jsonString = String(data: jsonData, encoding: .utf8)
-//        print("jsonString = \(jsonString!)")
-  
-//        let c = try? JSONSerialization.jsonObject(with: b, options: .allowFragments)
-        
-//        print(postData)
-        
-        
-        request.httpBody = postData.data(using: .utf8)
-//        request.httpBody = jsonData
-        
-        let task = URLSession.shared.dataTask(with: request) {(data, response, error) in
-            
-            do {
-                print(data)
-                if let data = data{
-                    let r = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
-                    print("--------------")
-                    print(r)
-                    print("--------------")
-                }
-            } catch {
-                print("無法連接伺服器:\(error)")
-                return
-            }
+        let test = ["prime": prime!,"partner_key": "partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX","merchant_id": "merchant.com.TerryLee.EzOrderCus","amount": "100","order_number":"1","cardholder":["phone_number":"+886923456789","name":"sun","email":"LittleMing@Wang.com"],"details":"TapPay Test"] as [String : Any]
+        let data = try?  JSONSerialization.data(withJSONObject: test)
+        let task = URLSession.shared.uploadTask(with: request, from: data){(data, response, error) in
+            print("data:\(String(data: data!, encoding: .utf8))")
+            print("response:\(response)")
+            print("error\(error)")
         }
         task.resume()
+        
         
         // 2. If Payment Success, set paymentReault = ture.
         let paymentReault = true;
