@@ -178,7 +178,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             let foodMoney = food.data()["foodPrice"] as? Int{
             print("orderAmounts: ",orderAmounts)
             print("selectTypeIndex", selectTypeIndex)
-            var thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
+            let thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
             cell.countAmount = thisFoodAmount
             cell.count.text = "數量:\(String(thisFoodAmount))"
             
