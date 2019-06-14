@@ -85,8 +85,8 @@ class CartViewController: UIViewController {
                 if let foodName = order.data()["foodName"] as? String,
                     let foodImage = order.data()["foodImage"] as? String,
                     let foodPrice = order.data()["foodPrice"] as? Int,
-                    let typeName = order.data()["typeName"] as? String{
-                    let orderFoodData: [String: Any] = ["typeName": typeName,
+                    let typeDocumentID = order.data()["typeDocumentID"] as? String{
+                    let orderFoodData: [String: Any] = ["typeDocumentID": typeDocumentID,
                                                         "foodName": foodName,
                                                         "foodImage": foodImage,
                                                         "foodPrice": foodPrice,

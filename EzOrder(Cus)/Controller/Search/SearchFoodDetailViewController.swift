@@ -22,8 +22,6 @@ class SearchFoodDetailViewController: UIViewController {
     
     var food: QueryDocumentSnapshot?
     var resID: String?
-    var foodName: String?
-    var typeName: String?
     var avgRate: Float?
     var foodCommentArray = [QueryDocumentSnapshot]()
     
@@ -43,7 +41,7 @@ class SearchFoodDetailViewController: UIViewController {
                 let foodName = food.data()["foodName"] as? String,
                 let foodPrice = food.data()["foodPrice"] as? Int,
                 let foodDetail = food.data()["foodDetail"] as? String,
-                let typeName = food.data()["typeName"] as? String{
+                let typeDocumentID = food.data()["typeDocumentID"] as? String{
                 
                 foodImageView.kf.setImage(with: URL(string: foodImage))
                 foodNameLabel.text = "菜名：\(foodName)"
@@ -52,7 +50,7 @@ class SearchFoodDetailViewController: UIViewController {
                 
                 let db = Firestore.firestore()
                 if let resID = resID{
-                    db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(foodName).collection("foodComment").getDocuments { (foodComment, error) in
+                    db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodName).collection("foodComment").getDocuments { (foodComment, error) in
                         if let foodComment = foodComment{
                             if foodComment.documents.isEmpty{
                                 self.foodCommentArray.removeAll()

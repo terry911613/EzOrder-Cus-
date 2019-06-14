@@ -20,31 +20,27 @@ class SearchMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        selectTypeMenu = all
-//        allTypeMenu = [all, set, rice, noodle, soup, dessert]
     }
     
-    func getFood(typeName: String){
+    func getFood(typeDocumentID: String){
         print("-------------")
         //   print(typeName)
         let db = Firestore.firestore()
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").order(by: "foodIndex", descending: false).addSnapshotListener { (food, error) in
+            print(resID)
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").whereField("foodStatus", isEqualTo: 1).order(by: "foodIndex", descending: false).getDocuments { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
                         self.searcMenuTableView.reloadData()
-                        
                     }
                     else{
-                        let documentChange = food.documentChanges[0]
-                        if documentChange.type == .added {
-                            self.foodArray = food.documents
-                            print(self.foodArray.count)
-                            self.searcMenuTableView.reloadData()
-                            print("getFood Success")
-                            print("-------------")
-                        }
+                        self.foodArray = food.documents
+                        print(self.foodArray.count)
+                        self.searcMenuTableView.reloadData()
+                        print("getFood Success")
+                        print("-------------")
+                        
                     }
                 }
             }
@@ -93,8 +89,8 @@ extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewD
         let cell = SearcMenuCollection.cellForItem(at: indexPath) as! SearcMenuCollectionViewCell
         cell.searcMeneImageView.alpha = 1
         let type = typeArray[indexPath.row]
-        if let typeName = type.data()["typeName"] as? String{
-            getFood(typeName: typeName)
+        if let typeDocumentID = type.data()["typeDocumentID"] as? String{
+            getFood(typeDocumentID: typeDocumentID)
         }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

@@ -23,7 +23,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     var dishName: String?
     var orderNo: String?
     var resID: String?
-    var typeName: String?
+    var typeDocumentID: String?
     var foodRate: Double?
     var foodRateCount: Double?
     var viewHeight: CGFloat?
@@ -55,11 +55,11 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         // Do any additional setup after loading the view.
         let db = Firestore.firestore()
         if let resID = resID,
-            let typeName = typeName,
+            let typeDocumentID = typeDocumentID,
             let dishName = dishName,
             let orderNo = orderNo,
             let userID = Auth.auth().currentUser?.email{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).getDocument { (food, error) in
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(dishName).getDocument { (food, error) in
                 if let foodData = food?.data(){
                     if let foodTotalRate = foodData["foodTotalRate"] as? Double,
                         let foodRateCount = foodData["foodRateCount"] as? Double{
@@ -188,7 +188,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             let orderNo = orderNo,
             let dishName = dishName,
             let resID = resID,
-            let typeName = typeName,
+            let typeDocumentID = typeDocumentID,
             let foodRate = foodRate,
             let foodRateCount = foodRateCount{
             
@@ -200,10 +200,10 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(orderData)
             
             let foodData: [String: Any] = ["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1]
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).updateData(foodData)
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(dishName).updateData(foodData)
             
             let foodCommentData: [String: Any] = ["foodComment": comment, "foodRate": rate, "date": Date(), "userID": userID]
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(foodCommentData)
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(foodCommentData)
             
             dismiss(animated: true, completion: nil)
         }
