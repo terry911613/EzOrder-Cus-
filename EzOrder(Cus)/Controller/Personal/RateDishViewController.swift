@@ -11,12 +11,14 @@ import Firebase
 
 class RateDishViewController: UIViewController, UITextViewDelegate {
     
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var dishNameLabel: UILabel!
     @IBOutlet weak var rateSlider: RateSlider!
     @IBOutlet weak var rateImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var isCommentedView: UIView!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var alertView: UIView!
     
     var dishName: String?
     var orderNo: String?
@@ -24,9 +26,17 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     var typeName: String?
     var foodRate: Double?
     var foodRateCount: Double?
+    var viewHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let rectShape = CAShapeLayer()
+//        rectShape.bounds = headerView.frame
+//        rectShape.position = headerView.center
+//        rectShape.path = UIBezierPath(roundedRect: headerView.bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+//        headerView.layer.mask = rectShape
+
+        addKeyboardObserver()
         commentTextView.delegate = self
         rateSlider.parentVC = self
         
@@ -198,5 +208,36 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             dismiss(animated: true, completion: nil)
         }
         // 上傳rate和comment
+    }
+}
+extension RateDishViewController {
+    func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        // 能取得鍵盤高度就讓view上移鍵盤高度，否則上移view的1/3高度
+        viewHeight = view.frame.height
+        let alertViewHeight = self.alertView.frame.height
+        let alertViewLeftBottomY = alertView.frame.origin.y + alertViewHeight
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRect = keyboardFrame.cgRectValue
+            
+            let overlap = alertViewLeftBottomY + keyboardRect.height - viewHeight!
+            if overlap > -10 {
+                self.alertView.frame.origin.y -= (overlap + 10)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        self.alertView.center = self.view.center
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }

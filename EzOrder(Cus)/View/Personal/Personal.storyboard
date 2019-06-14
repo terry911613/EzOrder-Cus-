@@ -206,6 +206,7 @@
                         <viewLayoutGuide key="safeArea" id="HAy-K1-oH5"/>
                     </view>
                     <connections>
+                        <outlet property="alertView" destination="olJ-w6-6KW" id="Zen-04-YeL"/>
                         <outlet property="userImageView" destination="KQP-zp-oh7" id="yJZ-G8-3Ue"/>
                         <outlet property="userNameTextfield" destination="qwe-2z-dxf" id="R7M-vf-ezF"/>
                         <outlet property="userPhoneTextfield" destination="qIz-Ru-6zC" id="Zw1-d7-gtS"/>
@@ -229,7 +230,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
+                                <rect key="frame" x="37.5" y="183.49999999999997" width="300" height="300.00000000000006"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="height" multiplier="1:1" id="RYG-nw-5Jn"/>
@@ -847,7 +848,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbE-kY-axx">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vbE-kY-axx">
                                 <rect key="frame" x="62.5" y="183.5" width="250" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5p5-Yo-QW7">
@@ -866,11 +867,6 @@
                                             <constraint firstItem="i52-4q-H5Y" firstAttribute="centerX" secondItem="5p5-Yo-QW7" secondAttribute="centerX" id="T7y-eL-5vh"/>
                                             <constraint firstItem="i52-4q-H5Y" firstAttribute="centerY" secondItem="5p5-Yo-QW7" secondAttribute="centerY" id="TaI-B5-qxX"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="20"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ONT-k7-nAO">
                                         <rect key="frame" x="10" y="130.5" width="230" height="115.5"/>
@@ -965,8 +961,10 @@
                         <viewLayoutGuide key="safeArea" id="X6L-0f-1ds"/>
                     </view>
                     <connections>
+                        <outlet property="alertView" destination="vbE-kY-axx" id="5w8-Ee-fsw"/>
                         <outlet property="commentTextView" destination="ONT-k7-nAO" id="fcf-gk-qNA"/>
                         <outlet property="dishNameLabel" destination="IeT-We-fW4" id="qy5-DT-8Cp"/>
+                        <outlet property="headerView" destination="5p5-Yo-QW7" id="J2p-eZ-cMh"/>
                         <outlet property="isCommentedView" destination="9k3-d4-Ivi" id="XqT-e2-juY"/>
                         <outlet property="rateImageView" destination="WsG-8Q-vdd" id="h3d-3t-Rqg"/>
                         <outlet property="rateSlider" destination="hsw-fL-zON" id="O36-2p-P0E"/>
