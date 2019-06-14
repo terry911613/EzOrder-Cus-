@@ -18,43 +18,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sxM-aa-gac">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="169" id="cKs-dX-DTb" customClass="SearcStoreTableViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="32" width="375" height="169"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="174" id="cKs-dX-DTb" customClass="SearcStoreTableViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="32" width="375" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cKs-dX-DTb" id="7il-HF-1xN">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="168.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-bG-a3H">
-                                                    <rect key="frame" x="228" y="0.0" width="98" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dY-Px-iY7">
-                                                    <rect key="frame" x="228" y="96" width="46" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
-                                                    <rect key="frame" x="11" y="22" width="191" height="140"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
+                                                    <rect key="frame" x="10" y="10" width="167.5" height="153.5"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwO-JP-bAb">
-                                                    <rect key="frame" x="250" y="43" width="144" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Mgu-JS-2Sg">
+                                                    <rect key="frame" x="187.5" y="10" width="182.5" height="153.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-bG-a3H">
+                                                            <rect key="frame" x="0.0" y="0.0" width="35" height="33"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="store name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwO-JP-bAb">
+                                                            <rect key="frame" x="0.0" y="40" width="86" height="33.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dY-Px-iY7">
+                                                            <rect key="frame" x="0.0" y="80.5" width="35" height="33"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate4" translatesAutoresizingMaskIntoConstraints="NO" id="VdV-YX-NZ6">
+                                                            <rect key="frame" x="0.0" y="120.5" width="165.5" height="33"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="VdV-YX-NZ6" secondAttribute="height" multiplier="5:1" id="XEa-OG-7bN"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mgu-JS-2Sg" firstAttribute="leading" secondItem="7il-HF-1xN" secondAttribute="centerX" id="48D-0R-Njr"/>
+                                                <constraint firstItem="NA1-Wu-HHI" firstAttribute="top" secondItem="7il-HF-1xN" secondAttribute="top" constant="10" id="BUx-f7-kGr"/>
+                                                <constraint firstAttribute="bottom" secondItem="NA1-Wu-HHI" secondAttribute="bottom" constant="10" id="Op5-Fb-pid"/>
+                                                <constraint firstItem="Mgu-JS-2Sg" firstAttribute="top" secondItem="7il-HF-1xN" secondAttribute="top" constant="10" id="Pjx-uS-6PH"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mgu-JS-2Sg" secondAttribute="bottom" constant="10" id="fd8-dv-YTm"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mgu-JS-2Sg" secondAttribute="trailing" constant="5" id="iw5-mu-ygj"/>
+                                                <constraint firstItem="Mgu-JS-2Sg" firstAttribute="leading" secondItem="NA1-Wu-HHI" secondAttribute="trailing" constant="10" id="vjQ-KR-gf4"/>
+                                                <constraint firstItem="NA1-Wu-HHI" firstAttribute="leading" secondItem="7il-HF-1xN" secondAttribute="leading" constant="10" id="yNF-2X-Z7E"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="StoreImage" destination="NA1-Wu-HHI" id="AiL-Qt-lCb"/>
@@ -671,13 +688,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="LDF-sS-K0u">
-                                                    <rect key="frame" x="15" y="10" width="133.5" height="100"/>
+                                                    <rect key="frame" x="10" y="10" width="133.5" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="LDF-sS-K0u" secondAttribute="height" multiplier="4:3" id="Ezx-75-Yqe"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="nqa-DZ-eVW">
-                                                    <rect key="frame" x="153.5" y="5" width="216.5" height="109.5"/>
+                                                    <rect key="frame" x="148.5" y="5" width="221.5" height="109.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="牛肉麵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-iz-WTf">
                                                             <rect key="frame" x="0.0" y="0.0" width="61.5" height="36.5"/>
@@ -702,7 +719,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="nqa-DZ-eVW" secondAttribute="bottom" constant="5" id="RC9-L2-0Wz"/>
-                                                <constraint firstItem="LDF-sS-K0u" firstAttribute="leading" secondItem="hGB-cV-94F" secondAttribute="leading" constant="15" id="XKM-cz-qlF"/>
+                                                <constraint firstItem="LDF-sS-K0u" firstAttribute="leading" secondItem="hGB-cV-94F" secondAttribute="leading" constant="10" id="XKM-cz-qlF"/>
                                                 <constraint firstItem="nqa-DZ-eVW" firstAttribute="leading" secondItem="LDF-sS-K0u" secondAttribute="trailing" constant="5" id="ZUq-C7-CvB"/>
                                                 <constraint firstAttribute="trailing" secondItem="nqa-DZ-eVW" secondAttribute="trailing" constant="5" id="ZUv-ug-lec"/>
                                                 <constraint firstItem="LDF-sS-K0u" firstAttribute="centerY" secondItem="hGB-cV-94F" secondAttribute="centerY" id="ZYx-95-eiT"/>
