@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class RateDishViewController: UIViewController, UITextViewDelegate {
+    
     @IBOutlet weak var dishNameLabel: UILabel!
     @IBOutlet weak var rateSlider: RateSlider!
     @IBOutlet weak var rateImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var isCommentedView: UIView!
+    @IBOutlet weak var submitButton: UIButton!
     
     var dishName: String?
+    var orderNo: String?
+    var resID: String?
+    var typeName: String?
+    var foodRate: Double?
+    var foodRateCount: Double?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         commentTextView.delegate = self
@@ -33,6 +43,39 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         commentTextView.text = "添加些評論吧(選填)"
         commentTextView.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
+        let db = Firestore.firestore()
+        if let resID = resID,
+            let typeName = typeName,
+            let dishName = dishName,
+            let orderNo = orderNo,
+            let userID = Auth.auth().currentUser?.email{
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).getDocument { (food, error) in
+                if let foodData = food?.data(){
+                    if let foodTotalRate = foodData["foodTotalRate"] as? Double,
+                        let foodRateCount = foodData["foodRateCount"] as? Double{
+                        self.foodRate = foodTotalRate
+                        self.foodRateCount = foodRateCount
+                    }
+                }
+            }
+            
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).getDocument { (food, error) in
+                print("ff")
+                if let foodData = food?.data(){
+                    print("ss")
+                    if let foodRate = foodData["foodRate"] as? Float,
+                        let foodComment = foodData["foodComment"] as? String{
+                        self.commentTextView.text = foodComment
+                        self.updateStar(value: foodRate)
+                        self.isCommentedView.isHidden = false
+                        self.submitButton.isEnabled = false
+                    }
+                    else{
+                        self.isCommentedView.isHidden = true
+                    }
+                }
+            }
+        }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -82,6 +125,18 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func clickSubmit(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "評價評分只能評一次", message: "確認送出？", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "確定", style: .default) { (ok) in
+            self.upload()
+        }
+        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func upload(){
         var rate = 0.0
         let sliderValue = rateSlider.value
         if sliderValue < 2.75 {
@@ -116,16 +171,37 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         if commentTextView.text != "添加些評論吧(選填)" {
             comment = commentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
+        
+        let data: [String: Any] = ["foodRate": rate,
+                                   "foodComment": comment]
+        let db = Firestore.firestore()
+        
+        print(Auth.auth().currentUser?.email)
+        print(orderNo)
+        print(dishName)
+        print(resID)
+        print(typeName)
+        print(foodRate)
+        print(foodRateCount)
+        if let userID = Auth.auth().currentUser?.email,
+            let orderNo = orderNo,
+            let dishName = dishName,
+            let resID = resID,
+            let typeName = typeName,
+            let foodRate = foodRate,
+            let foodRateCount = foodRateCount{
+            
+            let timeStamp = Date().timeIntervalSince1970
+            let commentID = String(timeStamp) + userID
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
+            
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).updateData(["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1])
+            
+            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(["foodComment": comment, "date": Date(), "userID": userID])
+            
+            dismiss(animated: true, completion: nil)
+        }
         // 上傳rate和comment
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

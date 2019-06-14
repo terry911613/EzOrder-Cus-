@@ -18,23 +18,12 @@ class SearchMenuViewController: UIViewController {
     var foodArray = [QueryDocumentSnapshot]()
     var resID: String?
     
-    var type = ["全部", "套餐", "麵", "飯", "湯", "甜點"]
-    var selectTypeMenu = [String]()
-    var all = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯", "乾麵", "湯麵", "義大利麵"]
-    var set = ["滷肉飯套餐", "雞肉飯套餐", "排骨飯套餐", "雞腿飯套餐", "香腸飯套餐", "乾麵套餐", "湯麵套餐", "義大利麵套餐"]
-    var rice = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯"]
-    var noodle = ["乾麵", "湯麵", "義大利麵"]
-    var soup = ["蛤蠣湯", "貢丸湯"]
-    var dessert = ["蛋糕", "紅豆湯"]
-    var allTypeMenu = [[String]]()
-    var Money = ["10,20,30,40,50,60"]
+    var selectFood: QueryDocumentSnapshot?
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectTypeMenu = all
-        allTypeMenu = [all, set, rice, noodle, soup, dessert]
+//        selectTypeMenu = all
+//        allTypeMenu = [all, set, rice, noodle, soup, dessert]
     }
     
     func getFood(typeName: String){
@@ -63,7 +52,16 @@ class SearchMenuViewController: UIViewController {
             }
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "foodDetailSegue"{
+            if let indexPath = searcMenuTableView.indexPathForSelectedRow{
+                let food = foodArray[indexPath.row]
+                let searchFoodDetailVC = segue.destination as! SearchFoodDetailViewController
+                searchFoodDetailVC.food = food
+            }
+        }
+    }
 
 }
 extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewDelegate{
@@ -111,38 +109,42 @@ extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{
         let food = foodArray[indexPath.row]
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
-            let foodMoney = food.data()["foodPrice"] as? Int,
-            let foodTotalRate = food.data()["foodTotalRate"] as? Double,
-            let foodRateCount = food.data()["foodRateCount"] as? Int {
+            let foodMoney = food.data()["foodPrice"] as? Int{
+            
             cell.searcMenuTableName.text = foodName
             cell.searcMenuTabelImage.kf.setImage(with: URL(string: foodImage))
             cell.searcTableMenuMoney.text = "$\(foodMoney)"
+            
+        }
+        
+        if let foodTotalRate = food.data()["foodTotalRate"] as? Double,
+        let foodRateCount = food.data()["foodRateCount"] as? Double {
             let foodRate = foodTotalRate/Double(foodRateCount)
             if foodRate < 2.75 {
                 if foodRate < 0.25 {
-                cell.rateStarImageView.image = UIImage(named: "rate0")
+                    cell.rateStarImageView.image = UIImage(named: "rate0")
                 } else if foodRate < 0.75 {
-                cell.rateStarImageView.image = UIImage(named: "rate05")
+                    cell.rateStarImageView.image = UIImage(named: "rate05")
                 } else if foodRate < 1.25 {
-                cell.rateStarImageView.image = UIImage(named: "rate1")
+                    cell.rateStarImageView.image = UIImage(named: "rate1")
                 } else if foodRate < 1.75 {
-                cell.rateStarImageView.image = UIImage(named: "rate15")
+                    cell.rateStarImageView.image = UIImage(named: "rate15")
                 } else if foodRate < 2.25 {
-                cell.rateStarImageView.image = UIImage(named: "rate2")
+                    cell.rateStarImageView.image = UIImage(named: "rate2")
                 } else {
-                cell.rateStarImageView.image = UIImage(named: "rate25")
+                    cell.rateStarImageView.image = UIImage(named: "rate25")
                 }
             } else {
                 if foodRate < 3.25 {
-                cell.rateStarImageView.image = UIImage(named: "rate3")
+                    cell.rateStarImageView.image = UIImage(named: "rate3")
                 } else if foodRate < 3.75 {
-                cell.rateStarImageView.image = UIImage(named: "rate35")
+                    cell.rateStarImageView.image = UIImage(named: "rate35")
                 } else if foodRate < 4.25 {
-                cell.rateStarImageView.image = UIImage(named: "rate4")
+                    cell.rateStarImageView.image = UIImage(named: "rate4")
                 } else if foodRate < 4.75 {
-                cell.rateStarImageView.image = UIImage(named: "rate45")
+                    cell.rateStarImageView.image = UIImage(named: "rate45")
                 } else {
-                cell.rateStarImageView.image = UIImage(named: "rate4")
+                    cell.rateStarImageView.image = UIImage(named: "rate4")
                 }
             }
         }

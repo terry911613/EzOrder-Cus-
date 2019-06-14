@@ -7,21 +7,30 @@
 //
 
 import UIKit
+import Firebase
+import Kingfisher
 
-class SearchEvaluationViewController: UIViewController {
-    var evaluation = ["1","2","3","4","5"]
-    @IBOutlet weak var searcimageView: UIImageView!
+class SearchFoodDetailViewController: UIViewController {
     
-    @IBOutlet weak var evaluationTableView: UITableView!
+    var evaluation = ["1","2","3","4","5"]
+    @IBOutlet weak var foodImageView: UIImageView!
+    @IBOutlet weak var commentTableView: UITableView!
+    
+    var food: QueryDocumentSnapshot?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let food = food{
+            if let foodImage = food.data()["foodImage"] as? String{
+                
+                foodImageView.kf.setImage(with: URL(string: foodImage))
+            }
+        }
     }
-    
-
-
 }
 
-extension SearchEvaluationViewController: UITableViewDelegate,UITableViewDataSource{
+extension SearchFoodDetailViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return evaluation.count
     }
@@ -31,7 +40,4 @@ extension SearchEvaluationViewController: UITableViewDelegate,UITableViewDataSou
         cell.evaluationTextView.text = evaluation[indexPath.row]
         return cell
     }
-    
-    
-
 }

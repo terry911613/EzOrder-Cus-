@@ -29,12 +29,34 @@ class OrderRecordDetailViewController: UIViewController {
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
                         self.foodDetailTableView.reloadData()
+                        print("shit")
                     }
                     else{
                         self.foodArray = food.documents
                         self.foodDetailTableView.reloadData()
+                        print("fuck")
                     }
                 }
+            }
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dishRateVC = segue.destination as? RateDishViewController {
+            print(foodDetailTableView.indexPathForSelectedRow)
+            if let indexPath = foodDetailTableView.indexPathForSelectedRow,
+                let orderNo = orderNo{
+                let food = foodArray[indexPath.row]
+                print(food.data()["foodName"] as? String)
+                print(food.data()["resID"] as? String)
+                print(food.data()["typeName"] as? String)
+                if let foodName = food.data()["foodName"] as? String,
+                    let resID = food.data()["resID"] as? String,
+                    let typeName = food.data()["typeName"] as? String{
+                    dishRateVC.dishName = foodName
+                    dishRateVC.resID = resID
+                    dishRateVC.typeName = typeName
+                }
+                dishRateVC.orderNo = orderNo
             }
         }
     }
@@ -64,15 +86,5 @@ extension OrderRecordDetailViewController: UITableViewDelegate, UITableViewDataS
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "rateDishSegue", sender: self)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dishRateVC = segue.destination as? RateDishViewController {
-            let indexPath = foodDetailTableView.indexPathForSelectedRow
-            let food = foodArray[(indexPath?.row)!]
-            let foodName = food.data()["foodName"] as! String
-            dishRateVC.dishName = foodName
-        }
     }
 }
