@@ -17,6 +17,7 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var personalTableView: UITableView!
+    var lise = ["收藏","日曆","消費記錄","遊戲","修改","info"]
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
     
     override func viewDidLoad() {
@@ -74,7 +75,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath)
         cell.selectionStyle = .none
-        cell.imageView?.image = UIImage(named: "Cash")
+        cell.imageView?.image = UIImage(named: lise[indexPath.row])
         cell.textLabel?.text = personalArray[indexPath.row]
         return cell
     }

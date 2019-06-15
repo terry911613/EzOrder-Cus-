@@ -11,7 +11,8 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
     @IBOutlet weak var signInButton: FBLoginButton!
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
-    
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +66,12 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
         //TODO: Log in the user
         Auth.auth().signIn(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
             if error != nil {
+                self.emailLabel.text = "帳號錯誤"
+                self.emailLabel.textColor = .red
+                self.emailLabel.isHidden = false
+                self.passwordLabel.text = "密碼錯誤"
+                self.passwordLabel.textColor = .red
+                self.passwordLabel.isHidden = false
                 print(error!)
                 print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
@@ -74,6 +81,12 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
                 self.present(alert, animated: true, completion: nil)
             }
             else{
+                self.emailLabel.text = ""
+                self.emailLabel.isHidden = true
+                self.passwordLabel.text = ""
+                self.passwordLabel.isHidden = true
+
+                
                 print("Log in Successful")
                 print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
