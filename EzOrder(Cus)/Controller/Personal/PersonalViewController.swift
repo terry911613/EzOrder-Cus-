@@ -43,8 +43,8 @@ class PersonalViewController: UIViewController {
                         self.nameLabel.text = userName
                         self.phoneLabel.text = "電話：\(userPhone)"
                     }
-                    if let userPoint = userData["userPoint"] as? Int{
-                        self.pointLabel.text = "點數：\(userPoint)"
+                    if let totalPoint = userData["totalPoint"] as? Int{
+                        self.pointLabel.text = "點數：\(totalPoint)"
                     }
                     else{
                         self.pointLabel.text = "尚未擁有任何點數"

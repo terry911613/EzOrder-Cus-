@@ -18,52 +18,52 @@ class SearchMenuViewController: UIViewController {
     var foodArray = [QueryDocumentSnapshot]()
     var resID: String?
     
-    var type = ["全部", "套餐", "麵", "飯", "湯", "甜點"]
-    var selectTypeMenu = [String]()
-    var all = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯", "乾麵", "湯麵", "義大利麵"]
-    var set = ["滷肉飯套餐", "雞肉飯套餐", "排骨飯套餐", "雞腿飯套餐", "香腸飯套餐", "乾麵套餐", "湯麵套餐", "義大利麵套餐"]
-    var rice = ["滷肉飯", "雞肉飯", "排骨飯", "雞腿飯", "香腸飯"]
-    var noodle = ["乾麵", "湯麵", "義大利麵"]
-    var soup = ["蛤蠣湯", "貢丸湯"]
-    var dessert = ["蛋糕", "紅豆湯"]
-    var allTypeMenu = [[String]]()
-    var Money = ["10,20,30,40,50,60"]
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectTypeMenu = all
-        allTypeMenu = [all, set, rice, noodle, soup, dessert]
     }
     
-    func getFood(typeName: String){
+    func getFood(typeDocumentID: String){
         print("-------------")
         //   print(typeName)
         let db = Firestore.firestore()
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").order(by: "foodIndex", descending: false).addSnapshotListener { (food, error) in
+            print(resID)
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").whereField("foodStatus", isEqualTo: 1).order(by: "foodIndex", descending: false).getDocuments { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
                         self.searcMenuTableView.reloadData()
-                        
                     }
                     else{
-                        let documentChange = food.documentChanges[0]
-                        if documentChange.type == .added {
-                            self.foodArray = food.documents
-                            print(self.foodArray.count)
-                            self.searcMenuTableView.reloadData()
-                            print("getFood Success")
-                            print("-------------")
-                        }
+                        self.foodArray = food.documents
+                        print(self.foodArray.count)
+                        self.searcMenuTableView.reloadData()
+                        print("getFood Success")
+                        print("-------------")
+                        
                     }
                 }
             }
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "foodDetailSegue"{
+            if let indexPath = searcMenuTableView.indexPathForSelectedRow,
+                let resID = resID{
+                let food = foodArray[indexPath.row]
+                let searchFoodDetailVC = segue.destination as! SearchFoodDetailViewController
+                searchFoodDetailVC.food = food
+                searchFoodDetailVC.resID = resID
+                if let foodTotalRate = food.data()["foodTotalRate"] as? Float,
+                    let foodRateCount = food.data()["foodRateCount"] as? Float{
+                    
+                    let avgRate = foodTotalRate/foodRateCount
+                    searchFoodDetailVC.avgRate = avgRate
+                }
+            }
+        }
+    }
 
 }
 extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewDelegate{
@@ -86,11 +86,16 @@ extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        selectTypeMenu = allTypeMenu[indexPath.row]
 //        searcMenuTableView.reloadData()
-        
+        let cell = SearcMenuCollection.cellForItem(at: indexPath) as! SearcMenuCollectionViewCell
+        cell.searcMeneImageView.alpha = 1
         let type = typeArray[indexPath.row]
-        if let typeName = type.data()["typeName"] as? String{
-            getFood(typeName: typeName)
+        if let typeDocumentID = type.data()["typeDocumentID"] as? String{
+            getFood(typeDocumentID: typeDocumentID)
         }
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = SearcMenuCollection.cellForItem(at: indexPath) as! SearcMenuCollectionViewCell
+        cell.searcMeneImageView.alpha = 0.2
     }
 }
 extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{
@@ -111,10 +116,40 @@ extension SearchMenuViewController: UITableViewDelegate,UITableViewDataSource{
             cell.searcMenuTableName.text = foodName
             cell.searcMenuTabelImage.kf.setImage(with: URL(string: foodImage))
             cell.searcTableMenuMoney.text = "$\(foodMoney)"
+            
         }
         
-//        cell.searcMenuTableName.text =
-//            selectTypeMenu[indexPath.row]
+        if let foodTotalRate = food.data()["foodTotalRate"] as? Double,
+        let foodRateCount = food.data()["foodRateCount"] as? Double {
+            let foodRate = foodTotalRate/Double(foodRateCount)
+            if foodRate < 2.75 {
+                if foodRate < 0.25 {
+                    cell.rateStarImageView.image = UIImage(named: "rate0")
+                } else if foodRate < 0.75 {
+                    cell.rateStarImageView.image = UIImage(named: "rate05")
+                } else if foodRate < 1.25 {
+                    cell.rateStarImageView.image = UIImage(named: "rate1")
+                } else if foodRate < 1.75 {
+                    cell.rateStarImageView.image = UIImage(named: "rate15")
+                } else if foodRate < 2.25 {
+                    cell.rateStarImageView.image = UIImage(named: "rate2")
+                } else {
+                    cell.rateStarImageView.image = UIImage(named: "rate25")
+                }
+            } else {
+                if foodRate < 3.25 {
+                    cell.rateStarImageView.image = UIImage(named: "rate3")
+                } else if foodRate < 3.75 {
+                    cell.rateStarImageView.image = UIImage(named: "rate35")
+                } else if foodRate < 4.25 {
+                    cell.rateStarImageView.image = UIImage(named: "rate4")
+                } else if foodRate < 4.75 {
+                    cell.rateStarImageView.image = UIImage(named: "rate45")
+                } else {
+                    cell.rateStarImageView.image = UIImage(named: "rate4")
+                }
+            }
+        }
         return cell
     }
 }

@@ -12,6 +12,7 @@ class OrderTableViewCell: UITableViewCell {
     
     
     @IBOutlet weak var orderImageView: UIImageView!
+    @IBOutlet weak var rateStarImageView: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var count: UILabel!

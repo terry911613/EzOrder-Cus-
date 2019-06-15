@@ -24,7 +24,9 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     @IBOutlet weak var showAddressButton: UIButton!
     @IBOutlet weak var myMap: MKMapView!
     
-    var res: QueryDocumentSnapshot?
+    var res: DocumentSnapshot?
+    var favRes: DocumentSnapshot?
+    var enterFromFavorite = false
     
     var clickButton = false
     let geoCoder = CLGeocoder()
@@ -34,99 +36,112 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     var nowLocations: CLLocationCoordinate2D?
     
     var typeArray = [QueryDocumentSnapshot]()
-    
+    var beginningHandler: ()?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewDidLoadProcess()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let beginningHandler = beginningHandler {
+            beginningHandler
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        enterFromFavorite = false
+        if beginningHandler != nil {
+            beginningHandler = nil
+        }
+    }
+    func viewDidLoadProcess() {
         likeButton.setImage(UIImage(named: "link"), for: .normal)
         
-        if let res = res,
-            let userID = Auth.auth().currentUser?.email{
-            let db = Firestore.firestore()
-            db.collection("res").document(res.documentID).collection("foodType").getDocuments { (type, error) in
-                if let type = type{
-                    if type.documents.isEmpty{
-                        self.typeArray.removeAll()
-                        self.showClassificationCollectionView.reloadData()
-                    }
-                    else{
-                        self.typeArray = type.documents
-                        self.showClassificationCollectionView.reloadData()
+        func generalProcess() {
+            if let res = res,
+                let userID = Auth.auth().currentUser?.email{
+                let db = Firestore.firestore()
+                db.collection("res").document(res.documentID).collection("foodType").getDocuments { (type, error) in
+                    if let type = type{
+                        if type.documents.isEmpty{
+                            self.typeArray.removeAll()
+                            self.showClassificationCollectionView.reloadData()
+                        }
+                        else{
+                            self.typeArray = type.documents
+                            self.showClassificationCollectionView.reloadData()
+                        }
                     }
                 }
-            }
-            
-            db.collection("user").document(userID).collection("favoriteRes").getDocuments { (favoriteRes, error) in
-                if let favoriteRes = favoriteRes{
-                    if favoriteRes.documents.isEmpty == false{
-                        for favoriteRes in favoriteRes.documents{
-                            if let resID = favoriteRes.data()["resID"] as? String{
-                                if res.documentID == resID{
-                                    self.likeButton.setImage(UIImage(named: "donut"), for: .normal)
-                                    self.clickButton = true
-                                    break
+                
+                db.collection("user").document(userID).collection("favoriteRes").getDocuments { (favoriteRes, error) in
+                    if let favoriteRes = favoriteRes{
+                        if favoriteRes.documents.isEmpty == false{
+                            for favoriteRes in favoriteRes.documents{
+                                if let resID = favoriteRes.data()["resID"] as? String{
+                                    if res.documentID == resID{
+                                        self.likeButton.setImage(UIImage(named: "donut"), for: .normal)
+                                        self.clickButton = true
+                                        break
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                
+                if let resData = res.data(){
+                    if let resImage = resData["resImage"] as? String,
+                        let resName = resData["resName"] as? String,
+                        let resTel = resData["resTel"] as? String,
+                        let resLocation = resData["resLocation"] as? String{
+                        
+                        showStoreImageView.kf.setImage(with: URL(string: resImage))
+                        showStoreNameLabel.text = resName
+                        showAddressButton.setTitle(resLocation, for: .normal)
+                        showStorePhoneLabel.text = resTel
+                    }
+                }
             }
             
-            if let resImage = res.data()["resImage"] as? String,
-                let resName = res.data()["resName"] as? String,
-                let resTel = res.data()["resTel"] as? String,
-                let resLocation = res.data()["resLocation"] as? String{
-                
-                showStoreImageView.kf.setImage(with: URL(string: resImage))
-                showStoreNameLabel.text = resName
-                showAddressButton.setTitle(resLocation, for: .normal)
-                showStorePhoneLabel.text = resTel
-            }
-        }
-        
-        
-        self.locations = CLLocationManager()
-        self.locations.delegate = self
-        self.locations.requestWhenInUseAuthorization()
-        self.locations.startUpdatingLocation()
-        setMapRegion()
-        showAddressButton.resignFirstResponder()
-        let text = showAddressButton.title(for: .normal)
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(text!) { (placemarks, error) in
-            if error == nil && placemarks != nil && placemarks!.count > 0 {
-                if let placemark = placemarks!.first {
-                    let location = placemark.location!
-                    self.setMapCenter(center: location.coordinate)
-                    self.setMapAnnotation(location)
+            self.locations = CLLocationManager()
+            self.locations.delegate = self
+            self.locations.requestWhenInUseAuthorization()
+            self.locations.startUpdatingLocation()
+            setMapRegion()
+            showAddressButton.resignFirstResponder()
+            let text = showAddressButton.title(for: .normal)
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(text!) { (placemarks, error) in
+                if error == nil && placemarks != nil && placemarks!.count > 0 {
+                    if let placemark = placemarks!.first {
+                        let location = placemark.location!
+                        self.setMapCenter(center: location.coordinate)
+                        self.setMapAnnotation(location)
+                    }
+                } else {
+                    let title = "收尋失敗"
+                    let message = "目前網路連線不穩定"
+                    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(ok)
+                    self.present(alertController, animated: true, completion: nil)
                 }
-            } else {
-                let title = "收尋失敗"
-                let message = "目前網路連線不穩定"
-                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                let ok = UIAlertAction(title: "OK", style: .default)
-                alertController.addAction(ok)
-                self.present(alertController, animated: true, completion: nil)
             }
         }
-        
+        if enterFromFavorite {
+            if let favResData = favRes?.data(),
+                let resID = favResData["resID"] as? String{
+                let db = Firestore.firestore()
+                db.collection("res").document(resID).getDocument { (res, error) in
+                    if let res = res{
+                        self.res = res
+                        generalProcess()
+                    }
+                }
+            }
+        } else {
+            generalProcess()
+        }
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if let res = res{
-//            if let resImage = res.data()["resImage"] as? String,
-//                let resName = res.data()["resName"] as? String,
-//                let resTel = res.data()["resTel"] as? String,
-//                let resLocation = res.data()["resLocation"] as? String{
-//                
-//                showStoreImageView.kf.setImage(with: URL(string: resImage))
-//                showStoreNameLabel.text = resName
-//                showAddressButton.setTitle(resLocation, for: .normal)
-//                showStorePhoneLabel.text = resTel
-//            }
-//        }
-//    }
     
     @IBAction func myMapButton(_ sender: Any) {
         showAddressButton.resignFirstResponder()
@@ -161,7 +176,6 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         }
 
     }
-    
     
     
     @IBAction func likeButtonAction(_ sender: UIButton) {
@@ -202,7 +216,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     }
 
     func setMapAnnotation(_ location: CLLocation) {
-        var text = showAddressButton.title(for: .normal)
+        let text = showAddressButton.title(for: .normal)
         let coordinate = location.coordinate
         let annotation = MKPointAnnotation()
         self.coordinates = coordinate
@@ -255,10 +269,7 @@ extension StoreShowViewController: UICollectionViewDelegate,UICollectionViewData
             cell.showClassificationName.text = typeName
             cell.showStoresImageView.kf.setImage(with: URL(string: typeImage))
         }
-        
         return cell
     }
-    
-    
 }
 

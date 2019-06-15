@@ -15,7 +15,7 @@ class FavoriteViewController: UIViewController {
     var favoriteResArray = [QueryDocumentSnapshot]()
     
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
-//    var res: QueryDocumentSnapshot?
+    var res: QueryDocumentSnapshot?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,14 +36,6 @@ class FavoriteViewController: UIViewController {
             }
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let storeShowVC = segue.destination as! StoreShowViewController
-//        if let res = res{
-//            storeShowVC.res = res
-//        }
-//    }
-    
 }
 
 extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -67,9 +59,32 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let favoriteRes = favoriteResArray[indexPath.row]
-//        res = favoriteRes
-        performSegue(withIdentifier: "storeShowSegue", sender: self)
+        let selectedRes = favoriteResArray[indexPath.row] as DocumentSnapshot
+        if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
+            var destinationVC: UIViewController?
+            let viewControllers = searchNavController.children
+            for viewController in viewControllers {
+                if type(of: viewController) === StoreShowViewController.self {
+                    destinationVC = viewController
+                }
+            }
+            if let destinationVC = destinationVC as? StoreShowViewController {
+                destinationVC.favRes = selectedRes
+                destinationVC.enterFromFavorite = true
+                destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.popToViewController(destinationVC, animated: true)
+            } else {
+                searchNavController.popToRootViewController(animated: true)
+                let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+                let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+                storeShowVC.favRes = selectedRes
+                storeShowVC.enterFromFavorite = true
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.pushViewController(storeShowVC, animated: true)
+            }
+            
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

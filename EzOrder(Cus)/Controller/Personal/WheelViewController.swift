@@ -29,6 +29,12 @@ class WheelViewController: UIViewController {
                         self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
                         self.getPointCount = true
                     }
+                    else{
+                        self.pointCountLabel.text = "無消費記錄"
+                    }
+                    if userData["totalPoint"] as? Int == nil{
+                        db.collection("user").document(userID).updateData(["totalPoint": 0])
+                    }
                 }
             }
         }
@@ -36,31 +42,44 @@ class WheelViewController: UIViewController {
     
     var point = 0
     @IBAction func clickRotate(_ sender: Any) {
+        
         if getPointCount {
-            pointCount! -= 1
-            pointCountLabel.text = "剩餘\(pointCount!)次轉盤機會"
             let db = Firestore.firestore()
             if let userID = Auth.auth().currentUser?.email{
                 db.collection("user").document(userID).getDocument { (user, error) in
                     if let userData = user?.data(){
-                        if let pointCount = userData["pointCount"] as? Int{
+                        if var pointCount = userData["pointCount"] as? Int,
+                            let totalPoint = userData["totalPoint"] as? Int{
                             if pointCount > 0{
-                                db.collection("user").document(userID).updateData(["pointCount": pointCount-1])
+                                pointCount -= 1
+                                self.pointCount = pointCount
+                                self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
                                 self.point = self.wheelRotateImageView.rotateGradually(handler: {
+                                    
+                                    db.collection("user").document(userID).updateData(["pointCount": pointCount,
+                                                                                       "totalPoint": totalPoint + self.point])
+                                    
                                     self.performSegue(withIdentifier: "alertPointSegue", sender: self)
                                 })
                             }
                             else{
-                                let alert = UIAlertController(title: "無轉盤機會", message: nil, preferredStyle: .alert)
-                                let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
-                                alert.addAction(ok)
-                                self.present(alert, animated: true, completion: nil)
+                                self.noChanceAlert()
                             }
                         }
                     }
                 }
             }
         }
+        else{
+            noChanceAlert()
+        }
+    }
+    
+    func noChanceAlert(){
+        let alert = UIAlertController(title: "無轉盤機會", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

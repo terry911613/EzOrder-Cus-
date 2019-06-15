@@ -15,6 +15,7 @@ class EditPersonalViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameTextfield: UITextField!
     @IBOutlet weak var userPhoneTextfield: UITextField!
+    @IBOutlet weak var alertView: UIView!
     
     @IBAction func tapEditPersonal(_ sender: UITapGestureRecognizer) {
         let imagePickerController = UIImagePickerController()
@@ -22,10 +23,10 @@ class EditPersonalViewController: UIViewController {
         imagePickerController.delegate = self
         present(imagePickerController,animated: true)
     }
-    
+    var viewHeight: CGFloat?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addKeyboardObserver()
         // Do any additional setup after loading the view.
     }
     
@@ -143,6 +144,10 @@ class EditPersonalViewController: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }
 extension EditPersonalViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
@@ -154,4 +159,34 @@ extension EditPersonalViewController : UIImagePickerControllerDelegate,UINavigat
     
     
 }
-
+extension EditPersonalViewController {
+    func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        // 能取得鍵盤高度就讓view上移鍵盤高度，否則上移view的1/3高度
+        viewHeight = view.frame.height
+        let alertViewHeight = self.alertView.frame.height
+        let alertViewLeftBottomY = alertView.frame.origin.y + alertViewHeight
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRect = keyboardFrame.cgRectValue
+            
+            let overlap = alertViewLeftBottomY + keyboardRect.height - viewHeight!
+            if overlap > -10 {
+                    self.alertView.frame.origin.y -= (overlap + 10)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+            self.alertView.center = self.view.center
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+}
