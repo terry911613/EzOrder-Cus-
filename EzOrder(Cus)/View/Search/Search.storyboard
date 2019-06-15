@@ -436,10 +436,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tTl-f2-Vee">
-                                                <rect key="frame" x="0.0" y="484.5" width="375" height="375"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="tTl-f2-Vee" secondAttribute="height" multiplier="1:1" id="CGd-8v-zKd"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="484.5" width="375" height="204"/>
                                             </mapView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD5" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-6U-Ph6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
@@ -605,6 +602,7 @@
                             <constraint firstItem="WEa-vV-MET" firstAttribute="leading" secondItem="kSD-f4-FN8" secondAttribute="leading" id="Urd-TN-zW6"/>
                             <constraint firstItem="kSD-f4-FN8" firstAttribute="trailing" secondItem="WEa-vV-MET" secondAttribute="trailing" id="X18-bp-KQg"/>
                             <constraint firstItem="kSD-f4-FN8" firstAttribute="bottom" secondItem="WEa-vV-MET" secondAttribute="bottom" id="qLc-cp-hFR"/>
+                            <constraint firstItem="tTl-f2-Vee" firstAttribute="height" secondItem="kSD-f4-FN8" secondAttribute="height" multiplier="2/5" id="udF-E1-qpK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kSD-f4-FN8"/>
                     </view>
