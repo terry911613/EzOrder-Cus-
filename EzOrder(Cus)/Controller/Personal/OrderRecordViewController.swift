@@ -72,7 +72,8 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
         let db = Firestore.firestore()
         
         if let resID = orderRecord.data()["resID"] as? String,
-            let totalPrice = orderRecord.data()["totalPrice"] as? Int{
+            let totalPrice = orderRecord.data()["totalPrice"] as? Int,
+            let dateTimeStamp = orderRecord.data()["date"] as? Timestamp{
             
             cell.priceLabel.text = "價錢：$\(totalPrice)"
             
@@ -84,7 +85,24 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
                     }
                 }
             }
+            
+            let format = DateFormatter()
+            format.locale = Locale(identifier: "zh_TW")
+            format.dateFormat = "yyyy年MM月dd日 a hh:mm"
+            cell.dateLabel.text = format.string(from: dateTimeStamp.dateValue())
         }
+        
+        print("------")
+        print(orderRecord.data()["usePoint"] as? Int)
+        print("------")
+        if let usePoint = orderRecord.data()["usePoint"] as? Int{
+            cell.pointLabel.isHidden = false
+            cell.pointLabel.text = "折抵\(usePoint)點"
+        }
+        else{
+            cell.pointLabel.isHidden = true
+        }
+        
         return cell
     }
     
