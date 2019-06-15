@@ -26,8 +26,10 @@ class EditPersonalViewController: UIViewController {
     var viewHeight: CGFloat?
     override func viewDidLoad() {
         super.viewDidLoad()
-        addKeyboardObserver()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardObserver()
     }
     
     
