@@ -78,10 +78,10 @@ extension OrderRecordDetailViewController: UITableViewDelegate, UITableViewDataS
             let foodPrice = food.data()["foodPrice"] as? Int,
             let foodAmount = food.data()["foodAmount"] as? Int{
             
-            cell.foodName.text = foodName
-            cell.foodImage.kf.setImage(with: URL(string: foodImage))
-            cell.foodPrice.text = "單價:$\(foodPrice)"
-            cell.foodAmount.text = "數量:\(foodAmount)"
+            cell.foodNameLabel.text = foodName
+            cell.foodImageView.kf.setImage(with: URL(string: foodImage))
+            cell.foodPriceLabel.text = "單價:$\(foodPrice)"
+            cell.foodAmountLabel.text = "數量:\(foodAmount)"
         }
         
         return cell
