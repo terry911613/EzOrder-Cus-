@@ -214,6 +214,9 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         }
         // 上傳rate和comment
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
 extension RateDishViewController {
     func addKeyboardObserver() {
