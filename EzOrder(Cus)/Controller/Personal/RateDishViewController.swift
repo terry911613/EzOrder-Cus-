@@ -29,15 +29,17 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     var foodRateCount: Double?
     var viewHeight: CGFloat?
     
+    override func viewWillAppear(_ animated: Bool) {
+        addKeyboardObserver()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let rectShape = CAShapeLayer()
-//        rectShape.bounds = headerView.frame
-//        rectShape.position = headerView.center
-//        rectShape.path = UIBezierPath(roundedRect: headerView.bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-//        headerView.layer.mask = rectShape
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = headerView.frame
+        rectShape.position = headerView.center
+        rectShape.path = UIBezierPath(roundedRect: headerView.bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        headerView.layer.mask = rectShape
 
-        addKeyboardObserver()
         commentTextView.delegate = self
         rateSlider.parentVC = self
         
