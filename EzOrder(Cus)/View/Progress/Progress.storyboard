@@ -139,7 +139,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="用餐狀態" image="用餐狀態" id="9ig-KV-EOi"/>
                     <navigationItem key="navigationItem" title="用餐進度" id="rHP-nt-jgb">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="服務鈴" id="gf1-oh-9L8">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="服務鈴" style="plain" id="gf1-oh-9L8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="seviceBellButton:" destination="JPS-Iq-ow9" id="psb-Ec-Kg2"/>
                             </connections>
@@ -268,7 +269,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="服務鈴" width="13.333333015441895" height="13.333333015441895"/>
+        <image name="服務鈴" width="40" height="40"/>
         <image name="用餐狀態" width="34.333332061767578" height="27.666666030883789"/>
     </resources>
 </document>
