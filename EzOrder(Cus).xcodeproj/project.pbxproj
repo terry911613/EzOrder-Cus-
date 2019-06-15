@@ -13,12 +13,12 @@
 		2C0DFE8D22A95ACA002CC546 /* SearchMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */; };
 		2C0DFE8F22A95AEB002CC546 /* SearcMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */; };
 		2C0DFE9122A95B04002CC546 /* SearcMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */; };
-		2CB1B25B22AA2F9D00484CC9 /* EvaluationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */; };
+		2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */; };
 		2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */; };
 		2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */; };
+		2CC7D0C522B1F37C00EB6DE4 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */; };
 		2CEB987B22A7F15D0098181C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987A22A7F15D0098181C /* SignInViewController.swift */; };
 		2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */; };
-		440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */; };
 		440FAB18229CFF35005E38D0 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440FAB17229CFF35005E38D0 /* CartViewController.swift */; };
 		4418C53722B0EAEA00B02854 /* OrderRecordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4418C53622B0EAEA00B02854 /* OrderRecordDetailViewController.swift */; };
 		4418C53922B0EB2400B02854 /* OrderRecordDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4418C53822B0EB2400B02854 /* OrderRecordDetailTableViewCell.swift */; };
@@ -77,13 +77,13 @@
 		2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMenuViewController.swift; sourceTree = "<group>"; };
 		2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuTableViewCell.swift; sourceTree = "<group>"; };
 		2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationTableViewCell.swift; sourceTree = "<group>"; };
+		2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodDetailViewController.swift; sourceTree = "<group>"; };
 		2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMapViewController.swift; sourceTree = "<group>"; };
+		2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CEB987A22A7F15D0098181C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcStoreTableViewCell.swift; sourceTree = "<group>"; };
 		2EB432B8F4620A385064A1B7 /* Pods-EzOrder(Cus).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).release.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).release.xcconfig"; sourceTree = "<group>"; };
-		440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		440FAB17229CFF35005E38D0 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		4418C53622B0EAEA00B02854 /* OrderRecordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordDetailViewController.swift; sourceTree = "<group>"; };
 		4418C53822B0EB2400B02854 /* OrderRecordDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */,
 				2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */,
 				2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */,
-				2CB1B25A22AA2F9D00484CC9 /* EvaluationTableViewCell.swift */,
+				2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -186,7 +186,6 @@
 			children = (
 				447A170A228BB29D003AB41E /* Order.storyboard */,
 				447878172298EA9B008041A2 /* OrderTableViewCell.swift */,
-				440FAB15229CE596005E38D0 /* TypeCollectionViewCell.swift */,
 				44BC031822AB99C0002AA6B0 /* CartTableViewCell.swift */,
 			);
 			path = Order;
@@ -292,6 +291,7 @@
 		447A1703228BB1EC003AB41E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D776B7322B0FFFF0011C876 /* RateSlider.swift */,
 				2C0DFE8622A8C20F002CC546 /* Restaurant.swift */,
 				447A16F4228BB1D2003AB41E /* Main.storyboard */,
 				4443C38922A65B26004875D7 /* AD */,
@@ -307,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */,
+				2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */,
 				9DC179EC22B2077200F357CE /* ReuseVC.swift */,
 				9D776B7322B0FFFF0011C876 /* RateSlider.swift */,
 				447A1715228BE383003AB41E /* IGCMenu.swift */,
@@ -579,13 +580,13 @@
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
+				2CC7D0C522B1F37C00EB6DE4 /* TypeCollectionViewCell.swift in Sources */,
 				447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */,
 				9D0445ED22A7F953002E2C66 /* Common.swift in Sources */,
 				2C0DFE9122A95B04002CC546 /* SearcMenuCollectionViewCell.swift in Sources */,
 				44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */,
 				9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
-				440FAB16229CE596005E38D0 /* TypeCollectionViewCell.swift in Sources */,
 				9D02A9EB229E8A31009032D5 /* WheelAlertViewController.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */,
@@ -594,7 +595,7 @@
 				2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
 				4418C53722B0EAEA00B02854 /* OrderRecordDetailViewController.swift in Sources */,
-				2CB1B25B22AA2F9D00484CC9 /* EvaluationTableViewCell.swift in Sources */,
+				2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */,
 				447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */,
 				2C0DFE8B22A8DE03002CC546 /* StoreShowCollectionViewCell.swift in Sources */,
 				447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */,

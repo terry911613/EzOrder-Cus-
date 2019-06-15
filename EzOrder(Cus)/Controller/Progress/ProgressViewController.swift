@@ -28,6 +28,7 @@ class ProgressViewController: UIViewController {
     
     var igcMenu: IGCMenu?
     var isMenuActive = false
+    var isUsePoint = false
     
     var orderArray = [QueryDocumentSnapshot]()
     var orderNo: String?
@@ -36,6 +37,7 @@ class ProgressViewController: UIViewController {
     var foodPriceArray = [Int]()
     
     var totalPrice = 0
+    var totalPoint: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +49,6 @@ class ProgressViewController: UIViewController {
         consumerSetting()
         
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        getOrder()
-//    }
     
     func getOrder(){
         
@@ -163,22 +159,53 @@ class ProgressViewController: UIViewController {
                             self.present(alert, animated: true, completion: nil)
                         }
                         else{
-                            if self.isMenuActive {
-                                self.payButton.setTitle("付款", for: .normal)
-                                self.payButton.setTitleColor(.white, for: .normal)
-                                self.igcMenu?.hideCircularMenu()
-                                self.isMenuActive = false
-                            }
-                            else {
-                                self.payButton.setTitle("取消", for: .normal)
-                                self.payButton.setTitleColor(.red, for: .normal)
-                                self.igcMenu?.showCircularMenu()
-                                self.isMenuActive = true
+                            db.collection("user").document(userID).getDocument { (user, error) in
+                                if let userData = user?.data(){
+                                    if let totalPoint = userData["totalPoint"] as? Int{
+                                        if totalPoint > 0{
+                                            let alert = UIAlertController(title: "剩餘\(totalPoint)點", message: "使用點數折抵？", preferredStyle: .alert)
+                                            let ok = UIAlertAction(title: "使用", style: .default, handler: { (ok) in
+                                                let point = TPDPaymentItem(itemName: "點數折抵", withAmount: NSDecimalNumber(string: "\(-totalPoint)"), withIsVisible: true)
+                                                self.cart.add(point)
+                                                self.isUsePoint = true
+                                                self.totalPoint = totalPoint
+                                                self.clickPay()
+                                            })
+                                            let cancel = UIAlertAction(title: "不使用", style: .cancel, handler: { (ok) in
+                                                self.isUsePoint = false
+                                                self.clickPay()
+                                            })
+                                            alert.addAction(ok)
+                                            alert.addAction(cancel)
+                                            self.present(alert, animated: true, completion: nil)
+                                        }
+                                        else{
+                                            self.clickPay()
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    func clickPay(){
+        self.isMenuActive = !self.isMenuActive
+        if self.isMenuActive {
+            self.payButton.setTitle("取消", for: .normal)
+            self.payButton.setTitleColor(.red, for: .normal)
+            self.igcMenu?.showCircularMenu()
+            //                                self.isMenuActive = true
+            
+        }
+        else {
+            self.payButton.setTitle("付款", for: .normal)
+            self.payButton.setTitleColor(.white, for: .normal)
+            self.igcMenu?.hideCircularMenu()
+            //                                self.isMenuActive = false
         }
     }
     
@@ -261,6 +288,7 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
             let foodPrice = order.data()["foodPrice"] as? Int,
             let foodAmount = order.data()["foodAmount"] as? Int,
             let orderNo = order.data()["orderNo"] as? String,
+            let foodDocumentID = order.data()["foodDocumentID"] as? String,
             let userID = Auth.auth().currentUser?.email{
 
             cell.foodNameLabel.text = foodName
@@ -269,8 +297,10 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
             cell.foodAmountLabel.text = "數量：\(foodAmount)"
             
             let db = Firestore.firestore()
-
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).addSnapshotListener({ (foodStatus, error) in
+            
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).addSnapshotListener({ (foodStatus, error) in
+                print(orderNo)
+                print(foodDocumentID)
                 if let foodStatusData = foodStatus?.data(){
                     if let orderFoodStatus = foodStatusData["orderFoodStatus"] as? Int{
                         if orderFoodStatus == 0{
@@ -393,11 +423,25 @@ extension ProgressViewController: TPDApplePayDelegate{
             db.collection("user").document(userID).collection("order").document(orderNo).updateData(["payStatus": 1])
             db.collection("res").document(resID).collection("order").document(orderNo).updateData(["payStatus": 1])
             
-            let pointCount = totalPrice/1000
-            db.collection("user").document(userID).updateData(["pointCount": pointCount])
-            orderArray.removeAll()
-            animateProgressTableView()
-            totalPriceLabel.text = ""
+            if isUsePoint{
+                db.collection("user").document(userID).updateData(["totalPoint": 0])
+                if let totalPoint = totalPoint{
+                    db.collection("user").document(userID).collection("order").document(orderNo).updateData(["totalPrice": totalPrice - totalPoint, "usePoint": totalPoint, "isUsePoint": 1])
+                    db.collection("res").document(resID).collection("order").document(orderNo).updateData(["totalPrice": totalPrice - totalPoint, "usePoint": totalPoint, "isUsePoint": 1])
+                }
+            }
+            
+            db.collection("user").document(userID).getDocument { (user, error) in
+                if let userData = user?.data(){
+                    if let userPointCount = userData["pointCount"] as? Int{
+                        let pointCount = self.totalPrice/1000
+                        db.collection("user").document(userID).updateData(["pointCount": userPointCount + pointCount])
+                        self.orderArray.removeAll()
+                        self.animateProgressTableView()
+                        self.totalPriceLabel.text = ""
+                    }
+                }
+            }
         }
         
         print("=====================================================")

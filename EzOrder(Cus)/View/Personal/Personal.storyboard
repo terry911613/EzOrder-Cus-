@@ -689,38 +689,47 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBq-Ld-8ei">
-                                                    <rect key="frame" x="10" y="10" width="150" height="100"/>
+                                                    <rect key="frame" x="10" y="10" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="93X-tl-X1U"/>
-                                                        <constraint firstAttribute="width" constant="150" id="S3b-FR-UtR"/>
+                                                        <constraint firstAttribute="width" secondItem="OBq-Ld-8ei" secondAttribute="height" multiplier="1:1" id="ckW-0b-Jjd"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="花費：2345" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJi-6t-fFk">
-                                                    <rect key="frame" x="195" y="63" width="110" height="24"/>
+                                                    <rect key="frame" x="118" y="48" width="110" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019-7-5 (六)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BW-bL-n5c">
-                                                    <rect key="frame" x="195" y="31" width="126" height="24"/>
+                                                    <rect key="frame" x="118" y="16" width="125.5" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djf-q0-Bxg">
+                                                    <rect key="frame" x="118" y="80" width="26.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HJi-6t-fFk" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="35" id="03q-Ec-i5p"/>
-                                                <constraint firstItem="6BW-bL-n5c" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="35" id="mLd-CI-Ari"/>
-                                                <constraint firstItem="6BW-bL-n5c" firstAttribute="top" secondItem="2re-Nb-ztf" secondAttribute="topMargin" constant="20" id="qMF-ag-ica"/>
+                                                <constraint firstItem="djf-q0-Bxg" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="0gk-T9-daR"/>
+                                                <constraint firstItem="HJi-6t-fFk" firstAttribute="centerY" secondItem="OBq-Ld-8ei" secondAttribute="centerY" id="2Fg-1G-ycR"/>
+                                                <constraint firstItem="djf-q0-Bxg" firstAttribute="top" secondItem="HJi-6t-fFk" secondAttribute="bottom" constant="8" id="YJv-bq-tsf"/>
+                                                <constraint firstItem="HJi-6t-fFk" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="lGs-zi-SXs"/>
+                                                <constraint firstItem="6BW-bL-n5c" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="8" id="mLd-CI-Ari"/>
                                                 <constraint firstItem="HJi-6t-fFk" firstAttribute="top" secondItem="6BW-bL-n5c" secondAttribute="bottom" constant="8" id="rcd-xD-Cx2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstItem="OBq-Ld-8ei" firstAttribute="centerY" secondItem="0yR-Rl-gT1" secondAttribute="centerY" id="akA-ub-W3h"/>
+                                            <constraint firstItem="OBq-Ld-8ei" firstAttribute="height" secondItem="0yR-Rl-gT1" secondAttribute="height" multiplier="100/120" id="k44-1S-TtO"/>
                                             <constraint firstItem="OBq-Ld-8ei" firstAttribute="leading" secondItem="0yR-Rl-gT1" secondAttribute="leading" constant="10" id="zTY-3c-N7o"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dateLabel" destination="6BW-bL-n5c" id="TCM-j0-f5N"/>
+                                            <outlet property="pointLabel" destination="djf-q0-Bxg" id="JFR-cn-8NW"/>
                                             <outlet property="priceLabel" destination="HJi-6t-fFk" id="laL-vY-tg0"/>
                                             <outlet property="restaurantImageView" destination="OBq-Ld-8ei" id="W9g-Hh-FsW"/>
                                         </connections>
@@ -963,7 +972,7 @@
                     <connections>
                         <outlet property="alertView" destination="vbE-kY-axx" id="5w8-Ee-fsw"/>
                         <outlet property="commentTextView" destination="ONT-k7-nAO" id="fcf-gk-qNA"/>
-                        <outlet property="dishNameLabel" destination="IeT-We-fW4" id="qy5-DT-8Cp"/>
+                        <outlet property="foodNameLabel" destination="IeT-We-fW4" id="qy5-DT-8Cp"/>
                         <outlet property="headerView" destination="5p5-Yo-QW7" id="J2p-eZ-cMh"/>
                         <outlet property="isCommentedView" destination="9k3-d4-Ivi" id="XqT-e2-juY"/>
                         <outlet property="rateImageView" destination="WsG-8Q-vdd" id="h3d-3t-Rqg"/>

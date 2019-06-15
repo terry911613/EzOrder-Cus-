@@ -61,8 +61,8 @@ class OrderViewController: UIViewController {
                         
                         var typeIndex = 0
                         for type in type.documents{
-                            if let typeName = type.data()["typeName"] as? String{
-                                self.db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
+                            if let typeDocumentID = type.data()["typeDocumentID"] as? String{
+                                self.db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").getDocuments { (food, error) in
                                     
                                     if let foodCount = food?.documents.count {
                                         if foodCount != 0 {
@@ -80,25 +80,23 @@ class OrderViewController: UIViewController {
             }
         }
     }
-    func getFood(typeName: String){
+    func getFood(typeDocumentID: String){
         print("-------------")
-        print(typeName)
+        print(typeDocumentID)
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").getDocuments { (food, error) in
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").whereField("foodStatus", isEqualTo: 1).getDocuments { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
                         self.orderTableView.reloadData()
                     }
                     else{
-                        let documentChange = food.documentChanges[0]
-                        if documentChange.type == .added {
-                            self.foodArray = food.documents
-                            print(self.foodArray.count)
-                            self.animateOrderTableView()
-                            print("getFood Success")
-                            print("-------------")
-                        }
+                        self.foodArray = food.documents
+                        print(self.foodArray.count)
+                        self.animateOrderTableView()
+                        print("getFood Success")
+                        print("-------------")
+                        
                     }
                 }
             }
@@ -150,8 +148,8 @@ extension OrderViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.cellForItem(at: indexPath) as! TypeCollectionViewCell
         cell.typeImage.alpha = 1
         
-        if let type = typeArray[indexPath.row].data()["typeName"] as? String{
-            getFood(typeName: type)
+        if let typeDocumentID = typeArray[indexPath.row].data()["typeDocumentID"] as? String{
+            getFood(typeDocumentID: typeDocumentID)
         }
         selectTypeIndex = indexPath.row
     }
@@ -209,41 +207,42 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         
         if let foodTotalRate = food.data()["foodTotalRate"] as? Double,
             let foodRateCount = food.data()["foodRateCount"] as? Double {
-            let foodRate = foodTotalRate/Double(foodRateCount)
-            if foodRate < 2.75 {
-                if foodRate < 0.25 {
-                    cell.rateStarImageView.image = UIImage(named: "rate0")
-                } else if foodRate < 0.75 {
-                    cell.rateStarImageView.image = UIImage(named: "rate05")
-                } else if foodRate < 1.25 {
-                    cell.rateStarImageView.image = UIImage(named: "rate1")
-                } else if foodRate < 1.75 {
-                    cell.rateStarImageView.image = UIImage(named: "rate15")
-                } else if foodRate < 2.25 {
-                    cell.rateStarImageView.image = UIImage(named: "rate2")
+            
+            if foodRateCount == 0 {
+                cell.rateStarImageView.isHidden = true
+            }
+            else{
+                cell.rateStarImageView.isHidden = false
+                let foodRate = foodTotalRate/Double(foodRateCount)
+                if foodRate < 2.75 {
+                    if foodRate < 0.25 {
+                        cell.rateStarImageView.image = UIImage(named: "rate0")
+                    } else if foodRate < 0.75 {
+                        cell.rateStarImageView.image = UIImage(named: "rate05")
+                    } else if foodRate < 1.25 {
+                        cell.rateStarImageView.image = UIImage(named: "rate1")
+                    } else if foodRate < 1.75 {
+                        cell.rateStarImageView.image = UIImage(named: "rate15")
+                    } else if foodRate < 2.25 {
+                        cell.rateStarImageView.image = UIImage(named: "rate2")
+                    } else {
+                        cell.rateStarImageView.image = UIImage(named: "rate25")
+                    }
                 } else {
-                    cell.rateStarImageView.image = UIImage(named: "rate25")
-                }
-            } else {
-                if foodRate < 3.25 {
-                    cell.rateStarImageView.image = UIImage(named: "rate3")
-                } else if foodRate < 3.75 {
-                    cell.rateStarImageView.image = UIImage(named: "rate35")
-                } else if foodRate < 4.25 {
-                    cell.rateStarImageView.image = UIImage(named: "rate4")
-                } else if foodRate < 4.75 {
-                    cell.rateStarImageView.image = UIImage(named: "rate45")
-                } else {
-                    cell.rateStarImageView.image = UIImage(named: "rate4")
+                    if foodRate < 3.25 {
+                        cell.rateStarImageView.image = UIImage(named: "rate3")
+                    } else if foodRate < 3.75 {
+                        cell.rateStarImageView.image = UIImage(named: "rate35")
+                    } else if foodRate < 4.25 {
+                        cell.rateStarImageView.image = UIImage(named: "rate4")
+                    } else if foodRate < 4.75 {
+                        cell.rateStarImageView.image = UIImage(named: "rate45")
+                    } else {
+                        cell.rateStarImageView.image = UIImage(named: "rate4")
+                    }
                 }
             }
         }
-        //        cell.callBackStepper = { value in
-        //            cell.price.text = "$\(Int(value * 50))"
-        //            cell.count.text = "數量:\(Int(value))"
-        //            totalPrice += Int(value * 50)
-        //            self.totalPriceLabel.text = "總共: $\(totalPrice)"
-        //        }
         return cell
     }
 }

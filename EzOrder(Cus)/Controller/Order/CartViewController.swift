@@ -85,8 +85,10 @@ class CartViewController: UIViewController {
                 if let foodName = order.data()["foodName"] as? String,
                     let foodImage = order.data()["foodImage"] as? String,
                     let foodPrice = order.data()["foodPrice"] as? Int,
-                    let typeName = order.data()["typeName"] as? String{
-                    let orderFoodData: [String: Any] = ["typeName": typeName,
+                    let typeDocumentID = order.data()["typeDocumentID"] as? String,
+                    let foodDocumentID = order.data()["foodDocumentID"] as? String{
+                    let orderFoodData: [String: Any] = ["foodDocumentID": foodDocumentID,
+                                                        "typeDocumentID": typeDocumentID,
                                                         "foodName": foodName,
                                                         "foodImage": foodImage,
                                                         "foodPrice": foodPrice,
@@ -96,8 +98,8 @@ class CartViewController: UIViewController {
                                                         "resID": resID,
                                                         "tableNo": tableNo,
                                                         "orderFoodStatus": 0]
-                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
-                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
+                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
+                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
                     
                     let orderData: [String: Any] = ["date": Date(),
                                                     "orderNo": orderNo,

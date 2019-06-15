@@ -12,7 +12,7 @@ import Firebase
 class RateDishViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var dishNameLabel: UILabel!
+    @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var rateSlider: RateSlider!
     @IBOutlet weak var rateImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
@@ -20,10 +20,11 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var alertView: UIView!
     
-    var dishName: String?
+    var foodName: String?
+    var foodDocumentID: String?
     var orderNo: String?
     var resID: String?
-    var typeName: String?
+    var typeDocumentID: String?
     var foodRate: Double?
     var foodRateCount: Double?
     var viewHeight: CGFloat?
@@ -48,18 +49,20 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         // 畫出來的部分才會顯示
         rateSlider.layer.mask = layer
         
-        dishNameLabel.text = dishName
+        if let foodName = foodName{
+            foodNameLabel.text = foodName
+        }
         
         commentTextView.text = "添加些評論吧(選填)"
         commentTextView.textColor = UIColor.lightGray
         // Do any additional setup after loading the view.
         let db = Firestore.firestore()
         if let resID = resID,
-            let typeName = typeName,
-            let dishName = dishName,
+            let typeDocumentID = typeDocumentID,
+            let foodDocumentID = foodDocumentID,
             let orderNo = orderNo,
             let userID = Auth.auth().currentUser?.email{
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).getDocument { (food, error) in
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).getDocument { (food, error) in
                 if let foodData = food?.data(){
                     if let foodTotalRate = foodData["foodTotalRate"] as? Double,
                         let foodRateCount = foodData["foodRateCount"] as? Double{
@@ -69,7 +72,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
                 }
             }
             
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).getDocument { (food, error) in
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).getDocument { (food, error) in
                 print("ff")
                 if let foodData = food?.data(){
                     print("ss")
@@ -182,33 +185,28 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
             comment = commentTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
         
-        let data: [String: Any] = ["foodRate": rate,
-                                   "foodComment": comment]
-        let db = Firestore.firestore()
         
-        print(Auth.auth().currentUser?.email)
-        print(orderNo)
-        print(dishName)
-        print(resID)
-        print(typeName)
-        print(foodRate)
-        print(foodRateCount)
+        let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email,
             let orderNo = orderNo,
-            let dishName = dishName,
+            let foodDocumentID = foodDocumentID,
             let resID = resID,
-            let typeName = typeName,
+            let typeDocumentID = typeDocumentID,
             let foodRate = foodRate,
             let foodRateCount = foodRateCount{
             
             let timeStamp = Date().timeIntervalSince1970
             let commentID = String(timeStamp) + userID
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(dishName).updateData(data)
             
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).updateData(["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1])
+            let orderData: [String: Any] = ["foodRate": rate, "foodComment": comment]
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).updateData(orderData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).updateData(orderData)
             
-            db.collection("res").document(resID).collection("foodType").document(typeName).collection("menu").document(dishName).collection("foodComment").document(commentID).setData(["foodComment": comment, "date": Date(), "userID": userID])
+            let foodData: [String: Any] = ["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1]
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).updateData(foodData)
+            
+            let foodCommentData: [String: Any] = ["foodComment": comment, "foodRate": rate, "date": Date(), "userID": userID]
+            db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).collection("foodComment").document(commentID).setData(foodCommentData)
             
             dismiss(animated: true, completion: nil)
         }

@@ -13,6 +13,7 @@ class OrderRecordTableViewCell: UITableViewCell {
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var pointLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
