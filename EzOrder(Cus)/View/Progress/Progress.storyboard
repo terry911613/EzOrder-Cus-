@@ -29,27 +29,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z3M-sM-VuY">
-                                                    <rect key="frame" x="15" y="10" width="150" height="100"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z3M-sM-VuY">
+                                                    <rect key="frame" x="30" y="10" width="100" height="100"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="2SK-HI-7uN"/>
-                                                        <constraint firstAttribute="width" constant="150" id="U2W-WX-76m"/>
+                                                        <constraint firstAttribute="width" secondItem="z3M-sM-VuY" secondAttribute="height" multiplier="1:1" id="tRs-GN-q7x"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="滷肉飯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlu-Xm-qin">
-                                                    <rect key="frame" x="173" y="8" width="62" height="32"/>
+                                                    <rect key="frame" x="138" y="8" width="62" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55C-CH-uKP">
-                                                    <rect key="frame" x="173" y="48" width="38" height="24"/>
+                                                    <rect key="frame" x="138" y="48" width="38" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="數量 : 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kh-fk-Gn9">
-                                                    <rect key="frame" x="173" y="80" width="68" height="24"/>
+                                                    <rect key="frame" x="138" y="80" width="68" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -66,8 +65,8 @@
                                                 <constraint firstItem="1kh-fk-Gn9" firstAttribute="top" secondItem="55C-CH-uKP" secondAttribute="bottom" constant="8" id="7JM-jN-g64"/>
                                                 <constraint firstAttribute="trailing" secondItem="NEr-uK-Tvr" secondAttribute="trailing" constant="15" id="7e2-jk-y7C"/>
                                                 <constraint firstItem="55C-CH-uKP" firstAttribute="leading" secondItem="z3M-sM-VuY" secondAttribute="trailing" constant="8" id="Bnh-dm-TEf"/>
-                                                <constraint firstItem="z3M-sM-VuY" firstAttribute="leading" secondItem="OXp-BV-V1b" secondAttribute="leading" constant="15" id="H8J-UQ-aHn"/>
-                                                <constraint firstItem="z3M-sM-VuY" firstAttribute="top" secondItem="OXp-BV-V1b" secondAttribute="top" constant="10" id="Sf2-7F-GM2"/>
+                                                <constraint firstItem="z3M-sM-VuY" firstAttribute="leading" secondItem="OXp-BV-V1b" secondAttribute="leading" constant="30" id="H8J-UQ-aHn"/>
+                                                <constraint firstItem="z3M-sM-VuY" firstAttribute="centerY" secondItem="OXp-BV-V1b" secondAttribute="centerY" id="Ono-SE-k55"/>
                                                 <constraint firstItem="1kh-fk-Gn9" firstAttribute="leading" secondItem="z3M-sM-VuY" secondAttribute="trailing" constant="8" id="Upi-Hj-Any"/>
                                                 <constraint firstItem="qlu-Xm-qin" firstAttribute="leading" secondItem="z3M-sM-VuY" secondAttribute="trailing" constant="8" id="gNe-j6-sZo"/>
                                                 <constraint firstAttribute="bottom" secondItem="NEr-uK-Tvr" secondAttribute="bottom" constant="15" id="r9j-rZ-kG2"/>
@@ -75,6 +74,9 @@
                                                 <constraint firstItem="55C-CH-uKP" firstAttribute="centerY" secondItem="OXp-BV-V1b" secondAttribute="centerY" id="uR6-MT-gFq"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="z3M-sM-VuY" firstAttribute="height" secondItem="34J-5Y-jkJ" secondAttribute="height" multiplier="100/120" id="4Ba-bm-7sm"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="foodAmountLabel" destination="1kh-fk-Gn9" id="NDc-Fq-sLr"/>
                                             <outlet property="foodImageView" destination="z3M-sM-VuY" id="bTk-LC-e1A"/>

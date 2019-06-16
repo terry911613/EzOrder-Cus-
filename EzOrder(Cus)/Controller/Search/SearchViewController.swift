@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
     var viewHeight: CGFloat?
     override func viewDidLoad() {
         super.viewDidLoad()
-        addKeyboardObserver()
+//        addKeyboardObserver()
         storeTableView.keyboardDismissMode = .onDrag
         getRes()
     }
@@ -117,40 +117,41 @@ extension SearchViewController: UISearchBarDelegate{
         self.view.endEditing(true)
     }
 }
-extension SearchViewController {
-    func addKeyboardObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        // 能取得鍵盤高度就讓view上移鍵盤高度，否則上移view的1/3高度
-        viewHeight = view.frame.height
-        let scrolledPosition = storeTableView.contentOffset.y
-        let scrolledRow = (scrolledPosition / storeTableView.rowHeight).rounded()
-        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRect = keyboardFrame.cgRectValue
-//            let keyboardHeight = keyboardRect.height
-//            let keyboardWidth = keyboardRect.width
-//            let viewX = view.frame.origin.x
-//            let viewY = view.frame.origin.y
 
-            
-            view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: keyboardRect.origin.y)
-            storeTableView.scrollToRow(at: IndexPath(row: Int(scrolledRow), section: 0), at: .top, animated: true)
-        } else {
-            view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 2 / 3)
-            storeTableView.scrollToRow(at: IndexPath(row: Int(scrolledRow), section: 0), at: .top, animated: true)
-        }
-    }
+//extension SearchViewController {
+//    func addKeyboardObserver() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
     
-    @objc func keyboardWillHide(notification: Notification) {
-        view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: viewHeight!)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-}
+//    @objc func keyboardWillShow(notification: Notification) {
+//        // 能取得鍵盤高度就讓view上移鍵盤高度，否則上移view的1/3高度
+//        viewHeight = view.frame.height
+//        let scrolledPosition = storeTableView.contentOffset.y
+//        let scrolledRow = (scrolledPosition / storeTableView.rowHeight).rounded()
+//        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRect = keyboardFrame.cgRectValue
+////            let keyboardHeight = keyboardRect.height
+////            let keyboardWidth = keyboardRect.width
+////            let viewX = view.frame.origin.x
+////            let viewY = view.frame.origin.y
+//
+//
+//            view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: keyboardRect.origin.y)
+//            storeTableView.scrollToRow(at: IndexPath(row: Int(scrolledRow), section: 0), at: .top, animated: true)
+//        } else {
+//            view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height * 2 / 3)
+//            storeTableView.scrollToRow(at: IndexPath(row: Int(scrolledRow), section: 0), at: .top, animated: true)
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(notification: Notification) {
+//        view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: viewHeight!)
+//    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(true)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+//    }
+//}

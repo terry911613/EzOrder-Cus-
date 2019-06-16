@@ -49,12 +49,14 @@ class OrderRecordDetailViewController: UIViewController {
                 print(food.data()["foodName"] as? String)
                 print(food.data()["resID"] as? String)
                 print(food.data()["typeName"] as? String)
-                if let foodName = food.data()["foodName"] as? String,
+                if let foodDocumentID = food.data()["foodDocumentID"] as? String,
                     let resID = food.data()["resID"] as? String,
-                    let typeDocumentID = food.data()["typeDocumentID"] as? String{
-                    dishRateVC.dishName = foodName
+                    let typeDocumentID = food.data()["typeDocumentID"] as? String,
+                let foodName = food.data()["foodName"] as? String{
+                    dishRateVC.foodDocumentID = foodDocumentID
                     dishRateVC.resID = resID
                     dishRateVC.typeDocumentID = typeDocumentID
+                    dishRateVC.foodName = foodName
                 }
                 dishRateVC.orderNo = orderNo
             }
@@ -76,10 +78,10 @@ extension OrderRecordDetailViewController: UITableViewDelegate, UITableViewDataS
             let foodPrice = food.data()["foodPrice"] as? Int,
             let foodAmount = food.data()["foodAmount"] as? Int{
             
-            cell.foodName.text = foodName
-            cell.foodImage.kf.setImage(with: URL(string: foodImage))
-            cell.foodPrice.text = "單價:$\(foodPrice)"
-            cell.foodAmount.text = "數量:\(foodAmount)"
+            cell.foodNameLabel.text = foodName
+            cell.foodImageView.kf.setImage(with: URL(string: foodImage))
+            cell.foodPriceLabel.text = "單價:$\(foodPrice)"
+            cell.foodAmountLabel.text = "數量:\(foodAmount)"
         }
         
         return cell

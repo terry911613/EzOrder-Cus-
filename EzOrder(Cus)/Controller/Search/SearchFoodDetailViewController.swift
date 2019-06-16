@@ -23,14 +23,23 @@ class SearchFoodDetailViewController: UIViewController {
     var food: QueryDocumentSnapshot?
     var resID: String?
     var avgRate: Float?
+    var foodRateCount: Float?
     var foodCommentArray = [QueryDocumentSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let avgRate = avgRate{
-            updateStar(value: avgRate, image: foodTotalRateImageView)
+        if let foodRateCount = foodRateCount{
+            if foodRateCount == 0{
+                foodTotalRateImageView.isHidden = true
+            }
+            else{
+                if let avgRate = avgRate{
+                    updateStar(value: avgRate, image: foodTotalRateImageView)
+                }
+            }
         }
+       
         
         if let food = food{
             print(food.data()["foodImage"] as? String)
@@ -41,7 +50,8 @@ class SearchFoodDetailViewController: UIViewController {
                 let foodName = food.data()["foodName"] as? String,
                 let foodPrice = food.data()["foodPrice"] as? Int,
                 let foodDetail = food.data()["foodDetail"] as? String,
-                let typeDocumentID = food.data()["typeDocumentID"] as? String{
+                let typeDocumentID = food.data()["typeDocumentID"] as? String,
+            let foodDocumentID = food.data()["foodDocumentID"] as? String{
                 
                 foodImageView.kf.setImage(with: URL(string: foodImage))
                 foodNameLabel.text = "菜名：\(foodName)"
@@ -50,7 +60,7 @@ class SearchFoodDetailViewController: UIViewController {
                 
                 let db = Firestore.firestore()
                 if let resID = resID{
-                    db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodName).collection("foodComment").getDocuments { (foodComment, error) in
+                    db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).collection("foodComment").getDocuments { (foodComment, error) in
                         if let foodComment = foodComment{
                             if foodComment.documents.isEmpty{
                                 self.foodCommentArray.removeAll()

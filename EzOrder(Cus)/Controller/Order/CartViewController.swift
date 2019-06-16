@@ -27,10 +27,6 @@ class CartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
         if let totalPrice = totalPrice{
             totalPriceLabel.text = "總共$\(totalPrice)"
@@ -38,6 +34,12 @@ class CartViewController: UIViewController {
         
         sortOrderArray()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//
+//    }
     
     func sortOrderArray(){
         
@@ -85,8 +87,10 @@ class CartViewController: UIViewController {
                 if let foodName = order.data()["foodName"] as? String,
                     let foodImage = order.data()["foodImage"] as? String,
                     let foodPrice = order.data()["foodPrice"] as? Int,
-                    let typeDocumentID = order.data()["typeDocumentID"] as? String{
-                    let orderFoodData: [String: Any] = ["typeDocumentID": typeDocumentID,
+                    let typeDocumentID = order.data()["typeDocumentID"] as? String,
+                    let foodDocumentID = order.data()["foodDocumentID"] as? String{
+                    let orderFoodData: [String: Any] = ["foodDocumentID": foodDocumentID,
+                                                        "typeDocumentID": typeDocumentID,
                                                         "foodName": foodName,
                                                         "foodImage": foodImage,
                                                         "foodPrice": foodPrice,
@@ -96,10 +100,16 @@ class CartViewController: UIViewController {
                                                         "resID": resID,
                                                         "tableNo": tableNo,
                                                         "orderFoodStatus": 0]
-                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
-                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodName).setData(orderFoodData)
+                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
+                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
                     
-                    let orderData: [String: Any] = ["date": Date(),
+                    let formatter = DateFormatter()
+                    formatter.locale = Locale(identifier: "zh_TW")
+                    formatter.dateFormat = "yyyy年M月d日"
+                    let now = Date()
+                    
+                    let orderData: [String: Any] = ["date": now,
+                                                    "dateString": formatter.string(from: now),
                                                     "orderNo": orderNo,
                                                     "userID": userID,
                                                     "resID": resID,
