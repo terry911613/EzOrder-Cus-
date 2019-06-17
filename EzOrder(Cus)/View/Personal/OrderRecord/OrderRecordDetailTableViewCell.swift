@@ -11,10 +11,10 @@ import UIKit
 class OrderRecordDetailTableViewCell: UITableViewCell {
     
     
-    @IBOutlet weak var foodImage: UIImageView!
-    @IBOutlet weak var foodName: UILabel!
-    @IBOutlet weak var foodPrice: UILabel!
-    @IBOutlet weak var foodAmount: UILabel!
+    @IBOutlet weak var foodImageView: UIImageView!
+    @IBOutlet weak var foodNameLabel: UILabel!
+    @IBOutlet weak var foodPriceLabel: UILabel!
+    @IBOutlet weak var foodAmountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

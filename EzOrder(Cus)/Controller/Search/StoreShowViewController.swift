@@ -227,7 +227,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         
     }
     func setMapRegion() {
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         var region = MKCoordinateRegion()
         region.span = span
         myMap.setRegion(region, animated: true)
