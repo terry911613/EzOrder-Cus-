@@ -295,6 +295,8 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
             cell.foodImageView.kf.setImage(with: URL(string: foodImage))
             cell.foodPriceLabel.text = "$\(foodPrice)"
             cell.foodAmountLabel.text = "數量：\(foodAmount)"
+            cell.statusLabel.text = "準備中"
+            cell.statusLabel.textColor = .red
             
             let db = Firestore.firestore()
             
