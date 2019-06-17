@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -20,12 +21,29 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     // 當user決定加好友時呼叫
     var tableNo: Int?
     var resID: String?
+    var orderNo: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
-        startPreviewAndScanQR()
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email {
+            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 0).getDocuments { (querySnapShot, error) in
+                if let result = querySnapShot?.documents {
+                    if result.isEmpty {
+                        self.startPreviewAndScanQR()
+                    } else {
+                        self.tableNo = (result[0].data()["tableNo"] as! Int)
+                        self.resID = (result[0].data()["resID"] as! String)
+                        self.orderNo = (result[0].data()["orderNo"] as! String)
+                        self.performSegue(withIdentifier: "menuSegue", sender: self)
+                    }
+                } else {
+                    self.startPreviewAndScanQR()
+                }
+            }
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         preview(false)
@@ -148,6 +166,9 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             if let tableNo = tableNo, let resID = resID{
                 orderVC.tableNo = tableNo
                 orderVC.resID = resID
+                if let orderNo = self.orderNo {
+                    orderVC.orderNo = orderNo
+                }
             }
         }
         

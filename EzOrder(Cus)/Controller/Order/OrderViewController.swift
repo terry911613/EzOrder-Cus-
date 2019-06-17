@@ -22,6 +22,7 @@ class OrderViewController: UIViewController {
     
     var tableNo: Int?
     var resID: String?
+    var orderNo: String?
     
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.email
@@ -125,6 +126,9 @@ class OrderViewController: UIViewController {
             if let resID = resID, let tableNo = tableNo{
                 cartVC.resID = resID
                 cartVC.tableNo = tableNo
+                if let orderNo = self.orderNo {
+                    cartVC.orderNo = orderNo
+                }
             }
         }
     }
@@ -177,6 +181,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             print("orderAmounts: ",orderAmounts)
             print("selectTypeIndex", selectTypeIndex)
             let thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
+            print("thisFoodAmount: ", thisFoodAmount)
             cell.countAmount = thisFoodAmount
             cell.count.text = "數量:\(String(thisFoodAmount))"
             
