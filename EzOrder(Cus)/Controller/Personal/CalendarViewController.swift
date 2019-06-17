@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import Firebase
 
 class CalendarViewController: UIViewController {
     
@@ -18,13 +19,13 @@ class CalendarViewController: UIViewController {
     
     var now = Date()
     var selectDateText = ""
-    var eventDic = [String : [String]]()
+    var eventDic = [String : String]()
     let dateFormatter: DateFormatter = DateFormatter()
+    var selectDateBooking = [QueryDocumentSnapshot]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "行事曆"
         // 讓app一啟動就是今天的日曆
         calendarView.scrollToDate(now, animateScroll: false)
         // 讓今天被選取
@@ -35,17 +36,24 @@ class CalendarViewController: UIViewController {
         calendarView.scrollingMode   = .stopAtEachCalendarFrame
         calendarView.showsHorizontalScrollIndicator = false
         
-        self.title = "行事曆"
-        dateLabel.text = "2019-01"
         
-        //  寫死今天有三項訂位
         selectDateText = dateFormatter.string(from: now)
-        print(selectDateText)
-        eventDic = ["2019-05-15" : ["12:00 全家", "17:00 711"],
-                    "2019-04-15" : ["12:00 馬辣", "17:00 新馬辣"],
-                    "2019-03-15" : ["12:00 屋馬", "17:00 大呼過癮"],
-                    "2019-02-15" : ["12:00 三媽", "22:00 老四川"],
-                    "2019-01-15" : ["12:00 麥當勞", "22:00 肯德基"]]
+        
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email{
+            db.collection("user").document(userID).collection("booking").order(by: "date", descending: false).getDocuments { (booking, error) in
+                if let booking = booking{
+                    if booking.documents.isEmpty == false{
+                        for booking in booking.documents{
+                            if let bookingDateString = booking.data()["documentID"] as? String{
+                                self.eventDic[bookingDateString] = "yes"
+                                self.calendarView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -56,12 +64,13 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         /*
          這邊比viewdidload先執行，所以可以在這邊設定dateFormatter格式
          */
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy年M月d日"
         dateFormatter.locale = Locale.current
         dateFormatter.timeZone = TimeZone.current
+        
         //  設定日曆起始日期和最終日期
-        let startDate = dateFormatter.date(from: "2019-01-01")!
-        let endDate = dateFormatter.date(from: "2030-02-01")!
+        let startDate = dateFormatter.date(from: "2019年1月1日")!
+        let endDate = dateFormatter.date(from: "2030年1月1日")!
         return ConfigurationParameters(startDate: startDate,
                                        endDate: endDate,
                                        generateInDates: .forAllMonths,
@@ -86,7 +95,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         //  讓 navigation 的 title 顯示現在的年跟月
         let formatter: DateFormatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM"
+        formatter.dateFormat = "yyyy年M月"
         if let slideYearMonth = visibleDates.monthDates.first?.date{
             let yearMonth = formatter.string(from: slideYearMonth)
             dateLabel.text = "\(yearMonth)"
@@ -95,15 +104,26 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
     //  選取日期的話
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         //  判斷是不是點第二次，如果是點兩次的話跳出細項
-//        let cell = cell as! DateCell
         
         configureCell(view: cell, cellState: cellState)
         selectDateText = dateFormatter.string(from: date)
-        //        eventTableView.reloadData()
-        print(selectDateText)
-        //  讓標籤改成選取到的日期
         dateLabel.text = selectDateText
-        showEventTableView.reloadData()
+        
+        let db = Firestore.firestore()
+        if let userID = Auth.auth().currentUser?.email{
+            db.collection("user").document(userID).collection("booking").document(dateFormatter.string(from: date)).collection("bookDetail").order(by: "period", descending: false).getDocuments { (booking, error) in
+                if let booking = booking{
+                    if booking.documents.isEmpty{
+                        self.selectDateBooking.removeAll()
+                        self.showEventTableView.reloadData()
+                    }
+                    else{
+                        self.selectDateBooking = booking.documents
+                        self.showEventTableView.reloadData()
+                    }
+                }
+            }
+        }
     }
     //  取消選取的話
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -148,28 +168,22 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let eventArray = eventDic[selectDateText]{
-            return eventArray.count
-        }
-        return 0
+        
+        return selectDateBooking.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-        cell.restaurantLabel.text = ""
-        cell.timeLabel.text = ""
-        cell.restaurantLabel.text = ""
-        tableView.separatorStyle = .none
-        if let eventArray = eventDic[selectDateText]{
-            tableView.separatorStyle = .singleLine
-            tableView.separatorColor = .lightGray
-            if eventArray.isEmpty{
-                cell.restaurantLabel.text = ""
-            }
-            else{
-                cell.timeLabel.text = selectDateText
-                cell.restaurantLabel.text = eventArray[indexPath.row]
-            }
+        let booking = selectDateBooking[indexPath.row]
+        if let dateString = booking.data()["dateString"] as? String,
+            let period = booking.data()["period"] as? String,
+            let resName = booking.data()["resName"] as? String,
+            let people = booking.data()["people"] as? String{
+            
+            cell.restaurantLabel.text = resName
+            cell.dateLabel.text = dateString
+            cell.timeLabel.text = period
+            cell.peopleLabel.text = "\(people)人"
         }
         return cell
     }

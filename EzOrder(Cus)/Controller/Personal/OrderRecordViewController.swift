@@ -52,10 +52,21 @@ class OrderRecordViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let orderRecordDetailVC = segue.destination as! OrderRecordDetailViewController
-        if let selectOrderNo = selectOrderNo{
-            print(selectOrderNo)
-            orderRecordDetailVC.orderNo = selectOrderNo
+        
+        if segue.identifier == "foodDetailSegue"{
+            let orderRecordDetailVC = segue.destination as! OrderRecordDetailViewController
+            if let selectOrderNo = selectOrderNo{
+                print(selectOrderNo)
+                orderRecordDetailVC.orderNo = selectOrderNo
+            }
+        }
+        else{
+            if segue.identifier == "rateResSegue"{
+                let rateVC = segue.destination as! RateViewController
+                if let indexPath = orderRecordTableView.indexPathForSelectedRow{
+                    let resID = orderRecordArray[indexPath.row]
+                }
+            }
         }
     }
 }
@@ -66,6 +77,7 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderRecordCell", for: indexPath) as! OrderRecordTableViewCell
         
         let orderRecord = orderRecordArray[indexPath.row]

@@ -27,6 +27,8 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     var res: DocumentSnapshot?
     var favRes: DocumentSnapshot?
     var enterFromFavorite = false
+    var resID: String?
+    var resName: String?
     
     var clickButton = false
     let geoCoder = CLGeocoder()
@@ -92,12 +94,16 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                     if let resImage = resData["resImage"] as? String,
                         let resName = resData["resName"] as? String,
                         let resTel = resData["resTel"] as? String,
-                        let resLocation = resData["resLocation"] as? String{
+                        let resLocation = resData["resLocation"] as? String,
+                        let resID = resData["resID"] as? String{
                         
                         showStoreImageView.kf.setImage(with: URL(string: resImage))
                         showStoreNameLabel.text = resName
                         showAddressButton.setTitle(resLocation, for: .normal)
                         showStorePhoneLabel.text = resTel
+                        self.resName = resName
+                        
+                        self.resID = resID
                     }
                 }
             }
@@ -130,6 +136,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         if enterFromFavorite {
             if let favResData = favRes?.data(),
                 let resID = favResData["resID"] as? String{
+                self.resID = resID
                 let db = Firestore.firestore()
                 db.collection("res").document(resID).getDocument { (res, error) in
                     if let res = res{
@@ -245,6 +252,14 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
             searchMenuVC.typeArray = typeArray
             if let resID = res?.documentID{
                 searchMenuVC.resID = resID
+            }
+        }
+        if segue.identifier == "bookSegue"{
+            let bookingVC = segue.destination as! BookingViewController
+            if let resID = resID,
+                let resName = resName{
+                bookingVC.resID = resID
+                bookingVC.resName = resName
             }
         }
     }

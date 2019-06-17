@@ -11,7 +11,9 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var restaurantLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var peopleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

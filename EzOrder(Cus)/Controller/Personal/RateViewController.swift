@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RateDishViewController: UIViewController, UITextViewDelegate {
+class RateViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var foodNameLabel: UILabel!
@@ -19,6 +19,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var isCommentedView: UIView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var alertView: UIView!
+    @IBOutlet weak var rateLabel: UILabel!
     
     var foodName: String?
     var foodDocumentID: String?
@@ -28,11 +29,13 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
     var foodRate: Double?
     var foodRateCount: Double?
     var viewHeight: CGFloat?
+    var rateText = ""
     
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardObserver()
     }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let rectShape = CAShapeLayer()
         rectShape.bounds = headerView.frame
@@ -218,7 +221,7 @@ class RateDishViewController: UIViewController, UITextViewDelegate {
         view.endEditing(true)
     }
 }
-extension RateDishViewController {
+extension RateViewController {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)

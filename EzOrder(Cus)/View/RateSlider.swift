@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 
 class RateSlider: UISlider {
-    var parentVC: RateDishViewController!
+    var parentVC: RateViewController!
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // this method is called when the user touches the screen
         guard let touch = touches.first else {return}

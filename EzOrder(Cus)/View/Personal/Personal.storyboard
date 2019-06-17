@@ -230,7 +230,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="183.49999999999997" width="300" height="300.00000000000006"/>
+                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="height" multiplier="1:1" id="RYG-nw-5Jn"/>
@@ -583,33 +583,67 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
-                                                    <rect key="frame" x="27" y="35" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePay" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
+                                                    <rect key="frame" x="30" y="10" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="JWI-8B-3P2" secondAttribute="height" multiplier="1:1" id="fLM-Qj-ITt"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ApplePay" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
-                                                    <rect key="frame" x="27" y="12" width="20" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
+                                                    <rect key="frame" x="30" y="35" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Sty-GQ-tkm" secondAttribute="height" multiplier="1:1" id="dyW-lb-UEy"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yh-Tv-oEY">
-                                                    <rect key="frame" x="55" y="35" width="305" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yh-Tv-oEY">
+                                                    <rect key="frame" x="60" y="33" width="48" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ane-fe-8iB">
-                                                    <rect key="frame" x="55" y="11" width="305" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ane-fe-8iB">
+                                                    <rect key="frame" x="60" y="11" width="37.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDB-gB-ZN8">
+                                                    <rect key="frame" x="102.5" y="11" width="38" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIX-L0-56P">
+                                                    <rect key="frame" x="123" y="33" width="48" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4Yh-Tv-oEY" firstAttribute="leading" secondItem="Sty-GQ-tkm" secondAttribute="trailing" constant="10" id="9nK-dP-eiM"/>
+                                                <constraint firstItem="Ane-fe-8iB" firstAttribute="leading" secondItem="JWI-8B-3P2" secondAttribute="trailing" constant="10" id="DLi-zZ-eoz"/>
+                                                <constraint firstItem="Sty-GQ-tkm" firstAttribute="top" secondItem="JWI-8B-3P2" secondAttribute="bottom" constant="5" id="HOF-0O-dMK"/>
+                                                <constraint firstItem="Sty-GQ-tkm" firstAttribute="leading" secondItem="EeV-1d-m9n" secondAttribute="leading" constant="30" id="KYR-Dt-eqD"/>
+                                                <constraint firstItem="BDB-gB-ZN8" firstAttribute="centerY" secondItem="JWI-8B-3P2" secondAttribute="centerY" id="Q6M-V4-rRt"/>
+                                                <constraint firstItem="BDB-gB-ZN8" firstAttribute="leading" secondItem="Ane-fe-8iB" secondAttribute="trailing" constant="5" id="RRc-ey-rxX"/>
+                                                <constraint firstItem="Ane-fe-8iB" firstAttribute="centerY" secondItem="JWI-8B-3P2" secondAttribute="centerY" id="XCt-VJ-eNO"/>
+                                                <constraint firstItem="4Yh-Tv-oEY" firstAttribute="centerY" secondItem="Sty-GQ-tkm" secondAttribute="centerY" id="Zmk-Aa-mt6"/>
+                                                <constraint firstItem="JWI-8B-3P2" firstAttribute="leading" secondItem="EeV-1d-m9n" secondAttribute="leading" constant="30" id="ZnF-xo-IKv"/>
+                                                <constraint firstItem="XIX-L0-56P" firstAttribute="leading" secondItem="4Yh-Tv-oEY" secondAttribute="trailing" constant="15" id="bXb-cy-Php"/>
+                                                <constraint firstItem="XIX-L0-56P" firstAttribute="centerY" secondItem="Sty-GQ-tkm" secondAttribute="centerY" id="fAf-hn-OVN"/>
+                                                <constraint firstItem="Sty-GQ-tkm" firstAttribute="width" secondItem="JWI-8B-3P2" secondAttribute="width" id="ht2-bd-wqZ"/>
+                                                <constraint firstItem="JWI-8B-3P2" firstAttribute="top" secondItem="EeV-1d-m9n" secondAttribute="top" constant="10" id="uSa-0m-QWK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="JWI-8B-3P2" firstAttribute="height" secondItem="eyo-3R-cHt" secondAttribute="height" multiplier="20/65" id="0cc-CW-UKP"/>
+                                        </constraints>
                                         <connections>
+                                            <outlet property="dateLabel" destination="Ane-fe-8iB" id="tcU-BX-4bI"/>
+                                            <outlet property="peopleLabel" destination="XIX-L0-56P" id="KYd-AZ-p5c"/>
                                             <outlet property="restaurantLabel" destination="4Yh-Tv-oEY" id="zFR-so-rMc"/>
-                                            <outlet property="timeLabel" destination="Ane-fe-8iB" id="tcU-BX-4bI"/>
+                                            <outlet property="timeLabel" destination="BDB-gB-ZN8" id="Abo-N9-Olu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -847,12 +881,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZb-cY-Fqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1305" y="213"/>
+            <point key="canvasLocation" x="1114" y="213"/>
         </scene>
-        <!--Rate Dish View Controller-->
+        <!--Rate View Controller-->
         <scene sceneID="CL0-Xa-VOb">
             <objects>
-                <viewController storyboardIdentifier="rateDishVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="El2-JZ-1BF" customClass="RateDishViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rateDishVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="El2-JZ-1BF" customClass="RateViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="STk-Kn-pfn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -976,13 +1010,14 @@
                         <outlet property="headerView" destination="5p5-Yo-QW7" id="J2p-eZ-cMh"/>
                         <outlet property="isCommentedView" destination="9k3-d4-Ivi" id="XqT-e2-juY"/>
                         <outlet property="rateImageView" destination="WsG-8Q-vdd" id="h3d-3t-Rqg"/>
+                        <outlet property="rateLabel" destination="IeT-We-fW4" id="2yJ-gv-Hcm"/>
                         <outlet property="rateSlider" destination="hsw-fL-zON" id="O36-2p-P0E"/>
                         <outlet property="submitButton" destination="f7U-Ng-sNd" id="lhM-aG-W9b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="33Z-6d-YS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2328.8000000000002" y="212.74362818590706"/>
+            <point key="canvasLocation" x="1882" y="213"/>
         </scene>
     </scenes>
     <resources>
