@@ -190,7 +190,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         let btnLocation = (sender.superview?.convert(sender.frame.origin, to: nil))!
         let image = UIImage(named: "donut")
         let imageViews = UIImageView(image: image!)
-        imageViews.frame = CGRect(origin: btnLocation, size: CGSize(width: 30, height: 30))
+        imageViews.frame = CGRect(origin: btnLocation, size: CGSize(width: 41, height: 50))
         view.addSubview(imageViews)
         textimage2.insert(imageViews, at: 0)
         clickButton = !clickButton
@@ -234,7 +234,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         
     }
     func setMapRegion() {
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let span = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005)
         var region = MKCoordinateRegion()
         region.span = span
         myMap.setRegion(region, animated: true)

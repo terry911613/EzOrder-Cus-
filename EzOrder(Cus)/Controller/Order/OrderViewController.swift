@@ -22,6 +22,7 @@ class OrderViewController: UIViewController {
     
     var tableNo: Int?
     var resID: String?
+    var orderNo: String?
     
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.email
@@ -41,11 +42,17 @@ class OrderViewController: UIViewController {
             tableLabel.text = "\(tableNo)桌"
         }
         getType()
+        
     }
     
     func getType(){
         if let resID = resID{
-            db.collection("res").document(resID).collection("foodType").order(by: "index", descending: true).getDocuments { (type, error) in
+            db.collection("res").document(resID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
+                print("type0: ",type?.documents[0].data())
+                print("type1: ",type?.documents[1].data())
+                print("type2: ",type?.documents[2].data())
+                print("type3: ",type?.documents[3].data())
+                
                 if let type = type{
                     if type.documentChanges.isEmpty{
                         self.typeArray.removeAll()
@@ -54,6 +61,11 @@ class OrderViewController: UIViewController {
                     else{
                         
                         self.typeArray = type.documents
+                        print("typeArray0: ", self.typeArray[0].data())
+                        print("typeArray1: ", self.typeArray[1].data())
+                        print("typeArray2: ", self.typeArray[2].data())
+                        print("typeArray3: ", self.typeArray[3].data())
+                        
                         self.animateTypeCollectionView()
                         for _ in 1...self.typeArray.count {
                             self.orderAmounts.append([])
@@ -61,17 +73,20 @@ class OrderViewController: UIViewController {
                         
                         var typeIndex = 0
                         for type in type.documents{
+                            print("typeStart: ",type.data())
                             if let typeDocumentID = type.data()["typeDocumentID"] as? String{
                                 self.db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").getDocuments { (food, error) in
                                     
                                     if let foodCount = food?.documents.count {
                                         if foodCount != 0 {
                                             for _ in 1...foodCount {
-                                                self.orderAmounts[typeIndex].append(0)
+                                                self.orderAmounts[type.data()["index"] as! Int].append(0)
                                             }
                                         }
                                         typeIndex += 1
                                     }
+                                    print("type:", type.data())
+                                    print("orderAmount: ", self.orderAmounts)
                                 }
                             }
                         }
@@ -125,6 +140,9 @@ class OrderViewController: UIViewController {
             if let resID = resID, let tableNo = tableNo{
                 cartVC.resID = resID
                 cartVC.tableNo = tableNo
+                if let orderNo = self.orderNo {
+                    cartVC.orderNo = orderNo
+                }
             }
         }
     }
@@ -177,6 +195,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             print("orderAmounts: ",orderAmounts)
             print("selectTypeIndex", selectTypeIndex)
             let thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
+            print("thisFoodAmount: ", thisFoodAmount)
             cell.countAmount = thisFoodAmount
             cell.count.text = "數量:\(String(thisFoodAmount))"
             
