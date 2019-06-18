@@ -46,11 +46,13 @@ class OrderRecordDetailViewController: UIViewController {
                 if let foodDocumentID = food.data()["foodDocumentID"] as? String,
                     let resID = food.data()["resID"] as? String,
                     let typeDocumentID = food.data()["typeDocumentID"] as? String,
-                let foodName = food.data()["foodName"] as? String{
+                    let foodName = food.data()["foodName"] as? String,
+                let documentID = food.data()["documentID"] as? String{
                     dishRateVC.foodDocumentID = foodDocumentID
                     dishRateVC.resID = resID
                     dishRateVC.typeDocumentID = typeDocumentID
                     dishRateVC.foodName = foodName
+                    dishRateVC.documentID = documentID
                 }
                 dishRateVC.orderNo = orderNo
             }

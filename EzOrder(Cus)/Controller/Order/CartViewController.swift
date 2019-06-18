@@ -90,6 +90,9 @@ class CartViewController: UIViewController {
                     orderData["totalPrice"] = newTotalPrice
                     orderData["extraOrderCount"] = newExtraOrderCount
                     
+                    let extraOrderCountStr = String(newExtraOrderCount)
+                    
+                    
                     self.db.collection("user").document(userID).collection("order").document(orderNo).updateData(orderData)
                     self.db.collection("res").document(resID).collection("order").document(orderNo).updateData(orderData)
                     
@@ -101,7 +104,11 @@ class CartViewController: UIViewController {
                             let foodPrice = order.data()["foodPrice"] as? Int,
                             let typeDocumentID = order.data()["typeDocumentID"] as? String,
                             let foodDocumentID = order.data()["foodDocumentID"] as? String{
-                            let orderFoodData: [String: Any] = ["foodDocumentID": foodDocumentID,
+                            
+                            let documentID = foodDocumentID + extraOrderCountStr
+                            
+                            let orderFoodData: [String: Any] = ["documentID": documentID,
+                                                                "foodDocumentID": foodDocumentID,
                                                                 "typeDocumentID": typeDocumentID,
                                                                 "foodName": foodName,
                                                                 "foodImage": foodImage,
@@ -114,9 +121,9 @@ class CartViewController: UIViewController {
                                                                 "orderFoodStatus": 0]
                             
                            
-                            let extraOrderCountStr = String(newExtraOrderCount)
-                            self.db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID + extraOrderCountStr).setData(orderFoodData)
-                            self.db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID + extraOrderCountStr).setData(orderFoodData)
+                            
+                            self.db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
+                            self.db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
                             
                             print("userID: ", userID)
                             print("resID: ", resID)
@@ -157,7 +164,8 @@ class CartViewController: UIViewController {
                         let foodPrice = order.data()["foodPrice"] as? Int,
                         let typeDocumentID = order.data()["typeDocumentID"] as? String,
                         let foodDocumentID = order.data()["foodDocumentID"] as? String{
-                        let orderFoodData: [String: Any] = ["foodDocumentID": foodDocumentID,
+                        let orderFoodData: [String: Any] = ["documentID": foodDocumentID,
+                                                            "foodDocumentID": foodDocumentID,
                                                             "typeDocumentID": typeDocumentID,
                                                             "foodName": foodName,
                                                             "foodImage": foodImage,

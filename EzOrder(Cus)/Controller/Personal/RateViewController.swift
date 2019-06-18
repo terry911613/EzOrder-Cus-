@@ -23,6 +23,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
     
     var foodName: String?
     var foodDocumentID: String?
+    var documentID: String?
     var orderNo: String?
     var resID: String?
     var typeDocumentID: String?
@@ -66,7 +67,8 @@ class RateViewController: UIViewController, UITextViewDelegate {
             let typeDocumentID = typeDocumentID,
             let foodDocumentID = foodDocumentID,
             let orderNo = orderNo,
-            let userID = Auth.auth().currentUser?.email{
+            let userID = Auth.auth().currentUser?.email,
+        let documentID = documentID{
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).getDocument { (food, error) in
                 if let foodData = food?.data(){
                     if let foodTotalRate = foodData["foodTotalRate"] as? Double,
@@ -77,7 +79,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
                 }
             }
             
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).getDocument { (food, error) in
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).getDocument { (food, error) in
                 print("ff")
                 if let foodData = food?.data(){
                     print("ss")
@@ -198,14 +200,15 @@ class RateViewController: UIViewController, UITextViewDelegate {
             let resID = resID,
             let typeDocumentID = typeDocumentID,
             let foodRate = foodRate,
-            let foodRateCount = foodRateCount{
+            let foodRateCount = foodRateCount,
+            let documentID = documentID{
             
             let timeStamp = Date().timeIntervalSince1970
             let commentID = String(timeStamp) + userID
             
             let orderData: [String: Any] = ["foodRate": rate, "foodComment": comment]
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).updateData(orderData)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).updateData(orderData)
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).updateData(orderData)
+            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).updateData(orderData)
             
             let foodData: [String: Any] = ["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1]
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).updateData(foodData)
