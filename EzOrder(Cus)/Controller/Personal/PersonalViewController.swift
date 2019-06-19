@@ -17,18 +17,19 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var personalTableView: UITableView!
-    var lise = ["收藏","行事曆","消費記錄","轉盤","編輯","info"]
-    var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
+    var lise = ["", "收藏","行事曆","消費記錄","轉盤","編輯","info"]
+    var personalArray = ["", "收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
     override var preferredStatusBarStyle:UIStatusBarStyle {
     return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        userImageView.layer.cornerRadius = userImageView.frame.width/2
+        
         getInfo()
     }
     
@@ -73,7 +74,7 @@ class PersonalViewController: UIViewController {
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return personalArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,23 +87,23 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
+        if indexPath.row == 1{
             let favoriteVC = storyboard?.instantiateViewController(withIdentifier: "favoriteVC") as! FavoriteViewController
             navigationController?.pushViewController(favoriteVC, animated: true)
         }
-        else if indexPath.row == 1{
+        else if indexPath.row == 2{
             let calendarVC = storyboard?.instantiateViewController(withIdentifier: "calendarVC") as! CalendarViewController
             navigationController?.pushViewController(calendarVC, animated: true)
         }
-        else if indexPath.row == 2{
+        else if indexPath.row == 3{
             let orderRecordVC = storyboard?.instantiateViewController(withIdentifier: "orderRecordVC") as! OrderRecordViewController
             navigationController?.pushViewController(orderRecordVC, animated: true)
         }
-        else if indexPath.row == 3 {
+        else if indexPath.row == 4{
             let wheelVC = storyboard?.instantiateViewController(withIdentifier: "wheelVC") as! WheelViewController
             navigationController?.pushViewController(wheelVC, animated: true)
         }
-        else if indexPath.row == 4{
+        else if indexPath.row == 5{
             performSegue(withIdentifier: "editPersonalSegue", sender: self)
         }
         else{

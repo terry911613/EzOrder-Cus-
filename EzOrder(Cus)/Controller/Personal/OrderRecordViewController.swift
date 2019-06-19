@@ -19,9 +19,10 @@ class OrderRecordViewController: UIViewController {
     var selectOrderNo: String?
     
     override func viewDidLoad() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
         getOrderRecord()
     }
     
