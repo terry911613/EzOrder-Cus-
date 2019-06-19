@@ -179,7 +179,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource{
             let period = booking.data()["period"] as? String,
             let resName = booking.data()["resName"] as? String,
             let people = booking.data()["people"] as? String{
-            
+               
             cell.restaurantLabel.text = resName
             cell.dateLabel.text = dateString
             cell.timeLabel.text = period
