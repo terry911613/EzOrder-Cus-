@@ -17,15 +17,18 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
     @IBOutlet weak var personalTableView: UITableView!
-    var lise = ["收藏","日曆","消費記錄","遊戲","修改","info"]
+    var lise = ["收藏","行事曆","消費記錄","轉盤","編輯","info"]
     var personalArray = ["收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
+    override var preferredStatusBarStyle:UIStatusBarStyle {
+    return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         getInfo()
     }
     
@@ -53,7 +56,7 @@ class PersonalViewController: UIViewController {
             }
         }
     }
-    @IBAction func logoutButton(_ sender: UIBarButtonItem) {
+    @IBAction func logouButton(_ sender: Any) {
         do{
             try Auth.auth().signOut()
             performSegue(withIdentifier: "unwindToLogin", sender: self)
@@ -61,8 +64,9 @@ class PersonalViewController: UIViewController {
         catch{
             print("error, there was a problem logging out")
         }
+
     }
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -73,10 +77,11 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath)
-        cell.selectionStyle = .none
-        cell.imageView?.image = UIImage(named: lise[indexPath.row])
-        cell.textLabel?.text = personalArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "personalCell", for: indexPath) as! PersonalTableViewCell
+
+        cell.personalImage.image = UIImage(named: lise[indexPath.row])
+       // cell.imageView?.image = UIImage(named: lise[indexPath.row])
+        cell.personalLabel.text = personalArray[indexPath.row]
         return cell
     }
     

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "編輯.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "遊戲.png",
       "scale" : "2x"
     },
     {

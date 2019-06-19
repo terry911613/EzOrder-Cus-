@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0C41BD22B9E56100D87E7A /* PersonalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0C41BC22B9E56100D87E7A /* PersonalTableViewCell.swift */; };
 		2C0DFE8722A8C20F002CC546 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8622A8C20F002CC546 /* Restaurant.swift */; };
 		2C0DFE8922A8DDE0002CC546 /* StoreShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */; };
 		2C0DFE8B22A8DE03002CC546 /* StoreShowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */; };
 		2C0DFE8D22A95ACA002CC546 /* SearchMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */; };
 		2C0DFE8F22A95AEB002CC546 /* SearcMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */; };
 		2C0DFE9122A95B04002CC546 /* SearcMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */; };
+		2C2B9DF122B9094000602386 /* FlatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B9DF022B9094000602386 /* FlatCard.swift */; };
 		2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */; };
 		2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */; };
 		2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */; };
@@ -71,12 +73,14 @@
 
 /* Begin PBXFileReference section */
 		0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzOrder_Cus_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0C41BC22B9E56100D87E7A /* PersonalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalTableViewCell.swift; sourceTree = "<group>"; };
 		2C0DFE8622A8C20F002CC546 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreShowViewController.swift; sourceTree = "<group>"; };
 		2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreShowCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMenuViewController.swift; sourceTree = "<group>"; };
 		2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuTableViewCell.swift; sourceTree = "<group>"; };
 		2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C2B9DF022B9094000602386 /* FlatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatCard.swift; sourceTree = "<group>"; };
 		2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodDetailViewController.swift; sourceTree = "<group>"; };
 		2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMapViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				447A1708228BB284003AB41E /* Search.storyboard */,
+				2C2B9DF022B9094000602386 /* FlatCard.swift */,
 				2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */,
 				2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */,
 				2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */,
@@ -330,6 +335,7 @@
 				4443C38722A65A37004875D7 /* FavoriteViewController.swift */,
 				44FA8C5222912C8200B24B9C /* CalendarViewController.swift */,
 				9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */,
+				2C0C41BC22B9E56100D87E7A /* PersonalTableViewCell.swift */,
 				9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */,
 				4443C39722A663E6004875D7 /* OrderRecordViewController.swift */,
 				4418C53622B0EAEA00B02854 /* OrderRecordDetailViewController.swift */,
@@ -589,9 +595,11 @@
 				9D02A9EB229E8A31009032D5 /* WheelAlertViewController.swift in Sources */,
 				447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */,
 				9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */,
+				2C2B9DF122B9094000602386 /* FlatCard.swift in Sources */,
 				9D02A9E7229E6E3E009032D5 /* WheelViewController.swift in Sources */,
 				44BC031922AB99C0002AA6B0 /* CartTableViewCell.swift in Sources */,
 				2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */,
+				2C0C41BD22B9E56100D87E7A /* PersonalTableViewCell.swift in Sources */,
 				447A1718228BE3CF003AB41E /* ProgressViewController.swift in Sources */,
 				4418C53722B0EAEA00B02854 /* OrderRecordDetailViewController.swift in Sources */,
 				2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */,
