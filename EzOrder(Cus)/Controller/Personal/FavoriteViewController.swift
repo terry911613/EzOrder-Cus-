@@ -18,6 +18,7 @@ class FavoriteViewController: UIViewController {
     var res: QueryDocumentSnapshot?
     
     override func viewDidLoad() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         super.viewDidLoad()
         
         let db = Firestore.firestore()

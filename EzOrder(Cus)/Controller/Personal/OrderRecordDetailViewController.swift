@@ -18,6 +18,8 @@ class OrderRecordDetailViewController: UIViewController {
     var orderNo: String?
     
     override func viewDidLoad() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         super.viewDidLoad()
         
         let db = Firestore.firestore()

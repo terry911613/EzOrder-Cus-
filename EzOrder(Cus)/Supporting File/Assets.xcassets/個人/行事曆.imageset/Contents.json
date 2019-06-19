@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "行事曆.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "日曆.png",
       "scale" : "2x"
     },
     {

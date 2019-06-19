@@ -35,9 +35,13 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var rankCollectionView: UICollectionView!
     
     @IBOutlet weak var adCollectionView: UICollectionView!
-    var rankImgNames = ["AD1", "AD2", "AD3", "AD4", "AD5"]
+    var rankImgNames = ["涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo"]
     var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
-    
+//    lazy var cardLayout: FlatCardCollectionViewLayout = {
+//        let layout = FlatCardCollectionViewLayout()
+//        layout.itemSize = CGSize(width: 247, height: 143)
+//        return layout
+//    }()
     var adArray = [QueryDocumentSnapshot]()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -66,14 +70,24 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
             return cell
         }
     }
+
+ 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == adCollectionView {
-            return CGSize(width: adCollectionView.frame.width, height: adCollectionView.frame.height)
+            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
+
         } else {
-            return CGSize(width: collectionView.frame.width * 5/6, height: collectionView.frame.height)
+            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
         }
     }
+//
+//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 40
+        }
+
+    
     
     
     // 圖層漸層
@@ -94,7 +108,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     
     var imageIndexPath = 0
     override func viewDidLoad() {
-        super.viewDidLoad()
+   //     adCollectionView.collectionViewLayout = cardLayout
+        //rankCollectionView.collectionViewLayout = cardLayout
+                super.viewDidLoad()
         
         let db = Firestore.firestore()
         db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
@@ -121,8 +137,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     }
     var timerForAd = Timer()
     override func viewWillAppear(_ animated: Bool) {
+        self.adCollectionView.leftAnchor
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
-            UIView.animate(withDuration: 1, animations: {
+                    UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
                 if self.imageIndexPath < self.adArray.count - 1 {
                     self.imageIndexPath += 1
@@ -158,5 +175,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     }
     
 }
+
 
 

@@ -23,7 +23,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.title = "行事曆"
         // 讓app一啟動就是今天的日曆
         calendarView.scrollToDate(now, animateScroll: false)

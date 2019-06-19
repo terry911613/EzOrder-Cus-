@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.94901960784313721" green="0.58085781339999998" blue="0.56861180069999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="FBQ-H1-fFb" kind="relationship" relationship="viewControllers" id="u6P-9R-ei2"/>
@@ -162,7 +162,7 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="ffU-ix-wZP">
-                                <rect key="frame" x="29" y="173" width="40.000000000000028" height="40.000000000000028"/>
+                                <rect key="frame" x="29" y="173" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="32P-ah-cL6"/>
                                     <constraint firstAttribute="height" constant="40" id="UUM-Dq-crH"/>
@@ -319,7 +319,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="0AW-mR-2gg">
-                                <rect key="frame" x="29" y="173" width="40.000000000000028" height="40.000000000000028"/>
+                                <rect key="frame" x="29" y="173" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="7RS-ro-xNL"/>
                                     <constraint firstAttribute="width" constant="40" id="Ilh-nK-21p"/>
