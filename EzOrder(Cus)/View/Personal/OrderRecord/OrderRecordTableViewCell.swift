@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class OrderRecordTableViewCell: UITableViewCell {
 
@@ -25,5 +26,4 @@ class OrderRecordTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

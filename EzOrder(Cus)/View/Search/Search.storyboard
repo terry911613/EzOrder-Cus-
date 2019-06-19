@@ -140,44 +140,23 @@
                                         <rect key="frame" x="10" y="20" width="335" height="62"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-64-lBa" userLabel="Restaurant Name Stack View">
-                                                <rect key="frame" x="92.5" y="0.0" width="150.5" height="25.5"/>
+                                                <rect key="frame" x="92.5" y="0.0" width="150.5" height="62"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳名稱:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FN-rW-meT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="25.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="91.5" height="62"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nk0-M1-PB6">
-                                                        <rect key="frame" x="96.5" y="0.0" width="54" height="25.5"/>
+                                                        <rect key="frame" x="96.5" y="0.0" width="54" height="62"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vrr-ng-xKW">
-                                                <rect key="frame" x="10" y="32" width="315" height="30"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="訂位：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAE-jq-5ep">
-                                                        <rect key="frame" x="0.0" y="0.0" width="64.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="訂位大名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEf-4v-0NL">
-                                                        <rect key="frame" x="69.5" y="0.0" width="245.5" height="30"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Vrr-ng-xKW" firstAttribute="leading" secondItem="osr-b5-5pP" secondAttribute="leading" constant="10" id="ex4-4h-ro2"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vrr-ng-xKW" secondAttribute="trailing" constant="10" id="lt2-p7-Xdh"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93367401539999995" blue="0.93915881850000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,9 +192,9 @@
                                                 <date key="date" timeIntervalSinceReferenceDate="581943721.87989497">
                                                     <!--2019-06-11 11:02:01 +0000-->
                                                 </date>
-                                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
-                                                    <!--1970-01-01 11:00:00 +0000-->
-                                                </date>
+                                                <connections>
+                                                    <action selector="datePicker:" destination="FrF-1I-lz5" eventType="valueChanged" id="0yz-18-DMk"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                     </stackView>
@@ -240,25 +219,23 @@
                                         <rect key="frame" x="10" y="10" width="335" height="92"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hwq-vd-vGC">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="72.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="92"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="時段：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQX-Z6-Mms">
-                                                        <rect key="frame" x="0.0" y="23.5" width="64.5" height="25.5"/>
+                                                        <rect key="frame" x="0.0" y="33.5" width="64.5" height="25.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="zkz-jh-zlZ">
-                                                        <rect key="frame" x="69.5" y="0.0" width="265.5" height="72.5"/>
+                                                        <rect key="frame" x="69.5" y="0.0" width="265.5" height="92"/>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="FrF-1I-lz5" id="b9w-4k-odc"/>
+                                                            <outlet property="delegate" destination="FrF-1I-lz5" id="OJD-YH-U9T"/>
+                                                        </connections>
                                                     </pickerView>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示剩餘人數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7e-Og-HFp">
-                                                <rect key="frame" x="118.5" y="72.5" width="98" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -289,6 +266,10 @@
                                             </label>
                                             <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ymT-9C-qR5">
                                                 <rect key="frame" x="69.5" y="0.0" width="265.5" height="82"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="FrF-1I-lz5" id="ZNt-XM-xUk"/>
+                                                    <outlet property="delegate" destination="FrF-1I-lz5" id="e3v-hb-hiZ"/>
+                                                </connections>
                                             </pickerView>
                                         </subviews>
                                     </stackView>
@@ -342,13 +323,11 @@
                         <outlet property="bookingNameView" destination="eub-4N-QXS" id="7JM-w3-5CM"/>
                         <outlet property="datePicker" destination="pdW-dx-W6j" id="YiM-Hd-lfN"/>
                         <outlet property="dateView" destination="3Gd-xC-mkK" id="qnJ-dU-GZp"/>
-                        <outlet property="nameLabel" destination="gEf-4v-0NL" id="eE6-ke-F74"/>
                         <outlet property="peoplePicker" destination="ymT-9C-qR5" id="Xlk-gZ-IzG"/>
                         <outlet property="peopleView" destination="SQ7-Aj-mul" id="z5b-XS-bwW"/>
                         <outlet property="resNameLabel" destination="nk0-M1-PB6" id="KCG-Mx-R8O"/>
                         <outlet property="timeIntervalPicker" destination="zkz-jh-zlZ" id="dRK-xf-U1I"/>
                         <outlet property="timeIntervalView" destination="XTR-TW-uOB" id="L5G-3U-S0o"/>
-                        <outlet property="vacancyLabel" destination="e7e-Og-HFp" id="Lm9-fd-9Bw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbo-4i-gwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -637,7 +616,7 @@
                     <navigationItem key="navigationItem" id="HPD-yC-cDy">
                         <barButtonItem key="rightBarButtonItem" title="訂位" id="32j-hp-z2k">
                             <connections>
-                                <segue destination="FrF-1I-lz5" kind="show" id="dsu-eR-5Lp"/>
+                                <segue destination="FrF-1I-lz5" kind="show" identifier="bookSegue" id="dsu-eR-5Lp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -288,19 +288,20 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
             let foodPrice = order.data()["foodPrice"] as? Int,
             let foodAmount = order.data()["foodAmount"] as? Int,
             let orderNo = order.data()["orderNo"] as? String,
-            let foodDocumentID = order.data()["foodDocumentID"] as? String,
+            let documentID = order.data()["documentID"] as? String,
             let userID = Auth.auth().currentUser?.email{
 
             cell.foodNameLabel.text = foodName
             cell.foodImageView.kf.setImage(with: URL(string: foodImage))
             cell.foodPriceLabel.text = "$\(foodPrice)"
             cell.foodAmountLabel.text = "數量：\(foodAmount)"
+            cell.statusLabel.text = "準備中"
+            cell.statusLabel.textColor = .red
             
             let db = Firestore.firestore()
             
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).addSnapshotListener({ (foodStatus, error) in
+            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).addSnapshotListener({ (foodStatus, error) in
                 print(orderNo)
-                print(foodDocumentID)
                 if let foodStatusData = foodStatus?.data(){
                     if let orderFoodStatus = foodStatusData["orderFoodStatus"] as? Int{
                         if orderFoodStatus == 0{

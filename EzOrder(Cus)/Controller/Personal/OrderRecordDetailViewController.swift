@@ -31,34 +31,30 @@ class OrderRecordDetailViewController: UIViewController {
                     if food.documents.isEmpty{
                         self.foodArray.removeAll()
                         self.foodDetailTableView.reloadData()
-                        print("shit")
                     }
                     else{
                         self.foodArray = food.documents
                         self.foodDetailTableView.reloadData()
-                        print("fuck")
                     }
                 }
             }
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dishRateVC = segue.destination as? RateDishViewController {
-            print(foodDetailTableView.indexPathForSelectedRow)
+        if let dishRateVC = segue.destination as? RateViewController {
             if let indexPath = foodDetailTableView.indexPathForSelectedRow,
                 let orderNo = orderNo{
                 let food = foodArray[indexPath.row]
-                print(food.data()["foodName"] as? String)
-                print(food.data()["resID"] as? String)
-                print(food.data()["typeName"] as? String)
                 if let foodDocumentID = food.data()["foodDocumentID"] as? String,
                     let resID = food.data()["resID"] as? String,
                     let typeDocumentID = food.data()["typeDocumentID"] as? String,
-                let foodName = food.data()["foodName"] as? String{
+                    let foodName = food.data()["foodName"] as? String,
+                let documentID = food.data()["documentID"] as? String{
                     dishRateVC.foodDocumentID = foodDocumentID
                     dishRateVC.resID = resID
                     dishRateVC.typeDocumentID = typeDocumentID
                     dishRateVC.foodName = foodName
+                    dishRateVC.documentID = documentID
                 }
                 dishRateVC.orderNo = orderNo
             }

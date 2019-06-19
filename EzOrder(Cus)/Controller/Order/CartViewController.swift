@@ -21,6 +21,7 @@ class CartViewController: UIViewController {
     var amountArray = [Int]()
     var resID: String?
     var tableNo: Int?
+    var orderNo: String?
     
     let db = Firestore.firestore()
     let userID = Auth.auth().currentUser?.email
@@ -76,60 +77,138 @@ class CartViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func upload(){
+    func upload() {
         
-        let timeStamp = Date().timeIntervalSince1970
-        if let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice{
-            let orderNo = String(timeStamp) + userID
-            for i in 0...orderArray.count-1{
-                let order = orderArray[i]
-                let amount = amountArray[i]
-                if let foodName = order.data()["foodName"] as? String,
-                    let foodImage = order.data()["foodImage"] as? String,
-                    let foodPrice = order.data()["foodPrice"] as? Int,
-                    let typeDocumentID = order.data()["typeDocumentID"] as? String,
-                    let foodDocumentID = order.data()["foodDocumentID"] as? String{
-                    let orderFoodData: [String: Any] = ["foodDocumentID": foodDocumentID,
-                                                        "typeDocumentID": typeDocumentID,
-                                                        "foodName": foodName,
-                                                        "foodImage": foodImage,
-                                                        "foodPrice": foodPrice,
-                                                        "foodAmount": amount,
+        // 加點模式
+        if let orderNo = orderNo, let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice {
+            db.collection("user").document(userID).collection("order").document(orderNo).getDocument { (documentSnapshot, error) in
+                if var orderData = documentSnapshot?.data() {
+                    let oldTotalPrice = orderData["totalPrice"] as! Int
+                    let oldExtraOrderCount = orderData["extraOrderCount"] as! Int
+                    let newTotalPrice = oldTotalPrice + totalPrice
+                    let newExtraOrderCount = oldExtraOrderCount + 1
+                    orderData["totalPrice"] = newTotalPrice
+                    orderData["extraOrderCount"] = newExtraOrderCount
+                    
+                    let extraOrderCountStr = String(newExtraOrderCount)
+                    
+                    
+                    self.db.collection("user").document(userID).collection("order").document(orderNo).updateData(orderData)
+                    self.db.collection("res").document(resID).collection("order").document(orderNo).updateData(orderData)
+                    
+                    for i in 0...self.orderArray.count-1 {
+                        let order = self.orderArray[i]
+                        let amount = self.amountArray[i]
+                        if let foodName = order.data()["foodName"] as? String,
+                            let foodImage = order.data()["foodImage"] as? String,
+                            let foodPrice = order.data()["foodPrice"] as? Int,
+                            let typeDocumentID = order.data()["typeDocumentID"] as? String,
+                            let foodDocumentID = order.data()["foodDocumentID"] as? String{
+                            
+                            let documentID = foodDocumentID + extraOrderCountStr
+                            
+                            let orderFoodData: [String: Any] = ["documentID": documentID,
+                                                                "foodDocumentID": foodDocumentID,
+                                                                "typeDocumentID": typeDocumentID,
+                                                                "foodName": foodName,
+                                                                "foodImage": foodImage,
+                                                                "foodPrice": foodPrice,
+                                                                "foodAmount": amount,
+                                                                "orderNo": orderNo,
+                                                                "userID": userID,
+                                                                "resID": resID,
+                                                                "tableNo": tableNo,
+                                                                "orderFoodStatus": 0]
+                            
+                           
+                            
+                            self.db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
+                            self.db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
+                            
+                            print("userID: ", userID)
+                            print("resID: ", resID)
+                            print("orderNo", orderNo)
+                            print("foodDocumentID: ", foodDocumentID)
+                            print("orderFoodData: ", orderFoodData)
+                            
+                            
+                            //                    db.collection("user").document(userID).collection("order").document(orderNo).getDocument { (documentSnapshot, error) in
+                            //                        if var orderData = documentSnapshot?.data() {
+                            //                            let oldTotalPrice = orderData["totalPrice"] as! Int
+                            //                            let oldExtraOrderCount = orderData["extraOrderCount"] as! Int
+                            //                            let newTotalPrice = oldTotalPrice + totalPrice
+                            //                            let newExtraOrderCount = oldExtraOrderCount + 1
+                            //                            orderData["totalPrice"] = newTotalPrice
+                            //                            orderData["extraOrderCount"] = newExtraOrderCount
+                            //
+                            //                            self.db.collection("user").document(userID).collection("order").document(orderNo).updateData(orderData)
+                            //                            self.db.collection("res").document(resID).collection("order").document(orderNo).updateData(orderData)
+                            //                        }
+                            //                    }
+                        }
+                    }
+                }
+            }
+            performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
+            self.navigationController?.popToRootViewController(animated: false)
+            
+        } else { // 全新點單
+            let timeStamp = Date().timeIntervalSince1970
+            if let userID = userID, let resID = resID, let tableNo = tableNo, let totalPrice = totalPrice{
+                let orderNo = String(timeStamp) + userID
+                for i in 0...orderArray.count-1{
+                    let order = orderArray[i]
+                    let amount = amountArray[i]
+                    if let foodName = order.data()["foodName"] as? String,
+                        let foodImage = order.data()["foodImage"] as? String,
+                        let foodPrice = order.data()["foodPrice"] as? Int,
+                        let typeDocumentID = order.data()["typeDocumentID"] as? String,
+                        let foodDocumentID = order.data()["foodDocumentID"] as? String{
+                        let orderFoodData: [String: Any] = ["documentID": foodDocumentID,
+                                                            "foodDocumentID": foodDocumentID,
+                                                            "typeDocumentID": typeDocumentID,
+                                                            "foodName": foodName,
+                                                            "foodImage": foodImage,
+                                                            "foodPrice": foodPrice,
+                                                            "foodAmount": amount,
+                                                            "orderNo": orderNo,
+                                                            "userID": userID,
+                                                            "resID": resID,
+                                                            "tableNo": tableNo,
+                                                            "orderFoodStatus": 0]
+                        db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
+                        db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
+                        
+                        let formatter = DateFormatter()
+                        formatter.locale = Locale(identifier: "zh_TW")
+                        formatter.dateFormat = "yyyy年M月d日"
+                        let now = Date()
+                        
+                        let orderData: [String: Any] = ["date": now,
+                                                        "dateString": formatter.string(from: now),
                                                         "orderNo": orderNo,
                                                         "userID": userID,
                                                         "resID": resID,
                                                         "tableNo": tableNo,
-                                                        "orderFoodStatus": 0]
-                    db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
-                    db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(foodDocumentID).setData(orderFoodData)
-                    
-                    let formatter = DateFormatter()
-                    formatter.locale = Locale(identifier: "zh_TW")
-                    formatter.dateFormat = "yyyy年M月d日"
-                    let now = Date()
-                    
-                    let orderData: [String: Any] = ["date": now,
-                                                    "dateString": formatter.string(from: now),
-                                                    "orderNo": orderNo,
-                                                    "userID": userID,
-                                                    "resID": resID,
-                                                    "tableNo": tableNo,
-                                                    "totalPrice": totalPrice,
-                                                    "payStatus": 0]
-                    db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
-                    db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
-                    
+                                                        "totalPrice": totalPrice,
+                                                        "payStatus": 0,
+                                                        "extraOrderCount": 0]
+                        db.collection("user").document(userID).collection("order").document(orderNo).setData(orderData)
+                        db.collection("res").document(resID).collection("order").document(orderNo).setData(orderData)
+                        
+                    }
                 }
+                let serviceData: [String: Any] = ["serviceBellStatus": 0]
+                db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
+                db.collection("res").document(resID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
+                
+                let completeData: [String: Any] = ["orderCompleteStatus": 0]
+                db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+                db.collection("res").document(resID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+                
+                performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
+                self.navigationController?.popToRootViewController(animated: false)
             }
-            let serviceData: [String: Any] = ["serviceBellStatus": 0]
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("serviceBellStatus").document("isServiceBell").setData(serviceData)
-            
-            let completeData: [String: Any] = ["orderCompleteStatus": 0]
-            db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
-            db.collection("res").document(resID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
-            
-            performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
         }
     }
 }

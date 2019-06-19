@@ -64,7 +64,7 @@
 		9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0445EE22A7F9F1002E2C66 /* User.swift */; };
 		9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
-		9D776B7222B0F9DA0011C876 /* RateDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateDishViewController.swift */; };
+		9D776B7222B0F9DA0011C876 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateViewController.swift */; };
 		9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7322B0FFFF0011C876 /* RateSlider.swift */; };
 		9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC179EC22B2077200F357CE /* ReuseVC.swift */; };
 		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
@@ -134,7 +134,7 @@
 		9D0445EE22A7F9F1002E2C66 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
-		9D776B7122B0F9DA0011C876 /* RateDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateDishViewController.swift; sourceTree = "<group>"; };
+		9D776B7122B0F9DA0011C876 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		9D776B7322B0FFFF0011C876 /* RateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSlider.swift; sourceTree = "<group>"; };
 		9DC179EC22B2077200F357CE /* ReuseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseVC.swift; sourceTree = "<group>"; };
 		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 				9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */,
 				4443C39722A663E6004875D7 /* OrderRecordViewController.swift */,
 				4418C53622B0EAEA00B02854 /* OrderRecordDetailViewController.swift */,
-				9D776B7122B0F9DA0011C876 /* RateDishViewController.swift */,
+				9D776B7122B0F9DA0011C876 /* RateViewController.swift */,
 				449A9C6222A798E40054C135 /* EditPersonalViewController.swift */,
 			);
 			path = Personal;
@@ -608,7 +608,7 @@
 				447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */,
 				9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */,
 				440FAB18229CFF35005E38D0 /* CartViewController.swift in Sources */,
-				9D776B7222B0F9DA0011C876 /* RateDishViewController.swift in Sources */,
+				9D776B7222B0F9DA0011C876 /* RateViewController.swift in Sources */,
 				9D02A9E9229E6F1C009032D5 /* RotateImageView.swift in Sources */,
 				2C0DFE8722A8C20F002CC546 /* Restaurant.swift in Sources */,
 				2C0DFE8F22A95AEB002CC546 /* SearcMenuTableViewCell.swift in Sources */,
