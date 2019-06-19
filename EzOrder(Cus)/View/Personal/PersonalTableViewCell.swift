@@ -12,6 +12,7 @@ class PersonalTableViewCell: UITableViewCell {
 
     @IBOutlet weak var personalLabel: UILabel!
     @IBOutlet weak var personalImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
