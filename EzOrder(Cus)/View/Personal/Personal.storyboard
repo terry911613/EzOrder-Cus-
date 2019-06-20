@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="183.49999999999997" width="300" height="300.00000000000006"/>
+                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="height" multiplier="1:1" id="RYG-nw-5Jn"/>
@@ -797,20 +797,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组 295" translatesAutoresizingMaskIntoConstraints="NO" id="I9C-jp-UKm">
-                                <rect key="frame" x="-15" y="0.0" width="405" height="222.5"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-tW-xPa">
-                                <rect key="frame" x="30" y="94" width="107" height="106"/>
-                                <color key="backgroundColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yr3-mr-OzW">
-                                <rect key="frame" x="0.0" y="224" width="375" height="394"/>
+                                <rect key="frame" x="0.0" y="192.5" width="375" height="425.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personalCell" rowHeight="98" id="xHw-Nc-gzf" customClass="PersonalTableViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
@@ -850,6 +838,18 @@
                                     <outlet property="delegate" destination="Vcx-go-7ff" id="0O3-19-HRz"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组 295" translatesAutoresizingMaskIntoConstraints="NO" id="I9C-jp-UKm">
+                                <rect key="frame" x="-15" y="0.0" width="405" height="222.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-tW-xPa">
+                                <rect key="frame" x="30" y="94" width="107" height="106"/>
+                                <color key="backgroundColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jp8-vf-1fB">
                                 <rect key="frame" x="319.5" y="87" width="37.5" height="44.5"/>
                                 <state key="normal" image="登出"/>
@@ -902,7 +902,7 @@
                             <constraint firstItem="iSn-tW-xPa" firstAttribute="width" secondItem="Mea-gw-val" secondAttribute="width" multiplier="1:3.5" id="nzK-DE-Tyu"/>
                             <constraint firstItem="jp8-vf-1fB" firstAttribute="width" secondItem="Mea-gw-val" secondAttribute="width" multiplier="1:10" id="oPg-Xy-B6K"/>
                             <constraint firstItem="yr3-mr-OzW" firstAttribute="centerX" secondItem="Mea-gw-val" secondAttribute="centerX" id="qEp-Kt-kFW"/>
-                            <constraint firstItem="yr3-mr-OzW" firstAttribute="top" secondItem="I9C-jp-UKm" secondAttribute="bottom" constant="1.5" id="t6e-HA-m3O"/>
+                            <constraint firstItem="yr3-mr-OzW" firstAttribute="top" secondItem="I9C-jp-UKm" secondAttribute="bottom" constant="-30" id="t6e-HA-m3O"/>
                             <constraint firstItem="yr3-mr-OzW" firstAttribute="leading" secondItem="bLp-CQ-qp4" secondAttribute="leading" id="uFv-sY-7MB"/>
                             <constraint firstItem="yr3-mr-OzW" firstAttribute="trailing" secondItem="bLp-CQ-qp4" secondAttribute="trailing" id="v4q-YA-T0n"/>
                             <constraint firstItem="ohZ-eQ-azL" firstAttribute="width" secondItem="Mea-gw-val" secondAttribute="width" multiplier="1:2" id="w60-Px-OWE"/>
