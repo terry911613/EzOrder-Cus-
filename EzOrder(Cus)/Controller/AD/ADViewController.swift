@@ -87,6 +87,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         return 40
         }
 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var selectedRes: DocumentSnapshot
         if collectionView === adCollectionView {
