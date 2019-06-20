@@ -36,8 +36,8 @@ class RateViewController: UIViewController, UITextViewDelegate {
         addKeyboardObserver()
     }
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         let rectShape = CAShapeLayer()
         rectShape.bounds = headerView.frame
         rectShape.position = headerView.center

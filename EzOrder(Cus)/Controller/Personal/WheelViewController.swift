@@ -18,10 +18,10 @@ class WheelViewController: UIViewController {
     var getPointCount = false
     
     override func viewDidLoad() {
-    self.navigationController?.setNavigationBarHidden(false, animated: false)
-    
-            super.viewDidLoad()
+        super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
             db.collection("user").document(userID).getDocument { (user, error) in

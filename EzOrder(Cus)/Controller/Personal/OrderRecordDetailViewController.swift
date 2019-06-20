@@ -18,9 +18,9 @@ class OrderRecordDetailViewController: UIViewController {
     var orderNo: String?
     
     override func viewDidLoad() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-
         super.viewDidLoad()
+        
+//        navigationController?.setNavigationBarHidden(false, animated: false)
         
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email,

@@ -18,8 +18,9 @@ class FavoriteViewController: UIViewController {
     var res: QueryDocumentSnapshot?
     
     override func viewDidLoad() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
         super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
         
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
