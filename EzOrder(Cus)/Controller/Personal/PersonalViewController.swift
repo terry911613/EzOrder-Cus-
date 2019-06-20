@@ -20,17 +20,21 @@ class PersonalViewController: UIViewController {
     var lise = ["", "收藏","行事曆","消費記錄","轉盤","編輯","info"]
     var personalArray = ["", "收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
     override var preferredStatusBarStyle:UIStatusBarStyle {
-    return .lightContent
+        return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
         userImageView.layer.cornerRadius = userImageView.frame.width/2
         
         getInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func getInfo(){

@@ -24,6 +24,7 @@ class EditPersonalViewController: UIViewController {
         present(imagePickerController,animated: true)
     }
     var viewHeight: CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
