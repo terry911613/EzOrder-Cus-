@@ -39,7 +39,7 @@ class EditPersonalViewController: UIViewController {
     }
     @IBAction func doneButton(_ sender: UIButton) {
         upload()
-        dismiss(animated: true, completion: nil)
+        
     }
     func upload(){
         
@@ -60,16 +60,16 @@ class EditPersonalViewController: UIViewController {
             let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             if let data = resizeImage?.jpegData(compressionQuality: 0.8){
-                fileReference.putData(data,metadata: nil) {(metadate, error) in
+                fileReference.putData(data,metadata: nil) {[weak self](metadate, error) in
                     guard let _ = metadate, error == nil else {
                         SVProgressHUD.dismiss()
-                        self.errorAlert()
+                        self!.errorAlert()
                         return
                     }
                     fileReference.downloadURL(completion: { (url, error) in
                         guard let downloadURL = url else {
                             SVProgressHUD.dismiss()
-                            self.errorAlert()
+                            self!.errorAlert()
                             return
                         }
                         let data: [String: Any] = ["userImage": downloadURL.absoluteString,
@@ -78,14 +78,16 @@ class EditPersonalViewController: UIViewController {
                         db.collection("user").document(userID).updateData(data, completion: { (error) in
                             guard error == nil else {
                                 SVProgressHUD.dismiss()
-                                self.errorAlert()
+                                self!.errorAlert()
                                 return
                             }
                             SVProgressHUD.dismiss()
                             let alert = UIAlertController(title: "上傳完成", message: nil, preferredStyle: .alert)
-                            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+                            let ok = UIAlertAction(title: "確定", style: .default, handler: { (ok) in
+                                self!.dismiss(animated: true, completion: nil)
+                            })
                             alert.addAction(ok)
-                            self.present(alert, animated: true, completion: nil)
+                            self!.present(alert, animated: true, completion: nil)
                         })
                         SVProgressHUD.dismiss()
                     })
