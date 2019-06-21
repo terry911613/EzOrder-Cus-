@@ -931,7 +931,7 @@
                         <outlet property="phoneLabel" destination="ohZ-eQ-azL" id="2pt-HE-hMs"/>
                         <outlet property="pointLabel" destination="fRB-4V-joc" id="Pbp-Yv-k83"/>
                         <outlet property="userImageView" destination="iSn-tW-xPa" id="9WC-TO-aXd"/>
-                        <segue destination="tAk-Jq-p9n" kind="presentation" identifier="editPersonalSegue" id="5gF-Eh-4AP"/>
+                        <segue destination="tAk-Jq-p9n" kind="presentation" identifier="editPersonalSegue" modalTransitionStyle="crossDissolve" id="5gF-Eh-4AP"/>
                         <segue destination="5fP-jc-Jeu" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueBackLoginWithSegue:" id="VZt-n1-pIO"/>
                     </connections>
                 </viewController>
@@ -983,13 +983,13 @@
                                             <action selector="cancelButton:" destination="tAk-Jq-p9n" eventType="touchUpInside" id="r9O-RY-BLO"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="電話" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cz-CG-oqn">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="電話" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cz-CG-oqn">
                                         <rect key="frame" x="57.5" y="196" width="135" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6DZ-XW-AZ8">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6DZ-XW-AZ8">
                                         <rect key="frame" x="57.5" y="158" width="135" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
