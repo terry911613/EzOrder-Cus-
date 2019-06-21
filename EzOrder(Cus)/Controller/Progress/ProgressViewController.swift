@@ -25,6 +25,7 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var serviceBellButton: UIBarButtonItem!
+    @IBOutlet weak var tableLabel: UILabel!
     
     var igcMenu: IGCMenu?
     var isMenuActive = false
@@ -60,9 +61,11 @@ class ProgressViewController: UIViewController {
                     if order.documents.isEmpty == false{
                         if let totalPrice = order.documents[0].data()["totalPrice"] as? Int,
                             let orderNo = order.documents[0].data()["orderNo"] as? String,
-                            let resID = order.documents[0].data()["resID"] as? String{
+                            let resID = order.documents[0].data()["resID"] as? String,
+                            let tableNo = order.documents[0].data()["tableNo"] as? Int{
                             
                             self.totalPriceLabel.text = "總共：＄\(totalPrice)"
+                            self.tableLabel.text = "\(tableNo)桌"
                             self.orderNo = orderNo
                             self.resID = resID
                             self.totalPrice = totalPrice

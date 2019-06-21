@@ -19,6 +19,9 @@ class PersonalViewController: UIViewController {
     @IBOutlet weak var personalTableView: UITableView!
     var lise = ["", "收藏","行事曆","消費記錄","轉盤","編輯","info"]
     var personalArray = ["", "收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
+    var userImgStr:String?
+    var name: String?
+    var phone: String?
     override var preferredStatusBarStyle:UIStatusBarStyle {
         return .lightContent
     }
@@ -47,6 +50,8 @@ class PersonalViewController: UIViewController {
                         let userName = userData["userName"] as? String,
                         let userPhone = userData["userPhone"] as? String{
                         self.userImgStr = userImage
+                        self.name = userName
+                        self.phone = userPhone
                         self.userImageView.kf.setImage(with: URL(string: userImage))
                         self.nameLabel.text = userName
                         self.phoneLabel.text = "電話：\(userPhone)"
@@ -75,11 +80,18 @@ class PersonalViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    var userImgStr = ""
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editPersonalSegue" {
             if let controller = segue.destination as? EditPersonalViewController {
-                    controller.imgStr = self.userImgStr
+                if let image = userImgStr,
+                    let name = name,
+                    let phone = phone{
+                    controller.imgStr = userImgStr
+                    controller.name = name
+                    controller.phone = phone
+                }
             }
         }
     }

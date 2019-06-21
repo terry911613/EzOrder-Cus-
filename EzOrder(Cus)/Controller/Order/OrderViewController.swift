@@ -137,7 +137,8 @@ class OrderViewController: UIViewController {
             let cartVC = segue.destination as! CartViewController
             cartVC.totalPrice = totalPrice
             cartVC.orderDic = orderDic
-            if let resID = resID, let tableNo = tableNo{
+            if let resID = resID,
+                let tableNo = tableNo{
                 cartVC.resID = resID
                 cartVC.tableNo = tableNo
                 if let orderNo = self.orderNo {
@@ -197,7 +198,8 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             let thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
             print("thisFoodAmount: ", thisFoodAmount)
             cell.countAmount = thisFoodAmount
-            cell.count.text = "數量:\(String(thisFoodAmount))"
+//            cell.count.text = "數量:\(thisFoodAmount)"
+            cell.count.text = "\(thisFoodAmount)"
             
             cell.name.text = foodName
             cell.orderImageView.kf.setImage(with: URL(string: foodImage))
@@ -205,7 +207,8 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             
             
             cell.callBackCount = { clickPlus, countAmount in
-                cell.count.text = "數量:\(countAmount)"
+//                cell.count.text = "數量:\(countAmount)"
+                cell.count.text = "\(countAmount)"
                 if clickPlus == true {
                     self.orderDic[food] = countAmount
                     self.totalPrice += foodMoney

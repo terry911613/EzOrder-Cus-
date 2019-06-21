@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
     
     func getRes(){
         let db = Firestore.firestore()
-        db.collection("res").getDocuments { (res, error) in
+        db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
             if let res = res{
                 if res.documents.isEmpty{
                     self.resArray.removeAll()

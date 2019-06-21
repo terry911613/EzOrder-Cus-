@@ -41,7 +41,7 @@ class OrderRecordDetailViewController: UIViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dishRateVC = segue.destination as? RateViewController {
+        if let dishRateVC = segue.destination as? RateFoodViewController {
             if let indexPath = foodDetailTableView.indexPathForSelectedRow,
                 let orderNo = orderNo{
                 let food = foodArray[indexPath.row]

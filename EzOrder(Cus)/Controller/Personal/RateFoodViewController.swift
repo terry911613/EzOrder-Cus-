@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class RateViewController: UIViewController, UITextViewDelegate {
+class RateFoodViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var foodNameLabel: UILabel!
@@ -28,7 +28,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
     var resID: String?
     var typeDocumentID: String?
     var foodRate: Double?
-    var foodRateCount: Double?
+    var foodRateCount: Int?
     var viewHeight: CGFloat?
     var rateText = ""
     
@@ -43,9 +43,9 @@ class RateViewController: UIViewController, UITextViewDelegate {
         rectShape.position = headerView.center
         rectShape.path = UIBezierPath(roundedRect: headerView.bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
         headerView.layer.mask = rectShape
-
+        
         commentTextView.delegate = self
-        rateSlider.parentVC = self
+        rateSlider.resFoodVC = self
         
         commentTextView.layer.borderWidth = 0.5
         commentTextView.layer.borderColor = UIColor.gray.cgColor
@@ -68,13 +68,17 @@ class RateViewController: UIViewController, UITextViewDelegate {
             let foodDocumentID = foodDocumentID,
             let orderNo = orderNo,
             let userID = Auth.auth().currentUser?.email,
-        let documentID = documentID{
+            let documentID = documentID{
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).getDocument { (food, error) in
                 if let foodData = food?.data(){
                     if let foodTotalRate = foodData["foodTotalRate"] as? Double,
-                        let foodRateCount = foodData["foodRateCount"] as? Double{
+                        let foodRateCount = foodData["foodRateCount"] as? Int{
                         self.foodRate = foodTotalRate
                         self.foodRateCount = foodRateCount
+                    }
+                    else{
+                        self.foodRate = 0
+                        self.foodRateCount = 0
                     }
                 }
             }
@@ -203,8 +207,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
             let foodRateCount = foodRateCount,
             let documentID = documentID{
             
-            let timeStamp = Date().timeIntervalSince1970
-            let commentID = String(timeStamp) + userID
+            let commentID = String(Date().timeIntervalSince1970) + userID
             
             let orderData: [String: Any] = ["foodRate": rate, "foodComment": comment]
             db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).updateData(orderData)
@@ -213,7 +216,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
             let foodData: [String: Any] = ["foodTotalRate": foodRate + rate, "foodRateCount": foodRateCount + 1]
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).updateData(foodData)
             
-            let foodCommentData: [String: Any] = ["foodComment": comment, "foodRate": rate, "date": Date(), "userID": userID]
+            let foodCommentData: [String: Any] = ["documentID": commentID, "foodComment": comment, "foodRate": rate, "date": Date(), "userID": userID]
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).collection("foodComment").document(commentID).setData(foodCommentData)
             
             dismiss(animated: true, completion: nil)
@@ -224,7 +227,7 @@ class RateViewController: UIViewController, UITextViewDelegate {
         view.endEditing(true)
     }
 }
-extension RateViewController {
+extension RateFoodViewController {
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)

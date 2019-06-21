@@ -26,10 +26,19 @@ class EditPersonalViewController: UIViewController {
 //    var viewHeight: CGFloat?
     //    var isOverlapped = false
     var imgStr: String?
+    var name: String?
+    var phone: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        userImageView.kf.setImage(with: URL(string: imgStr ?? ""))
+        if let imgStr = imgStr,
+            let name = name,
+            let phone = phone{
+            
+            userImageView.kf.setImage(with: URL(string: imgStr ?? ""))
+            userNameTextfield.text = name
+            userPhoneTextfield.text = phone
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardObserver()

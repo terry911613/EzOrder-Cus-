@@ -17,6 +17,7 @@ class OrderRecordViewController: UIViewController {
     
     var orderRecordArray = [QueryDocumentSnapshot]()
     var selectOrderNo: String?
+    var selectResRateIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +66,15 @@ class OrderRecordViewController: UIViewController {
         }
         else{
             if segue.identifier == "rateResSegue"{
-                let rateVC = segue.destination as! RateViewController
-                if let indexPath = orderRecordTableView.indexPathForSelectedRow{
-                    let resID = orderRecordArray[indexPath.row]
+                let rateResVC = segue.destination as! RateResViewController
+                if let selectResRateIndex = selectResRateIndex{
+                    if let resID = orderRecordArray[selectResRateIndex].data()["resID"] as? String,
+                        let orderNo = orderRecordArray[selectResRateIndex].data()["orderNo"] as? String{
+                        rateResVC.resID = resID
+                        rateResVC.orderNo = orderNo
+                        print(orderNo)
+                        print(resID)
+                    }
                 }
             }
         }
@@ -94,9 +101,11 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
             
             db.collection("res").document(resID).getDocument { (res, error) in
                 if let resData = res?.data(){
-                    if let resImage = resData["resImage"] as? String{
+                    if let resImage = resData["resImage"] as? String,
+                        let resName = resData["resName"] as? String{
                         
                         cell.restaurantImageView.kf.setImage(with: URL(string: resImage))
+                        cell.resNameLabel.text = resName
                     }
                 }
             }
@@ -116,6 +125,14 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
         }
         else{
             cell.pointLabel.isHidden = true
+        }
+        
+        cell.index = indexPath.row
+        cell.indexCompletionHandler = {(index) in
+            self.selectResRateIndex = index
+        }
+        cell.completionHandler = { () in
+            self.performSegue(withIdentifier: "rateResSegue", sender: self)
         }
         
         return cell
