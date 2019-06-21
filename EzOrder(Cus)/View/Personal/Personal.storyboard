@@ -995,7 +995,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD1" translatesAutoresizingMaskIntoConstraints="NO" id="REP-wl-Wwu">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="REP-wl-Wwu">
                                         <rect key="frame" x="57.5" y="15" width="135" height="135"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1081,7 +1081,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AD1" width="3500" height="2179"/>
         <image name="ApplePay" width="267" height="267"/>
         <image name="Cash" width="267" height="267"/>
         <image name="rate0" width="415" height="85.666664123535156"/>

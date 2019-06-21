@@ -14,6 +14,7 @@ class CartViewController: UIViewController {
     
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var tableLabel: UILabel!
     
     var totalPrice: Int?
     var orderDic = [QueryDocumentSnapshot: Int]()
@@ -23,12 +24,14 @@ class CartViewController: UIViewController {
     var tableNo: Int?
     var orderNo: String?
     let formatter = DateFormatter()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let totalPrice = totalPrice{
+        if let totalPrice = totalPrice,
+            let tableNo = tableNo{
             totalPriceLabel.text = "總共$\(totalPrice)"
+            tableLabel.text = "\(tableNo)桌"
         }
         
         sortOrderArray()
@@ -36,12 +39,6 @@ class CartViewController: UIViewController {
         formatter.locale = Locale(identifier: "zh_TW")
         formatter.dateFormat = "yyyy年M月d日"
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//
-//    }
     
     func sortOrderArray(){
         
@@ -68,17 +65,26 @@ class CartViewController: UIViewController {
     
     @IBAction func okButton(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "確定送單？", message: nil, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "確定", style: .default) { (ok) in
-            self.upload()
+        if orderDic.isEmpty{
+            let alert = UIAlertController(title: "尚未加入任何餐點", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "確定", style: .default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         }
-        let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
+        else{
+            let alert = UIAlertController(title: "確定送單？", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "確定", style: .default) { (ok) in
+                self.upload()
+            }
+            let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func upload() {
+        
         
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
@@ -261,6 +267,7 @@ class CartViewController: UIViewController {
                     performSegue(withIdentifier: "unwindSegueToProgress", sender: self)
                     self.navigationController?.popToRootViewController(animated: false)
                 }
+                
             }
         }
     }
