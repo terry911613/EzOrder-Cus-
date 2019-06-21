@@ -152,7 +152,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         if collectionView === adCollectionView {
             selectedRes = (adArray[indexPath.row] as DocumentSnapshot)
         } else {
-            selectedRes = (adArray[indexPath.row] as DocumentSnapshot)
+            selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
         }
         if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
             var destinationVC: UIViewController?
@@ -166,6 +166,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
                 destinationVC.favRes = selectedRes
                 destinationVC.enterFromFavorite = true
                 destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
+                destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
                 self.tabBarController?.selectedIndex = 1
                 searchNavController.popToViewController(destinationVC, animated: true)
             } else {

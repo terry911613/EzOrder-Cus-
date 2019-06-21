@@ -13,6 +13,7 @@ import Kingfisher
 
 class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
+    @IBOutlet weak var backgroundScrollView: UIScrollView!
     @IBOutlet weak var showClassificationCollectionView: UICollectionView!
     @IBOutlet weak var showStoreImageView: UIImageView!
     @IBOutlet weak var showStoreNameLabel: UILabel!

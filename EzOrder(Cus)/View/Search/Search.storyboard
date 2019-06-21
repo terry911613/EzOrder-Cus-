@@ -627,6 +627,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundScrollView" destination="WEa-vV-MET" id="RLC-FO-uut"/>
                         <outlet property="likeButton" destination="HII-7B-hGX" id="bZj-qf-Lfi"/>
                         <outlet property="myMap" destination="tTl-f2-Vee" id="I1k-fq-aO1"/>
                         <outlet property="showAddressButton" destination="N0V-07-Qgc" id="IIW-aB-zn5"/>
