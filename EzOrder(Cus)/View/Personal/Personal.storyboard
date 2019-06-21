@@ -807,7 +807,7 @@
             </objects>
             <point key="canvasLocation" x="1910" y="187"/>
         </scene>
-        <!--EzOrder-->
+        <!--個人-->
         <scene sceneID="gwA-YR-Wui">
             <objects>
                 <viewController id="Vcx-go-7ff" customClass="PersonalViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -941,7 +941,7 @@
                         <viewLayoutGuide key="safeArea" id="bLp-CQ-qp4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="個人" image="客戶端個人" id="5lU-16-r1W"/>
-                    <navigationItem key="navigationItem" title="EzOrder" id="GOE-F4-KU7"/>
+                    <navigationItem key="navigationItem" title="個人" id="GOE-F4-KU7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="nameLabel" destination="bQL-US-fGV" id="wZ6-MP-Xou"/>
@@ -1083,9 +1083,16 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.93270790579999996" green="0.46764516830000002" blue="0.43134433030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
