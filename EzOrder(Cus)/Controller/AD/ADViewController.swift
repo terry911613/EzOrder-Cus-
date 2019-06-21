@@ -37,27 +37,86 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var adCollectionView: UICollectionView!
     var rankImgNames = ["涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo"]
     var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
-//    lazy var cardLayout: FlatCardCollectionViewLayout = {
-//        let layout = FlatCardCollectionViewLayout()
-//        layout.itemSize = CGSize(width: 247, height: 143)
-//        return layout
-//    }()
+    //    lazy var cardLayout: FlatCardCollectionViewLayout = {
+    //        let layout = FlatCardCollectionViewLayout()
+    //        layout.itemSize = CGSize(width: 247, height: 143)
+    //        return layout
+    //    }()
     var adArray = [QueryDocumentSnapshot]()
+    var recommendRes = [QueryDocumentSnapshot]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let db = Firestore.firestore()
+        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
+            if let AD = AD{
+                if AD.documents.isEmpty{
+                    self.adArray.removeAll()
+                    self.adCollectionView.reloadData()
+                }
+                else{
+                    self.adArray = AD.documents
+                    self.adCollectionView.reloadData()
+                    self.adPageControl.numberOfPages = self.adArray.count
+                }
+            }
+        }
+        
+        db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
+            if let res = res{
+                if res.documents.isEmpty == false{
+                    self.recommendRes = res.documents
+                    self.recommendRes.sort(by: { (left, right) -> Bool in
+                        if let leftTotlaRate = left.data()["resTotalRate"] as? Double,
+                            let leftRateCount = left.data()["resRateCount"] as? Double,
+                            let rightTotalRate = right.data()["resTotalRate"] as? Double,
+                            let rightRateCount = right.data()["resRateCount"] as? Double{
+                            
+                            return leftTotlaRate/leftRateCount > rightTotalRate/rightRateCount
+                        }
+                        else{
+                            return false
+                        }
+                    })
+                    if self.recommendRes.count > 5{
+                        for i in 0...self.recommendRes.count{
+                            if i > 5{
+                                self.recommendRes.remove(at: i)
+                            }
+                        }
+                    }
+                    self.rankCollectionView.reloadData()
+                }
+            }
+        }
+        
+        adCollectionView.delegate = self
+        adCollectionView.showsVerticalScrollIndicator = false
+        adCollectionView.showsHorizontalScrollIndicator = false
+        adCollectionView.scrollsToTop = false
+        
+        // Do any additional setup after loading the view.
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == rankCollectionView {
-            return rankImgNames.count
+            return recommendRes.count
         } else {
             return adArray.count
         }
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == rankCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rankCell", for: indexPath) as! RankCollectionViewCell
-            cell.imgRank.image = UIImage(named: rankImgNames[indexPath.row])
-            cell.lbRank.text = rankLabels[indexPath.row]
+            let recommend = recommendRes[indexPath.row]
+            if let resImage = recommend.data()["resImage"] as? String,
+                let resName = recommend.data()["resName"] as? String{
+                cell.imgRank.kf.setImage(with: URL(string: resImage))
+                cell.lbRank.text = resName
+            }
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adCell", for: indexPath) as! AdCollectionViewCell
@@ -66,27 +125,27 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
             if let ADImage = ad.data()["ADImage"] as? String{
                 cell.AdImageView.kf.setImage(with: URL(string: ADImage))
             }
-//            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
+            //            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
             return cell
         }
     }
-
- 
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == adCollectionView {
             return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
-
+            
         } else {
             return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
         }
     }
-//
-//    }
+    //
+    //    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 40
-        }
-
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var selectedRes: DocumentSnapshot
@@ -141,39 +200,12 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     @IBOutlet weak var adPageControl: UIPageControl!
     
     var imageIndexPath = 0
-    override func viewDidLoad() {
-   //     adCollectionView.collectionViewLayout = cardLayout
-        //rankCollectionView.collectionViewLayout = cardLayout
-                super.viewDidLoad()
-        
-        let db = Firestore.firestore()
-        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
-            if let AD = AD{
-                if AD.documents.isEmpty{
-                    self.adArray.removeAll()
-                    self.adCollectionView.reloadData()
-//                    adPageControl.numberOfPages = self.adArray.count
-                }
-                else{
-                    self.adArray = AD.documents
-                    self.adCollectionView.reloadData()
-                    self.adPageControl.numberOfPages = self.adArray.count
-                }
-            }
-        }
-        
-        adCollectionView.delegate = self
-        adCollectionView.showsVerticalScrollIndicator = false
-        adCollectionView.showsHorizontalScrollIndicator = false
-        adCollectionView.scrollsToTop = false
-
-        // Do any additional setup after loading the view.
-    }
+    
     var timerForAd = Timer()
     override func viewWillAppear(_ animated: Bool) {
         self.adCollectionView.leftAnchor
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
-                    UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
                 if self.imageIndexPath < self.adArray.count - 1 {
                     self.imageIndexPath += 1
@@ -195,9 +227,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     
     func setPageControll(tunning: Int) {
         let page = Int(adCollectionView.contentOffset.x / adCollectionView.frame.size.width )
-//        print(page)
-//        print((adCollectionView as UIScrollView).contentOffset.x)
-//        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
+        //        print(page)
+        //        print((adCollectionView as UIScrollView).contentOffset.x)
+        //        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
         adPageControl.currentPage = page + tunning
         imageIndexPath = page + tunning
     }
