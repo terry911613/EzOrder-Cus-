@@ -43,37 +43,47 @@ class WheelViewController: UIViewController {
     }
     
     var point = 0
+    var isRotating = false
     @IBAction func clickRotate(_ sender: Any) {
-        
-        if getPointCount {
-            let db = Firestore.firestore()
-            if let userID = Auth.auth().currentUser?.email{
-                db.collection("user").document(userID).getDocument { (user, error) in
-                    if let userData = user?.data(){
-                        if var pointCount = userData["pointCount"] as? Int,
-                            let totalPoint = userData["totalPoint"] as? Int{
-                            if pointCount > 0{
-                                pointCount -= 1
-                                self.pointCount = pointCount
-                                self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
-                                self.point = self.wheelRotateImageView.rotateGradually(handler: {
-                                    
-                                    db.collection("user").document(userID).updateData(["pointCount": pointCount,
-                                                                                       "totalPoint": totalPoint + self.point])
-                                    
-                                    self.performSegue(withIdentifier: "alertPointSegue", sender: self)
-                                })
+        if !isRotating {
+            isRotating = true
+            if getPointCount {
+                let db = Firestore.firestore()
+                if let userID = Auth.auth().currentUser?.email{
+                    db.collection("user").document(userID).getDocument { (user, error) in
+                        if let userData = user?.data(){
+                            if var pointCount = userData["pointCount"] as? Int,
+                                let totalPoint = userData["totalPoint"] as? Int{
+                                if pointCount > 0{
+                                    pointCount -= 1
+                                    self.pointCount = pointCount
+                                    self.pointCountLabel.text = "剩餘\(pointCount)次轉盤機會"
+                                    self.point = self.wheelRotateImageView.rotateGradually(handler: {
+                                        db.collection("user").document(userID).updateData(["pointCount": pointCount,
+                                                                                           "totalPoint": totalPoint + self.point])
+                                        
+                                        
+                                        self.performSegue(withIdentifier: "alertPointSegue", sender: self)
+                                        self.isRotating = false
+                                    })
+                                }else{
+                                    self.isRotating = false
+                                    self.noChanceAlert()
+                                }
+                            } else {
+                                self.isRotating = false
                             }
-                            else{
-                                self.noChanceAlert()
-                            }
+                        }else{
+                            self.isRotating = false
                         }
                     }
+                } else {
+                    self.isRotating = false
                 }
+            }else{
+                noChanceAlert()
+                self.isRotating = false
             }
-        }
-        else{
-            noChanceAlert()
         }
     }
     

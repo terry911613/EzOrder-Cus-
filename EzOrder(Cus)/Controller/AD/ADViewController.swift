@@ -88,6 +88,40 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         }
 
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var selectedRes: DocumentSnapshot
+        if collectionView === adCollectionView {
+            selectedRes = (adArray[indexPath.row] as DocumentSnapshot)
+        } else {
+            selectedRes = (adArray[indexPath.row] as DocumentSnapshot)
+        }
+        if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
+            var destinationVC: UIViewController?
+            let viewControllers = searchNavController.children
+            for viewController in viewControllers {
+                if type(of: viewController) === StoreShowViewController.self {
+                    destinationVC = viewController
+                }
+            }
+            if let destinationVC = destinationVC as? StoreShowViewController {
+                destinationVC.favRes = selectedRes
+                destinationVC.enterFromFavorite = true
+                destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.popToViewController(destinationVC, animated: true)
+            } else {
+                searchNavController.popToRootViewController(animated: true)
+                let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+                let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+                storeShowVC.favRes = selectedRes
+                storeShowVC.enterFromFavorite = true
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.pushViewController(storeShowVC, animated: true)
+            }
+            
+        }
+    }
+    
     
     
     // 圖層漸層

@@ -20,17 +20,21 @@ class PersonalViewController: UIViewController {
     var lise = ["", "收藏","行事曆","消費記錄","轉盤","編輯","info"]
     var personalArray = ["", "收藏餐廳", "行事曆", "消費記錄", "轉盤", "修改個人資訊", "幫助文件"]
     override var preferredStatusBarStyle:UIStatusBarStyle {
-    return .lightContent
+        return .lightContent
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
         userImageView.layer.cornerRadius = userImageView.frame.width/2
         
         getInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func getInfo(){
@@ -42,7 +46,7 @@ class PersonalViewController: UIViewController {
                     if let userImage = userData["userImage"] as? String,
                         let userName = userData["userName"] as? String,
                         let userPhone = userData["userPhone"] as? String{
-                        
+                        self.userImgStr = userImage
                         self.userImageView.kf.setImage(with: URL(string: userImage))
                         self.nameLabel.text = userName
                         self.phoneLabel.text = "電話：\(userPhone)"
@@ -71,6 +75,15 @@ class PersonalViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    var userImgStr = ""
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editPersonalSegue" {
+            if let controller = segue.destination as? EditPersonalViewController {
+                    controller.imgStr = self.userImgStr
+            }
+        }
+    }
+    
 }
 extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,6 +118,7 @@ extension PersonalViewController: UITableViewDelegate, UITableViewDataSource{
         }
         else if indexPath.row == 5{
             performSegue(withIdentifier: "editPersonalSegue", sender: self)
+            
         }
         else{
             

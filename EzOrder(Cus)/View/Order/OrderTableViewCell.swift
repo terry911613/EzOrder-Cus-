@@ -37,6 +37,9 @@ class OrderTableViewCell: UITableViewCell {
         if countAmount <= 0 {
             minusBtn.isEnabled = false
         }
+        if countAmount < 99{
+            plusBtn.isEnabled = true
+        }
     }
     
     @IBAction func clickPlus(_ sender: Any) {
@@ -44,6 +47,9 @@ class OrderTableViewCell: UITableViewCell {
         callBackCount?(true, countAmount)
         if countAmount >= 1 {
             minusBtn.isEnabled = true
+        }
+        if countAmount >= 99{
+            plusBtn.isEnabled = false
         }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
