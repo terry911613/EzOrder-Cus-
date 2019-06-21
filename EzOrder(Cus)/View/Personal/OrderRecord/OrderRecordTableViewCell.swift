@@ -13,8 +13,13 @@ class OrderRecordTableViewCell: UITableViewCell {
 
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var resNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var pointLabel: UILabel!
+    
+    var index: Int?
+    var completionHandler:(() -> Void)?
+    var indexCompletionHandler:((Int) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,5 +30,13 @@ class OrderRecordTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func rateResButton(_ sender: UIButton) {
+        
+        if let index = index{
+            indexCompletionHandler?(index)
+        }
+        completionHandler?()
     }
 }

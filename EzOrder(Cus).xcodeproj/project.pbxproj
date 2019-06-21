@@ -56,6 +56,7 @@
 		44F7B87022BA1C6A006B9768 /* PersonalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F7B86F22BA1C6A006B9768 /* PersonalTableViewCell.swift */; };
 		44FA8C5322912C8200B24B9C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5222912C8200B24B9C /* CalendarViewController.swift */; };
 		44FA8C5522912DD800B24B9C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FA8C5422912DD800B24B9C /* DateCell.swift */; };
+		44FC743622BCA47500683AC5 /* RateResViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FC743522BCA47500683AC5 /* RateResViewController.swift */; };
 		9D0141E80BEF745F47AEE62B /* Pods_EzOrder_Cus_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */; };
 		9D02A9E7229E6E3E009032D5 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */; };
 		9D02A9E9229E6F1C009032D5 /* RotateImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */; };
@@ -64,7 +65,7 @@
 		9D0445EF22A7F9F1002E2C66 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0445EE22A7F9F1002E2C66 /* User.swift */; };
 		9D5618292291AAEA0083233E /* RankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */; };
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
-		9D776B7222B0F9DA0011C876 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateViewController.swift */; };
+		9D776B7222B0F9DA0011C876 /* RateFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateFoodViewController.swift */; };
 		9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7322B0FFFF0011C876 /* RateSlider.swift */; };
 		9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC179EC22B2077200F357CE /* ReuseVC.swift */; };
 		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
@@ -126,6 +127,7 @@
 		44F7B86F22BA1C6A006B9768 /* PersonalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalTableViewCell.swift; sourceTree = "<group>"; };
 		44FA8C5222912C8200B24B9C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		44FA8C5422912DD800B24B9C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		44FC743522BCA47500683AC5 /* RateResViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateResViewController.swift; sourceTree = "<group>"; };
 		6556A776F1AB5BE6AE690B4B /* Pods-EzOrder(Cus).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzOrder(Cus).debug.xcconfig"; path = "Target Support Files/Pods-EzOrder(Cus)/Pods-EzOrder(Cus).debug.xcconfig"; sourceTree = "<group>"; };
 		9D02A9E6229E6E3E009032D5 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		9D02A9E8229E6F1C009032D5 /* RotateImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RotateImageView.swift; path = "EzOrder(Cus)/Model/RotateImageView.swift"; sourceTree = SOURCE_ROOT; };
@@ -134,7 +136,7 @@
 		9D0445EE22A7F9F1002E2C66 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9D5618282291AAEA0083233E /* RankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
-		9D776B7122B0F9DA0011C876 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		9D776B7122B0F9DA0011C876 /* RateFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateFoodViewController.swift; sourceTree = "<group>"; };
 		9D776B7322B0FFFF0011C876 /* RateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSlider.swift; sourceTree = "<group>"; };
 		9DC179EC22B2077200F357CE /* ReuseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseVC.swift; sourceTree = "<group>"; };
 		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -339,7 +341,8 @@
 				9D02A9EA229E8A31009032D5 /* WheelAlertViewController.swift */,
 				4443C39722A663E6004875D7 /* OrderRecordViewController.swift */,
 				4418C53622B0EAEA00B02854 /* OrderRecordDetailViewController.swift */,
-				9D776B7122B0F9DA0011C876 /* RateViewController.swift */,
+				44FC743522BCA47500683AC5 /* RateResViewController.swift */,
+				9D776B7122B0F9DA0011C876 /* RateFoodViewController.swift */,
 				449A9C6222A798E40054C135 /* EditPersonalViewController.swift */,
 			);
 			path = Personal;
@@ -607,7 +610,8 @@
 				447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */,
 				9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */,
 				440FAB18229CFF35005E38D0 /* CartViewController.swift in Sources */,
-				9D776B7222B0F9DA0011C876 /* RateViewController.swift in Sources */,
+				9D776B7222B0F9DA0011C876 /* RateFoodViewController.swift in Sources */,
+				44FC743622BCA47500683AC5 /* RateResViewController.swift in Sources */,
 				9D02A9E9229E6F1C009032D5 /* RotateImageView.swift in Sources */,
 				44F7B87022BA1C6A006B9768 /* PersonalTableViewCell.swift in Sources */,
 				2C0DFE8722A8C20F002CC546 /* Restaurant.swift in Sources */,
