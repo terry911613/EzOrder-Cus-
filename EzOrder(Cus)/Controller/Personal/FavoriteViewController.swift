@@ -73,6 +73,7 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
             if let destinationVC = destinationVC as? StoreShowViewController {
                 destinationVC.favRes = selectedRes
                 destinationVC.enterFromFavorite = true
+                destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
                 destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
                 self.tabBarController?.selectedIndex = 1
                 searchNavController.popToViewController(destinationVC, animated: true)
