@@ -1,19 +1,19 @@
 //
-//  SearcStoreTableViewCell.swift
+//  resCommentTableViewCell.swift
 //  EzOrder(Cus)
 //
-//  Created by 劉十六 on 2019/6/6.
+//  Created by 李泰儀 on 2019/6/24.
 //  Copyright © 2019 TerryLee. All rights reserved.
 //
 
 import UIKit
 
-class SearcStoreTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var StoreImage: UIImageView!
-    @IBOutlet weak var StoreName: UILabel!
-    @IBOutlet weak var rateView: UIImageView!
+class ResCommentTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var rateView: UIImageView!
+    @IBOutlet weak var commentTextView: UITextView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,6 +21,8 @@ class SearcStoreTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
     }
 
 }

@@ -34,7 +34,7 @@ class OrderRecordViewController: UIViewController {
     func getOrderRecord(){
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
-            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 1).getDocuments { (orderRecord, error) in
+            db.collection("user").document(userID).collection("order").whereField("payStatus", isEqualTo: 1).order(by: "date", descending: true).getDocuments { (orderRecord, error) in
                 if let orderRecord = orderRecord{
                     if orderRecord.documents.isEmpty{
                         self.orderRecordArray.removeAll()

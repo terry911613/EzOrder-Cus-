@@ -421,7 +421,7 @@ extension ProgressViewController: TPDApplePayDelegate{
             db.collection("user").document(userID).getDocument { (user, error) in
                 if let userData = user?.data(){
                     if let userPointCount = userData["pointCount"] as? Int{
-                        let pointCount = self.totalPrice/1000
+                        let pointCount = self.totalPrice/100
                         db.collection("user").document(userID).updateData(["pointCount": userPointCount + pointCount])
                         self.orderArray.removeAll()
                         self.animateProgressTableView()

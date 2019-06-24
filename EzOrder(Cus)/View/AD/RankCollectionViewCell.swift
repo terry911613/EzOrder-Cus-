@@ -11,4 +11,5 @@ import UIKit
 class RankCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgRank: UIImageView!
     @IBOutlet weak var lbRank: UILabel!
+    @IBOutlet weak var rateView: UIImageView!
 }

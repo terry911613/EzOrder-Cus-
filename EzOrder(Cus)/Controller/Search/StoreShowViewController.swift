@@ -24,12 +24,15 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     @IBOutlet var textimage2: [UIImageView]!
     @IBOutlet weak var showAddressButton: UIButton!
     @IBOutlet weak var myMap: MKMapView!
+    @IBOutlet weak var rateView: UIImageView!
+    @IBOutlet weak var resCommentTableView: UITableView!
     
     var res: DocumentSnapshot?
     var favRes: DocumentSnapshot?
     var enterFromFavorite = false
     var resID: String?
     var resName: String?
+    var resCommentArray = [QueryDocumentSnapshot]()
     
     var clickButton = false
     let geoCoder = CLGeocoder()
@@ -62,7 +65,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
             if let res = res,
                 let userID = Auth.auth().currentUser?.email{
                 let db = Firestore.firestore()
-                db.collection("res").document(res.documentID).collection("foodType").getDocuments { (type, error) in
+                db.collection("res").document(res.documentID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
                     if let type = type{
                         if type.documents.isEmpty{
                             self.typeArray.removeAll()
@@ -103,8 +106,27 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                         showAddressButton.setTitle(resLocation, for: .normal)
                         showStorePhoneLabel.text = resTel
                         self.resName = resName
-                        
                         self.resID = resID
+                        
+                        let db = Firestore.firestore()
+                        db.collection("res").document(resID).collection("resComment").getDocuments { (comment, error) in
+                            if let comment = comment{
+                                if comment.documents.isEmpty{
+                                    self.resCommentArray.removeAll()
+                                    self.resCommentTableView.reloadData()
+                                }
+                                else{
+                                    self.resCommentArray = comment.documents
+                                    self.resCommentTableView.reloadData()
+                                }
+                            }
+                        }
+                    }
+                    
+                    if let resTotalRate = resData["resTotalRate"] as? Float,
+                        let resRateCount = resData["resRateCount"] as? Float{
+                        
+                        updateStar(value: resTotalRate/resRateCount, image: rateView)
                     }
                 }
             }
@@ -264,6 +286,36 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
             }
         }
     }
+    func updateStar(value: Float, image: UIImageView) {
+        let rate = value
+        if rate < 2.75 {
+            if rate < 0.25 {
+                image.image = UIImage(named: "rate0")
+            } else if rate < 0.75 {
+                image.image = UIImage(named: "rate05")
+            } else if rate < 1.25 {
+                image.image = UIImage(named: "rate1")
+            } else if rate < 1.75 {
+                image.image = UIImage(named: "rate15")
+            } else if rate < 2.25 {
+                image.image = UIImage(named: "rate2")
+            } else {
+                image.image = UIImage(named: "rate25")
+            }
+        } else {
+            if rate < 3.25 {
+                image.image = UIImage(named: "rate3")
+            } else if rate < 3.75 {
+                image.image = UIImage(named: "rate35")
+            } else if rate < 4.25 {
+                image.image = UIImage(named: "rate4")
+            } else if rate < 4.75 {
+                image.image = UIImage(named: "rate45")
+            } else {
+                image.image = UIImage(named: "rate5")
+            }
+        }
+    }
     
     @IBAction func unwindSegueStoreShow(segue: UIStoryboardSegue){
     }
@@ -289,3 +341,31 @@ extension StoreShowViewController: UICollectionViewDelegate,UICollectionViewData
     }
 }
 
+extension StoreShowViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return resCommentArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resCommentCell", for: indexPath) as! ResCommentTableViewCell
+        let comment = resCommentArray[indexPath.row]
+        if let userID = comment.data()["userID"] as? String,
+            let resRate = comment.data()["resRate"] as? Float,
+            let resComment = comment.data()["resComment"] as? String{
+            
+            let db = Firestore.firestore()
+            db.collection("user").document(userID).getDocument { (user, error) in
+                if let userData = user?.data(){
+                    if let userImage = userData["userImage"] as? String{
+                         cell.userImageView.kf.setImage(with: URL(string: userImage))
+                    }
+                }
+            }
+            updateStar(value: resRate, image: cell.rateView)
+            cell.commentTextView.text = resComment
+        }
+        
+        return cell
+    }
+}

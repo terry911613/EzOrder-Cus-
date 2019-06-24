@@ -30,20 +30,16 @@ extension UINavigationBar {
     }
 }
 
-class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ADViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var rankCollectionView: UICollectionView!
-    
     @IBOutlet weak var adCollectionView: UICollectionView!
-    var rankImgNames = ["涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo", "涓豆腐logo"]
-    var rankLabels = ["1.大特價\n買一送一\n要吃要快", "2.大特價\n買一送一\n要吃要快", "3.大特價\n買一送一\n要吃要快", "4.大特價\n買一送一\n要吃要快", "5.大特價\n買一送一\n要吃要快"]
-    //    lazy var cardLayout: FlatCardCollectionViewLayout = {
-    //        let layout = FlatCardCollectionViewLayout()
-    //        layout.itemSize = CGSize(width: 247, height: 143)
-    //        return layout
-    //    }()
+    @IBOutlet weak var adPageControl: UIPageControl!
+    
     var adArray = [QueryDocumentSnapshot]()
     var recommendRes = [QueryDocumentSnapshot]()
+    var imageIndexPath = 0
+    var timerForAd = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +95,92 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.adCollectionView.leftAnchor
+        timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
+            UIView.animate(withDuration: 1, animations: {
+                var indexPath: IndexPath
+                if self.imageIndexPath < self.adArray.count - 1 {
+                    self.imageIndexPath += 1
+                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                    self.setPageControll(tunning: 1)
+                } else {
+                    self.imageIndexPath = 0
+                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                    self.setPageControll(tunning: (self.adArray.count - 1) * -1)
+                }
+            })
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timerForAd.invalidate()
+    }
+    
+    func updateStar(value: Float, image: UIImageView) {
+        let rate = value
+        if rate < 2.75 {
+            if rate < 0.25 {
+                image.image = UIImage(named: "rate0")
+            } else if rate < 0.75 {
+                image.image = UIImage(named: "rate05")
+            } else if rate < 1.25 {
+                image.image = UIImage(named: "rate1")
+            } else if rate < 1.75 {
+                image.image = UIImage(named: "rate15")
+            } else if rate < 2.25 {
+                image.image = UIImage(named: "rate2")
+            } else {
+                image.image = UIImage(named: "rate25")
+            }
+        } else {
+            if rate < 3.25 {
+                image.image = UIImage(named: "rate3")
+            } else if rate < 3.75 {
+                image.image = UIImage(named: "rate35")
+            } else if rate < 4.25 {
+                image.image = UIImage(named: "rate4")
+            } else if rate < 4.75 {
+                image.image = UIImage(named: "rate45")
+            } else {
+                image.image = UIImage(named: "rate5")
+            }
+        }
+    }
+    
+    // 圖層漸層
+    func createGradientLayer() {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = self.view.bounds
+        
+        gradientLayer.colors = [UIColor.yellow.cgColor,UIColor.red.cgColor, UIColor.yellow.cgColor]
+        gradientLayer.zPosition = -1
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        
+        self.view.layer.addSublayer(gradientLayer)
+    }
+    
+    func setPageControll(tunning: Int) {
+        let page = Int(adCollectionView.contentOffset.x / adCollectionView.frame.size.width )
+        //        print(page)
+        //        print((adCollectionView as UIScrollView).contentOffset.x)
+        //        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
+        adPageControl.currentPage = page + tunning
+        imageIndexPath = page + tunning
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView === adCollectionView {
+            setPageControll(tunning: 0)
+        }
+    }
+}
+
+extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == rankCollectionView {
             return recommendRes.count
@@ -113,9 +195,13 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rankCell", for: indexPath) as! RankCollectionViewCell
             let recommend = recommendRes[indexPath.row]
             if let resImage = recommend.data()["resImage"] as? String,
-                let resName = recommend.data()["resName"] as? String{
+                let resName = recommend.data()["resName"] as? String,
+                let resTotalRate = recommend.data()["resTotalRate"] as? Float,
+                let resRateCount = recommend.data()["resRateCount"] as? Float{
                 cell.imgRank.kf.setImage(with: URL(string: resImage))
                 cell.lbRank.text = resName
+                
+                updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
             }
             return cell
         } else {
@@ -132,19 +218,20 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
     
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == adCollectionView {
-            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
-            
-        } else {
-            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
-        }
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        if collectionView == adCollectionView {
+//            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
+//            
+//        }
+//        else {
+//            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
+//        }
+//    }
     //
     //    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 40
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 40
+//    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -178,70 +265,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate, UICollectionView
                 self.tabBarController?.selectedIndex = 1
                 searchNavController.pushViewController(storeShowVC, animated: true)
             }
-            
         }
     }
-    
-    
-    
-    // 圖層漸層
-    func createGradientLayer() {
-        let gradientLayer = CAGradientLayer()
-        
-        gradientLayer.frame = self.view.bounds
-        
-        gradientLayer.colors = [UIColor.yellow.cgColor,UIColor.red.cgColor, UIColor.yellow.cgColor]
-        gradientLayer.zPosition = -1
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        
-        self.view.layer.addSublayer(gradientLayer)
-    }
-    
-    @IBOutlet weak var adPageControl: UIPageControl!
-    
-    var imageIndexPath = 0
-    
-    var timerForAd = Timer()
-    override func viewWillAppear(_ animated: Bool) {
-        self.adCollectionView.leftAnchor
-        timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
-            UIView.animate(withDuration: 1, animations: {
-                var indexPath: IndexPath
-                if self.imageIndexPath < self.adArray.count - 1 {
-                    self.imageIndexPath += 1
-                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
-                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                    self.setPageControll(tunning: 1)
-                } else {
-                    self.imageIndexPath = 0
-                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
-                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                    self.setPageControll(tunning: (self.adArray.count - 1) * -1)
-                }
-            })
-        })
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        timerForAd.invalidate()
-    }
-    
-    func setPageControll(tunning: Int) {
-        let page = Int(adCollectionView.contentOffset.x / adCollectionView.frame.size.width )
-        //        print(page)
-        //        print((adCollectionView as UIScrollView).contentOffset.x)
-        //        print(adCollectionView.frame.size.width * CGFloat(rankImgNames.count))
-        adPageControl.currentPage = page + tunning
-        imageIndexPath = page + tunning
-    }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView === adCollectionView {
-            setPageControll(tunning: 0)
-            
-        }
-    }
-    
 }
-
-
 
