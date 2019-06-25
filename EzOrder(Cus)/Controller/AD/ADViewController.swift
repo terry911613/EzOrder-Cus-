@@ -36,7 +36,8 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var adCollectionView: UICollectionView!
     @IBOutlet weak var adPageControl: UIPageControl!
     
-    var adArray = [QueryDocumentSnapshot]()
+    var allAdArray = [QueryDocumentSnapshot]()
+    var okAdArray = [QueryDocumentSnapshot]()
     var recommendRes = [QueryDocumentSnapshot]()
     var imageIndexPath = 0
     var timerForAd = Timer()
@@ -48,13 +49,24 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
         db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
             if let AD = AD{
                 if AD.documents.isEmpty{
-                    self.adArray.removeAll()
+                    self.allAdArray.removeAll()
                     self.adCollectionView.reloadData()
                 }
                 else{
-                    self.adArray = AD.documents
-                    self.adCollectionView.reloadData()
-                    self.adPageControl.numberOfPages = self.adArray.count
+                    self.allAdArray = AD.documents
+//                    self.adCollectionView.reloadData()
+                    self.adPageControl.numberOfPages = self.okAdArray.count
+                    
+                    for ad in self.allAdArray{
+                        if let startDate = ad.data()["startDate"] as? Timestamp,
+                            let endDate = ad.data()["endDate"] as? Timestamp{
+                            
+                            if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
+                                self.okAdArray.append(ad)
+                                self.adCollectionView.reloadData()
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -96,11 +108,12 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.adCollectionView.leftAnchor
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
             UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
-                if self.imageIndexPath < self.adArray.count - 1 {
+                if self.imageIndexPath < self.okAdArray.count - 1 {
                     self.imageIndexPath += 1
                     indexPath = IndexPath(item: self.imageIndexPath, section: 0)
                     self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -109,7 +122,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                     self.imageIndexPath = 0
                     indexPath = IndexPath(item: self.imageIndexPath, section: 0)
                     self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                    self.setPageControll(tunning: (self.adArray.count - 1) * -1)
+                    self.setPageControll(tunning: (self.okAdArray.count - 1) * -1)
                 }
             })
         })
@@ -185,7 +198,7 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
         if collectionView == rankCollectionView {
             return recommendRes.count
         } else {
-            return adArray.count
+            return okAdArray.count
         }
         
     }
@@ -207,7 +220,7 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "adCell", for: indexPath) as! AdCollectionViewCell
             
-            let ad = adArray[indexPath.row]
+            let ad = okAdArray[indexPath.row]
             if let ADImage = ad.data()["ADImage"] as? String{
                 cell.AdImageView.kf.setImage(with: URL(string: ADImage))
             }
@@ -218,26 +231,26 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
     
     
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        if collectionView == adCollectionView {
-//            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
-//            
-//        }
-//        else {
-//            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
-//        }
-//    }
-    //
-    //    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 40
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == adCollectionView {
+            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
+            
+        }
+        else {
+            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
+        }
+    }
     
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 40
+    }
+
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var selectedRes: DocumentSnapshot
         if collectionView === adCollectionView {
-            selectedRes = (adArray[indexPath.row] as DocumentSnapshot)
+            selectedRes = (okAdArray[indexPath.row] as DocumentSnapshot)
         } else {
             selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
         }
