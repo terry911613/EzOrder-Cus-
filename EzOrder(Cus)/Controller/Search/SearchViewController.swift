@@ -64,9 +64,36 @@ class SearchViewController: UIViewController {
         storeShowVC.res = selectRes
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.view.endEditing(true)
-//    }
+    func updateStar(value: Float, image: UIImageView) {
+        let rate = value
+        if rate < 2.75 {
+            if rate < 0.25 {
+                image.image = UIImage(named: "rate0")
+            } else if rate < 0.75 {
+                image.image = UIImage(named: "rate05")
+            } else if rate < 1.25 {
+                image.image = UIImage(named: "rate1")
+            } else if rate < 1.75 {
+                image.image = UIImage(named: "rate15")
+            } else if rate < 2.25 {
+                image.image = UIImage(named: "rate2")
+            } else {
+                image.image = UIImage(named: "rate25")
+            }
+        } else {
+            if rate < 3.25 {
+                image.image = UIImage(named: "rate3")
+            } else if rate < 3.75 {
+                image.image = UIImage(named: "rate35")
+            } else if rate < 4.25 {
+                image.image = UIImage(named: "rate4")
+            } else if rate < 4.75 {
+                image.image = UIImage(named: "rate45")
+            } else {
+                image.image = UIImage(named: "rate5")
+            }
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
@@ -90,6 +117,14 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
                 let resImage = res.data()["resImage"] as? String{
                 cell.StoreName.text = resName
                 cell.StoreImage.kf.setImage(with: URL(string: resImage))
+            }
+            if let resTotalRate = res.data()["resTotalRate"] as? Float,
+                let resRateCount = res.data()["resRateCount"] as? Float{
+                
+                updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+            }
+            else{
+                cell.rateView.isHidden = true
             }
             print(2)
         }

@@ -19,6 +19,7 @@ class ProgressViewController: UIViewController {
     var consumer: TPDConsumer!
     var cart: TPDCart!
     var applePay: TPDApplePay!
+    
     var applePayButton : PKPaymentButton!
     
     @IBOutlet weak var progressTableView: UITableView!
@@ -42,6 +43,8 @@ class ProgressViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableLabel.text = ""
         
 //        cartSetting()
         getOrder()
@@ -166,21 +169,27 @@ class ProgressViewController: UIViewController {
                                 if let userData = user?.data(){
                                     if let totalPoint = userData["totalPoint"] as? Int{
                                         if totalPoint > 0{
-                                            let alert = UIAlertController(title: "剩餘\(totalPoint)點", message: "使用點數折抵？", preferredStyle: .alert)
-                                            let ok = UIAlertAction(title: "使用", style: .default, handler: { (ok) in
-                                                let point = TPDPaymentItem(itemName: "點數折抵", withAmount: NSDecimalNumber(string: "\(-totalPoint)"), withIsVisible: true)
-                                                self.cart.add(point)
-                                                self.isUsePoint = true
-                                                self.totalPoint = totalPoint
+                                            if self.isMenuActive == false{
+                                                let alert = UIAlertController(title: "剩餘\(totalPoint)點", message: "使用點數折抵？", preferredStyle: .alert)
+                                                let ok = UIAlertAction(title: "使用", style: .default, handler: { (ok) in
+                                                    let point = TPDPaymentItem(itemName: "點數折抵", withAmount: NSDecimalNumber(string: "\(-totalPoint)"), withIsVisible: true)
+                                                    self.cart.add(point)
+                                                    self.isUsePoint = true
+                                                    self.totalPoint = totalPoint
+                                                    self.clickPay()
+                                                })
+                                                let cancel = UIAlertAction(title: "不使用", style: .cancel, handler: { (ok) in
+                                                    self.isUsePoint = false
+                                                    self.clickPay()
+                                                })
+                                                alert.addAction(ok)
+                                                alert.addAction(cancel)
+                                                self.present(alert, animated: true, completion: nil)
+                                            }
+                                            else{
                                                 self.clickPay()
-                                            })
-                                            let cancel = UIAlertAction(title: "不使用", style: .cancel, handler: { (ok) in
-                                                self.isUsePoint = false
-                                                self.clickPay()
-                                            })
-                                            alert.addAction(ok)
-                                            alert.addAction(cancel)
-                                            self.present(alert, animated: true, completion: nil)
+                                            }
+                                            
                                         }
                                         else{
                                             self.clickPay()
@@ -201,14 +210,11 @@ class ProgressViewController: UIViewController {
             self.payButton.setTitle("取消", for: .normal)
             self.payButton.setTitleColor(.red, for: .normal)
             self.igcMenu?.showCircularMenu()
-            //                                self.isMenuActive = true
-            
         }
         else {
             self.payButton.setTitle("付款", for: .normal)
             self.payButton.setTitleColor(.white, for: .normal)
             self.igcMenu?.hideCircularMenu()
-            //                                self.isMenuActive = false
         }
     }
     
@@ -216,7 +222,6 @@ class ProgressViewController: UIViewController {
         applePay = TPDApplePay.setupWthMerchant(merchant, with: consumer, with: cart, withDelegate: self)
         applePay.startPayment()
     }
-    
     func merchantSetting() {
         merchant = TPDMerchant()
         merchant.merchantName = "EzOrder"
@@ -226,21 +231,16 @@ class ProgressViewController: UIViewController {
         merchant.currencyCode = "TWD"
         merchant.supportedNetworks = [.amex, .masterCard, .visa]
     }
-    
     func consumerSetting() {
-        // Set Consumer Contact.
         let contact = PKContact()
         var name = PersonNameComponents()
         name.familyName = "EzOrder"
         name.givenName = "Terry"
         contact.name = name;
-        
         consumer = TPDConsumer()
         consumer.billingContact = contact
-        consumer.requiredBillingAddressFields = []
-        
+        consumer.requiredBillingAddressFields = [.email, .name, .phone]
     }
-    
     func cartSetting() {
         cart = TPDCart()
         let db = Firestore.firestore()
@@ -375,49 +375,32 @@ extension ProgressViewController: IGCMenuDelegate{
 extension ProgressViewController: TPDApplePayDelegate{
     
     func tpdApplePay(_ applePay: TPDApplePay!, didReceivePrime prime: String!) {
-        print("=====================================================");
-        print("======> didReceivePrime");
-        print("Prime : \(prime!)");
-        print("total Amount :   \(applePay.cart.totalAmount!)")
-        print("Client IP : \(applePay.consumer.clientIP!)")
-        print("shippingContact.name : \(applePay.consumer.shippingContact?.name?.givenName) \(applePay.consumer.shippingContact?.name?.familyName)");
-        print("shippingContact.emailAddress : \(applePay.consumer.shippingContact?.emailAddress)");
-        print("shippingContact.phoneNumber : \(applePay.consumer.shippingContact?.phoneNumber?.stringValue)");
-        print("===================================================== \n\n");
         
-        
+        let url = URL(string: "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.setValue("application/json​", forHTTPHeaderField: "Content-Type")
+        request.addValue("partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX", forHTTPHeaderField: "x-api-key")
         
         DispatchQueue.main.async {
-            let payment = "Use below cURL to proceed the payment.\ncurl -X POST \\\nhttps://sandbox.tappaysdk.com/tpc/payment/pay-by-prime \\\n-H \'content-type: application/json\' \\\n-H \'x-api-key: partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\' \\\n-d \'{ \n \"prime\": \"\(prime!)\", \"partner_key\": \"partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\", \"merchant_id\": \"GlobalTesting_CTBC\", \"details\":\"TapPay Test\", \"amount\": \(applePay.cart.totalAmount!.stringValue), \"cardholder\": { \"phone_number\": \"+886923456789\", \"name\": \"Jane Doe\", \"email\": \"Jane@Doe.com\", \"zip_code\": \"12345\", \"address\": \"123 1st Avenue, City, Country\", \"national_id\": \"A123456789\" }, \"remember\": true }\'"
             
-//            print(payment)
+            let test = ["prime":prime!,"partner_key":"partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX","merchant_id": "terry911613_ESUN","details":"TapPay Test","amount":applePay.cart.totalAmount!.stringValue,"cardholder":["phone_number":"+886923456789","name":"sun","email":"LittleMing@Wang.com"]] as [String : Any]
+            let data = try?  JSONSerialization.data(withJSONObject: test)
+            let task = URLSession.shared.uploadTask(with: request, from: data){(data, response, error) in
+                print("data:\(String(data: data!, encoding: .utf8))")
+                print("response:\(response)")
+                print("error\(error)")
+            }
+            task.resume()
         }
-        
-//        let session = URLSession(configuration: .default)
-        // 设置URL
-        let url = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
-        var request = URLRequest(url: URL(string: url)!)
-        
-        request.setValue("Content-Type", forHTTPHeaderField: "application/json​")
-        request.addValue("partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX", forHTTPHeaderField: "x-api-key")
-        request.httpMethod = "POST"
-        
-        let test = ["prime": prime!,"partner_key": "partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX","merchant_id": "merchant.com.TerryLee.EzOrderCus","amount": "100","order_number":"1","cardholder":["phone_number":"+886923456789","name":"sun","email":"LittleMing@Wang.com"],"details":"TapPay Test"] as [String : Any]
-        let data = try?  JSONSerialization.data(withJSONObject: test)
-        let task = URLSession.shared.uploadTask(with: request, from: data){(data, response, error) in
-            print("data:\(String(data: data!, encoding: .utf8))")
-            print("response:\(response)")
-            print("error\(error)")
-        }
-        task.resume()
-        
-        
         // 2. If Payment Success, set paymentReault = ture.
         let paymentReault = true;
         applePay.showPaymentResult(paymentReault)
     }
     
     func tpdApplePay(_ applePay: TPDApplePay!, didSuccessPayment result: TPDTransactionResult!) {
+        
+        tableLabel.text = ""
         
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email,
@@ -438,7 +421,7 @@ extension ProgressViewController: TPDApplePayDelegate{
             db.collection("user").document(userID).getDocument { (user, error) in
                 if let userData = user?.data(){
                     if let userPointCount = userData["pointCount"] as? Int{
-                        let pointCount = self.totalPrice/1000
+                        let pointCount = self.totalPrice/100
                         db.collection("user").document(userID).updateData(["pointCount": userPointCount + pointCount])
                         self.orderArray.removeAll()
                         self.animateProgressTableView()

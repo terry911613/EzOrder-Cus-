@@ -23,24 +23,24 @@
                                 <color key="backgroundColor" red="0.996684730052948" green="0.45641946792602539" blue="0.4543306827545166" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="scrollIndicatorInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NPF-kr-eC5">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="305" height="300"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adCell" id="8dZ-AA-QV1" customClass="AdCollectionViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="35" y="17" width="305" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="305" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-cI-ODK">
-                                                    <rect key="frame" x="6" y="2.5" width="38" height="45"/>
+                                                    <rect key="frame" x="39" y="13.5" width="227" height="273"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cQo-fg-j2w">
-                                                            <rect key="frame" x="0.0" y="0.0" width="38" height="45"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="227" height="273"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="15"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦餐廳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02v-ub-LDE">
-                                <rect key="frame" x="16" y="438" width="62" height="18"/>
+                                <rect key="frame" x="15" y="446.5" width="62" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -108,24 +108,24 @@
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.59670647659999998" blue="0.57797562250000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qO5-AO-bbI">
-                                <rect key="frame" x="0.0" y="484.5" width="375" height="133.5"/>
+                                <rect key="frame" x="0.0" y="474.5" width="375" height="133.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NBO-SN-M09">
-                                    <size key="itemSize" width="319" height="120"/>
+                                    <size key="itemSize" width="300" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="rankCell" id="7iu-lO-WGq" customClass="RankCollectionViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="7" width="319" height="120"/>
+                                        <rect key="frame" x="0.0" y="7" width="300" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="319" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="涓豆腐logo" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-4E-bU1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="159.5" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -134,10 +134,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdT-kc-OAX">
-                                                    <rect key="frame" x="159.5" y="0.0" width="80" height="120"/>
+                                                    <rect key="frame" x="150" y="0.0" width="75" height="120"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 幹幹幹幹幹幹幹幹" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDo-O2-zR4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="120"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="120"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -152,11 +152,20 @@
                                                         <constraint firstItem="GDo-O2-zR4" firstAttribute="leading" secondItem="EdT-kc-OAX" secondAttribute="leading" id="SSU-ZW-u1E"/>
                                                     </constraints>
                                                 </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lfv-Yv-vDa">
+                                                    <rect key="frame" x="150" y="100" width="75" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Lfv-Yv-vDa" secondAttribute="height" multiplier="5:1" id="1PI-d6-cVb"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="EdT-kc-OAX" firstAttribute="width" secondItem="7iu-lO-WGq" secondAttribute="width" multiplier="1:4" id="1r6-Ez-oLy"/>
                                             <constraint firstItem="EdT-kc-OAX" firstAttribute="leading" secondItem="rYA-4E-bU1" secondAttribute="trailing" id="CHP-H4-Ums"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lfv-Yv-vDa" secondAttribute="bottom" constant="5" id="G71-XZ-NK5"/>
+                                            <constraint firstItem="Lfv-Yv-vDa" firstAttribute="width" secondItem="7iu-lO-WGq" secondAttribute="width" multiplier="30/120" id="HgN-pd-RLN"/>
+                                            <constraint firstItem="Lfv-Yv-vDa" firstAttribute="leading" secondItem="rYA-4E-bU1" secondAttribute="trailing" id="Ipw-TO-ZcO"/>
                                             <constraint firstItem="EdT-kc-OAX" firstAttribute="top" secondItem="7iu-lO-WGq" secondAttribute="top" id="Lhd-ge-1by"/>
                                             <constraint firstItem="rYA-4E-bU1" firstAttribute="width" secondItem="7iu-lO-WGq" secondAttribute="width" multiplier="1:2" id="Nzg-xm-M9g"/>
                                             <constraint firstItem="rYA-4E-bU1" firstAttribute="height" secondItem="7iu-lO-WGq" secondAttribute="height" id="RGh-ub-JFW"/>
@@ -167,6 +176,7 @@
                                         <connections>
                                             <outlet property="imgRank" destination="rYA-4E-bU1" id="hs2-DY-rQA"/>
                                             <outlet property="lbRank" destination="GDo-O2-zR4" id="aoB-Wx-riD"/>
+                                            <outlet property="rateView" destination="Lfv-Yv-vDa" id="8Yo-BG-ona"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -180,17 +190,16 @@
                         <constraints>
                             <constraint firstItem="Cz8-LV-DB9" firstAttribute="top" secondItem="dpd-lJ-0Wh" secondAttribute="top" id="1gw-Ae-gVM"/>
                             <constraint firstItem="Cz8-LV-DB9" firstAttribute="centerX" secondItem="JqD-Rs-pIA" secondAttribute="centerX" id="1lv-eO-fZF"/>
-                            <constraint firstItem="02v-ub-LDE" firstAttribute="leading" secondItem="dpd-lJ-0Wh" secondAttribute="leading" constant="16" id="5Z4-ZE-fxp"/>
                             <constraint firstItem="qO5-AO-bbI" firstAttribute="centerX" secondItem="JqD-Rs-pIA" secondAttribute="centerX" id="9IR-e4-ngq"/>
+                            <constraint firstItem="qO5-AO-bbI" firstAttribute="top" secondItem="02v-ub-LDE" secondAttribute="bottom" constant="10" id="Bpx-yP-eGi"/>
+                            <constraint firstItem="dpd-lJ-0Wh" firstAttribute="bottom" secondItem="qO5-AO-bbI" secondAttribute="bottom" constant="10" id="PtL-f7-zyI"/>
                             <constraint firstItem="qO5-AO-bbI" firstAttribute="height" secondItem="JqD-Rs-pIA" secondAttribute="height" multiplier="1:5" id="XC8-q1-QuG"/>
-                            <constraint firstItem="02v-ub-LDE" firstAttribute="top" secondItem="Cz8-LV-DB9" secondAttribute="bottom" constant="40.5" id="Ysm-Ns-9hr"/>
+                            <constraint firstItem="qO5-AO-bbI" firstAttribute="width" secondItem="JqD-Rs-pIA" secondAttribute="width" id="a44-d0-vbM"/>
                             <constraint firstItem="Cz8-LV-DB9" firstAttribute="trailing" secondItem="dpd-lJ-0Wh" secondAttribute="trailing" id="dLr-Cq-RTr"/>
                             <constraint firstItem="Cz8-LV-DB9" firstAttribute="height" secondItem="JqD-Rs-pIA" secondAttribute="height" multiplier="1:2" id="fEV-rs-Di4"/>
-                            <constraint firstItem="qO5-AO-bbI" firstAttribute="bottom" secondItem="dpd-lJ-0Wh" secondAttribute="bottom" id="hyn-pf-ZBy"/>
+                            <constraint firstItem="02v-ub-LDE" firstAttribute="leading" secondItem="dpd-lJ-0Wh" secondAttribute="leading" constant="15" id="lpe-Sf-Yev"/>
                             <constraint firstItem="Cz8-LV-DB9" firstAttribute="leading" secondItem="dpd-lJ-0Wh" secondAttribute="leading" id="njH-sl-Aol"/>
-                            <constraint firstItem="qO5-AO-bbI" firstAttribute="leading" secondItem="dpd-lJ-0Wh" secondAttribute="leading" id="qG9-ja-gdG"/>
                             <constraint firstItem="3ra-RM-pF8" firstAttribute="top" secondItem="Cz8-LV-DB9" secondAttribute="bottom" id="qnd-oH-PNH"/>
-                            <constraint firstItem="qO5-AO-bbI" firstAttribute="trailing" secondItem="dpd-lJ-0Wh" secondAttribute="trailing" id="to2-5z-yP8"/>
                             <constraint firstItem="3ra-RM-pF8" firstAttribute="centerX" secondItem="JqD-Rs-pIA" secondAttribute="centerX" id="zD5-kG-Me9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dpd-lJ-0Wh"/>

@@ -29,6 +29,7 @@
 		4443C39322A65F8B004875D7 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */; };
 		4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */; };
 		4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443C39722A663E6004875D7 /* OrderRecordViewController.swift */; };
+		446DC7BB22C1213700DBEE8E /* ResCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446DC7BA22C1213700DBEE8E /* ResCommentTableViewCell.swift */; };
 		4476C33522ABB0C0007D3BBC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476C33422ABB0C0007D3BBC /* RegisterViewController.swift */; };
 		4476C33722ABB864007D3BBC /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476C33622ABB864007D3BBC /* ProgressTableViewCell.swift */; };
 		4476C33B22ABD9AE007D3BBC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4476C33A22ABD9AD007D3BBC /* GoogleService-Info.plist */; };
@@ -98,6 +99,7 @@
 		4443C39222A65F8B004875D7 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		4443C39522A6638C004875D7 /* OrderRecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordTableViewCell.swift; sourceTree = "<group>"; };
 		4443C39722A663E6004875D7 /* OrderRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRecordViewController.swift; sourceTree = "<group>"; };
+		446DC7BA22C1213700DBEE8E /* ResCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCommentTableViewCell.swift; sourceTree = "<group>"; };
 		4476C33422ABB0C0007D3BBC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4476C33622ABB864007D3BBC /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		4476C33A22ABD9AD007D3BBC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */,
 				2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */,
 				2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */,
+				446DC7BA22C1213700DBEE8E /* ResCommentTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
+				446DC7BB22C1213700DBEE8E /* ResCommentTableViewCell.swift in Sources */,
 				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
 				2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,

@@ -1225,6 +1225,7 @@
                         <viewLayoutGuide key="safeArea" id="OVT-mU-LJG"/>
                     </view>
                     <connections>
+                        <outlet property="alertView" destination="2bb-0G-8HA" id="TBn-Ua-1ql"/>
                         <outlet property="blockView" destination="GSN-cA-Dsz" id="lib-iZ-PXN"/>
                         <outlet property="commentResTextView" destination="F9G-BI-5oe" id="8Lk-9d-uHD"/>
                         <outlet property="rateSlider" destination="vNR-bg-wOL" id="aYd-in-bLt"/>

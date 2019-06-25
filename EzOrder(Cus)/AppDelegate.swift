@@ -39,10 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print(2)
+        
         FirebaseApp.configure()
-        print(3)
-
+        
         TPDSetup.setWithAppId(13543, withAppKey: "app_86RZyP9vQAmMILzjRTItsICOGh0gRPjP6mwxB2foTg5d92nti4GARBfw9SKg", with: .sandBox)
         let IDFA = ASIdentifierManager.shared().advertisingIdentifier.uuidString
         TPDSetup.shareInstance().setupIDFA(IDFA)
