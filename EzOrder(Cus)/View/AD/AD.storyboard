@@ -26,11 +26,11 @@
                                     <size key="itemSize" width="305" height="300"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="35" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="28" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="adCell" id="8dZ-AA-QV1" customClass="AdCollectionViewCell" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="35" y="17" width="305" height="300"/>
+                                        <rect key="frame" x="28" y="17" width="305" height="300"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="305" height="300"/>
@@ -125,7 +125,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="涓豆腐logo" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-4E-bU1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="120.00000000000011"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -214,7 +214,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navImg" translatesAutoresizingMaskIntoConstraints="NO" id="tJj-Qy-IRk">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200.00000000000006" height="30"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
