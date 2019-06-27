@@ -13,7 +13,6 @@ class SearcMapViewController: UIViewController {
     @IBOutlet weak var MapView: MKMapView!
     
     override func viewDidLoad() {
-        print(location)
         setMapRegion()
         MapView.mapType = .standard
 

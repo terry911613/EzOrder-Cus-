@@ -17,7 +17,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var storeTableView: UITableView!
     
     var resArray = [QueryDocumentSnapshot]()
-    
+    let animator = SearchAnimation()
+    let animatorPop = SearcAnimationPop()
     var textStoreArray = [String]()
     var searchBool = false
     var searchChange = [String]()
@@ -25,6 +26,7 @@ class SearchViewController: UIViewController {
     var selectRes: DocumentSnapshot?
     var viewHeight: CGFloat?
     override func viewDidLoad() {
+        navigationController?.delegate = self
         super.viewDidLoad()
 //        addKeyboardObserver()
         storeTableView.keyboardDismissMode = .onDrag
@@ -153,6 +155,23 @@ extension SearchViewController: UISearchBarDelegate{
     }
 }
 
+extension SearchViewController : UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        if operation == .push {
+        animator.duration = 1
+            return animator
+
+        }
+        else if operation == .pop {
+        
+        animatorPop.duration = 1
+            
+        }
+        return animatorPop
+        
+    }
+}
 //extension SearchViewController {
 //    func addKeyboardObserver() {
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
