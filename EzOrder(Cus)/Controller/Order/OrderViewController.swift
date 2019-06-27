@@ -48,10 +48,7 @@ class OrderViewController: UIViewController {
     func getType(){
         if let resID = resID{
             db.collection("res").document(resID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
-                print("type0: ",type?.documents[0].data())
-                print("type1: ",type?.documents[1].data())
-                print("type2: ",type?.documents[2].data())
-                print("type3: ",type?.documents[3].data())
+
                 
                 if let type = type{
                     if type.documentChanges.isEmpty{
@@ -61,10 +58,6 @@ class OrderViewController: UIViewController {
                     else{
                         
                         self.typeArray = type.documents
-                        print("typeArray0: ", self.typeArray[0].data())
-                        print("typeArray1: ", self.typeArray[1].data())
-                        print("typeArray2: ", self.typeArray[2].data())
-                        print("typeArray3: ", self.typeArray[3].data())
                         
                         self.animateTypeCollectionView()
                         for _ in 1...self.typeArray.count {

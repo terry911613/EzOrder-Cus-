@@ -104,7 +104,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             return  searchChange.count
         }
         else {
-            return resArray.count
+            return textStoreArray.count
         }
     }
     
@@ -117,6 +117,8 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             let res = resArray[indexPath.row]
             if let resName = res.data()["resName"] as? String,
                 let resImage = res.data()["resImage"] as? String{
+                searchChange.append(resName)
+                searchChange.append(resImage)
                 cell.StoreName.text = resName
                 cell.StoreImage.kf.setImage(with: URL(string: resImage))
             }
@@ -128,14 +130,15 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             else{
                 cell.rateView.isHidden = true
             }
-            print(2)
-        }
+                }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let res = resArray[indexPath.row] as! DocumentSnapshot
+        print("10",res)
+        
         selectRes = res
         performSegue(withIdentifier: "resDetailSegue", sender: self)
     }
@@ -159,13 +162,13 @@ extension SearchViewController : UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
         if operation == .push {
-        animator.duration = 1
+        animator.duration = 0.3
             return animator
 
         }
         else if operation == .pop {
         
-        animatorPop.duration = 1
+        animatorPop.duration = 0.3
             
         }
         return animatorPop
