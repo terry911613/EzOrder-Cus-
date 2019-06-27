@@ -50,6 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         // from MessagingDelegate
         Messaging.messaging().delegate = self
         
+        Messaging.messaging().subscribe(toTopic: "advertisement") { error in
+            print("Subscribed to advertisement topic")
+        }
+        
                return true
     }
     
@@ -96,7 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         // Note: This callback is fired at each app startup and whenever a new token is generated.
         
     }
-
-
+    
 }
 

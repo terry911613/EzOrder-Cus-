@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 
+import UIKit
+import Firebase
+
 class RateFoodViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var rateSlider: RateSlider!
     @IBOutlet weak var rateImageView: UIImageView!
@@ -37,12 +39,6 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let rectShape = CAShapeLayer()
-        rectShape.bounds = headerView.frame
-        rectShape.position = headerView.center
-        rectShape.path = UIBezierPath(roundedRect: headerView.bounds, byRoundingCorners: [.topLeft , .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-        headerView.layer.mask = rectShape
         
         commentTextView.delegate = self
         rateSlider.resFoodVC = self

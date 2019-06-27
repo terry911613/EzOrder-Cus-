@@ -138,6 +138,10 @@ class CartViewController: UIViewController {
                                 db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
                                 db.collection("res").document(resID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).setData(orderFoodData)
                                 
+                                let completeData: [String: Any] = ["orderCompleteStatus": 0]
+                                db.collection("user").document(userID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+                                db.collection("res").document(resID).collection("order").document(orderNo).collection("orderCompleteStatus").document("isOrderComplete").setData(completeData)
+                                
                                 
                                 //  存點餐次數，做圖表
                                 let dateString = self.formatter.string(from: Date())
@@ -160,27 +164,6 @@ class CartViewController: UIViewController {
                                         }
                                     }
                                 }
-                                
-                                print("userID: ", userID)
-                                print("resID: ", resID)
-                                print("orderNo", orderNo)
-                                print("foodDocumentID: ", foodDocumentID)
-                                print("orderFoodData: ", orderFoodData)
-                                
-                                
-                                //                    db.collection("user").document(userID).collection("order").document(orderNo).getDocument { (documentSnapshot, error) in
-                                //                        if var orderData = documentSnapshot?.data() {
-                                //                            let oldTotalPrice = orderData["totalPrice"] as! Int
-                                //                            let oldExtraOrderCount = orderData["extraOrderCount"] as! Int
-                                //                            let newTotalPrice = oldTotalPrice + totalPrice
-                                //                            let newExtraOrderCount = oldExtraOrderCount + 1
-                                //                            orderData["totalPrice"] = newTotalPrice
-                                //                            orderData["extraOrderCount"] = newExtraOrderCount
-                                //
-                                //                            self.db.collection("user").document(userID).collection("order").document(orderNo).updateData(orderData)
-                                //                            self.db.collection("res").document(resID).collection("order").document(orderNo).updateData(orderData)
-                                //                        }
-                                //                    }
                             }
                         }
                     }

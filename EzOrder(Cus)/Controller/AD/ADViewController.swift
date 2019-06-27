@@ -46,31 +46,31 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         let db = Firestore.firestore()
-        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
+        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).addSnapshotListener { (AD, error) in
             if let AD = AD{
                 if AD.documents.isEmpty{
                     self.allAdArray.removeAll()
                     self.adCollectionView.reloadData()
                 }
                 else{
-                    self.allAdArray = AD.documents
-//                    self.adCollectionView.reloadData()
-                    self.adPageControl.numberOfPages = self.okAdArray.count
-                    
-                    for ad in self.allAdArray{
-                        if let startDate = ad.data()["startDate"] as? Timestamp,
-                            let endDate = ad.data()["endDate"] as? Timestamp{
-                            
-                            if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
-                                self.okAdArray.append(ad)
-                                self.adCollectionView.reloadData()
+                    let documentChange = AD.documentChanges[0]
+                    if documentChange.type == .added{
+                        self.allAdArray = AD.documents
+                        for ad in self.allAdArray{
+                            if let startDate = ad.data()["startDate"] as? Timestamp,
+                                let endDate = ad.data()["endDate"] as? Timestamp{
+                                
+                                if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
+                                    self.okAdArray.append(ad)
+                                    self.adPageControl.numberOfPages = self.okAdArray.count
+                                    self.adCollectionView.reloadData()
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        
         db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
             if let res = res{
                 if res.documents.isEmpty == false{
@@ -81,6 +81,12 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                             let rightTotalRate = right.data()["resTotalRate"] as? Double,
                             let rightRateCount = right.data()["resRateCount"] as? Double{
                             
+                            if leftRateCount == 0 {
+                                return 0 > rightTotalRate/rightRateCount
+                            }
+                            else if rightRateCount == 0{
+                                return leftTotlaRate/leftRateCount > 0
+                            }
                             return leftTotlaRate/leftRateCount > rightTotalRate/rightRateCount
                         }
                         else{
@@ -208,13 +214,18 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "rankCell", for: indexPath) as! RankCollectionViewCell
             let recommend = recommendRes[indexPath.row]
             if let resImage = recommend.data()["resImage"] as? String,
-                let resName = recommend.data()["resName"] as? String,
-                let resTotalRate = recommend.data()["resTotalRate"] as? Float,
-                let resRateCount = recommend.data()["resRateCount"] as? Float{
+                let resName = recommend.data()["resName"] as? String{
                 cell.imgRank.kf.setImage(with: URL(string: resImage))
                 cell.lbRank.text = resName
-                
-                updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+            }
+            if let resTotalRate = recommend.data()["resTotalRate"] as? Float,
+                let resRateCount = recommend.data()["resRateCount"] as? Float{
+                if resRateCount == 0{
+                    updateStar(value: 0, image: cell.rateView)
+                }
+                else{
+                    updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+                }
             }
             return cell
         } else {
@@ -224,61 +235,61 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
             if let ADImage = ad.data()["ADImage"] as? String{
                 cell.AdImageView.kf.setImage(with: URL(string: ADImage))
             }
-            //            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
-            return cell
-        }
+    //            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
+    return cell
     }
-    
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == adCollectionView {
-            return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
-            
-        }
-        else {
-            return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
-        }
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 40
-    }
+}
 
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var selectedRes: DocumentSnapshot
-        if collectionView === adCollectionView {
-            selectedRes = (okAdArray[indexPath.row] as DocumentSnapshot)
+
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    if collectionView == adCollectionView {
+        return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
+        
+    }
+    else {
+        return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
+    }
+}
+
+
+func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 40
+}
+
+
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    var selectedRes: DocumentSnapshot
+    if collectionView === adCollectionView {
+        selectedRes = (okAdArray[indexPath.row] as DocumentSnapshot)
+    } else {
+        selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
+    }
+    if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
+        var destinationVC: UIViewController?
+        let viewControllers = searchNavController.children
+        for viewController in viewControllers {
+            if type(of: viewController) === StoreShowViewController.self {
+                destinationVC = viewController
+            }
+        }
+        if let destinationVC = destinationVC as? StoreShowViewController {
+            destinationVC.favRes = selectedRes
+            destinationVC.enterFromFavorite = true
+            destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
+            destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
+            self.tabBarController?.selectedIndex = 1
+            searchNavController.popToViewController(destinationVC, animated: true)
         } else {
-            selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
-        }
-        if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
-            var destinationVC: UIViewController?
-            let viewControllers = searchNavController.children
-            for viewController in viewControllers {
-                if type(of: viewController) === StoreShowViewController.self {
-                    destinationVC = viewController
-                }
-            }
-            if let destinationVC = destinationVC as? StoreShowViewController {
-                destinationVC.favRes = selectedRes
-                destinationVC.enterFromFavorite = true
-                destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
-                destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
-                self.tabBarController?.selectedIndex = 1
-                searchNavController.popToViewController(destinationVC, animated: true)
-            } else {
-                searchNavController.popToRootViewController(animated: true)
-                let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
-                let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
-                storeShowVC.favRes = selectedRes
-                storeShowVC.enterFromFavorite = true
-                self.tabBarController?.selectedIndex = 1
-                searchNavController.pushViewController(storeShowVC, animated: true)
-            }
+            searchNavController.popToRootViewController(animated: true)
+            let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+            let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+            storeShowVC.favRes = selectedRes
+            storeShowVC.enterFromFavorite = true
+            self.tabBarController?.selectedIndex = 1
+            searchNavController.pushViewController(storeShowVC, animated: true)
         }
     }
+}
 }
 
