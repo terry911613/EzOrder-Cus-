@@ -101,10 +101,11 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
+            
             return  searchChange.count
         }
         else {
-            return textStoreArray.count
+            return resArray.count
         }
     }
     
@@ -112,12 +113,12 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
         if searchBool {
             cell.StoreName.text = searchChange[indexPath.row]
+
         }
         else {
             let res = resArray[indexPath.row]
             if let resName = res.data()["resName"] as? String,
                 let resImage = res.data()["resImage"] as? String{
-                searchChange.append(resName)
                 searchChange.append(resImage)
                 cell.StoreName.text = resName
                 cell.StoreImage.kf.setImage(with: URL(string: resImage))
@@ -125,7 +126,13 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             if let resTotalRate = res.data()["resTotalRate"] as? Float,
                 let resRateCount = res.data()["resRateCount"] as? Float{
                 
-                updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+                if resRateCount == 0{
+                    updateStar(value: 0, image: cell.rateView)
+                }
+                else{
+                    updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+                }
+                
             }
             else{
                 cell.rateView.isHidden = true
