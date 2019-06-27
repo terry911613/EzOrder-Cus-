@@ -71,7 +71,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        
         db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
             if let res = res{
                 if res.documents.isEmpty == false{
