@@ -126,7 +126,12 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                     if let resTotalRate = resData["resTotalRate"] as? Float,
                         let resRateCount = resData["resRateCount"] as? Float{
                         
-                        updateStar(value: resTotalRate/resRateCount, image: rateView)
+                        if resRateCount == 0{
+                            updateStar(value: 0, image: rateView)
+                        }
+                        else{
+                            updateStar(value: resTotalRate/resRateCount, image: rateView)
+                        }
                     }
                 }
             }

@@ -135,7 +135,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let res = resArray[indexPath.row] as! DocumentSnapshot
+        let res = resArray[indexPath.row]
         selectRes = res
         performSegue(withIdentifier: "resDetailSegue", sender: self)
     }
