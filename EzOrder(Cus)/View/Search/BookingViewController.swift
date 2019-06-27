@@ -78,29 +78,38 @@ class BookingViewController: UIViewController {
     }
     
     func get(date: Date){
+        timeIntervalPicker.isUserInteractionEnabled = false
+        reset()
         let db = Firestore.firestore()
         if let resID = resID{
             db.collection("res").document(resID).collection("booking").document(formatter.string(from: date)).getDocument { (book, error) in
-                self.reset()
+                
                 print("fuck")
                 if let bookData = book?.data(){
                     print("gg")
                     if let morning = bookData["morning"] as? Int{
+                        self.timeIntervalPicker.isUserInteractionEnabled = false
                         self.morning = morning
                         self.dic["9:00"] = String(morning)
                         self.timeInterval.append("9:00")
+                        self.timeIntervalPicker.isUserInteractionEnabled = true
                     }
                     if let noon = bookData["noon"] as? Int{
+                        self.timeIntervalPicker.isUserInteractionEnabled = false
                         self.noon = noon
                         self.dic["12:00"] = String(noon)
                         self.timeInterval.append("12:00")
+                        self.timeIntervalPicker.isUserInteractionEnabled = true
                     }
                     if let evening = bookData["evening"] as? Int{
+                        self.timeIntervalPicker.isUserInteractionEnabled = false
                         self.evening = evening
                         self.dic["18:00"] = String(evening)
                         self.timeInterval.append("18:00")
+                        self.timeIntervalPicker.isUserInteractionEnabled = true
                     }
                     self.timeIntervalPicker.reloadAllComponents()
+                    
                     self.peoplePicker.reloadAllComponents()
                 }
                 else{
@@ -115,19 +124,25 @@ class BookingViewController: UIViewController {
                                 print(resPeriod)
                                 for i in resPeriod{
                                     if i == "1"{
+                                        self.timeIntervalPicker.isUserInteractionEnabled = false
                                         self.morning = resBookingLimit
                                         self.dic["9:00"] = String(resBookingLimit)
                                         self.timeInterval.append("9:00")
+                                        self.timeIntervalPicker.isUserInteractionEnabled = true
                                     }
                                     else if i == "2"{
+                                        self.timeIntervalPicker.isUserInteractionEnabled = false
                                         self.noon = resBookingLimit
                                         self.dic["12:00"] = String(resBookingLimit)
                                         self.timeInterval.append("12:00")
+                                        self.timeIntervalPicker.isUserInteractionEnabled = true
                                     }
                                     else{
+                                        self.timeIntervalPicker.isUserInteractionEnabled = false
                                         self.evening = resBookingLimit
                                         self.dic["18:00"] = String(resBookingLimit)
                                         self.timeInterval.append("18:00")
+                                        self.timeIntervalPicker.isUserInteractionEnabled = true
                                     }
                                 }
                                 self.timeIntervalPicker.reloadAllComponents()
@@ -141,11 +156,12 @@ class BookingViewController: UIViewController {
     }
     
     @IBAction func datePicker(_ sender: UIDatePicker) {
-        
-        get(date: sender.date)
-        timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
-        selectDateString = formatter.string(from: sender.date)
-        selectDate = sender.date
+        if datePicker.isSelected{
+            get(date: sender.date)
+            timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
+            selectDateString = formatter.string(from: sender.date)
+            selectDate = sender.date
+        }
     }
     
     @IBAction func clickBooking(_ sender: Any) {
