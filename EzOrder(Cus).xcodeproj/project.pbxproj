@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0AF39122C47ECF008070BD /* SearchAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0AF39022C47ECF008070BD /* SearchAnimation.swift */; };
 		2C0DFE8722A8C20F002CC546 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8622A8C20F002CC546 /* Restaurant.swift */; };
 		2C0DFE8922A8DDE0002CC546 /* StoreShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */; };
 		2C0DFE8B22A8DE03002CC546 /* StoreShowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		0BCE3B6183ABE74EFFE4AFD7 /* Pods_EzOrder_Cus_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzOrder_Cus_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0AF39022C47ECF008070BD /* SearchAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAnimation.swift; sourceTree = "<group>"; };
 		2C0DFE8622A8C20F002CC546 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreShowViewController.swift; sourceTree = "<group>"; };
 		2C0DFE8A22A8DE03002CC546 /* StoreShowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreShowCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				447A1708228BB284003AB41E /* Search.storyboard */,
+				2C0AF39022C47ECF008070BD /* SearchAnimation.swift */,
 				2C2B9DF022B9094000602386 /* FlatCard.swift */,
 				2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */,
 				2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */,
@@ -592,6 +595,7 @@
 				2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */,
+				2C0AF39122C47ECF008070BD /* SearchAnimation.swift in Sources */,
 				447A16F3228BB1D2003AB41E /* ADViewController.swift in Sources */,
 				9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */,
 				4443C39822A663E6004875D7 /* OrderRecordViewController.swift in Sources */,
