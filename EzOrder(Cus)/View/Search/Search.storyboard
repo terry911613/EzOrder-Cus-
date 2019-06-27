@@ -13,7 +13,7 @@
         <!--搜尋餐廳-->
         <scene sceneID="LP3-wq-vyV">
             <objects>
-                <viewController id="UVy-gz-aRq" customClass="SearchViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchVC" id="UVy-gz-aRq" customClass="SearchViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="11h-Rt-bK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

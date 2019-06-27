@@ -795,7 +795,6 @@
                         <outlet property="alertView" destination="vbE-kY-axx" id="5w8-Ee-fsw"/>
                         <outlet property="commentTextView" destination="ONT-k7-nAO" id="fcf-gk-qNA"/>
                         <outlet property="foodNameLabel" destination="IeT-We-fW4" id="qy5-DT-8Cp"/>
-                        <outlet property="headerView" destination="5p5-Yo-QW7" id="J2p-eZ-cMh"/>
                         <outlet property="isCommentedView" destination="9k3-d4-Ivi" id="XqT-e2-juY"/>
                         <outlet property="rateImageView" destination="WsG-8Q-vdd" id="h3d-3t-Rqg"/>
                         <outlet property="rateLabel" destination="IeT-We-fW4" id="2yJ-gv-Hcm"/>

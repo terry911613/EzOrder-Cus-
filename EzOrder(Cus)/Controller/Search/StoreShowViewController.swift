@@ -43,6 +43,12 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     
     var typeArray = [QueryDocumentSnapshot]()
     var beginningHandler: ()?
+    
+    deinit {
+        print("storeShow deinit")
+        print("storeShow deinit")
+        print("storeShow deinit")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         viewDidLoadProcess()
@@ -170,6 +176,16 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                     if let res = res{
                         self.res = res
                         generalProcess()
+                    }
+                }
+            } else {
+                let db = Firestore.firestore()
+                if let resID = resID {
+                    db.collection("res").document(resID).getDocument { (res, error) in
+                        if let res = res{
+                            self.res = res
+                            generalProcess()
+                        }
                     }
                 }
             }
