@@ -99,8 +99,8 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                         let resName = resData["resName"] as? String,
                         let resTel = resData["resTel"] as? String,
                         let resLocation = resData["resLocation"] as? String,
-                        let resID = resData["resID"] as? String{
-                        
+                        let resID = resData["resID"] as? String,let resTime = resData["resTime"] as? String{
+                        showStoreOpenTimeLabel.text = resTime
                         showStoreImageView.kf.setImage(with: URL(string: resImage))
                         showStoreNameLabel.text = resName
                         showAddressButton.setTitle(resLocation, for: .normal)

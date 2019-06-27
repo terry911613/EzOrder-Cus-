@@ -16,7 +16,7 @@ class SearchAnimation : NSObject,UIViewControllerAnimatedTransitioning{
         toview?.alpha = 1
         containerView.addSubview(toview!)
         toview?.layer.transform = CATransform3DMakeScale(0.1,0.1, 1)
-        UIView.animate(withDuration: 0.5, delay: 0, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
             toview?.center = containerView.center
             toview?.layer.transform = CATransform3DMakeScale(1, 1, 1)            }, completion: {finished in
                 toview?.center = containerView.center
@@ -47,9 +47,9 @@ class SearcAnimationPop : SearchAnimation {
         containerView.addSubview(toview!)
         containerView.addSubview(foview!)
         toview?.layer.transform = CATransform3DMakeScale(1,1, 1)
-        UIView.animate(withDuration: 0.5, delay: 0, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, animations: {
         }, completion: {finished in
-            UIView.animate(withDuration: 0.5, delay: 0,  animations: {
+            UIView.animate(withDuration: 0.2, delay: 0,  animations: {
                 foview?.center = toview!.center
                 toview?.center = containerView.center
                 foview?.layer.transform = CATransform3DMakeScale(0.1,0.1, 1)
