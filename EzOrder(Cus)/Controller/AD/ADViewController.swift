@@ -46,24 +46,25 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         let db = Firestore.firestore()
-        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
+        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).addSnapshotListener { (AD, error) in
             if let AD = AD{
                 if AD.documents.isEmpty{
                     self.allAdArray.removeAll()
                     self.adCollectionView.reloadData()
                 }
                 else{
-                    self.allAdArray = AD.documents
-//                    self.adCollectionView.reloadData()
-                    self.adPageControl.numberOfPages = self.okAdArray.count
-                    
-                    for ad in self.allAdArray{
-                        if let startDate = ad.data()["startDate"] as? Timestamp,
-                            let endDate = ad.data()["endDate"] as? Timestamp{
-                            
-                            if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
-                                self.okAdArray.append(ad)
-                                self.adCollectionView.reloadData()
+                    let documentChange = AD.documentChanges[0]
+                    if documentChange.type == .added{
+                        self.allAdArray = AD.documents
+                        for ad in self.allAdArray{
+                            if let startDate = ad.data()["startDate"] as? Timestamp,
+                                let endDate = ad.data()["endDate"] as? Timestamp{
+                                
+                                if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
+                                    self.okAdArray.append(ad)
+                                    self.adPageControl.numberOfPages = self.okAdArray.count
+                                    self.adCollectionView.reloadData()
+                                }
                             }
                         }
                     }
@@ -245,8 +246,8 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 40
     }
-
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var selectedRes: DocumentSnapshot
         if collectionView === adCollectionView {
