@@ -13,7 +13,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="FW5-XW-A3O">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="4zT-QS-40P" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="4zT-QS-40P" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HpB-EE-8op">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

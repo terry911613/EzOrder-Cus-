@@ -101,5 +101,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        if let resID = userInfo["resID"] as? String {
+             let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            tabBar.selectedIndex = 1
+            let nav = tabBar.selectedViewController as! UINavigationController
+            let searchVC = nav.topViewController as! SearchViewController
+            let storeShowVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+            storeShowVC.resID = resID
+            storeShowVC.enterFromFavorite = true
+            self.window?.rootViewController?.dismiss(animated: false, completion: { self.window?.rootViewController = tabBar })
+            searchVC.show(storeShowVC, sender: searchVC)
+            window?.makeKeyAndVisible()
+        }
+        completionHandler()
+    }
 }
 
