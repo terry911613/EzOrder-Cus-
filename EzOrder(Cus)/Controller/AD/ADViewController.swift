@@ -36,7 +36,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var adCollectionView: UICollectionView!
     @IBOutlet weak var adPageControl: UIPageControl!
     
-    var allAdArray = [QueryDocumentSnapshot]()
     var okAdArray = [QueryDocumentSnapshot]()
     var recommendRes = [QueryDocumentSnapshot]()
     var imageIndexPath = 0
@@ -46,31 +45,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         let db = Firestore.firestore()
-        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).addSnapshotListener { (AD, error) in
-            if let AD = AD{
-                if AD.documents.isEmpty{
-                    self.allAdArray.removeAll()
-                    self.adCollectionView.reloadData()
-                }
-                else{
-                    let documentChange = AD.documentChanges[0]
-                    if documentChange.type == .added{
-                        self.allAdArray = AD.documents
-                        for ad in self.allAdArray{
-                            if let startDate = ad.data()["startDate"] as? Timestamp,
-                                let endDate = ad.data()["endDate"] as? Timestamp{
-                                
-                                if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
-                                    self.okAdArray.append(ad)
-                                    self.adPageControl.numberOfPages = self.okAdArray.count
-                                    self.adCollectionView.reloadData()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
         db.collection("res").whereField("status", isEqualTo: 1).addSnapshotListener { (res, error) in
             if let res = res{
                 if res.documents.isEmpty == false{
@@ -115,6 +89,29 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let db = Firestore.firestore()
+        db.collection("manage").document("check").collection("AD").whereField("ADStatus", isEqualTo: 1).getDocuments { (AD, error) in
+            self.okAdArray.removeAll()
+            if let AD = AD{
+                if AD.documents.isEmpty{
+                    self.adCollectionView.reloadData()
+                }
+                else{
+                    for ad in AD.documents{
+                        if let startDate = ad.data()["startDate"] as? Timestamp,
+                            let endDate = ad.data()["endDate"] as? Timestamp{
+                            
+                            if startDate.dateValue() < Date() && Date() < endDate.dateValue(){
+                                self.okAdArray.append(ad)
+                                self.adPageControl.numberOfPages = self.okAdArray.count
+                                self.adCollectionView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         self.adCollectionView.leftAnchor
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
             UIView.animate(withDuration: 1, animations: {
@@ -133,6 +130,8 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
             })
         })
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         timerForAd.invalidate()

@@ -102,7 +102,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
-            
             return  searchChange.count
         }
         else {
@@ -114,7 +113,6 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
         if searchBool {
             cell.StoreName.text = searchChange[indexPath.row]
-
         }
         else {
             let res = resArray[indexPath.row]
