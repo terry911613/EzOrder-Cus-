@@ -71,7 +71,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
+        db.collection("res").whereField("status", isEqualTo: 1).addSnapshotListener { (res, error) in
             if let res = res{
                 if res.documents.isEmpty == false{
                     self.recommendRes = res.documents

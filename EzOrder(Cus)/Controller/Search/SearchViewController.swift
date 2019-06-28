@@ -26,8 +26,9 @@ class SearchViewController: UIViewController {
     var selectRes: DocumentSnapshot?
     var viewHeight: CGFloat?
     override func viewDidLoad() {
-        navigationController?.delegate = self
         super.viewDidLoad()
+        
+        navigationController?.delegate = self
 //        addKeyboardObserver()
         storeTableView.keyboardDismissMode = .onDrag
         getRes()
@@ -35,7 +36,7 @@ class SearchViewController: UIViewController {
     
     func getRes(){
         let db = Firestore.firestore()
-        db.collection("res").whereField("status", isEqualTo: 1).getDocuments { (res, error) in
+        db.collection("res").whereField("status", isEqualTo: 1).addSnapshotListener { (res, error) in
             if let res = res{
                 if res.documents.isEmpty{
                     self.resArray.removeAll()
@@ -119,7 +120,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             let res = resArray[indexPath.row]
             if let resName = res.data()["resName"] as? String,
                 let resImage = res.data()["resImage"] as? String{
-                searchChange.append(resImage)
+                searchChange.append(resName)
                 cell.StoreName.text = resName
                 cell.StoreImage.kf.setImage(with: URL(string: resImage))
             }

@@ -35,7 +35,7 @@ class EditPersonalViewController: UIViewController {
             let name = name,
             let phone = phone{
             
-            userImageView.kf.setImage(with: URL(string: imgStr ?? ""))
+            userImageView.kf.setImage(with: URL(string: imgStr))
             userNameTextfield.text = name
             userPhoneTextfield.text = phone
         }
@@ -111,48 +111,6 @@ class EditPersonalViewController: UIViewController {
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }
-        
-//        personalImageView.startAnimating()
-//        let nameTextfields = nameTextfield.text ?? ""
-//        let phoneTextfields = phoneTextfield.text ?? ""
-//        let db = Firestore.firestore()
-//        let dats: [String:Any] = ["Name" : nameTextfields,"Phone" : phoneTextfields]
-//        var photoReference : DocumentReference?
-//        photoReference =  db.collection("personal").addDocument(data: dats) { (error) in
-//            guard error == nil  else {
-//                self.personalImageView.startAnimating()
-//                return
-//            }
-//            let storageReference = Storage.storage().reference()
-//            let fileReference = storageReference.child(UUID().uuidString + ".jpg")
-//            let image = self.personalImageView.image
-//            let size = CGSize(width: 640, height:
-//                image!.size.height * 640 / image!.size.width)
-//            UIGraphicsBeginImageContext(size)
-//            image?.draw(in: CGRect(origin: .zero, size: size))
-//            let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
-//            UIGraphicsEndImageContext()
-//            if let data = resizeImage?.jpegData(compressionQuality: 0.8)
-//            { fileReference.putData(data,metadata: nil) {(metadate , error) in
-//                guard let _ = metadate, error == nil else {
-//                    self.personalImageView.stopAnimating()
-//                    return
-//                }
-//                fileReference.downloadURL(completion: { (url, error) in
-//                    guard let downloadURL = url else {
-//                        self.personalImageView.stopAnimating()
-//                        return
-//                    }
-//                    photoReference?.updateData(["photoUrl": downloadURL.absoluteString])
-//                }
-//
-//                )}
-//
-//
-//            }
-//
-//        }
-        
     }
     func errorAlert(){
         let alert = UIAlertController(title: "上傳失敗", message: "請稍後再試一次", preferredStyle: .alert)

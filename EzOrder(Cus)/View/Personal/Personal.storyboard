@@ -90,7 +90,7 @@
                                 <rect key="frame" x="62.5" y="183.5" width="250" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgT-rr-0hO">
-                                        <rect key="frame" x="5" y="50" width="240" height="30"/>
+                                        <rect key="frame" x="95.5" y="50" width="59.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -121,14 +121,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="hgT-rr-0hO" firstAttribute="top" secondItem="imG-au-YPF" secondAttribute="top" constant="50" id="4vH-DW-nl2"/>
-                                    <constraint firstItem="hgT-rr-0hO" firstAttribute="leading" secondItem="imG-au-YPF" secondAttribute="leading" constant="5" id="E9b-AU-krF"/>
                                     <constraint firstItem="Ewi-Vi-nnh" firstAttribute="top" secondItem="hgT-rr-0hO" secondAttribute="bottom" constant="20" id="Ewt-2W-z5i"/>
                                     <constraint firstAttribute="bottom" secondItem="cDT-WZ-5ha" secondAttribute="bottom" constant="30" id="IuG-yF-Axf"/>
                                     <constraint firstItem="Ewi-Vi-nnh" firstAttribute="centerX" secondItem="imG-au-YPF" secondAttribute="centerX" id="NMU-Wn-tI4"/>
                                     <constraint firstItem="hgT-rr-0hO" firstAttribute="centerX" secondItem="imG-au-YPF" secondAttribute="centerX" id="Szj-6j-xtK"/>
                                     <constraint firstItem="cDT-WZ-5ha" firstAttribute="leading" secondItem="imG-au-YPF" secondAttribute="leading" constant="20" id="T5Y-dB-bDK"/>
                                     <constraint firstAttribute="trailing" secondItem="cDT-WZ-5ha" secondAttribute="trailing" constant="20" id="d4f-HR-627"/>
-                                    <constraint firstAttribute="trailing" secondItem="hgT-rr-0hO" secondAttribute="trailing" constant="5" id="qH4-MA-uGz"/>
                                     <constraint firstAttribute="width" secondItem="imG-au-YPF" secondAttribute="height" multiplier="5:6" id="sNS-NP-9cE"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -795,7 +793,6 @@
                         <outlet property="alertView" destination="vbE-kY-axx" id="5w8-Ee-fsw"/>
                         <outlet property="commentTextView" destination="ONT-k7-nAO" id="fcf-gk-qNA"/>
                         <outlet property="foodNameLabel" destination="IeT-We-fW4" id="qy5-DT-8Cp"/>
-                        <outlet property="headerView" destination="5p5-Yo-QW7" id="J2p-eZ-cMh"/>
                         <outlet property="isCommentedView" destination="9k3-d4-Ivi" id="XqT-e2-juY"/>
                         <outlet property="rateImageView" destination="WsG-8Q-vdd" id="h3d-3t-Rqg"/>
                         <outlet property="rateLabel" destination="IeT-We-fW4" id="2yJ-gv-Hcm"/>
