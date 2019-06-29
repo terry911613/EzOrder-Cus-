@@ -189,23 +189,24 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
 }
 
 extension SearchViewController: UISearchBarDelegate{
-//    func updateSearchResults(for searchController: UISearchController) {
-//        let searchString = searchController.searchBar.text!
-//        searcArrays = searcArray.filter { (name) -> Bool in
-//            return name.name == searchString
-//        }
-//        storeTableView.reloadData()
+//    let searchString = searchController.searchBar.text!
+//    searchSongs = songs.filter { (name) -> Bool in
+//    return name.contains(searchString)
 //    }
+
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searcArrays = searcArray.filter { (name) -> Bool in
-            return name.name == searchText
-        }
-//       storeTableView.reloadData()
-//        searchChange = textStoreArray.filter({$0.prefix(searchText.count) == searchText})
+//        searcArrays = searcArray.filter{
+//            (name) -> Bool in
+//
+//            return name.name.contains(searchText)
+//        }
+        
+    searcArrays = searcArray.filter({$0.name.prefix(searchText.count) == searchText})
+
         searchBool = true
         searchbool = true
-//        resArray.removeAll()
         storeTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
