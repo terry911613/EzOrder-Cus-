@@ -27,6 +27,8 @@ class BookingViewController: UIViewController {
     var resBookingLimit = 0
 //    var resBookingLimitArray = [Int]()
     var resID: String?
+    var searchbool : Bool?
+    var DocumnetID : String?
     var resName: String?
     var dic = [String: String]()
     let formatter = DateFormatter()
@@ -41,6 +43,9 @@ class BookingViewController: UIViewController {
     var selectTimeRow: Int?
     
     override func viewDidLoad() {
+        if searchbool == true {
+            resID = self.DocumnetID
+        }
         // 直接抓餐廳的「可訂位人數」 存入totalVacancy
         super.viewDidLoad()
         

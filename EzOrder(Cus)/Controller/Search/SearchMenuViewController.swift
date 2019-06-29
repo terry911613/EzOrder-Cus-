@@ -17,8 +17,16 @@ class SearchMenuViewController: UIViewController {
     var typeArray = [QueryDocumentSnapshot]()
     var foodArray = [QueryDocumentSnapshot]()
     var resID: String?
+    var searchbool : Bool?
+    var DocumentID : String?
+    
+    
+    
     
     override func viewDidLoad() {
+        if searchbool == true {
+            resID = self.DocumentID
+        }
         super.viewDidLoad()
     }
     

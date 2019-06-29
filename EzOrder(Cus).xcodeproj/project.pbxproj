@@ -18,6 +18,7 @@
 		2CB1B25B22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */; };
 		2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */; };
 		2CB1B26122AB7EB000484CC9 /* SearcMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */; };
+		2CC2989622C66871008A345F /* SearcArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2989522C66871008A345F /* SearcArray.swift */; };
 		2CC7D0C522B1F37C00EB6DE4 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */; };
 		2CEB987B22A7F15D0098181C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987A22A7F15D0098181C /* SignInViewController.swift */; };
 		2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */; };
@@ -87,6 +88,7 @@
 		2CB1B25A22AA2F9D00484CC9 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFoodDetailViewController.swift; sourceTree = "<group>"; };
 		2CB1B26022AB7EB000484CC9 /* SearcMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcMapViewController.swift; sourceTree = "<group>"; };
+		2CC2989522C66871008A345F /* SearcArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcArray.swift; sourceTree = "<group>"; };
 		2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CEB987A22A7F15D0098181C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2CEB987C22A8AC890098181C /* SearcStoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcStoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				9DFDB2A622AFC0A800295461 /* BookingViewController.swift */,
 				447A1719228C67DC003AB41E /* SearchViewController.swift */,
+				2CC2989522C66871008A345F /* SearcArray.swift */,
 				2C0DFE8822A8DDE0002CC546 /* StoreShowViewController.swift */,
 				2C0DFE8C22A95ACA002CC546 /* SearchMenuViewController.swift */,
 				2CB1B25C22AA321D00484CC9 /* SearchFoodDetailViewController.swift */,
@@ -595,6 +598,7 @@
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
 				446DC7BB22C1213700DBEE8E /* ResCommentTableViewCell.swift in Sources */,
 				4443C39622A6638C004875D7 /* OrderRecordTableViewCell.swift in Sources */,
+				2CC2989622C66871008A345F /* SearcArray.swift in Sources */,
 				2CEB987D22A8AC890098181C /* SearcStoreTableViewCell.swift in Sources */,
 				442E07FE22A56A220044BE65 /* CreditCardViewController.swift in Sources */,
 				9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */,

@@ -21,11 +21,14 @@ class SearchViewController: UIViewController {
     let animatorPop = SearcAnimationPop()
     var textStoreArray = [String]()
     var searchBool = false
-    var searchChange = [String]()
-//    var selectRes: QueryDocumentSnapshot?
-    var selectRes: DocumentSnapshot?
+    var searchbool = false
+    var searcArray = [SearcArray]()
+    var searcArrays = [SearcArray]()
+    var selectRes: QueryDocumentSnapshot?
+    var resID : String?
     var viewHeight: CGFloat?
     override func viewDidLoad() {
+        self.searcArrays = self.searcArray
         navigationController?.delegate = self
         super.viewDidLoad()
 //        addKeyboardObserver()
@@ -46,8 +49,9 @@ class SearchViewController: UIViewController {
                     self.animateStoreTableView()
                     
                     for res in res.documents{
-                        if let resName = res.data()["resName"] as? String{
-                            self.textStoreArray.append(resName)
+                        if let resName = res.data()["resName"] as? String,let resImage = res.data()["resImage"] as? String,let resTotalRate = res.data()["resTotalRate"] as? Float,
+                            let resRateCount = res.data()["resRateCount"] as? Float,let resid = res.data()["resID"] as? String {
+                            self.searcArray.append(SearcArray(name: resName, image: resImage, resTotalRate: resTotalRate, resCount: resRateCount,ID: resid))
                         }
                     }
                 }
@@ -64,7 +68,15 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let storeShowVC = segue.destination as! StoreShowViewController
         storeShowVC.res = selectRes
-    }
+        storeShowVC.DocumentID = resID
+        if searchBool == true   {
+        storeShowVC.searcbool = true
+        }
+        else {
+        storeShowVC.searcbool = false
+        }
+        
+            }
     
     func updateStar(value: Float, image: UIImageView) {
         let rate = value
@@ -102,47 +114,72 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
             
-            return  searchChange.count
+            return  searcArrays.count
         }
-        else {
-            return resArray.count
+        else if searchbool == false{
+                return resArray.count
+        }else {
+            return searcArray.count
         }
-    }
+            }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
         if searchBool {
-            cell.StoreName.text = searchChange[indexPath.row]
+            cell.StoreName.text = searcArrays[indexPath.row].name
+            cell.StoreImage.kf.setImage(with: URL(string: searcArrays[indexPath.row].image))
 
-        }
-        else {
-            let res = resArray[indexPath.row]
-            if let resName = res.data()["resName"] as? String,
-                let resImage = res.data()["resImage"] as? String{
-                searchChange.append(resImage)
-                cell.StoreName.text = resName
-                cell.StoreImage.kf.setImage(with: URL(string: resImage))
+            if searcArrays[indexPath.row].resTotalRate == 0{
+                updateStar(value: 0, image: cell.rateView)
+            }else{
+             updateStar(value: searcArrays[indexPath.row].resTotalRate/searcArrays[indexPath.row].resCount, image: cell.rateView)
             }
-            if let resTotalRate = res.data()["resTotalRate"] as? Float,
-                let resRateCount = res.data()["resRateCount"] as? Float{
-                
-                if resRateCount == 0{
-                    updateStar(value: 0, image: cell.rateView)
-                }
-                else{
-                    updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
-                }
-                
+                        }
+        else  if searchbool == false {
+                    if searchbool == false {
+                                    let res = resArray[indexPath.row]
+                                    if let resName = res.data()["resName"] as? String,
+                                        let resImage = res.data()["resImage"] as? String{
+            
+                                        cell.StoreName.text = resName
+                                        cell.StoreImage.kf.setImage(with: URL(string: resImage))
+                                    }
+                                    if let resTotalRate = res.data()["resTotalRate"] as? Float,
+                                        let resRateCount = res.data()["resRateCount"] as? Float{
+            
+                                        if resRateCount == 0{
+                                            updateStar(value: 0, image: cell.rateView)
+                                        }
+                                        else{
+                                            updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+                                        }
+            
+                                    }
+                                    else{
+                                        cell.rateView.isHidden = true
+                                    }
+                                        }
+
+        }else{
+            cell.StoreName.text = searcArray[indexPath.row].name
+            cell.StoreImage.kf.setImage(with: URL(string: searcArray[indexPath.row].image))
+            
+            if searcArray[indexPath.row].resTotalRate == 0{
+                updateStar(value: 0, image: cell.rateView)
             }
             else{
-                cell.rateView.isHidden = true
-            }
-                }
+                updateStar(value: searcArray[indexPath.row].resTotalRate/searcArray[indexPath.row].resCount, image: cell.rateView)}
+        }
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if searchBool == true {
+        let resid = searcArrays[indexPath.row].ID
+        resID = resid
+        }
         let res = resArray[indexPath.row]
         selectRes = res
         performSegue(withIdentifier: "resDetailSegue", sender: self)
@@ -150,13 +187,28 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
 }
 
 extension SearchViewController: UISearchBarDelegate{
+//    func updateSearchResults(for searchController: UISearchController) {
+//        let searchString = searchController.searchBar.text!
+//        searcArrays = searcArray.filter { (name) -> Bool in
+//            return name.name == searchString
+//        }
+//        storeTableView.reloadData()
+//    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchChange = textStoreArray.filter({$0.prefix(searchText.count) == searchText})
+        searcArrays = searcArray.filter { (name) -> Bool in
+            return name.name == searchText
+        }
+//       storeTableView.reloadData()
+//        searchChange = textStoreArray.filter({$0.prefix(searchText.count) == searchText})
         searchBool = true
+        searchbool = true
+//        resArray.removeAll()
         storeTableView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBool = false
+        
         searchBar.text = ""
         storeTableView.reloadData()
         self.view.endEditing(true)
