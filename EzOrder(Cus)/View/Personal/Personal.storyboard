@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
+                                <rect key="frame" x="37.5" y="183.49999999999997" width="300" height="300.00000000000006"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="height" multiplier="1:1" id="RYG-nw-5Jn"/>
@@ -90,7 +90,7 @@
                                 <rect key="frame" x="62.5" y="183.5" width="250" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgT-rr-0hO">
-                                        <rect key="frame" x="5" y="50" width="240" height="30"/>
+                                        <rect key="frame" x="95.5" y="50" width="59.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -121,14 +121,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="hgT-rr-0hO" firstAttribute="top" secondItem="imG-au-YPF" secondAttribute="top" constant="50" id="4vH-DW-nl2"/>
-                                    <constraint firstItem="hgT-rr-0hO" firstAttribute="leading" secondItem="imG-au-YPF" secondAttribute="leading" constant="5" id="E9b-AU-krF"/>
                                     <constraint firstItem="Ewi-Vi-nnh" firstAttribute="top" secondItem="hgT-rr-0hO" secondAttribute="bottom" constant="20" id="Ewt-2W-z5i"/>
                                     <constraint firstAttribute="bottom" secondItem="cDT-WZ-5ha" secondAttribute="bottom" constant="30" id="IuG-yF-Axf"/>
                                     <constraint firstItem="Ewi-Vi-nnh" firstAttribute="centerX" secondItem="imG-au-YPF" secondAttribute="centerX" id="NMU-Wn-tI4"/>
                                     <constraint firstItem="hgT-rr-0hO" firstAttribute="centerX" secondItem="imG-au-YPF" secondAttribute="centerX" id="Szj-6j-xtK"/>
                                     <constraint firstItem="cDT-WZ-5ha" firstAttribute="leading" secondItem="imG-au-YPF" secondAttribute="leading" constant="20" id="T5Y-dB-bDK"/>
                                     <constraint firstAttribute="trailing" secondItem="cDT-WZ-5ha" secondAttribute="trailing" constant="20" id="d4f-HR-627"/>
-                                    <constraint firstAttribute="trailing" secondItem="hgT-rr-0hO" secondAttribute="trailing" constant="5" id="qH4-MA-uGz"/>
                                     <constraint firstAttribute="width" secondItem="imG-au-YPF" secondAttribute="height" multiplier="5:6" id="sNS-NP-9cE"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -869,9 +867,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHo-36-BnN">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-tW-xPa">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="iSn-tW-xPa">
                                         <rect key="frame" x="40" y="25" width="100" height="100"/>
-                                        <color key="backgroundColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iSn-tW-xPa" secondAttribute="height" multiplier="1:1" id="L7I-Um-VpW"/>
                                         </constraints>
@@ -1012,7 +1010,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="REP-wl-Wwu">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="REP-wl-Wwu">
                                         <rect key="frame" x="57.5" y="15" width="135" height="135"/>
                                         <gestureRecognizers/>
                                         <constraints>
@@ -1240,6 +1238,7 @@
     <resources>
         <image name="ApplePay" width="267" height="267"/>
         <image name="Cash" width="267" height="267"/>
+        <image name="personal" width="128" height="128"/>
         <image name="rate0" width="415" height="85.666664123535156"/>
         <image name="圓" width="688" height="688"/>
         <image name="客戶端個人" width="27.666666030883789" height="26.333333969116211"/>
