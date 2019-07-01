@@ -72,13 +72,12 @@ class SearchViewController: UIViewController {
         storeShowVC.res = selectRes
         storeShowVC.DocumentID = resID
         if searchBool == true   {
-        storeShowVC.searcbool = true
+            storeShowVC.searcbool = true
         }
         else {
-        storeShowVC.searcbool = false
+            storeShowVC.searcbool = false
         }
-        
-            }
+    }
     
     func updateStar(value: Float, image: UIImageView) {
         let rate = value
@@ -118,7 +117,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             
             return  searcArrays.count
         }
-        else {
+        else if searchbool == false{
+                return resArray.count
+        } else {
             return searcArray.count
         
             }

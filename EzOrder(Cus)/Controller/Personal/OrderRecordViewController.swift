@@ -27,10 +27,6 @@ class OrderRecordViewController: UIViewController {
         getOrderRecord()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     func getOrderRecord(){
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
@@ -63,6 +59,12 @@ class OrderRecordViewController: UIViewController {
                 print(selectOrderNo)
                 orderRecordDetailVC.orderNo = selectOrderNo
             }
+            if let indexPath = orderRecordTableView.indexPathForSelectedRow{
+                let orderRecord = orderRecordArray[indexPath.row]
+                if let resID = orderRecord.data()["resID"] as? String{
+                    orderRecordDetailVC.resID = resID
+                }
+            }
         }
         else{
             if segue.identifier == "rateResSegue"{
@@ -72,8 +74,6 @@ class OrderRecordViewController: UIViewController {
                         let orderNo = orderRecordArray[selectResRateIndex].data()["orderNo"] as? String{
                         rateResVC.resID = resID
                         rateResVC.orderNo = orderNo
-                        print(orderNo)
-                        print(resID)
                     }
                 }
             }

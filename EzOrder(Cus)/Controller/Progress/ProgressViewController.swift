@@ -313,7 +313,7 @@ extension ProgressViewController: UITableViewDelegate, UITableViewDataSource{
                         }
                         else{
                             cell.statusLabel.text = "已送達"
-                            cell.statusLabel.textColor = .green
+                            cell.statusLabel.textColor = UIColor(red: 11/255, green: 209/255, blue: 12/255, alpha: 1)
                         }
                     }
                 }

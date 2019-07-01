@@ -63,6 +63,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         if beginningHandler != nil {
             beginningHandler = nil
         }
+        
     }
     func viewDidLoadProcess() {
         likeButton.setImage(UIImage(named: "link"), for: .normal)

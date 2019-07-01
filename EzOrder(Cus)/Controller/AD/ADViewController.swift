@@ -70,7 +70,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                     if self.recommendRes.count > 5{
                         for i in 0...self.recommendRes.count - 1{
                             if i > 4{
-                                self.recommendRes.remove(at: i)
+                                self.recommendRes.remove(at: 5)
                             }
                         }
                     }
@@ -112,7 +112,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        self.adCollectionView.leftAnchor
+//        self.adCollectionView.leftAnchor
         timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
             UIView.animate(withDuration: 1, animations: {
                 var indexPath: IndexPath
@@ -215,6 +215,8 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
             if let resImage = recommend.data()["resImage"] as? String,
                 let resName = recommend.data()["resName"] as? String{
                 cell.imgRank.kf.setImage(with: URL(string: resImage))
+                cell.imgRank.layer.borderWidth = 2
+                cell.imgRank.layer.borderColor = UIColor.gray.cgColor
                 cell.lbRank.text = resName
             }
             if let resTotalRate = recommend.data()["resTotalRate"] as? Float,
@@ -234,61 +236,61 @@ extension ADViewController: UICollectionViewDataSource, UICollectionViewDelegate
             if let ADImage = ad.data()["ADImage"] as? String{
                 cell.AdImageView.kf.setImage(with: URL(string: ADImage))
             }
-    //            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
-    return cell
+            //            cell.AdImageView.image = UIImage(named: rankImgNames[indexPath.row])
+            return cell
+        }
     }
-}
 
 
 
 func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     if collectionView == adCollectionView {
-        return  CGSize(width: collectionView.frame.width * 0.9,height : collectionView.frame.height * 0.9 )
-        
+        return  CGSize(width: collectionView.frame.width, height : collectionView.frame.height)
+
     }
     else {
-        return CGSize(width: collectionView.frame.width , height : collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width/1.5, height : collectionView.frame.height)
     }
 }
 
 
-func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 40
-}
+//func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//    return 40
+//}
 
-
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    var selectedRes: DocumentSnapshot
-    if collectionView === adCollectionView {
-        selectedRes = (okAdArray[indexPath.row] as DocumentSnapshot)
-    } else {
-        selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
-    }
-    if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
-        var destinationVC: UIViewController?
-        let viewControllers = searchNavController.children
-        for viewController in viewControllers {
-            if type(of: viewController) === StoreShowViewController.self {
-                destinationVC = viewController
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var selectedRes: DocumentSnapshot
+        if collectionView === adCollectionView {
+            selectedRes = (okAdArray[indexPath.row] as DocumentSnapshot)
+        } else {
+            selectedRes = (recommendRes[indexPath.row] as DocumentSnapshot)
+        }
+        if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController {
+            var destinationVC: UIViewController?
+            let viewControllers = searchNavController.children
+            for viewController in viewControllers {
+                if type(of: viewController) === StoreShowViewController.self {
+                    destinationVC = viewController
+                }
+            }
+            if let destinationVC = destinationVC as? StoreShowViewController {
+                destinationVC.favRes = selectedRes
+                destinationVC.enterFromFavorite = true
+                destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
+                destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.popToViewController(destinationVC, animated: true)
+            } else {
+                searchNavController.popToRootViewController(animated: true)
+                let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+                let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+                storeShowVC.favRes = selectedRes
+                storeShowVC.enterFromFavorite = true
+                self.tabBarController?.selectedIndex = 1
+                searchNavController.pushViewController(storeShowVC, animated: true)
             }
         }
-        if let destinationVC = destinationVC as? StoreShowViewController {
-            destinationVC.favRes = selectedRes
-            destinationVC.enterFromFavorite = true
-            destinationVC.beginningHandler = destinationVC.viewDidLoadProcess()
-            destinationVC.backgroundScrollView.setContentOffset(CGPoint.zero, animated: true)
-            self.tabBarController?.selectedIndex = 1
-            searchNavController.popToViewController(destinationVC, animated: true)
-        } else {
-            searchNavController.popToRootViewController(animated: true)
-            let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
-            let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
-            storeShowVC.favRes = selectedRes
-            storeShowVC.enterFromFavorite = true
-            self.tabBarController?.selectedIndex = 1
-            searchNavController.pushViewController(storeShowVC, animated: true)
-        }
     }
-}
 }
 

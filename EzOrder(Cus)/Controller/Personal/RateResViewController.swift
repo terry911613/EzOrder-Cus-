@@ -31,10 +31,10 @@ class RateResViewController: UIViewController , UITextViewDelegate{
         super.viewDidLoad()
         
         commentResTextView.delegate = self
-        commentResTextView.layer.borderWidth = 0.5
+        commentResTextView.layer.borderWidth = 0.8
         commentResTextView.layer.borderColor = UIColor.gray.cgColor
         commentResTextView.text = "添加些評論吧(選填)"
-        commentResTextView.textColor = UIColor.lightGray
+        commentResTextView.textColor = UIColor.gray
         
         rateSlider.rateResVC = self
         let layer = CAShapeLayer()

@@ -370,13 +370,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePay" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="編輯菜單營業時間" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
                                                     <rect key="frame" x="30" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JWI-8B-3P2" secondAttribute="height" multiplier="1:1" id="fLM-Qj-ITt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
                                                     <rect key="frame" x="30" y="35" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Sty-GQ-tkm" secondAttribute="height" multiplier="1:1" id="dyW-lb-UEy"/>
@@ -471,7 +471,7 @@
             </objects>
             <point key="canvasLocation" x="390" y="-509"/>
         </scene>
-        <!--Order Record View Controller-->
+        <!--消費記錄-->
         <scene sceneID="Cen-fT-oXd">
             <objects>
                 <viewController storyboardIdentifier="orderRecordVC" id="QHa-SX-Z2L" customClass="OrderRecordViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -508,10 +508,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-fu-jKE">
-                                                    <rect key="frame" x="314" y="74" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-fu-jKE">
+                                                    <rect key="frame" x="319" y="42" width="41" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="評論"/>
                                                     <connections>
                                                         <action selector="rateResButton:" destination="0yR-Rl-gT1" eventType="touchUpInside" id="Dki-Yl-alM"/>
                                                     </connections>
@@ -532,8 +532,10 @@
                                             <constraints>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="0gk-T9-daR"/>
                                                 <constraint firstItem="OcT-og-mX3" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="8" id="33i-VE-DTH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0SY-fu-jKE" secondAttribute="trailing" id="GoB-uZ-wqB"/>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="bottom" secondItem="OBq-Ld-8ei" secondAttribute="bottom" id="K1D-6Q-lHW"/>
                                                 <constraint firstItem="OcT-og-mX3" firstAttribute="top" secondItem="6BW-bL-n5c" secondAttribute="bottom" constant="5" id="OoE-Ci-Eag"/>
+                                                <constraint firstItem="0SY-fu-jKE" firstAttribute="centerY" secondItem="OBq-Ld-8ei" secondAttribute="centerY" id="P7g-Ui-vfQ"/>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="top" secondItem="HJi-6t-fFk" secondAttribute="bottom" constant="5" id="YJv-bq-tsf"/>
                                                 <constraint firstItem="HJi-6t-fFk" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="lGs-zi-SXs"/>
                                                 <constraint firstItem="6BW-bL-n5c" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="8" id="mLd-CI-Ari"/>
@@ -569,6 +571,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SJt-PH-Ajw"/>
                     </view>
+                    <navigationItem key="navigationItem" title="消費記錄" id="OzF-SB-Krk"/>
                     <connections>
                         <outlet property="orderRecordTableView" destination="QDA-KJ-Wbb" id="n8o-6p-Qix"/>
                         <segue destination="omL-lr-6Va" kind="show" identifier="foodDetailSegue" id="eOG-eK-pPl"/>
@@ -698,26 +701,26 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ONT-k7-nAO">
-                                        <rect key="frame" x="10" y="130.5" width="230" height="115.5"/>
+                                        <rect key="frame" x="10" y="134" width="230" height="112"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菜色名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeT-We-fW4">
-                                        <rect key="frame" x="10" y="60" width="69.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="10" y="60" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate0" translatesAutoresizingMaskIntoConstraints="NO" id="WsG-8Q-vdd">
-                                        <rect key="frame" x="5" y="90.5" width="150" height="30"/>
+                                        <rect key="frame" x="5" y="94" width="150" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="F6N-dF-6nO"/>
                                             <constraint firstAttribute="width" constant="150" id="meK-98-sfK"/>
                                         </constraints>
                                     </imageView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="hsw-fL-zON" customClass="RateSlider" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="90.5" width="154" height="31"/>
+                                        <rect key="frame" x="3" y="94" width="154" height="31"/>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="f5N-xj-h6D">
                                         <rect key="frame" x="0.0" y="256" width="250" height="39"/>
@@ -874,14 +877,14 @@
                                             <constraint firstAttribute="width" secondItem="iSn-tW-xPa" secondAttribute="height" multiplier="1:1" id="L7I-Um-VpW"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="點數: XXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRB-4V-joc">
-                                        <rect key="frame" x="150" y="97" width="103" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="點數: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRB-4V-joc">
+                                        <rect key="frame" x="150" y="97" width="64" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話: XXXXXXXXXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohZ-eQ-azL">
-                                        <rect key="frame" x="150" y="63" width="181.5" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="電話: 尚未編輯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohZ-eQ-azL">
+                                        <rect key="frame" x="150" y="63" width="132.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -896,8 +899,8 @@
                                             <action selector="logouButton:" destination="Vcx-go-7ff" eventType="touchUpInside" id="EfQ-LM-djc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名: XXX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQL-US-fGV">
-                                        <rect key="frame" x="150" y="29" width="90" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名: 尚未編輯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQL-US-fGV">
+                                        <rect key="frame" x="150" y="29" width="133" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1130,26 +1133,26 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="123" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F9G-BI-5oe">
-                                        <rect key="frame" x="10" y="130.5" width="230" height="115.5"/>
+                                        <rect key="frame" x="10" y="134" width="230" height="112"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="餐廳名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTg-T7-dC0">
-                                        <rect key="frame" x="10" y="60" width="69.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="10" y="60" width="82" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate0" translatesAutoresizingMaskIntoConstraints="NO" id="q2j-SY-4Oz">
-                                        <rect key="frame" x="5" y="90.5" width="150" height="30"/>
+                                        <rect key="frame" x="5" y="94" width="150" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="5gs-0R-b2u"/>
                                             <constraint firstAttribute="width" constant="150" id="oep-Gz-jr3"/>
                                         </constraints>
                                     </imageView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="vNR-bg-wOL" customClass="RateSlider" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="90.5" width="154" height="31"/>
+                                        <rect key="frame" x="3" y="94" width="154" height="31"/>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dN9-Ea-sPw">
                                         <rect key="frame" x="0.0" y="256" width="250" height="39"/>
@@ -1236,8 +1239,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ApplePay" width="267" height="267"/>
-        <image name="Cash" width="267" height="267"/>
         <image name="personal" width="128" height="128"/>
         <image name="rate0" width="415" height="85.666664123535156"/>
         <image name="圓" width="688" height="688"/>
@@ -1245,6 +1246,7 @@
         <image name="指針" width="109.66666412353516" height="142.66667175292969"/>
         <image name="登出" width="285" height="326"/>
         <image name="真輪盤" width="319.66665649414062" height="320.66665649414062"/>
+        <image name="編輯菜單營業時間" width="69" height="69"/>
         <image name="陰影" width="150" height="30"/>
     </resources>
 </document>
