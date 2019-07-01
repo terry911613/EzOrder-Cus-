@@ -79,7 +79,7 @@ class RateResViewController: UIViewController , UITextViewDelegate{
         }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.gray {
             textView.text = ""
             textView.textColor = UIColor.black
         }
@@ -87,7 +87,7 @@ class RateResViewController: UIViewController , UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
             textView.text = "添加些評論吧(選填)"
-            textView.textColor = UIColor.lightGray
+            textView.textColor = UIColor.gray
         }
     }
     @IBAction func cancelButton(_ sender: UIButton) {
