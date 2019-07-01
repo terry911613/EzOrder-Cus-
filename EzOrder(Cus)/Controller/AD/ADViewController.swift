@@ -67,8 +67,8 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                             return false
                         }
                     })
-                    if self.recommendRes.count > 5{
-                        for i in 0...self.recommendRes.count{
+                    if self.recommendRes.count > 4{
+                        for i in 0...self.recommendRes.count - 1{
                             if i > 5{
                                 self.recommendRes.remove(at: i)
                             }
