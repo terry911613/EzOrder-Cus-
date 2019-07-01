@@ -370,13 +370,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApplePay" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="編輯菜單營業時間" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-8B-3P2">
                                                     <rect key="frame" x="30" y="10" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JWI-8B-3P2" secondAttribute="height" multiplier="1:1" id="fLM-Qj-ITt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="Sty-GQ-tkm">
                                                     <rect key="frame" x="30" y="35" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Sty-GQ-tkm" secondAttribute="height" multiplier="1:1" id="dyW-lb-UEy"/>
@@ -471,7 +471,7 @@
             </objects>
             <point key="canvasLocation" x="390" y="-509"/>
         </scene>
-        <!--Order Record View Controller-->
+        <!--消費記錄-->
         <scene sceneID="Cen-fT-oXd">
             <objects>
                 <viewController storyboardIdentifier="orderRecordVC" id="QHa-SX-Z2L" customClass="OrderRecordViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -571,6 +571,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SJt-PH-Ajw"/>
                     </view>
+                    <navigationItem key="navigationItem" title="消費記錄" id="OzF-SB-Krk"/>
                     <connections>
                         <outlet property="orderRecordTableView" destination="QDA-KJ-Wbb" id="n8o-6p-Qix"/>
                         <segue destination="omL-lr-6Va" kind="show" identifier="foodDetailSegue" id="eOG-eK-pPl"/>
@@ -1238,8 +1239,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ApplePay" width="267" height="267"/>
-        <image name="Cash" width="267" height="267"/>
         <image name="personal" width="128" height="128"/>
         <image name="rate0" width="415" height="85.666664123535156"/>
         <image name="圓" width="688" height="688"/>
@@ -1247,6 +1246,7 @@
         <image name="指針" width="109.66666412353516" height="142.66667175292969"/>
         <image name="登出" width="285" height="326"/>
         <image name="真輪盤" width="319.66665649414062" height="320.66665649414062"/>
+        <image name="編輯菜單營業時間" width="69" height="69"/>
         <image name="陰影" width="150" height="30"/>
     </resources>
 </document>

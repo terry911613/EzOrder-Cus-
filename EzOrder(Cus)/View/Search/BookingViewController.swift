@@ -249,10 +249,10 @@ class BookingViewController: UIViewController {
                 self.peopleArray.removeAll()
                 self.peopleArray = ["請選擇訂位人數"]
                 self.peoplePicker.reloadAllComponents()
+                self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
-                                                 
         }
     }
     
