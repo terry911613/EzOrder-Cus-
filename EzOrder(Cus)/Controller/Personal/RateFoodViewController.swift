@@ -43,7 +43,7 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
         commentTextView.delegate = self
         rateSlider.resFoodVC = self
         
-        commentTextView.layer.borderWidth = 0.5
+        commentTextView.layer.borderWidth = 0.8
         commentTextView.layer.borderColor = UIColor.gray.cgColor
         
         let layer = CAShapeLayer()
@@ -56,7 +56,7 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
         }
         
         commentTextView.text = "添加些評論吧(選填)"
-        commentTextView.textColor = UIColor.lightGray
+        commentTextView.textColor = UIColor.gray
         // Do any additional setup after loading the view.
         let db = Firestore.firestore()
         if let resID = resID,
