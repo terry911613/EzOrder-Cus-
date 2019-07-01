@@ -114,7 +114,7 @@ class BookingViewController: UIViewController {
                         self.timeIntervalPicker.isUserInteractionEnabled = true
                     }
                     self.timeIntervalPicker.reloadAllComponents()
-                    
+                    self.timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
                     self.peoplePicker.reloadAllComponents()
                 }
                 else{
@@ -151,6 +151,7 @@ class BookingViewController: UIViewController {
                                     }
                                 }
                                 self.timeIntervalPicker.reloadAllComponents()
+                                self.timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
                                 self.peoplePicker.reloadAllComponents()
                             }
                         }
@@ -164,7 +165,7 @@ class BookingViewController: UIViewController {
 //        if datePicker.isSelected{
         if datePicker.isTracking == false{
             get(date: sender.date)
-            timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
+//            timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
             selectDateString = formatter.string(from: sender.date)
             selectDate = sender.date
         }

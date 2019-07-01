@@ -17,6 +17,8 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
     var viewHeight: CGFloat?
     override func viewWillAppear(_ animated: Bool) {
         addKeyboardObserver()
+        emailTextfield.text = ""
+        passwordTextfield.text = ""
     }
     override func viewDidLoad() {
         super.viewDidLoad()
