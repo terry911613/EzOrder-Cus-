@@ -33,7 +33,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.delegate = self
-//        addKeyboardObserver()
+        //        addKeyboardObserver()
         storeTableView.keyboardDismissMode = .onDrag
         getRes()
     }
@@ -67,7 +67,7 @@ class SearchViewController: UIViewController {
                            self.storeTableView.reloadData()
                             print("1234555")
                         }
-                    }
+//                    }
                 }
             }
         }
@@ -126,7 +126,6 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
-            
             return  searcArrays.count
         }
         else{
@@ -144,38 +143,38 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         if searchBool {
             cell.StoreName.text = searcArrays[indexPath.row].name
             cell.StoreImage.kf.setImage(with: URL(string: searcArrays[indexPath.row].image))
-
+            
             if searcArrays[indexPath.row].resTotalRate == 0{
                 updateStar(value: 0, image: cell.rateView)
             }else{
-             updateStar(value: searcArrays[indexPath.row].resTotalRate/searcArrays[indexPath.row].resCount, image: cell.rateView)
+                updateStar(value: searcArrays[indexPath.row].resTotalRate/searcArrays[indexPath.row].resCount, image: cell.rateView)
             }
-                        }
-        else  if searchbool == false {
-                    if searchbool == false {
-                                    let res = resArray[indexPath.row]
-                                    if let resName = res.data()["resName"] as? String,
-                                        let resImage = res.data()["resImage"] as? String{
+        }
+        else if searchbool == false {
+            if searchbool == false {
+                let res = resArray[indexPath.row]
+                if let resName = res.data()["resName"] as? String,
+                    let resImage = res.data()["resImage"] as? String{
+                    
+                    cell.StoreName.text = resName
+                    cell.StoreImage.kf.setImage(with: URL(string: resImage))
+                }
+                if let resTotalRate = res.data()["resTotalRate"] as? Float,
+                    let resRateCount = res.data()["resRateCount"] as? Float{
+                    
+                    if resRateCount == 0{
+                        updateStar(value: 0, image: cell.rateView)
+                    }
+                    else{
+                        updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
+                    }
+                    
+                }
+                else{
+                    cell.rateView.isHidden = true
+                }
+            }
             
-                                        cell.StoreName.text = resName
-                                        cell.StoreImage.kf.setImage(with: URL(string: resImage))
-                                    }
-                                    if let resTotalRate = res.data()["resTotalRate"] as? Float,
-                                        let resRateCount = res.data()["resRateCount"] as? Float{
-            
-                                        if resRateCount == 0{
-                                            updateStar(value: 0, image: cell.rateView)
-                                        }
-                                        else{
-                                            updateStar(value: resTotalRate/resRateCount, image: cell.rateView)
-                                        }
-            
-                                    }
-                                    else{
-                                        cell.rateView.isHidden = true
-                                    }
-                                        }
-
         }else{
             cell.StoreName.text = searcArray[indexPath.row].name
             cell.StoreImage.kf.setImage(with: URL(string: searcArray[indexPath.row].image))
@@ -184,7 +183,8 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
                 updateStar(value: 0, image: cell.rateView)
             }
             else{
-                updateStar(value: searcArray[indexPath.row].resTotalRate/searcArray[indexPath.row].resCount, image: cell.rateView)}
+                updateStar(value: searcArray[indexPath.row].resTotalRate/searcArray[indexPath.row].resCount, image: cell.rateView)
+            }
         }
         
         
@@ -193,8 +193,8 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if searchBool == true {
-        let resid = searcArrays[indexPath.row].ID
-        resID = resid
+            let resid = searcArrays[indexPath.row].ID
+            resID = resid
         }
         let res = resArray[indexPath.row]
         selectRes = res
@@ -203,22 +203,22 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
 }
 
 extension SearchViewController: UISearchBarDelegate{
-//    let searchString = searchController.searchBar.text!
-//    searchSongs = songs.filter { (name) -> Bool in
-//    return name.contains(searchString)
-//    }
-
-
+    //    let searchString = searchController.searchBar.text!
+    //    searchSongs = songs.filter { (name) -> Bool in
+    //    return name.contains(searchString)
+    //    }
+    
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        searcArrays = searcArray.filter{
-//            (name) -> Bool in
-//
-//            return name.name.contains(searchText)
-//        }
+        //        searcArrays = searcArray.filter{
+        //            (name) -> Bool in
+        //
+        //            return name.name.contains(searchText)
+        //        }
         
-    searcArrays = searcArray.filter({$0.name.prefix(searchText.count) == searchText})
-
+        searcArrays = searcArray.filter({$0.name.prefix(searchText.count) == searchText})
+        
         searchBool = true
         searchbool = true
         storeTableView.reloadData()
@@ -233,16 +233,15 @@ extension SearchViewController: UISearchBarDelegate{
 }
 
 extension SearchViewController : UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
-    {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
         if operation == .push {
-        animator.duration = 0.3
+            animator.duration = 0.3
             return animator
-
+            
         }
         else if operation == .pop {
-        
-        animatorPop.duration = 0.3
+            
+            animatorPop.duration = 0.3
             
         }
         return animatorPop
@@ -254,7 +253,7 @@ extension SearchViewController : UINavigationControllerDelegate {
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 //    }
-    
+
 //    @objc func keyboardWillShow(notification: Notification) {
 //        // 能取得鍵盤高度就讓view上移鍵盤高度，否則上移view的1/3高度
 //        viewHeight = view.frame.height

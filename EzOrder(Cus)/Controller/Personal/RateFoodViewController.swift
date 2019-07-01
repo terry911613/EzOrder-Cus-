@@ -80,9 +80,7 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
             }
             
             db.collection("user").document(userID).collection("order").document(orderNo).collection("orderFoodDetail").document(documentID).getDocument { (food, error) in
-                print("ff")
                 if let foodData = food?.data(){
-                    print("ss")
                     if let foodRate = foodData["foodRate"] as? Float,
                         let foodComment = foodData["foodComment"] as? String{
                         self.commentTextView.text = foodComment
@@ -98,7 +96,7 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
         }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.gray {
             textView.text = ""
             textView.textColor = UIColor.black
         }
@@ -106,7 +104,7 @@ class RateFoodViewController: UIViewController, UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
             textView.text = "添加些評論吧(選填)"
-            textView.textColor = UIColor.lightGray
+            textView.textColor = UIColor.gray
         }
     }
     func updateStar(value: Float) {
