@@ -471,7 +471,7 @@
             </objects>
             <point key="canvasLocation" x="390" y="-509"/>
         </scene>
-        <!--Order Record View Controller-->
+        <!--消費記錄-->
         <scene sceneID="Cen-fT-oXd">
             <objects>
                 <viewController storyboardIdentifier="orderRecordVC" id="QHa-SX-Z2L" customClass="OrderRecordViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -570,6 +570,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SJt-PH-Ajw"/>
                     </view>
+                    <navigationItem key="navigationItem" title="消費記錄" id="OzF-SB-Krk"/>
                     <connections>
                         <outlet property="orderRecordTableView" destination="QDA-KJ-Wbb" id="n8o-6p-Qix"/>
                         <segue destination="omL-lr-6Va" kind="show" identifier="foodDetailSegue" id="eOG-eK-pPl"/>

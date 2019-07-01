@@ -16,6 +16,7 @@ class OrderRecordDetailViewController: UIViewController {
     
     var foodArray = [QueryDocumentSnapshot]()
     var orderNo: String?
+    var resID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,17 @@ class OrderRecordDetailViewController: UIViewController {
 //        navigationController?.setNavigationBarHidden(false, animated: false)
         
         let db = Firestore.firestore()
+        
+        if let resID = resID{
+            db.collection("res").document(resID).getDocument { (res, error) in
+                if let resData = res?.data(){
+                    if let resName = resData["resName"] as? String{
+                        self.navigationItem.title = "\(resName)" 
+                    }
+                }
+            }
+        }
+        
         if let userID = Auth.auth().currentUser?.email,
             let orderNo = orderNo{
             
