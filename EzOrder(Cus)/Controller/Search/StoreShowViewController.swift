@@ -71,7 +71,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         func generalProcess() {
             
             let db = Firestore.firestore()
-            if searcbool == true {
+            if searcbool{
                 if let DocumentID = DocumentID {
                     print("1234589",DocumentID)
                     if
@@ -81,8 +81,6 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                                 if type.documents.isEmpty{
                                     self.typeArray.removeAll()
                                     self.showClassificationCollectionView.reloadData()
-                                    
-                                    
                                 }
                                 else{
                                     self.typeArray = type.documents
