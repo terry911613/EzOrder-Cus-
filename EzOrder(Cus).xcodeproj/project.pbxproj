@@ -34,7 +34,6 @@
 		446DC7BB22C1213700DBEE8E /* ResCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446DC7BA22C1213700DBEE8E /* ResCommentTableViewCell.swift */; };
 		4476C33522ABB0C0007D3BBC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476C33422ABB0C0007D3BBC /* RegisterViewController.swift */; };
 		4476C33722ABB864007D3BBC /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476C33622ABB864007D3BBC /* ProgressTableViewCell.swift */; };
-		4476C33B22ABD9AE007D3BBC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4476C33A22ABD9AD007D3BBC /* GoogleService-Info.plist */; };
 		447878162298EA53008041A2 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878152298EA53008041A2 /* OrderViewController.swift */; };
 		447878182298EA9B008041A2 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447878172298EA9B008041A2 /* OrderTableViewCell.swift */; };
 		447A16F1228BB1D2003AB41E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A16F0228BB1D2003AB41E /* AppDelegate.swift */; };
@@ -52,6 +51,7 @@
 		447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A1719228C67DC003AB41E /* SearchViewController.swift */; };
 		447A171C228C67E9003AB41E /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171B228C67E9003AB41E /* QRCodeViewController.swift */; };
 		447A171E228C67F8003AB41E /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A171D228C67F8003AB41E /* PersonalViewController.swift */; };
+		44968A5D22C9A12300ED94DD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44968A5C22C9A12300ED94DD /* GoogleService-Info.plist */; };
 		449A9C6322A798E40054C135 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449A9C6222A798E40054C135 /* EditPersonalViewController.swift */; };
 		449A9C6622A79B4D0054C135 /* TPDirectResource in Resources */ = {isa = PBXBuildFile; fileRef = 449A9C6422A79B4C0054C135 /* TPDirectResource */; };
 		449A9C6722A79B4D0054C135 /* TPDirect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449A9C6522A79B4D0054C135 /* TPDirect.framework */; };
@@ -106,7 +106,6 @@
 		446DC7BA22C1213700DBEE8E /* ResCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResCommentTableViewCell.swift; sourceTree = "<group>"; };
 		4476C33422ABB0C0007D3BBC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4476C33622ABB864007D3BBC /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
-		4476C33A22ABD9AD007D3BBC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		447878152298EA53008041A2 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		447878172298EA9B008041A2 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		447A16ED228BB1D2003AB41E /* EzOrder(Cus).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EzOrder(Cus).app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +125,7 @@
 		447A1719228C67DC003AB41E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		447A171B228C67E9003AB41E /* QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		447A171D228C67F8003AB41E /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		44968A5C22C9A12300ED94DD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		449A9C6222A798E40054C135 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		449A9C6422A79B4C0054C135 /* TPDirectResource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TPDirectResource; sourceTree = "<group>"; };
 		449A9C6522A79B4D0054C135 /* TPDirect.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TPDirect.framework; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 				447A1702228BB1E8003AB41E /* Controller */,
 				447A1705228BB212003AB41E /* Supporting File */,
 				447A16FC228BB1D3003AB41E /* Info.plist */,
-				4476C33A22ABD9AD007D3BBC /* GoogleService-Info.plist */,
+				44968A5C22C9A12300ED94DD /* GoogleService-Info.plist */,
 			);
 			path = "EzOrder(Cus)";
 			sourceTree = "<group>";
@@ -494,7 +494,7 @@
 				447A16F6228BB1D2003AB41E /* Main.storyboard in Resources */,
 				447A170D228BB2AF003AB41E /* Progress.storyboard in Resources */,
 				447A1709228BB284003AB41E /* Search.storyboard in Resources */,
-				4476C33B22ABD9AE007D3BBC /* GoogleService-Info.plist in Resources */,
+				44968A5D22C9A12300ED94DD /* GoogleService-Info.plist in Resources */,
 				447A170F228BB314003AB41E /* Personal.storyboard in Resources */,
 				447A170B228BB29D003AB41E /* Order.storyboard in Resources */,
 			);

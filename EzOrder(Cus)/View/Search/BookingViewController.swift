@@ -161,7 +161,8 @@ class BookingViewController: UIViewController {
     }
     
     @IBAction func datePicker(_ sender: UIDatePicker) {
-        if datePicker.isSelected{
+//        if datePicker.isSelected{
+        if datePicker.isTracking == false{
             get(date: sender.date)
             timeIntervalPicker.selectRow(0, inComponent: 0, animated: true)
             selectDateString = formatter.string(from: sender.date)
