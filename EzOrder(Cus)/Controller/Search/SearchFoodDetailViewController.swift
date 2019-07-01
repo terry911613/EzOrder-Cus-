@@ -60,7 +60,7 @@ class SearchFoodDetailViewController: UIViewController {
                 
                 let db = Firestore.firestore()
                 if let resID = resID{
-                    db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).collection("foodComment").getDocuments { (foodComment, error) in
+                    db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").document(foodDocumentID).collection("foodComment").order(by: "date", descending: true).getDocuments { (foodComment, error) in
                         if let foodComment = foodComment{
                             if foodComment.documents.isEmpty{
                                 self.foodCommentArray.removeAll()
