@@ -118,12 +118,11 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             
             return  searcArrays.count
         }
-        else if searchbool == false{
-                return resArray.count
-        }else {
+        else {
             return searcArray.count
-        }
+        
             }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SearcStoreTableViewCell
