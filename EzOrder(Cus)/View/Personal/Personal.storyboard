@@ -508,10 +508,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-fu-jKE">
-                                                    <rect key="frame" x="314" y="74" width="46" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SY-fu-jKE">
+                                                    <rect key="frame" x="329" y="45" width="31" height="30"/>
+                                                    <state key="normal" title="評論"/>
                                                     <connections>
                                                         <action selector="rateResButton:" destination="0yR-Rl-gT1" eventType="touchUpInside" id="Dki-Yl-alM"/>
                                                     </connections>
@@ -532,8 +531,10 @@
                                             <constraints>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="0gk-T9-daR"/>
                                                 <constraint firstItem="OcT-og-mX3" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="8" id="33i-VE-DTH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0SY-fu-jKE" secondAttribute="trailing" id="GoB-uZ-wqB"/>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="bottom" secondItem="OBq-Ld-8ei" secondAttribute="bottom" id="K1D-6Q-lHW"/>
                                                 <constraint firstItem="OcT-og-mX3" firstAttribute="top" secondItem="6BW-bL-n5c" secondAttribute="bottom" constant="5" id="OoE-Ci-Eag"/>
+                                                <constraint firstItem="0SY-fu-jKE" firstAttribute="centerY" secondItem="OBq-Ld-8ei" secondAttribute="centerY" id="P7g-Ui-vfQ"/>
                                                 <constraint firstItem="djf-q0-Bxg" firstAttribute="top" secondItem="HJi-6t-fFk" secondAttribute="bottom" constant="5" id="YJv-bq-tsf"/>
                                                 <constraint firstItem="HJi-6t-fFk" firstAttribute="leading" secondItem="6BW-bL-n5c" secondAttribute="leading" id="lGs-zi-SXs"/>
                                                 <constraint firstItem="6BW-bL-n5c" firstAttribute="leading" secondItem="OBq-Ld-8ei" secondAttribute="trailing" constant="8" id="mLd-CI-Ari"/>
