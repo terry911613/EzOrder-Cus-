@@ -768,7 +768,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donut" translatesAutoresizingMaskIntoConstraints="NO" id="yPT-uw-5cC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donut" translatesAutoresizingMaskIntoConstraints="NO" id="yPT-uw-5cC">
                                                     <rect key="frame" x="20" y="5" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="yPT-uw-5cC" secondAttribute="height" multiplier="1:1" id="BWx-cX-c6x"/>

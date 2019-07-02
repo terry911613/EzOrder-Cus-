@@ -28,6 +28,8 @@ class SearchMenuViewController: UIViewController {
             resID = self.DocumentID
         }
         super.viewDidLoad()
+        
+        
     }
     
     func getFood(typeDocumentID: String){
@@ -82,6 +84,9 @@ extension SearchMenuViewController: UICollectionViewDataSource,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearcMenuCell", for: indexPath) as! SearcMenuCollectionViewCell
+        
+        cell.searcMeneImageView.layer.cornerRadius = cell.searcMeneImageView.frame.width/2
+        
         let type = typeArray[indexPath.row]
         
         if let typeName = type.data()["typeName"] as? String,
