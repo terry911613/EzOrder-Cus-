@@ -67,9 +67,9 @@ class PersonalViewController: UIViewController {
         }
     }
     @IBAction func logouButton(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
         do{
             try Auth.auth().signOut()
-            performSegue(withIdentifier: "unwindToLogin", sender: self)
         }
         catch{
             print("error, there was a problem logging out")
