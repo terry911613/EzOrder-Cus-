@@ -70,6 +70,7 @@
 		9D56182B229242930083233E /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 9D56182A229242930083233E /* .gitattributes */; };
 		9D776B7222B0F9DA0011C876 /* RateFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7122B0F9DA0011C876 /* RateFoodViewController.swift */; };
 		9D776B7422B0FFFF0011C876 /* RateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D776B7322B0FFFF0011C876 /* RateSlider.swift */; };
+		9D86518022CB8D3E003C28EA /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86517F22CB8D3E003C28EA /* UIViewController.swift */; };
 		9DC179ED22B2077200F357CE /* ReuseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC179EC22B2077200F357CE /* ReuseVC.swift */; };
 		9DDC787B22A8FE800030BA44 /* AdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */; };
 		9DFDB2A722AFC0A800295461 /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDB2A622AFC0A800295461 /* BookingViewController.swift */; };
@@ -144,6 +145,7 @@
 		9D56182A229242930083233E /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		9D776B7122B0F9DA0011C876 /* RateFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateFoodViewController.swift; sourceTree = "<group>"; };
 		9D776B7322B0FFFF0011C876 /* RateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateSlider.swift; sourceTree = "<group>"; };
+		9D86517F22CB8D3E003C28EA /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		9DC179EC22B2077200F357CE /* ReuseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseVC.swift; sourceTree = "<group>"; };
 		9DDC787A22A8FE800030BA44 /* AdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DFDB2A622AFC0A800295461 /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookingViewController.swift; path = ../../View/Search/BookingViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				2CC7D0C422B1F37C00EB6DE4 /* TypeCollectionViewCell.swift */,
 				9DC179EC22B2077200F357CE /* ReuseVC.swift */,
 				447A1715228BE383003AB41E /* IGCMenu.swift */,
+				9D86517F22CB8D3E003C28EA /* UIViewController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				2CEB987B22A7F15D0098181C /* SignInViewController.swift in Sources */,
 				447A171A228C67DC003AB41E /* SearchViewController.swift in Sources */,
 				2CB1B25D22AA321D00484CC9 /* SearchFoodDetailViewController.swift in Sources */,
+				9D86518022CB8D3E003C28EA /* UIViewController.swift in Sources */,
 				447878162298EA53008041A2 /* OrderViewController.swift in Sources */,
 				447A1716228BE383003AB41E /* IGCMenu.swift in Sources */,
 				446DC7BB22C1213700DBEE8E /* ResCommentTableViewCell.swift in Sources */,
