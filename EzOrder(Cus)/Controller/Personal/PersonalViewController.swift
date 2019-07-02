@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Kingfisher
+import FirebaseAuth
 
 class PersonalViewController: UIViewController {
     
@@ -67,6 +68,7 @@ class PersonalViewController: UIViewController {
         }
     }
     @IBAction func logouButton(_ sender: Any) {
+
         do{
             try Auth.auth().signOut()
             performSegue(withIdentifier: "unwindToLogin", sender: self)
