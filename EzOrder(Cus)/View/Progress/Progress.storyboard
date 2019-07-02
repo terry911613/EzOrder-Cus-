@@ -168,7 +168,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="w0r-Rf-EBp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="用餐狀態" image="用餐狀態" id="9ig-KV-EOi"/>
+                    <tabBarItem key="tabBarItem" title="用餐狀態" image="用餐狀態粗體" id="9ig-KV-EOi"/>
                     <navigationItem key="navigationItem" title="用餐進度" id="rHP-nt-jgb">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="服務鈴" style="plain" id="gf1-oh-9L8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -311,6 +311,6 @@
     </scenes>
     <resources>
         <image name="服務鈴" width="40" height="40"/>
-        <image name="用餐狀態" width="34.333332061767578" height="27.666666030883789"/>
+        <image name="用餐狀態粗體" width="34.333332061767578" height="27"/>
     </resources>
 </document>

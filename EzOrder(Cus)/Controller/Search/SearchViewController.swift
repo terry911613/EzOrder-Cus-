@@ -48,22 +48,26 @@ class SearchViewController: UIViewController {
                 }
                 else{
                     
-//                    let documentChange = res.documentChanges[0]
-//                    if documentChange.type == .added{
+                    let documentChange = res.documentChanges[0]
+                    if documentChange.type == .added{
+                        self.searchbool = true
+                    }
+                    else if documentChange.type == .removed{
+                        self.searchbool = false
+                    }
+                    self.searcArray.removeAll()
+                    self.resArray = res.documents
+                    self.animateStoreTableView()
+                    print("1234")
                     
-                        self.resArray = res.documents
-                        self.animateStoreTableView()
-                        
-                        for res in res.documents{
-                            if let resName = res.data()["resName"] as? String,
-                                let resImage = res.data()["resImage"] as? String,
-                                let resTotalRate = res.data()["resTotalRate"] as? Float,
-                                let resRateCount = res.data()["resRateCount"] as? Float,
-                                let resid = res.data()["resID"] as? String {
-                                self.searcArray.append(SearcArray(name: resName, image: resImage, resTotalRate: resTotalRate, resCount: resRateCount,ID: resid))
-                            }
+                    for res in res.documents{
+                        if let resName = res.data()["resName"] as? String,let resImage = res.data()["resImage"] as? String,let resTotalRate = res.data()["resTotalRate"] as? Float,
+                            let resRateCount = res.data()["resRateCount"] as? Float,let resid = res.data()["resID"] as? String {
+                            self.searcArray.append(SearcArray(name: resName, image: resImage, resTotalRate: resTotalRate, resCount: resRateCount,ID: resid))
+                           self.storeTableView.reloadData()
+                            print("1234555")
                         }
-//                    }
+                    }
                 }
             }
         }
@@ -119,16 +123,19 @@ class SearchViewController: UIViewController {
     }
 }
 
+
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBool {
             return  searcArrays.count
         }
-        else if searchbool == false{
+        else{
+            if searchbool == false{
             return resArray.count
-        }
-        else {
+        } else {
             return searcArray.count
+            
+            }
         }
     }
     
@@ -219,7 +226,7 @@ extension SearchViewController: UISearchBarDelegate{
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBool = false
-        
+       // searchbool = !se
         searchBar.text = ""
         storeTableView.reloadData()
         self.view.endEditing(true)

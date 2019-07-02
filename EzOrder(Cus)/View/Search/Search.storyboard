@@ -116,7 +116,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kmv-nx-Dps"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="搜尋" image="收尋" id="xbc-jB-w9c"/>
+                    <tabBarItem key="tabBarItem" title="搜尋" image="收尋粗體" id="xbc-jB-w9c"/>
                     <navigationItem key="navigationItem" title="搜尋餐廳" id="feQ-KT-xlh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -768,7 +768,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donut" translatesAutoresizingMaskIntoConstraints="NO" id="yPT-uw-5cC">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donut" translatesAutoresizingMaskIntoConstraints="NO" id="yPT-uw-5cC">
                                                     <rect key="frame" x="20" y="5" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="yPT-uw-5cC" secondAttribute="height" multiplier="1:1" id="BWx-cX-c6x"/>
@@ -1103,7 +1103,7 @@
         <image name="rate4" width="415" height="85.666664123535156"/>
         <image name="商家" width="36" height="36"/>
         <image name="地址" width="83" height="83"/>
-        <image name="收尋" width="27.666666030883789" height="27.666666030883789"/>
+        <image name="收尋粗體" width="27" height="27"/>
         <image name="編輯菜單營業時間" width="69" height="69"/>
         <image name="電話" width="69" height="69"/>
     </resources>

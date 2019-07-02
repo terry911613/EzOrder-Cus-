@@ -20,7 +20,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="0aT-j2-PsX"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="點餐" image="客戶端掃描" id="fL8-lZ-OqH"/>
+                    <tabBarItem key="tabBarItem" title="點餐" image="掃描粗體" id="fL8-lZ-OqH"/>
                     <navigationItem key="navigationItem" title="點餐" id="ZBh-9S-3aZ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -782,6 +782,6 @@
     <resources>
         <image name="Cash" width="267" height="267"/>
         <image name="rate35" width="415" height="85.666664123535156"/>
-        <image name="客戶端掃描" width="27.666666030883789" height="27.666666030883789"/>
+        <image name="掃描粗體" width="27" height="27"/>
     </resources>
 </document>

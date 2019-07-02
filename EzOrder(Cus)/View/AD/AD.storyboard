@@ -171,7 +171,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dpd-lJ-0Wh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="主頁" image="客戶端主頁" id="9nv-Y8-nWl">
+                    <tabBarItem key="tabBarItem" title="主頁" image="主頁粗體" id="9nv-Y8-nWl">
                         <color key="badgeColor" red="0.92861163619999998" green="0.40867751839999999" blue="0.38820481299999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="fHE-ZA-A20">
@@ -231,6 +231,6 @@
     </scenes>
     <resources>
         <image name="navImg" width="206" height="73"/>
-        <image name="客戶端主頁" width="27.666666030883789" height="27.666666030883789"/>
+        <image name="主頁粗體" width="27" height="27"/>
     </resources>
 </document>
