@@ -77,6 +77,7 @@ class ProgressViewController: UIViewController {
                                     if currentOrder.documents.isEmpty{
                                         self.orderArray.removeAll()
                                         self.progressTableView.reloadData()
+                                        print("fuck")
                                     }
                                     else{
                                         let documentChange = currentOrder.documentChanges[0]
@@ -423,12 +424,13 @@ extension ProgressViewController: TPDApplePayDelegate{
                     if let userPointCount = userData["pointCount"] as? Int{
                         let pointCount = self.totalPrice/100
                         db.collection("user").document(userID).updateData(["pointCount": userPointCount + pointCount])
-                        self.orderArray.removeAll()
-                        self.animateProgressTableView()
                         self.totalPriceLabel.text = ""
                     }
                 }
             }
+            
+            self.orderArray.removeAll()
+            self.progressTableView.reloadData()
         }
         
         print("=====================================================")
