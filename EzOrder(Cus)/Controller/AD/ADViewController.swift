@@ -120,23 +120,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                                 self.adPageControl.isHidden = false
                                 self.adPageControl.numberOfPages = self.okAdArray.count
                                 self.adCollectionView.reloadData()
-                                
-                                self.timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
-                                    UIView.animate(withDuration: 1, animations: {
-                                        var indexPath: IndexPath
-                                        if self.imageIndexPath < self.okAdArray.count - 1 {
-                                            self.imageIndexPath += 1
-                                            indexPath = IndexPath(item: self.imageIndexPath, section: 0)
-                                            self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                                            self.setPageControll(tunning: 1)
-                                        } else {
-                                            self.imageIndexPath = 0
-                                            indexPath = IndexPath(item: self.imageIndexPath, section: 0)
-                                            self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-                                            self.setPageControll(tunning: (self.okAdArray.count - 1) * -1)
-                                        }
-                                    })
-                                })
                             }
                         }
                     }
@@ -144,7 +127,24 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                         self.adPageControl.isHidden = true
                         self.adCollectionView.reloadData()
                     }
-                    
+                    else{
+                        self.timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
+                            UIView.animate(withDuration: 1, animations: {
+                                var indexPath: IndexPath
+                                if self.imageIndexPath < self.okAdArray.count - 1 {
+                                    self.imageIndexPath += 1
+                                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                                    self.setPageControll(tunning: 1)
+                                } else {
+                                    self.imageIndexPath = 0
+                                    indexPath = IndexPath(item: self.imageIndexPath, section: 0)
+                                    self.adCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                                    self.setPageControll(tunning: (self.okAdArray.count - 1) * -1)
+                                }
+                            })
+                        })
+                    }
                 }
             }
         }
