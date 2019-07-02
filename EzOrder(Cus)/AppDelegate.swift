@@ -49,11 +49,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         // from MessagingDelegate
         Messaging.messaging().delegate = self
-        
         Messaging.messaging().subscribe(toTopic: "advertisement") { error in
             print("Subscribed to advertisement topic")
         }
         
+        if let notification = launchOptions?[.remoteNotification] as? [AnyHashable: Any] {
+            let resID = notification["resID"] as! String
+            let notificationName = Notification.Name("receiveAPNS")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["resID": resID])
+            }
+            
+//            let apns = notification["aps"] as? [String: AnyObject]
+//            let resID = apns!["resID"] as? String
+//
+//            let notificationName = Notification.Name("receiveAPNS")
+//            DispatchQueue.asynca
+//            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["resID": resID])
+            
+        }
         return true
     }
     
@@ -70,11 +84,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -98,7 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
-        
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {

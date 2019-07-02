@@ -41,8 +41,22 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
     var imageIndexPath = 0
     var timerForAd = Timer()
     
+    @objc func pushToStoreShowVC(notification: Notification) {
+        self.tabBarController?.selectedIndex = 1
+        if let searchNavController = self.tabBarController?.viewControllers?[1] as? UINavigationController, let resID = notification.userInfo?["resID"] as? String {
+            let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+            let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+            storeShowVC.resID = resID
+            storeShowVC.enterFromFavorite = true
+            self.tabBarController?.selectedIndex = 1
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("receiveAPNS"), object: nil)
+            searchNavController.pushViewController(storeShowVC, animated: true)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(pushToStoreShowVC), name: NSNotification.Name("receiveAPNS"), object: nil)
         
         let db = Firestore.firestore()
         db.collection("res").whereField("status", isEqualTo: 1).addSnapshotListener { (res, error) in
