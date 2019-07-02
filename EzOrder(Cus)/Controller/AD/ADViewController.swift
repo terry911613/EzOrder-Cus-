@@ -144,6 +144,7 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                         self.adPageControl.isHidden = true
                         self.adCollectionView.reloadData()
                     }
+                    
                 }
             }
         }
