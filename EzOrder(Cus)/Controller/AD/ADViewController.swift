@@ -92,7 +92,6 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        
         adCollectionView.delegate = self
         adCollectionView.showsVerticalScrollIndicator = false
         adCollectionView.showsHorizontalScrollIndicator = false
