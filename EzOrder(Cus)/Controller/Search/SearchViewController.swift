@@ -67,7 +67,7 @@ class SearchViewController: UIViewController {
                            self.storeTableView.reloadData()
                             print("1234555")
                         }
-//                    }
+                    }
                 }
             }
         }
@@ -122,6 +122,7 @@ class SearchViewController: UIViewController {
         }
     }
 }
+
 
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
