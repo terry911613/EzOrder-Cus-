@@ -53,8 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             print("Subscribed to advertisement topic")
         }
         
-        if let notification = launchOptions?[.remoteNotification] as? [AnyHashable: Any] {
-            let resID = notification["resID"] as! String
+        if let notification = launchOptions?[.remoteNotification] as? [AnyHashable: Any], let resID = notification["resID"] as? String {
             let notificationName = Notification.Name("receiveAPNS")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["resID": resID])
