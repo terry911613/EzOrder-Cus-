@@ -29,7 +29,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NA1-Wu-HHI">
                                                     <rect key="frame" x="30" y="15" width="120" height="120"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="NA1-Wu-HHI" secondAttribute="height" multiplier="1:1" id="TWx-4J-NNo"/>
@@ -358,7 +358,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjT-Sp-oez">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-6U-Ph6">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-6U-Ph6">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
                                             </imageView>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="link" translatesAutoresizingMaskIntoConstraints="NO" id="xJj-Oy-UET">
@@ -417,9 +417,9 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0V-07-Qgc">
-                                                        <rect key="frame" x="98" y="120" width="30" height="30"/>
-                                                        <state key="normal">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <rect key="frame" x="98" y="120" width="62" height="30"/>
+                                                        <state key="normal" title="測試測試">
+                                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="myMapButton:" destination="wbo-o6-ja6" eventType="touchUpInside" id="bfh-zk-jDd"/>
@@ -618,7 +618,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD2" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-2g-2hf">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AD2" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-2g-2hf">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -825,7 +825,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="LDF-sS-K0u">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cash" translatesAutoresizingMaskIntoConstraints="NO" id="LDF-sS-K0u">
                                                             <rect key="frame" x="15" y="10" width="100" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="LDF-sS-K0u" secondAttribute="height" multiplier="1:1" id="Ezx-75-Yqe"/>
@@ -915,7 +915,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jZ7-al-xRL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jZ7-al-xRL">
                                 <rect key="frame" x="8" y="72" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jZ7-al-xRL" secondAttribute="height" multiplier="1:1" id="UIO-wu-FTD"/>
@@ -932,7 +932,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="tgS-IJ-BrD">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personal" translatesAutoresizingMaskIntoConstraints="NO" id="tgS-IJ-BrD">
                                                     <rect key="frame" x="15" y="20" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="tgS-IJ-BrD" secondAttribute="height" multiplier="1:1" id="SMh-Gh-XAg"/>
