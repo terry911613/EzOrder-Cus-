@@ -118,17 +118,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         if let resID = userInfo["resID"] as? String {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
-            tabBar.selectedIndex = 1
-            let nav = tabBar.selectedViewController as! UINavigationController
-            let searchVC = nav.topViewController as! SearchViewController
-            let storeShowVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
-            storeShowVC.resID = resID
-            storeShowVC.enterFromFavorite = true
-            self.window?.rootViewController?.dismiss(animated: false, completion: { self.window?.rootViewController = tabBar })
-            searchVC.show(storeShowVC, sender: searchVC)
-            window?.makeKeyAndVisible()
+
+            
+            if let topVC = UIApplication.topViewController() {
+                if let searchNav = topVC.tabBarController?.viewControllers?[1] as? UINavigationController {
+                    searchNav.popToRootViewController(animated: false)
+                    let searchStoryboard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+                    let storeShowVC = searchStoryboard.instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+                    storeShowVC.resID = resID
+                    storeShowVC.enterFromFavorite = true
+                    topVC.tabBarController?.selectedIndex = 1
+                    searchNav.pushViewController(storeShowVC, animated: true)
+                }
+            }
+
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let tabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+//            tabBar.selectedIndex = 1
+//            let nav = tabBar.selectedViewController as! UINavigationController
+//            let searchVC = nav.topViewController as! SearchViewController
+//            let storeShowVC = UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "storeShowVC") as! StoreShowViewController
+//            storeShowVC.resID = resID
+//            storeShowVC.enterFromFavorite = true
+//            self.window?.rootViewController?.dismiss(animated: false, completion: { self.window?.rootViewController = tabBar })
+//            searchVC.show(storeShowVC, sender: searchVC)
+//            window?.makeKeyAndVisible()
         }
         completionHandler()
     }
