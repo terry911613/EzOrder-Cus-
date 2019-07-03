@@ -58,14 +58,12 @@ class SearchViewController: UIViewController {
                     self.searcArray.removeAll()
                     self.resArray = res.documents
                     self.animateStoreTableView()
-                    print("1234")
                     
                     for res in res.documents{
                         if let resName = res.data()["resName"] as? String,let resImage = res.data()["resImage"] as? String,let resTotalRate = res.data()["resTotalRate"] as? Float,
                             let resRateCount = res.data()["resRateCount"] as? Float,let resid = res.data()["resID"] as? String {
                             self.searcArray.append(SearcArray(name: resName, image: resImage, resTotalRate: resTotalRate, resCount: resRateCount,ID: resid))
-                           self.storeTableView.reloadData()
-                            print("1234555")
+                            self.storeTableView.reloadData()
                         }
                     }
                 }
@@ -131,10 +129,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         }
         else{
             if searchbool == false{
-            return resArray.count
-        } else {
-            return searcArray.count
-            
+                return resArray.count
+            } else {
+                return searcArray.count
+                
             }
         }
     }
@@ -226,7 +224,7 @@ extension SearchViewController: UISearchBarDelegate{
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBool = false
-       // searchbool = !se
+        // searchbool = !se
         searchBar.text = ""
         storeTableView.reloadData()
         self.view.endEditing(true)

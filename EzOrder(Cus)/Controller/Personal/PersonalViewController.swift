@@ -74,9 +74,8 @@ class PersonalViewController: UIViewController {
             performSegue(withIdentifier: "unwindToLogin", sender: self)
         }
         catch{
-            print("error, there was a problem logging out")
+//            print("error, there was a problem logging out")
         }
-
     }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -90,7 +89,7 @@ class PersonalViewController: UIViewController {
                 if let image = userImgStr,
                     let name = name,
                     let phone = phone{
-                    controller.imgStr = userImgStr
+                    controller.imgStr = image
                     controller.name = name
                     controller.phone = phone
                 }

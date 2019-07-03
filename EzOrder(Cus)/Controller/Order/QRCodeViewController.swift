@@ -125,7 +125,8 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             
             if let qrData = qrString.data(using: .utf8){
                 let result = try! JSONDecoder().decode([String: String].self, from: qrData)
-                if let table = Int(result["table"]!), let resID = result["resID"]{
+                if let table = Int(result["table"]!),
+                    let resID = result["resID"]{
                     self.tableNo = table
                     self.resID = resID
                     scanSuccess(qrCode: table)
@@ -143,7 +144,6 @@ class QRCodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     func scanSuccess(qrCode: Int) {
-        print(qrCode)
         // 停止預覽
         preview(false)
         order(name: qrCode)

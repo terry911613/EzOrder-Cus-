@@ -388,9 +388,9 @@ extension ProgressViewController: TPDApplePayDelegate{
             let test = ["prime":prime!,"partner_key":"partner_GJdRUgUc6TIiLZtDbsH5joCpqZanYOskAsqk5h3jXAGkxNDjz58rvBpX","merchant_id": "terry911613_ESUN","details":"TapPay Test","amount":applePay.cart.totalAmount!.stringValue,"cardholder":["phone_number":"+886923456789","name":"sun","email":"LittleMing@Wang.com"]] as [String : Any]
             let data = try?  JSONSerialization.data(withJSONObject: test)
             let task = URLSession.shared.uploadTask(with: request, from: data){(data, response, error) in
-                print("data:\(String(data: data!, encoding: .utf8))")
-                print("response:\(response)")
-                print("error\(error)")
+//                print("data:\(String(data: data!, encoding: .utf8))")
+//                print("response:\(response)")
+//                print("error\(error)")
             }
             task.resume()
         }
@@ -433,42 +433,39 @@ extension ProgressViewController: TPDApplePayDelegate{
             self.progressTableView.reloadData()
         }
         
-        print("=====================================================")
-        print("Apple Pay Did Success ==> Amount : \(result.amount.stringValue)")
-        
-        print("shippingContact.name : \(applePay.consumer.shippingContact?.name?.givenName) \( applePay.consumer.shippingContact?.name?.familyName)")
-        print("shippingContact.emailAddress : \(applePay.consumer.shippingContact?.emailAddress)")
-        print("shippingContact.phoneNumber : \(applePay.consumer.shippingContact?.phoneNumber?.stringValue)")
-        
-        
-        print("===================================================== \n\n")
+//        print("=====================================================")
+//        print("Apple Pay Did Success ==> Amount : \(result.amount.stringValue)")
+//        print("shippingContact.name : \(applePay.consumer.shippingContact?.name?.givenName) \( applePay.consumer.shippingContact?.name?.familyName)")
+//        print("shippingContact.emailAddress : \(applePay.consumer.shippingContact?.emailAddress)")
+//        print("shippingContact.phoneNumber : \(applePay.consumer.shippingContact?.phoneNumber?.stringValue)")
+//        print("===================================================== \n\n")
     }
     
     func tpdApplePay(_ applePay: TPDApplePay!, didFailurePayment result: TPDTransactionResult!) {
-        print("=====================================================")
-        print("Apple Pay Did Failure ==> Message : \(result.message), ErrorCode : \(result.status)")
-        print("===================================================== \n\n")
+//        print("=====================================================")
+//        print("Apple Pay Did Failure ==> Message : \(result.message), ErrorCode : \(result.status)")
+//        print("===================================================== \n\n")
     }
     
     func tpdApplePayDidStartPayment(_ applePay: TPDApplePay!) {
         //
-        print("=====================================================")
-        print("Apple Pay On Start")
-        print("===================================================== \n\n")
+//        print("=====================================================")
+//        print("Apple Pay On Start")
+//        print("===================================================== \n\n")
     }
     
     func tpdApplePayDidCancelPayment(_ applePay: TPDApplePay!) {
         //
-        print("=====================================================")
-        print("Apple Pay Did Cancel")
-        print("===================================================== \n\n")
+//        print("=====================================================")
+//        print("Apple Pay Did Cancel")
+//        print("===================================================== \n\n")
     }
     
     func tpdApplePayDidFinishPayment(_ applePay: TPDApplePay!) {
         //
-        print("=====================================================")
-        print("Apple Pay Did Finish")
-        print("===================================================== \n\n")
+//        print("=====================================================")
+//        print("Apple Pay Did Finish")
+//        print("===================================================== \n\n")
     }
 }
 

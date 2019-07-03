@@ -85,7 +85,6 @@ class CartViewController: UIViewController {
     
     func upload() {
         
-        
         let db = Firestore.firestore()
         if let userID = Auth.auth().currentUser?.email{
             // 加點模式
@@ -220,7 +219,6 @@ class CartViewController: UIViewController {
                                 
                                 if let foodAmountData = foodAmount?.data(){
                                     if let foodAmount = foodAmountData["foodAmount"] as? Int{
-                                        print(444)
                                         
                                         let foodAmountData: [String: Any] = ["foodAmount": foodAmount + amount,
                                                                              "date": Date()]
@@ -229,7 +227,6 @@ class CartViewController: UIViewController {
                                     }
                                 }
                                 else{
-                                    print(123)
                                     let foodAmountData: [String: Any] = ["foodName": foodName,
                                                                          "dateString": dateString,
                                                                          "foodAmount": amount,

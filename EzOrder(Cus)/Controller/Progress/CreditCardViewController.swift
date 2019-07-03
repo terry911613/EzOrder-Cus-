@@ -63,12 +63,12 @@ class CreditCardViewController: UIViewController {
             
             let result = "Prime : \(prime!),\n card identifier : , \nLastFour : \(cardInfo!.lastFour!),\n Bincode : \(cardInfo!.bincode!),\n Issuer : \(cardInfo!.issuer!),\n cardType : \(cardInfo!.cardType),\n funding : \(cardInfo!.cardType),\n country : \(cardInfo!.country!),\n countryCode : \(cardInfo!.countryCode!),\n level : \(cardInfo!.level!)"
             
-            print(result)
+//            print(result)
             
             DispatchQueue.main.async {
                 let payment = "Use below cURL to proceed the payment.\ncurl -X POST \\\nhttps://sandbox.tappaysdk.com/tpc/payment/pay-by-prime \\\n-H \'content-type: application/json\' \\\n-H \'x-api-key: partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\' \\\n-d \'{ \n \"prime\": \"\(prime!)\", \"partner_key\": \"partner_6ID1DoDlaPrfHw6HBZsULfTYtDmWs0q0ZZGKMBpp4YICWBxgK97eK3RM\", \"merchant_id\": \"GlobalTesting_CTBC\", \"details\":\"TapPay Test\", \"amount\": 100, \"cardholder\": { \"phone_number\": \"+886923456789\", \"name\": \"Jane Doe\", \"email\": \"Jane@Doe.com\", \"zip_code\": \"12345\", \"address\": \"123 1st Avenue, City, Country\", \"national_id\": \"A123456789\" }, \"remember\": true }\'"
                 self.displayText.text = payment
-                print(payment)
+//                print(payment)
                 
             }
             
@@ -98,7 +98,7 @@ class CreditCardViewController: UIViewController {
         // If use pay-by-token. Get fraud ID before first, and send fraud id to your request.
         let result = "Send Fraud Id : \(fraudId!) to your server, bring it on when you request pay-by-token API"
         
-        print(result)
+//        print(result)
         showResult(message: result)
         
     }

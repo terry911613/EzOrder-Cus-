@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Wheel View Controller-->
+        <!--轉盤-->
         <scene sceneID="Ljy-7h-BKB">
             <objects>
                 <viewController storyboardIdentifier="wheelVC" id="LhU-fO-23X" customClass="WheelViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -63,6 +63,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nb3-ey-jY1"/>
                     </view>
+                    <navigationItem key="navigationItem" title="轉盤" id="Y3R-n6-VF6"/>
                     <connections>
                         <outlet property="pointCountLabel" destination="TIE-el-yeb" id="YB5-7q-jiw"/>
                         <outlet property="wheelRotateImageView" destination="J2X-4B-24b" id="sJk-Bj-FOf"/>
@@ -462,6 +463,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fDI-Fm-2gD"/>
                     </view>
+                    <navigationItem key="navigationItem" title="行事曆" id="1fh-C3-Knd"/>
                     <connections>
                         <outlet property="calendarView" destination="zBz-CJ-Q5L" id="stW-IO-fw2"/>
                         <outlet property="dateLabel" destination="GD3-6w-Vd2" id="vRQ-pT-sqR"/>
