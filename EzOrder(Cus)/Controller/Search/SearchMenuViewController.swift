@@ -20,24 +20,29 @@ class SearchMenuViewController: UIViewController {
     var searchbool : Bool?
     var DocumentID : String?
     
-    
-    
-    
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         if searchbool == true {
             resID = self.DocumentID
         }
-        super.viewDidLoad()
         
-        
+        let db = Firestore.firestore()
+        if let resID = resID{
+            db.collection("res").document(resID).getDocument { (res, error) in
+                if let resData = res?.data(){
+                    if let resName = resData["resName"] as? String{
+                        self.navigationItem.title = "\(resName)菜單"
+                    }
+                }
+            }
+        }
     }
     
     func getFood(typeDocumentID: String){
-        print("-------------")
-        //   print(typeName)
         let db = Firestore.firestore()
         if let resID = resID{
-            print(resID)
+            
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").whereField("foodStatus", isEqualTo: 1).order(by: "foodIndex", descending: false).getDocuments { (food, error) in
                 if let food = food{
                     if food.documents.isEmpty{
@@ -46,10 +51,7 @@ class SearchMenuViewController: UIViewController {
                     }
                     else{
                         self.foodArray = food.documents
-                        print(self.foodArray.count)
                         self.searcMenuTableView.reloadData()
-                        print("getFood Success")
-                        print("-------------")
                         
                     }
                 }

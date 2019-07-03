@@ -116,9 +116,9 @@ extension OrderRecordViewController: UITableViewDelegate, UITableViewDataSource{
             cell.dateLabel.text = format.string(from: dateTimeStamp.dateValue())
         }
         
-        print("------")
-        print(orderRecord.data()["usePoint"] as? Int)
-        print("------")
+//        print("------")
+//        print(orderRecord.data()["usePoint"] as? Int)
+//        print("------")
         if let usePoint = orderRecord.data()["usePoint"] as? Int{
             cell.pointLabel.isHidden = false
             cell.pointLabel.text = "折抵\(usePoint)點"

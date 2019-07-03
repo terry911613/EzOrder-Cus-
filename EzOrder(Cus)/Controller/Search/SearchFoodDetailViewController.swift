@@ -39,21 +39,17 @@ class SearchFoodDetailViewController: UIViewController {
                 }
             }
         }
-       
         
         if let food = food{
-            print(food.data()["foodImage"] as? String)
-            print(food.data()["foodName"] as? String)
-            print(food.data()["foodPrice"] as? Int)
-            print(food.data()["foodDetail"] as? String)
             if let foodImage = food.data()["foodImage"] as? String,
                 let foodName = food.data()["foodName"] as? String,
                 let foodPrice = food.data()["foodPrice"] as? Int,
                 let foodDetail = food.data()["foodDetail"] as? String,
                 let typeDocumentID = food.data()["typeDocumentID"] as? String,
-            let foodDocumentID = food.data()["foodDocumentID"] as? String{
+                let foodDocumentID = food.data()["foodDocumentID"] as? String{
                 
                 foodImageView.kf.setImage(with: URL(string: foodImage))
+                self.navigationItem.title = foodName
                 foodNameLabel.text = "菜名：\(foodName)"
                 foodPriceLabel.text = "價格：$\(foodPrice)"
                 foodDetailLabel.text = "\(foodDetail)"

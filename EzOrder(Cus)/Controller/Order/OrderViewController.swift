@@ -12,7 +12,7 @@ import ViewAnimator
 import Kingfisher
 
 class OrderViewController: UIViewController {
-
+    
     @IBOutlet weak var typeCollectionView: UICollectionView!
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
@@ -24,8 +24,7 @@ class OrderViewController: UIViewController {
     var resID: String?
     var orderNo: String?
     
-    let db = Firestore.firestore()
-    let userID = Auth.auth().currentUser?.email
+    
     var typeArray = [QueryDocumentSnapshot]()
     var foodArray = [QueryDocumentSnapshot]()
     var orderDic = [QueryDocumentSnapshot: Int]()
@@ -42,10 +41,25 @@ class OrderViewController: UIViewController {
             tableLabel.text = "\(tableNo)桌"
         }
         getType()
-        
+        getResName()
+    }
+    
+    func getResName(){
+        let db = Firestore.firestore()
+        if let resID = resID{
+            db.collection("res").document(resID).getDocument { (res, error) in
+                if let resData = res?.data(){
+                    if let resName = resData["resName"] as? String{
+                        self.navigationItem.title = "\(resName)菜單"
+                    }
+                }
+            }
+        }
     }
     
     func getType(){
+        
+        let db = Firestore.firestore()
         if let resID = resID{
             db.collection("res").document(resID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
                 
@@ -66,9 +80,8 @@ class OrderViewController: UIViewController {
                         
                         var typeIndex = 0
                         for type in type.documents{
-                            print("typeStart: ",type.data())
                             if let typeDocumentID = type.data()["typeDocumentID"] as? String{
-                                self.db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").getDocuments { (food, error) in
+                                db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").getDocuments { (food, error) in
                                     
                                     if let foodCount = food?.documents.count {
                                         if foodCount != 0 {
@@ -78,8 +91,6 @@ class OrderViewController: UIViewController {
                                         }
                                         typeIndex += 1
                                     }
-                                    print("type:", type.data())
-                                    print("orderAmount: ", self.orderAmounts)
                                 }
                             }
                         }
@@ -89,8 +100,7 @@ class OrderViewController: UIViewController {
         }
     }
     func getFood(typeDocumentID: String){
-        print("-------------")
-        print(typeDocumentID)
+        let db = Firestore.firestore()
         if let resID = resID{
             db.collection("res").document(resID).collection("foodType").document(typeDocumentID).collection("menu").whereField("foodStatus", isEqualTo: 1).order(by: "foodIndex", descending: false).getDocuments { (food, error) in
                 if let food = food{
@@ -100,11 +110,7 @@ class OrderViewController: UIViewController {
                     }
                     else{
                         self.foodArray = food.documents
-                        print(self.foodArray.count)
                         self.animateOrderTableView()
-                        print("getFood Success")
-                        print("-------------")
-                        
                     }
                 }
             }
@@ -180,18 +186,15 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
         let food = foodArray[indexPath.row]
         
-//        cell.name.text = selectTypeMenu[indexPath.row]
-//        cell.stepper.tag = indexPath.row
+        //        cell.name.text = selectTypeMenu[indexPath.row]
+        //        cell.stepper.tag = indexPath.row
         
         if let foodName = food.data()["foodName"] as? String,
             let foodImage = food.data()["foodImage"] as? String,
             let foodMoney = food.data()["foodPrice"] as? Int{
-            print("orderAmounts: ",orderAmounts)
-            print("selectTypeIndex", selectTypeIndex)
             let thisFoodAmount = self.orderAmounts[self.selectTypeIndex][indexPath.row]
-            print("thisFoodAmount: ", thisFoodAmount)
             cell.countAmount = thisFoodAmount
-//            cell.count.text = "數量:\(thisFoodAmount)"
+            //            cell.count.text = "數量:\(thisFoodAmount)"
             cell.count.text = "\(thisFoodAmount)"
             
             cell.name.text = foodName
@@ -200,7 +203,7 @@ extension OrderViewController: UITableViewDelegate, UITableViewDataSource{
             
             
             cell.callBackCount = { clickPlus, countAmount in
-//                cell.count.text = "數量:\(countAmount)"
+                //                cell.count.text = "數量:\(countAmount)"
                 cell.count.text = "\(countAmount)"
                 if clickPlus == true {
                     self.orderDic[food] = countAmount

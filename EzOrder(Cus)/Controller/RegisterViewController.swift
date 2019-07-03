@@ -33,9 +33,6 @@ class RegisterViewController: UIViewController {
         SVProgressHUD.show()
         Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (user, error) in
             if error != nil {
-                print("--------------")
-                print(error!)
-                print("--------------")
                 SVProgressHUD.dismiss()
                 self.emailLabel.text = "請輸入正確格式"
                 self.emailLabel.textColor = .red
@@ -61,7 +58,6 @@ class RegisterViewController: UIViewController {
                                                                     "totalPoint": 0])
                 }
                 //  success
-                print("Registration Successful!")
                 SVProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "RegisterToEzOrderSegue", sender: self)
             }

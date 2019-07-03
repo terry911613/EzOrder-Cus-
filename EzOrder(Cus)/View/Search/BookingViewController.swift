@@ -118,15 +118,12 @@ class BookingViewController: UIViewController {
                     self.peoplePicker.reloadAllComponents()
                 }
                 else{
-                    print("as")
                     db.collection("res").document(resID).getDocument { (res, error) in
                         if let resData = res?.data(){
-                            print("fucdsdk")
                             if let resBookingLimit = resData["resBookingLimit"] as? Int,
                                 let resPeriod = resData["resPeriod"] as? String{
                                 self.resPeriod = resPeriod
                                 self.dic.removeAll()
-                                print(resPeriod)
                                 for i in resPeriod{
                                     if i == "1"{
                                         self.timeIntervalPicker.isUserInteractionEnabled = false

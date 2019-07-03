@@ -48,21 +48,13 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
                 
                 if let error = error {
                     text = false
-                    print(text)
                     if text == false {
                         self.dismiss(animated: true)
-                        print(1)
-
                     }
-                    print(error.localizedDescription)
-                    print(2)
                     return
                 }
             }
 
-        }
-        else {
-            print(3)
         }
     }
     
@@ -70,7 +62,6 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
         text = false
         if text == false {
             dismiss(animated: true)
-            print("登出")
         }
     }
     
@@ -86,8 +77,6 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
                 self.passwordLabel.text = "密碼錯誤"
                 self.passwordLabel.textColor = .red
                 self.passwordLabel.isHidden = false
-                print(error!)
-                print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
                 let alert = UIAlertController(title: "登入失敗", message: error?.localizedDescription, preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -99,10 +88,7 @@ class SignInViewController: UIViewController, LoginButtonDelegate{
                 self.emailLabel.isHidden = true
                 self.passwordLabel.text = ""
                 self.passwordLabel.isHidden = true
-
                 
-                print("Log in Successful")
-                print("ffffffffuuuuuuuuucccccccckkkkkkkkkkk")
                 SVProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "loginToEzOrderSegue", sender: self)
             }
@@ -128,7 +114,6 @@ extension SignInViewController {
             let keyboardRect = keyboardFrame.cgRectValue
             let btnLocation = btnStackView.frame.origin
 //                btnStackView.superview?.convert(btnStackView.frame.origin, to: view)
-            print("location: ",btnLocation)
             let btnY = btnLocation.y
             let btnHeight = btnStackView.frame.height
             let overlap = btnY + btnHeight + keyboardRect.height - viewHeight!

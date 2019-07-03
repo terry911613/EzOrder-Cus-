@@ -44,11 +44,6 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
     var typeArray = [QueryDocumentSnapshot]()
     var beginningHandler: ()?
     
-    deinit {
-        print("storeShow deinit")
-        print("storeShow deinit")
-        print("storeShow deinit")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         viewDidLoadProcess()
@@ -66,16 +61,26 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
         
     }
     func viewDidLoadProcess() {
+        
         likeButton.setImage(UIImage(named: "link"), for: .normal)
+        
+//        let db = Firestore.firestore()
+//        if let resID = resID{
+//            db.collection("res").document(resID).getDocument { (res, error) in
+//                if let resData = res?.data(){
+//                    if let resName = resData["resName"] as? String{
+//
+//                    }
+//                }
+//            }
+//        }
         
         func generalProcess() {
             
-            let db = Firestore.firestore()
             if searcbool{
                 if let DocumentID = DocumentID {
-                    print("1234589",DocumentID)
-                    if
-                        let userID = Auth.auth().currentUser?.email{
+                    let db = Firestore.firestore()
+                    if let userID = Auth.auth().currentUser?.email{
                         db.collection("res").document(DocumentID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
                             if let type = type{
                                 if type.documents.isEmpty{
@@ -88,7 +93,6 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                                 }
                             }
                         }
-                        
                         db.collection("user").document(userID).collection("favoriteRes").getDocuments { (favoriteRes, error) in
                             if let favoriteRes = favoriteRes{
                                 if favoriteRes.documents.isEmpty == false{
@@ -111,7 +115,11 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                                 let resName = resData["resName"] as? String,
                                 let resTel = resData["resTel"] as? String,
                                 let resLocation = resData["resLocation"] as? String,
-                                let resID = resData["resID"] as? String,let resTime = resData["resTime"] as? String{
+                                let resID = resData["resID"] as? String,
+                                let resTime = resData["resTime"] as? String{
+                                
+                                self.navigationItem.title = resName
+                                
                                 self.showStoreOpenTimeLabel.text = resTime
                                 self.showStoreImageView.kf.setImage(with: URL(string: resImage))
                                 self.showStoreNameLabel.text = resName
@@ -183,6 +191,7 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
             else  {
                 if let res = res,
                     let userID = Auth.auth().currentUser?.email{
+                    let db = Firestore.firestore()
                     db.collection("res").document(res.documentID).collection("foodType").order(by: "index", descending: false).getDocuments { (type, error) in
                         if let type = type{
                             if type.documents.isEmpty{
@@ -218,6 +227,9 @@ class StoreShowViewController: UIViewController,CLLocationManagerDelegate{
                             let resTel = resData["resTel"] as? String,
                             let resLocation = resData["resLocation"] as? String,
                             let resID = resData["resID"] as? String,let resTime = resData["resTime"] as? String{
+                            
+                            self.navigationItem.title = resName
+                            
                             self.showStoreOpenTimeLabel.text = resTime
                             self.showStoreImageView.kf.setImage(with: URL(string: resImage))
                             self.showStoreNameLabel.text = resName
