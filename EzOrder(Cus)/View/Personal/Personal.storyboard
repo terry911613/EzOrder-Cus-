@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="真輪盤" translatesAutoresizingMaskIntoConstraints="NO" id="J2X-4B-24b" customClass="RotateImageView" customModule="EzOrder_Cus_" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="183.49999999999997" width="300" height="300.00000000000006"/>
+                                <rect key="frame" x="37.5" y="183.5" width="300" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J2X-4B-24b" secondAttribute="height" multiplier="1:1" id="RYG-nw-5Jn"/>
@@ -153,7 +153,7 @@
             </objects>
             <point key="canvasLocation" x="1382" y="928"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--收藏餐廳-->
         <scene sceneID="HEq-9g-eS7">
             <objects>
                 <viewController storyboardIdentifier="favoriteVC" id="8DP-sZ-h2r" customClass="FavoriteViewController" customModule="EzOrder_Cus_" customModuleProvider="target" sceneMemberID="viewController">
@@ -209,6 +209,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ah2-L1-iEz"/>
                     </view>
+                    <navigationItem key="navigationItem" title="收藏餐廳" id="Snj-pI-4fh"/>
                     <connections>
                         <outlet property="favoriteCollectionView" destination="3bG-Ka-hVR" id="rII-YH-6pt"/>
                         <segue destination="ZGC-C7-tXc" kind="unwind" identifier="unwindSegueStoreShow" unwindAction="unwindSegueStoreShowWithSegue:" id="CMN-b6-rvy"/>
