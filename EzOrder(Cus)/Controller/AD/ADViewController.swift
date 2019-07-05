@@ -127,6 +127,9 @@ class ADViewController: UIViewController, UIScrollViewDelegate {
                         self.adCollectionView.reloadData()
                     }
                     else{
+                        self.adPageControl.currentPage = 0
+                        self.imageIndexPath = 0
+                        self.adCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
                         self.timerForAd = Timer.scheduledTimer(withTimeInterval: 4, repeats: true, block: { (Timer) in
                             UIView.animate(withDuration: 1, animations: {
                                 var indexPath: IndexPath

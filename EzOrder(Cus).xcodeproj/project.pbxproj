@@ -185,8 +185,8 @@
 		4443C38A22A65B68004875D7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				447A1708228BB284003AB41E /* Search.storyboard */,
 				2C0AF39022C47ECF008070BD /* SearchAnimation.swift */,
+				447A1708228BB284003AB41E /* Search.storyboard */,
 				2C2B9DF022B9094000602386 /* FlatCard.swift */,
 				2C0DFE8E22A95AEB002CC546 /* SearcMenuTableViewCell.swift */,
 				2C0DFE9022A95B04002CC546 /* SearcMenuCollectionViewCell.swift */,
